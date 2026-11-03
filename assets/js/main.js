@@ -1,33 +1,36 @@
-// Progressive enhancement only — the site is fully usable without JS.
+// Progressive enhancement only. The site is fully usable without JavaScript.
 (function () {
-  var doc = document.documentElement;
+  document.documentElement.classList.add("js");
 
-  // Mobile navigation
-  var toggle = document.querySelector(".nav-toggle");
-  var nav = document.querySelector(".site-nav");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      document.body.classList.toggle("nav-open", open);
-    });
+  // Full-screen menu (tablet and mobile)
+  var overlay = document.getElementById("overlay");
+  var openBtn = document.querySelector(".site-header .menu-btn");
+  var closeBtn = overlay && overlay.querySelector(".close");
+  function setMenu(open) {
+    if (!overlay) return;
+    overlay.classList.toggle("open", open);
+    overlay.setAttribute("aria-hidden", open ? "false" : "true");
+    if (openBtn) openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.classList.toggle("locked", open);
   }
+  if (openBtn) openBtn.addEventListener("click", function () { setMenu(true); });
+  if (closeBtn) closeBtn.addEventListener("click", function () { setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
 
-  // Header shadow + mobile booking bar once scrolled
+  // Header rule and mobile booking bar once scrolled
   var header = document.querySelector(".site-header");
   var mbar = document.querySelector(".mbar");
-  var onScroll = function () {
+  function onScroll() {
     var y = window.scrollY;
-    if (header) header.classList.toggle("scrolled", y > 40);
-    if (mbar) mbar.classList.toggle("show", y > 500);
-  };
+    if (header) header.classList.toggle("scrolled", y > 10);
+    if (mbar) mbar.classList.toggle("show", y > 480);
+  }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Video facade: load YouTube (privacy-enhanced) only on click
+  // Video: load YouTube (privacy-enhanced mode) only when asked
   document.querySelectorAll(".video[data-yt]").forEach(function (v) {
-    var btn = v.querySelector("button.play");
+    var btn = v.querySelector(".play");
     if (!btn) return;
     btn.addEventListener("click", function () {
       var f = document.createElement("iframe");
@@ -40,36 +43,28 @@
     });
   });
 
-  // Enquiry form → pre-filled email to the private secretary
+  // Enquiry form: compose an email to the private secretary
   var form = document.getElementById("enquiry");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var d = new FormData(form);
-      var lines = ["Name: " + d.get("name"), "Phone: " + d.get("phone"), "Email: " + (d.get("email") || "-"),
-        "Preferred clinic: " + d.get("clinic"), "Reason: " + d.get("reason"), "Funding: " + d.get("funding"), "", d.get("message") || ""];
+      var lines = ["Name: " + d.get("name"), "Telephone: " + d.get("phone"), "Email: " + (d.get("email") || "not given"),
+        "Clinic: " + d.get("clinic"), "Reason: " + d.get("reason"), "Funding: " + d.get("funding"), "", d.get("message") || ""];
       window.location.href = "mailto:" + form.getAttribute("data-to") +
-        "?subject=" + encodeURIComponent("Appointment enquiry — " + d.get("reason")) +
+        "?subject=" + encodeURIComponent("Appointment enquiry: " + d.get("reason")) +
         "&body=" + encodeURIComponent(lines.join("\n"));
     });
   }
 
-  // Scroll reveal (motion-safe)
+  // Gentle fade for statement blocks below the fold
+  var fades = document.querySelectorAll(".fade");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    var els = document.querySelectorAll(".card, .quote, .step, .loc, .post, .pillars > div, .reveal");
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    els.forEach(function (el) {
-      if (el.getBoundingClientRect().top > window.innerHeight * 0.92) {
-        el.classList.add("reveal");
-        io.observe(el);
-      } else {
-        el.classList.add("in");
-      }
-    });
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -10% 0px" });
+    fades.forEach(function (el) { io.observe(el); });
+  } else {
+    fades.forEach(function (el) { el.classList.add("in"); });
   }
-  doc.classList.add("js");
 })();

@@ -1,4 +1,4 @@
-# Blog rules — drzakerullah.com
+# Blog rules for drzakerullah.com
 
 Every post on this site is published under the name of a practising GMC-registered surgeon
 and is a "Your Money or Your Life" (YMYL) medical page. Google holds these to the highest
@@ -12,11 +12,11 @@ One file per post: `content/blog/YYYY-MM-DD-short-slug.md` (filename starts with
 
 ```yaml
 ---
-title: Lumpectomy or mastectomy? How the decision is really made   # 30–70 chars, contains keyword words
+title: Lumpectomy or mastectomy? How the decision is really made   # 30 to 70 chars, contains keyword words
 slug: lumpectomy-vs-mastectomy                                      # lowercase-hyphen, keyword-led, never changes once live
-date: 2026-11-10                                                    # publish date — future = scheduled
+date: 2026-11-10                                                    # publish date, future = scheduled
 reviewed: 2026-11-03                                                # date the content was medically checked
-description: 120–160 chars. Answers the query + says who is answering. No clickbait.
+description: 120 to 160 chars. Answers the query + says who is answering. No clickbait.
 keyword: lumpectomy vs mastectomy                                   # ONE primary target query
 category: Breast cancer                                             # see categories below
 related: breast-cancer-surgery, breast-reconstruction               # procedure slugs from _build/content.py
@@ -30,20 +30,20 @@ Men's breast health · Private care explained · Local clinics · General surger
 
 ## 2. Structure (in this order)
 
-1. **`**In short:**` paragraph** — 40–60 words that fully answer the query. This is what Google's
+1. **`**In short:**` paragraph**, 40 to 60 words that fully answer the query. This is what Google's
    AI Overviews and LLMs quote. No preamble.
 2. One or two short paragraphs of context in Mr Ullah's voice ("In clinic I often see…").
-3. **3–6 `##` sections**, question-shaped or task-shaped where natural ("What happens on the day",
+3. **3 to 6 `##` sections**, question-shaped or task-shaped where natural ("What happens on the day",
    "Is it safe?"). Use `###` sparingly. Lists for symptoms, steps and options.
 4. Optional `:::note` callout for safety-netting or a local pointer.
-5. **`## Frequently asked questions`** — 2–4 `### Question?` + 1–3 sentence answers. Real
+5. **`## Frequently asked questions`**, 2 to 4 `### Question?` + 1 to 3 sentence answers. Real
    "People also ask" phrasings. These become FAQPage schema automatically.
 
-Do **not** add a disclaimer, author box or CTA — the template adds them.
+Do **not** add a disclaimer, author box or CTA, the template adds them.
 
 ## 3. Length & depth
 
-- New posts: **900–1,600 words** (hard minimum 650). Depth beats length — never pad.
+- New posts: **900 to 1,600 words** (hard minimum 650). Depth beats length, never pad.
 - Must contain at least one thing a generic health site would not: a clinical nuance, a UK
   pathway detail (NHS two-week wait, insurer pre-authorisation, NICE), a local detail
   (clinic days, parking, which hospital), or a "what I tell patients" insight.
@@ -55,6 +55,8 @@ Do **not** add a disclaimer, author box or CTA — the template adds them.
 - British English (tumour, oesophagus, anaesthetic, centre, organise, programme).
 - Reassure honestly: lead with the likely benign answer where true, but always safety-net.
 - Short sentences. No hype, no fear-mongering, no exclamation marks.
+- **No em dashes or en dashes, ever.** Use a comma, colon or full stop instead, and "to" for ranges
+  ("two to three weeks"). The validator rejects any post containing them.
 
 ## 5. Medical accuracy (non-negotiable)
 
@@ -80,12 +82,12 @@ Banned (validator enforces): "best surgeon", "leading", "world-class", "number o
 
 - **One primary keyword per post**, and no two posts may target the same keyword (check
   `content/content-plan.md` and existing posts). Put it in the title, slug, description,
-  `In short` paragraph and one `##` heading — naturally.
+  `In short` paragraph and one `##` heading, naturally.
 - **≥3 internal links** using site-root paths `[text](~/procedures/slug/)`, including
   **at least one treatment page**, plus where relevant a clinic page (`~/locations/…/`),
   `~/second-opinion/`, `~/booking/`, `~/podcast/` or an earlier post (`~/news/slug/`).
   Descriptive anchor text, never "click here".
-- Local intent: mention the real clinic(s) where it helps the reader — Harley Street W1,
+- Local intent: mention the real clinic(s) where it helps the reader, Harley Street W1,
   Nuffield Health St Bartholomew's EC1, Nuffield Health The Holly, Buckhurst Hill IG9.
   **Never** create pages or posts for places he does not practise (doorway pages).
 - No external links needed; if used, only to NHS, NICE, CRUK, Breast Cancer Now or ABS.

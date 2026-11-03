@@ -8,20 +8,20 @@ keyword: private breast clinic essex
 category: Local clinics
 related: benign-breast-conditions, breast-cancer-surgery
 ---
-**In short:** the Rapid Access Breast Clinic at Nuffield Health The Holly Hospital in Buckhurst Hill is a private one-stop clinic. You see a consultant breast surgeon, have any scans you need and, if necessary, a biopsy — usually in a single afternoon. I run it on Tuesday afternoons.
+**In short:** the Rapid Access Breast Clinic at Nuffield Health The Holly Hospital in Buckhurst Hill is a private one-stop clinic. You see a consultant breast surgeon, have any scans you need and, if necessary, a biopsy, usually in a single afternoon. I run it on Tuesday afternoons.
 
 Many of my patients come from Loughton, Chigwell, Woodford, Epping and across north-east London and Essex. This is what they can expect.
 
 ## Before you come
 
-- **If you are insured,** ask your GP for a short referral letter and call your insurer for a pre-authorisation number. Most insurers — including Bupa, AXA Health, Aviva and Vitality — require both.
+- **If you are insured,** ask your GP for a short referral letter and call your insurer for a pre-authorisation number. Most insurers, including Bupa, AXA Health, Aviva and Vitality, require both.
 - **If you are self-funding,** you can book directly without a referral. The hospital confirms the consultation fee when you book.
 - **Bring** any previous mammogram or ultrasound reports, a list of medications and, if you have one, your referral letter.
 - Avoid deodorant or talcum powder on the day if you may need a mammogram.
 
 ## On the day
 
-1. **Consultation.** I take a full history — your symptom, your family history, any medications — and examine both breasts and armpits. There is time to ask questions.
+1. **Consultation.** I take a full history, covering your symptom, your family history and any medicines, and examine both breasts and armpits. There is time to ask questions.
 2. **Imaging.** Depending on your age and symptoms, you will have an ultrasound, a mammogram or both, usually in the same visit.
 3. **Biopsy if needed.** If anything needs a tissue sample, a needle biopsy is taken under local anaesthetic, guided by ultrasound. It takes a few minutes.
 4. **A plan before you leave.** Most patients leave either reassured or with a clear next step and a date for biopsy results.

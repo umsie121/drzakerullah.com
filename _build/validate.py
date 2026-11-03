@@ -40,15 +40,15 @@ def main():
         if not f.startswith(p["date"]):
             E(f"filename must start with the date {p['date']}")
         if not 30 <= len(p["title"]) <= 70:
-            E(f"title is {len(p['title'])} chars (30–70)")
+            E(f"title is {len(p['title'])} chars (30 to 70)")
         if not 120 <= len(p["description"]) <= 160:
-            E(f"description is {len(p['description'])} chars (120–160)")
+            E(f"description is {len(p['description'])} chars (120 to 160)")
         kw = p["keyword"].lower()
         first = body.strip().split("\n\n")[0].lower()
         if not any(w in p["title"].lower() for w in kw.split() if len(w) > 3):
             E("title should contain the main words of the target keyword")
         if not first.startswith("**in short:**") and p["date_obj"] >= datetime.date(2026, 10, 1):
-            E("first paragraph must be an '**In short:**' direct answer (40–60 words)")
+            E("first paragraph must be an '**In short:**' direct answer (40 to 60 words)")
         links = re.findall(r"\]\((~/[^)]*)\)", body)
         if len(set(links)) < 3:
             E(f"needs ≥3 distinct internal links (has {len(set(links))})")
@@ -65,9 +65,11 @@ def main():
         if p["words"] < 650:
             (E if p["date_obj"] >= STANDARD_FROM else W)(f"only {p['words']} words (min 650)")
         elif p["words"] < 900 and p["date_obj"] > today:
-            W(f"{p['words']} words — aim for 900–1,600")
+            W(f"{p['words']} words, aim for 900 to 1,600")
         if p["words"] > 2200:
-            W(f"{p['words']} words — consider splitting")
+            W(f"{p['words']} words, consider splitting")
+        if "\u2014" in src or "\u2013" in src:
+            E("contains an em or en dash; use a comma, colon or full stop, and 'to' for ranges")
         for b in BANNED:
             if re.search(b, body, re.I):
                 E(f"banned claim/superlative matches /{b}/ (GMC/ASA rules)")
@@ -78,7 +80,7 @@ def main():
     by_week = Counter(p["date_obj"].isocalendar()[:2] for p in posts if p["date_obj"] > today)
     for wk, n in by_week.items():
         if n > 2:
-            warns.append(f"{n} posts scheduled in ISO week {wk[1]} — spread them out")
+            warns.append(f"{n} posts scheduled in ISO week {wk[1]}, spread them out")
     for w in warns:
         print("WARN ", w)
     for e in errors:

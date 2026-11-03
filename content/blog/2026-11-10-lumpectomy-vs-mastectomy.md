@@ -32,7 +32,7 @@ Oncoplastic surgery reshapes the breast during the cancer operation. That allows
 
 Recovery is usually quicker after breast-conserving surgery. Most of my patients go home the same day or the next morning. They are back at desk work within one to two weeks, and driving once they can make an emergency stop comfortably. Radiotherapy then follows a few weeks later, usually as a short daily course over one to three weeks.
 
-After mastectomy without reconstruction, most patients stay one night. Desk work typically resumes at two to four weeks. With immediate reconstruction, the stay is usually one to three nights, and full recovery takes longer — around six weeks before returning to the gym, and longer still after flap surgery.
+After mastectomy without reconstruction, most patients stay one night. Desk work typically resumes at two to four weeks. With immediate reconstruction, the stay is usually one to three nights, and full recovery takes longer: around six weeks before returning to the gym, and longer still after flap surgery.
 
 In both cases there is a small risk of fluid collecting under the wound (seroma), infection or bleeding. If lymph nodes are removed from the armpit, there is also a risk of arm swelling (lymphoedema). I go through the risks that apply to your operation before you consent.
 

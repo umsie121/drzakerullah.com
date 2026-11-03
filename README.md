@@ -19,13 +19,21 @@ Push to `main` and GitHub Actions validates, builds and deploys to GitHub Pages.
 | Source | Produces |
 |---|---|
 | `_build/content.py` | Facts: treatments, clinics, insurers, verbatim iWantGreatCare reviews, podcast |
-| `_build/build.py` | Home, About, 8 treatment pages, Second opinion, 3 clinic pages, Reviews, Podcast, Insights, Booking, 404 |
-| `_build/layout.py` | `<head>`, header (mega-menus), footer, CTA, mobile booking bar |
+| `_build/build.py` | Home, Biography, 8 treatment pages, Second opinion, 3 clinic pages, Your first visit, Fees and insurance, Questions answered, Reviews, Podcast, Journal, Booking, 404 |
+| `_build/layout.py` | `<head>`, split navigation with drop-down panels, full-screen mobile menu, footer, appointment band |
 | `content/blog/*.md` | Blog posts → `/news/<slug>/` (+ FAQ schema from the FAQ section) |
 | `content/BLOG-RULES.md` | Editorial, medical, compliance and SEO rules for posts |
 | `content/content-plan.md` | Researched backlog of 40+ topics |
 | `CLAUDE.md` | How Claude should write and schedule posts |
 | `assets/` | CSS design system, JS (menu, video facade, enquiry form), fonts, images |
+
+## Design system
+
+*Caslon & Claret*. Libre Caslon Display and Text (the English Caslon tradition) for headings and
+reading, Hanken Grotesk for small tracked labels. Warm paper `#f6f3ee`, ink `#171513`, one accent,
+claret `#6b1f25`. Square corners, hairline rules, an editorial left rail for section labels, and
+black-and-white photography. No rounded cards, shadows, badges or gradients. House style: no em
+or en dashes anywhere (the validator enforces this for posts).
 
 ## SEO built in
 

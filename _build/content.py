@@ -1,20 +1,19 @@
 """Structured content: procedures, locations and practice facts.
 
-Facts here must be verifiable. Anything marked TODO needs confirming with
-Mr Ullah's office before it is relied on.
+House style: British English, plain and assured, no em or en dashes
+(use commas, colons, full stops, or "to" for ranges). Facts here must be
+verifiable; anything marked TODO needs confirming with the practice.
 """
 
 IWGC = "https://www.iwantgreatcare.org/doctors/mr-md-zaker-ullah"
 
 INSURERS = ["Bupa", "Bupa Global", "AXA Health", "Aviva", "Vitality", "WPA", "Cigna", "Healix", "Health-on-Line"]
 
-# Private secretary (Nuffield Health The Holly) — source: Bupa Finder profile.
-# TODO confirm number/email with the office before launch.
+# Private secretary at Nuffield Health The Holly. Source: Bupa Finder profile.
+# TODO confirm number, email and name spelling with the office before launch.
 SEC_PHONE = "020 8936 1263"
 SEC_TEL = "+442089361263"
 SEC_EMAIL = "juliet.willes@nuffieldhealth.com"
-PHONE_LABEL = "Private secretary: 020 8936 1263"
-PHONE_TEL = SEC_TEL
 
 LOCATIONS = [
     {
@@ -26,20 +25,19 @@ LOCATIONS = [
         "locality": "London",
         "region": "Greater London",
         "postcode": "W1G 8BJ",
-        "phone": None,  # no Mr Ullah-specific HCA line verified; book via secretary
+        "phone": None,  # no line specific to Mr Ullah verified; book via secretary
         "tel": None,
         "operator": "HCA Healthcare UK",
-        "kw": "Breast Surgeon Harley Street",
-        "h1": "Breast surgeon on <em>Harley Street</em>",
+        "h1": "Breast surgeon on Harley Street",
         "title": "Breast Surgeon Harley Street, London W1 | Mr Zaker Ullah",
-        "desc": "Consultant oncoplastic breast surgeon at The Harley Street Clinic, London W1. Breast lump assessment, breast cancer surgery, reconstruction and reduction with Mr Zaker Ullah FRCS.",
-        "travel": "A short walk from Regent's Park, Great Portland Street and Oxford Circus stations, in the heart of London's historic medical district.",
+        "desc": "Consultant oncoplastic breast surgeon at The Harley Street Clinic, London W1. Breast lump assessment, breast cancer surgery, reconstruction and reduction.",
+        "travel": "A short walk from Regent's Park, Great Portland Street and Oxford Circus stations, in London's historic medical district.",
         "serves": ["Marylebone", "Fitzrovia", "Mayfair", "Westminster", "Camden", "St John's Wood", "Kensington", "Paddington", "Central London"],
-        "intro": "The Harley Street Clinic is one of London's best-known private hospitals, with dedicated cancer, imaging and surgical facilities under one roof. Mr Ullah consults and operates here for patients who live or work in central and west London, and for those travelling into the capital for a specialist opinion.",
+        "intro": "The Harley Street Clinic is one of London's best known private hospitals, with cancer, imaging and surgical facilities under one roof. Mr Ullah consults and operates here for patients who live or work in central and west London, and for those travelling to London for a specialist opinion.",
         "why": [
-            "Consultation, mammography, ultrasound and biopsy available on site",
-            "Full inpatient and day-case operating theatres for breast cancer, reconstruction and reduction surgery",
-            "Access to HCA's specialist oncology and multidisciplinary teams",
+            "Consultation, mammography, ultrasound and biopsy on site",
+            "Inpatient and day case theatres for cancer, reconstructive and reduction surgery",
+            "Access to HCA's oncology and multidisciplinary teams",
             "Convenient for patients travelling from across the UK and overseas",
         ],
     },
@@ -52,21 +50,20 @@ LOCATIONS = [
         "locality": "London",
         "region": "Greater London",
         "postcode": "EC1A 7BS",
-        "phone": "020 3386 9000",  # Nuffield St Bartholomew's main line — confirm
+        "phone": "020 3386 9000",  # Nuffield St Bartholomew's main line, TODO confirm
         "tel": "+442033869000",
         "operator": "Nuffield Health",
-        "kw": "Breast Surgeon City of London",
-        "h1": "Breast surgeon in the <em>City of London</em>",
+        "h1": "Breast surgeon in the City of London",
         "title": "Breast Surgeon City of London EC1 | Mr Zaker Ullah FRCS",
-        "desc": "Private breast surgeon in the City of London at Nuffield Health St Bartholomew's. Rapid breast lump clinics, breast cancer surgery and second opinions with Mr Zaker Ullah FRCS.",
-        "travel": "Within the historic St Bartholomew's Hospital site, a few minutes from Farringdon, Barbican and St Paul's stations — easy to reach from the City, Canary Wharf and the Elizabeth line.",
+        "desc": "Private breast surgeon in the City of London at Nuffield Health St Bartholomew's. Breast lump clinics, breast cancer surgery and second opinions.",
+        "travel": "Inside the St Bartholomew's Hospital site, a few minutes on foot from Farringdon, Barbican and St Paul's, and easily reached from Canary Wharf on the Elizabeth line.",
         "serves": ["The City", "Clerkenwell", "Islington", "Shoreditch", "Canary Wharf", "Southwark", "Hackney", "Tower Hamlets", "Holborn"],
-        "intro": "Nuffield Health's private hospital at St Bartholomew's sits within Britain's oldest hospital site, alongside one of Europe's leading cancer centres. It is ideal for patients who work in the City or East London and want a specialist appointment that fits around their day.",
+        "intro": "Nuffield Health's private hospital at St Bartholomew's sits within Britain's oldest hospital site, alongside one of Europe's leading cancer centres. It suits patients who work in the City or in east London and need an appointment that fits around the working day.",
         "why": [
-            "Private hospital inside the St Bartholomew's campus",
-            "Ideal for City and Canary Wharf workers — appointments that fit around the working day",
-            "Consultation, imaging and day-case surgery",
-            "Corporate and insured patients welcome; self-pay packages available",
+            "Private hospital within the St Bartholomew's campus",
+            "Appointments that fit around a City or Canary Wharf working day",
+            "Consultation, imaging and day case surgery",
+            "Corporate, insured and self-funding patients welcome",
         ],
     },
     {
@@ -81,253 +78,246 @@ LOCATIONS = [
         "phone": "020 8505 3311",
         "tel": "+442085053311",
         "operator": "Nuffield Health",
-        "kw": "Breast Surgeon Essex",
-        "h1": "Breast surgeon in <em>Essex</em> at The Holly",
+        "h1": "Breast surgeon in Essex, at The Holly",
         "title": "Breast Surgeon Essex, Buckhurst Hill | Mr Zaker Ullah FRCS",
-        "desc": "Private breast surgeon in Essex at The Holly Private Hospital, Buckhurst Hill IG9. One-stop breast clinics, breast cancer surgery, reconstruction, reduction and gynaecomastia with Mr Zaker Ullah FRCS.",
-        "travel": "On the High Road in Buckhurst Hill on the edge of Epping Forest, with on-site parking and Buckhurst Hill Central line station nearby. Easily reached from the M11 and M25.",
-        "serves": ["Buckhurst Hill", "Loughton", "Chigwell", "Woodford", "Epping", "Theydon Bois", "Waltham Abbey", "Harlow", "Brentwood", "Chingford", "Walthamstow", "Romford"],
-        "intro": "Nuffield Health The Holly Hospital is Mr Ullah's principal private base — where his private secretary is based and where the photograph on this site was taken. A calm, well-equipped hospital on the London–Essex border, it serves patients from across Essex, Hertfordshire and north-east London, and runs a Rapid Access Breast Clinic with Mr Ullah on Tuesday afternoons.",
-        "clinics": "Tuesday afternoons (Rapid Access Breast Clinic) and Thursday mornings",
+        "desc": "Private breast surgeon in Essex at Nuffield Health The Holly, Buckhurst Hill IG9. Rapid access breast clinic, cancer surgery, reconstruction and reduction.",
+        "travel": "On the High Road in Buckhurst Hill at the edge of Epping Forest, with parking on site. Buckhurst Hill Central line station is close by, and the M11 and M25 are a few minutes away.",
+        "serves": ["Buckhurst Hill", "Loughton", "Chigwell", "Woodford", "Epping", "Theydon Bois", "Waltham Abbey", "Harlow", "Brentwood", "Chingford", "Walthamstow", "Romford", "Ilford", "Wanstead"],
+        "intro": "Nuffield Health The Holly Hospital is Mr Ullah's principal private base, and the home of his private secretary. A calm and well equipped hospital on the border of London and Essex, it serves patients from across Essex, Hertfordshire and north east London. Mr Ullah runs its Rapid Access Breast Clinic on Tuesday afternoons.",
+        "clinics": "Tuesday afternoon (Rapid Access Breast Clinic) and Thursday morning",
         "why": [
             "Rapid Access Breast Clinic with Mr Ullah on Tuesday afternoons",
-            "On-site parking and easy access from the M11 and M25",
+            "Parking on site, close to the M11 and M25",
             "Outpatient clinics, imaging and full operating theatres",
-            "Consultations available in English and Bengali",
+            "Consultations in English and Bengali",
         ],
     },
 ]
 
-NHS_BASE = {
-    "name": "Whipps Cross University Hospital",
-    "trust": "Barts Health NHS Trust",
-    "street": "Whipps Cross Road",
-    "locality": "Leytonstone, London",
-    "postcode": "E11 1NR",
-}
+NHS_BASE = {"name": "Whipps Cross University Hospital", "trust": "Barts Health NHS Trust",
+            "street": "Whipps Cross Road", "locality": "Leytonstone, London", "postcode": "E11 1NR"}
 
 # ------------------------------------------------------------- procedures
 PROCEDURES = [
     {
         "slug": "benign-breast-conditions",
-        "nav": "Breast lumps &amp; pain",
-        "navdesc": "One-stop assessment of new breast symptoms",
-        "tags": ["Breast lump", "Breast pain", "Cysts", "Nipple discharge"],
+        "nav": "Breast lumps and pain",
+        "short_desc": "One-stop assessment",
+        "summary": "Examination, imaging and biopsy for a new breast symptom, usually at a single visit.",
         "title": "Private Breast Lump Clinic London & Essex | Mr Zaker Ullah",
-        "desc": "Found a breast lump or have breast pain? Private one-stop breast clinic in London & Essex: examination, mammogram/ultrasound and biopsy in a single visit with consultant breast surgeon Mr Zaker Ullah FRCS.",
-        "h1": "Breast lumps, pain &amp; <em>benign breast conditions</em>",
-        "lede": "Most breast symptoms turn out to be benign — but every new symptom deserves a proper answer, quickly. Mr Ullah introduced the one-stop clinic at Whipps Cross, and runs his private clinics the same way: examination, imaging and, if needed, biopsy at a single visit.",
-        "glance": [("Appointment", "Usually 45–90 minutes"), ("Tests", "Examination, ultrasound and/or mammogram, biopsy if needed"), ("Results", "Imaging on the day; biopsy typically within days"), ("Referral", "GP letter needed for most insurers")],
+        "desc": "Private one-stop breast clinic in London and Essex. Examination, ultrasound or mammogram and biopsy at a single visit with consultant breast surgeon Mr Zaker Ullah.",
+        "h1": "Breast lumps, pain and benign breast conditions",
+        "lede": "Most breast symptoms are benign. Every one of them still deserves a clear answer, and quickly. Mr Ullah introduced the one-stop breast clinic at Whipps Cross and runs his private clinics in the same way.",
+        "glance": [("Appointment", "Usually 45 to 90 minutes"), ("Tests", "Examination, ultrasound or mammogram, and biopsy if needed"), ("Results", "Imaging on the day, biopsy within a few days"), ("Referral", "A GP letter is needed by most insurers")],
         "sections": """
 <h2>Symptoms Mr Ullah assesses</h2>
-<p>Patients are most commonly seen with:</p>
 <ul>
 <li>A new lump or area of thickening in the breast or armpit</li>
-<li>Breast pain (mastalgia) — cyclical, constant, or in one spot</li>
-<li>Nipple discharge, nipple inversion or a rash on the nipple</li>
-<li>Skin dimpling, puckering or redness</li>
+<li>Breast pain (mastalgia), whether cyclical, constant or in one place</li>
+<li>Nipple discharge, a newly inverted nipple or a rash on the nipple</li>
+<li>Dimpling, puckering or redness of the skin</li>
 <li>Breast cysts and fibroadenomas</li>
-<li>A change in breast size or shape</li>
+<li>A change in the size or shape of one breast</li>
 <li>A family history of breast cancer, and questions about personal risk</li>
 </ul>
 <h2>The one-stop approach</h2>
-<p>The traditional route to a diagnosis — clinic, then a separate scan, then another appointment for results — stretches an anxious wait across weeks. At a one-stop clinic Mr Ullah takes a full history and examines you, arranges imaging (ultrasound and/or mammography, depending on your age and symptoms) at the same visit, and performs a needle biopsy there and then if anything needs sampling.</p>
-<p>This is <strong>triple assessment</strong> — the UK gold standard for breast symptoms. Most patients leave their first appointment either fully reassured or with a clear plan.</p>
+<p>The traditional route to a diagnosis is a clinic appointment, then a separate scan, then a further appointment for results. It can stretch an anxious wait across several weeks. At a one-stop clinic Mr Ullah takes a full history and examines you, arranges ultrasound or mammography at the same visit according to your age and symptoms, and takes a needle biopsy there and then if anything needs sampling.</p>
+<p>This is <strong>triple assessment</strong>, the standard of care for breast symptoms in the United Kingdom. Most patients leave the first appointment either reassured or with a clear plan.</p>
 <h2>If treatment is needed</h2>
-<p>Many benign conditions need no treatment once a firm diagnosis is made. Where treatment helps, Mr Ullah offers cyst aspiration, excision of symptomatic fibroadenomas or other benign lumps, duct surgery for troublesome nipple discharge, and structured, evidence-based advice for breast pain.</p>
-<p>If a biopsy does show cancer, you are already under the care of an experienced <a href="~/procedures/breast-cancer-surgery/">oncoplastic breast cancer surgeon</a> — the plan moves forward without changing hands.</p>
+<p>Many benign conditions need no treatment once the diagnosis is certain. Where treatment helps, Mr Ullah offers drainage of cysts, removal of symptomatic fibroadenomas and other benign lumps, duct surgery for troublesome nipple discharge, and structured advice for breast pain.</p>
+<p>If a biopsy shows cancer, you are already in the care of an experienced <a href="~/procedures/breast-cancer-surgery/">oncoplastic breast surgeon</a>, and your treatment continues without changing hands.</p>
 """,
         "faqs": [
-            ("Is a breast lump usually cancer?", "No. The large majority of breast lumps are benign — cysts, fibroadenomas or normal nodular tissue. But there is no reliable way to tell by touch alone, which is why every new lump should be assessed with examination and imaging, and biopsied if needed."),
-            ("What is triple assessment?", "Triple assessment is the standard of care for breast symptoms: clinical examination, imaging (mammogram and/or ultrasound), and a needle biopsy where indicated. When all three agree, the diagnosis is highly reliable. A one-stop clinic delivers all three in a single visit."),
-            ("How quickly can I be seen privately?", "Patients with new breast symptoms are prioritised. Appointments are booked directly with the hospital you choose, and can often be arranged within days."),
-            ("Should I worry about breast pain?", "Breast pain on its own is very rarely a sign of cancer, and is one of the most common reasons women see a breast specialist. Pain that is persistent and in one specific spot is still worth assessing, and a clear diagnosis is often the most effective treatment of all."),
-            ("Do I need a GP referral?", "Insured patients usually need a GP referral for their insurer to authorise the appointment. Self-funding patients can generally book directly with the hospital."),
+            ("Is a breast lump usually cancer?", "No. The large majority of breast lumps are benign: cysts, fibroadenomas or normal nodular tissue. There is no reliable way to tell them apart by touch, which is why every new lump should be examined, imaged and, if needed, biopsied."),
+            ("What is triple assessment?", "Triple assessment is clinical examination, imaging (mammogram, ultrasound or both) and a needle biopsy where indicated. When all three agree, the diagnosis is highly reliable. A one-stop clinic provides all three at one visit."),
+            ("How quickly can I be seen privately?", "New breast symptoms are given priority, and an appointment can often be arranged within days. Call the private secretary or send an enquiry."),
+            ("Should I worry about breast pain?", "Breast pain on its own is very rarely a sign of cancer and is one of the most common reasons women see a breast specialist. Pain that persists in one particular spot should still be assessed. A clear diagnosis is often the most effective treatment."),
+            ("Do I need a GP referral?", "Insured patients usually need a GP referral before their insurer will authorise the appointment. Self-funding patients can book directly."),
         ],
         "related": ["breast-cancer-surgery", "gynaecomastia"],
     },
     {
         "slug": "breast-cancer-surgery",
         "nav": "Breast cancer surgery",
-        "navdesc": "Oncoplastic conservation, mastectomy, lymph nodes",
-        "tags": ["Lumpectomy", "Mastectomy", "Sentinel node", "Oncoplastic"],
+        "short_desc": "Oncoplastic and conserving",
+        "summary": "Breast conserving surgery, therapeutic mammoplasty, mastectomy and lymph node surgery.",
         "title": "Breast Cancer Surgery London | Oncoplastic Surgeon Mr Ullah",
-        "desc": "Private breast cancer surgery in London & Essex with oncoplastic surgeon Mr Zaker Ullah FRCS: breast-conserving surgery, therapeutic mammoplasty, mastectomy with immediate reconstruction and sentinel node biopsy.",
-        "h1": "Breast cancer surgery, <em>planned twice</em>",
-        "lede": "Surgery is usually the cornerstone of breast cancer treatment. Mr Ullah's oncoplastic training means every operation is planned twice over: once to remove the cancer completely, and once for the breast — and the person — that remains.",
-        "glance": [("Anaesthetic", "General"), ("Hospital stay", "Day case to 1–2 nights, depending on operation"), ("Team", "Every case reviewed by a multidisciplinary team"), ("Timing", "Private surgery commonly within 1–2 weeks of the plan")],
+        "desc": "Private breast cancer surgery in London and Essex: breast conserving surgery, therapeutic mammoplasty, mastectomy with reconstruction and sentinel node biopsy.",
+        "h1": "Breast cancer surgery",
+        "lede": "Surgery is usually the foundation of breast cancer treatment. As an oncoplastic surgeon, Mr Ullah plans the removal of the cancer and the appearance of the breast together, before the operation, so neither is an afterthought.",
+        "glance": [("Anaesthetic", "General"), ("Hospital stay", "Day case to two nights, depending on the operation"), ("Team", "Every case reviewed by a multidisciplinary team"), ("Timing", "Often within one to two weeks of the plan")],
         "sections": """
-<h2>Breast-conserving surgery</h2>
-<p>Where the tumour and breast size allow, the preferred operation is usually a <strong>wide local excision</strong> (lumpectomy) — removing the cancer with a margin of healthy tissue while keeping the breast. Oncoplastic techniques allow Mr Ullah to remove larger areas than conventional surgery would permit, then reshape the remaining tissue so the breast keeps a natural form.</p>
-<p>In women with larger breasts this can take the form of a <strong>therapeutic mammoplasty</strong> — removing the cancer using breast reduction techniques, so the patient leaves with the cancer treated and a lighter, lifted breast. The <a href="~/procedures/breast-reduction/">other breast can be matched</a> at the same time or later.</p>
+<h2>Breast conserving surgery</h2>
+<p>Where the size and position of the tumour allow, the preferred operation is usually a <strong>wide local excision</strong>, or lumpectomy. The cancer is removed with a margin of healthy tissue and the breast is kept. Oncoplastic techniques allow Mr Ullah to remove a larger area than conventional surgery would permit, then reshape the remaining tissue so the breast keeps a natural form.</p>
+<p>In women with larger breasts this can be a <strong>therapeutic mammoplasty</strong>, in which the cancer is removed using the techniques of a breast reduction. The result is a lighter, lifted breast, and the <a href="~/procedures/breast-reduction/">other breast can be matched</a> at the same operation or later.</p>
 <h2>Mastectomy</h2>
-<p>Some cancers — and some patients' preferences — are better served by <strong>mastectomy</strong>. Where appropriate, this can be a skin-sparing or nipple-sparing operation with <a href="~/procedures/breast-reconstruction/">immediate reconstruction</a>, so you wake from surgery with the breast shape already restored. Mr Ullah discusses reconstruction <em>before</em> mastectomy, never after.</p>
+<p>Some cancers, and some patients' own preferences, are better served by <strong>mastectomy</strong>. Where appropriate it can be skin sparing or nipple sparing, with <a href="~/procedures/breast-reconstruction/">immediate reconstruction</a>, so that the shape of the breast is restored before you wake. Mr Ullah discusses reconstruction before mastectomy, not after it.</p>
 <h2>The lymph nodes</h2>
-<p>Staging the armpit (axilla) is part of almost every breast cancer operation. For most patients this means a <strong>sentinel lymph node biopsy</strong> — removing only the first one to three nodes that drain the breast, identified with a tracer — rather than clearing the whole axilla. This gives your oncologists the information they need while greatly reducing the risk of arm swelling (lymphoedema).</p>
+<p>Assessing the armpit (axilla) is part of almost every breast cancer operation. For most patients this means a <strong>sentinel lymph node biopsy</strong>: only the first one to three nodes draining the breast are removed, located with a tracer. It gives the oncologists the information they need and greatly reduces the risk of arm swelling (lymphoedema).</p>
 <h2>A team decision</h2>
-<p>Every cancer case is reviewed by a multidisciplinary team — radiologists, pathologists, oncologists and specialist nurses — before and after surgery, in line with UK best practice. Chemotherapy, radiotherapy and hormone therapy are coordinated around the operation so that each part of treatment supports the others.</p>
+<p>Every cancer case is discussed by a multidisciplinary team of radiologists, pathologists, oncologists and specialist nurses, before and after surgery. Chemotherapy, radiotherapy and hormone treatment are planned around the operation so that each part of treatment supports the others.</p>
 """,
         "faqs": [
-            ("How soon after diagnosis will I have surgery?", "Once the multidisciplinary team has confirmed the plan, private surgery can usually be scheduled promptly — commonly within one to two weeks, depending on the operation and any tests still needed. Some patients have chemotherapy before surgery; if so, that is a deliberate part of the plan, not a delay."),
-            ("Will I lose my breast?", "Most breast cancers today are treated with breast-conserving surgery, and oncoplastic techniques have widened who is eligible. Where mastectomy is the safer choice, immediate reconstruction is usually possible. The decision is always made with you, with every option on the table."),
-            ("What is oncoplastic breast surgery?", "Oncoplastic surgery combines complete removal of the cancer with plastic surgical techniques to preserve or restore the shape of the breast, in the same operation. Evidence shows cancer control is at least as good as standard surgery. <a href=\"~/news/what-is-oncoplastic-breast-surgery/\">Read Mr Ullah's guide</a>."),
-            ("What are the risks of breast cancer surgery?", "As with any operation there are risks of bleeding, infection, seroma (fluid collection) and scarring, plus procedure-specific risks such as changes in sensation or, after axillary surgery, lymphoedema. Mr Ullah goes through the risks relevant to your operation in detail before you consent."),
-            ("Can I have a second opinion before surgery?", "Yes — and it is your right. Many patients see Mr Ullah for a second opinion on a diagnosis or a proposed operation. Bring any imaging, biopsy results and clinic letters. <a href=\"~/second-opinion/\">More on second opinions</a>."),
+            ("How soon after diagnosis will I have surgery?", "Once the multidisciplinary team has agreed the plan, private surgery can usually be arranged within one to two weeks, depending on the operation and any tests still needed. Some patients have chemotherapy first. When that happens it is a deliberate part of the plan, not a delay."),
+            ("Will I lose my breast?", "Most breast cancers are now treated with breast conserving surgery, and oncoplastic techniques have widened who is suitable. Where mastectomy is the safer choice, immediate reconstruction is usually possible. The decision is always made with you."),
+            ("What is oncoplastic breast surgery?", "Oncoplastic surgery combines complete removal of the cancer with plastic surgical techniques that preserve or restore the shape of the breast, at the same operation. Cancer control is at least as good as with standard surgery. <a href=\"~/news/what-is-oncoplastic-breast-surgery/\">Read Mr Ullah's article</a>."),
+            ("What are the risks of breast cancer surgery?", "As with any operation, there are risks of bleeding, infection, fluid collection (seroma) and scarring, along with risks particular to each procedure, such as altered sensation or, after surgery to the armpit, lymphoedema. Mr Ullah explains the risks of your operation in detail before you consent."),
+            ("Can I have a second opinion before surgery?", "Yes, and it is your right to ask. Many patients see Mr Ullah for a second opinion on a diagnosis or a proposed operation. <a href=\"~/second-opinion/\">More about second opinions</a>."),
         ],
         "related": ["breast-reconstruction", "benign-breast-conditions"],
     },
     {
         "slug": "breast-reconstruction",
         "nav": "Breast reconstruction",
-        "navdesc": "Implant, flap, nipple and symmetry surgery",
-        "tags": ["Immediate", "Delayed", "LD flap", "Implant"],
+        "short_desc": "Implant and flap",
+        "summary": "Immediate and delayed reconstruction using implants, your own tissue, fat grafting and nipple reconstruction.",
         "title": "Breast Reconstruction London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Breast reconstruction in London & Essex after mastectomy or lumpectomy: immediate and delayed, implant-based, latissimus dorsi and Grisotti flaps, fat grafting and nipple reconstruction with Mr Zaker Ullah FRCS.",
-        "h1": "Breast <em>reconstruction</em>",
-        "lede": "Reconstruction restores the shape of the breast after cancer surgery — at the same operation or years later. Mr Ullah offers the full range of implant-based and flap techniques, and is equally clear when no reconstruction is the right answer.",
-        "glance": [("Timing", "Immediate (with mastectomy) or delayed — no time limit"), ("Techniques", "Implant, LD flap, Grisotti flap, fat grafting"), ("Hospital stay", "Typically 1–3 nights"), ("Insurance", "Usually covered as part of cancer treatment")],
+        "desc": "Breast reconstruction after mastectomy or lumpectomy in London and Essex: immediate and delayed, implant, LD flap and Grisotti flap, fat grafting and nipple reconstruction.",
+        "h1": "Breast reconstruction",
+        "lede": "Reconstruction restores the shape of the breast after cancer surgery, either at the same operation or years later. Mr Ullah offers the full range of implant and tissue techniques, and is equally clear when no reconstruction is the right choice.",
+        "glance": [("Timing", "Immediate, with the mastectomy, or delayed with no time limit"), ("Techniques", "Implant, LD flap, Grisotti flap, fat grafting"), ("Hospital stay", "Typically one to three nights"), ("Insurance", "Usually covered as part of cancer treatment")],
         "sections": """
 <h2>Immediate or delayed</h2>
-<p><strong>Immediate reconstruction</strong> is performed during the same operation as the mastectomy, so the breast mound is restored before you wake. <strong>Delayed reconstruction</strong> can be done months or years later — there is no expiry date. The right choice depends on the cancer treatment planned (radiotherapy in particular), your health and your own preference. Some women choose no reconstruction at all; that is a valid choice, and Mr Ullah will say so.</p>
-<h2>Implant-based reconstruction</h2>
-<p>The most common technique in the UK uses a silicone implant, sometimes supported by a mesh or tissue matrix, to recreate the breast mound. It avoids surgery elsewhere on the body and has a shorter recovery, at the cost of a less natural feel and the likelihood of maintenance surgery over a lifetime.</p>
-<h2>Flap reconstruction</h2>
-<p>Reconstruction with your own tissue gives a warm, natural breast that ages with you. Mr Ullah performs <strong>latissimus dorsi (LD) flap</strong> reconstruction, which brings muscle and skin from the back around to the chest, often combined with an implant. For suitable central tumours he also uses the <strong>Grisotti flap</strong>, an elegant technique that reconstructs the nipple area using the breast's own tissue at the time of cancer surgery.</p>
-<h2>Finishing touches</h2>
-<p>Reconstruction is often completed in stages: <a href="~/procedures/fat-grafting/">fat grafting</a> to refine contour, nipple reconstruction with a small local flap, and symmetrisation surgery to the other breast — a <a href="~/procedures/breast-reduction/">reduction</a>, uplift or <a href="~/procedures/breast-augmentation/">augmentation</a> — so that the pair sit naturally together.</p>
+<p><strong>Immediate reconstruction</strong> takes place during the same operation as the mastectomy, so the shape of the breast is restored before you wake. <strong>Delayed reconstruction</strong> can be carried out months or years later; there is no time limit. The right choice depends on the cancer treatment planned, radiotherapy in particular, on your health and on your own preference. Some women choose not to have a reconstruction. That is a valid decision, and Mr Ullah will say so.</p>
+<h2>Implant reconstruction</h2>
+<p>The most common technique in the United Kingdom uses a silicone implant, sometimes supported by a mesh or tissue matrix, to recreate the breast. It avoids surgery elsewhere on the body and has a shorter recovery. In return, the breast feels less natural and is likely to need further surgery over a lifetime.</p>
+<h2>Reconstruction with your own tissue</h2>
+<p>A reconstruction made from your own tissue is warm and natural, and changes with you over time. Mr Ullah performs <strong>latissimus dorsi (LD) flap</strong> reconstruction, which brings muscle and skin from the back to the chest and is often combined with an implant. For suitable cancers near the nipple he also uses the <strong>Grisotti flap</strong>, which rebuilds the area from the breast's own tissue during the cancer operation.</p>
+<h2>Completing the result</h2>
+<p>Reconstruction is often completed in stages: <a href="~/procedures/fat-grafting/">fat grafting</a> to refine the contour, nipple reconstruction with a small local flap, and surgery to the other breast, whether a <a href="~/procedures/breast-reduction/">reduction</a>, an uplift or an <a href="~/procedures/breast-augmentation/">augmentation</a>, so that the two sit naturally together.</p>
 """,
         "faqs": [
-            ("Will a reconstructed breast look and feel natural?", "Reconstruction restores shape and symmetry in clothing very reliably, and modern techniques can look natural out of clothing too. Sensation is usually reduced. Tissue-based reconstructions generally feel more natural than implants; Mr Ullah will show you representative outcomes for each option."),
-            ("Is reconstruction safe if I need radiotherapy?", "Radiotherapy increases complication rates for some reconstruction types, particularly implants. If radiotherapy is likely, that shapes the recommended technique or timing — one reason reconstruction is planned alongside cancer treatment rather than separately."),
-            ("Can I have reconstruction years after my mastectomy?", "Yes. Delayed reconstruction is routine and there is no time limit. Patients treated a decade or more ago still have options, subject to fitness and previous treatment."),
-            ("Is breast reconstruction covered by insurance?", "Reconstruction after breast cancer is normally covered as part of cancer treatment by UK private medical insurers, including symmetrising surgery to the other breast. Always confirm with your insurer in advance."),
+            ("Will a reconstructed breast look and feel natural?", "Reconstruction restores shape and symmetry in clothes very reliably, and modern techniques can look natural without clothes too. Sensation is usually reduced. Reconstructions made from your own tissue generally feel more natural than implants."),
+            ("Is reconstruction safe if I need radiotherapy?", "Radiotherapy increases the rate of complications for some types of reconstruction, implants in particular. If radiotherapy is likely, it shapes the recommended technique or timing, which is why reconstruction is planned alongside cancer treatment."),
+            ("Can I have reconstruction years after my mastectomy?", "Yes. Delayed reconstruction is routine and there is no time limit. Women treated ten or more years ago still have options, depending on their health and previous treatment."),
+            ("Is breast reconstruction covered by insurance?", "Reconstruction after breast cancer, including surgery to the other breast for symmetry, is normally covered by UK private medical insurers as part of cancer treatment. Confirm with your insurer beforehand."),
         ],
         "related": ["breast-cancer-surgery", "fat-grafting"],
     },
     {
         "slug": "breast-reduction",
         "nav": "Breast reduction",
-        "navdesc": "Reduction mammoplasty &amp; symmetrisation",
-        "tags": ["Reduction", "Uplift", "Symmetry"],
+        "short_desc": "Reduction and symmetry",
+        "summary": "Reduction mammoplasty for comfort and proportion, or to balance the breasts after cancer surgery.",
         "title": "Breast Reduction London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Breast reduction surgery (reduction mammoplasty) in London & Essex with consultant oncoplastic surgeon Mr Zaker Ullah FRCS — for comfort, proportion, or symmetry after breast cancer surgery. Recovery, scars and FAQs.",
-        "h1": "Breast reduction <em>&amp; symmetrisation</em>",
-        "lede": "Reduction mammoplasty reshapes heavy breasts to a lighter, higher, more comfortable form — for relief of symptoms, for proportion, or to balance the breasts after cancer surgery.",
-        "glance": [("Anaesthetic", "General"), ("Operation", "Around 2–3 hours"), ("Hospital stay", "Day case or one night"), ("Recovery", "Desk work 1–2 weeks · exercise ~6 weeks")],
+        "desc": "Breast reduction surgery in London and Essex with consultant oncoplastic surgeon Mr Zaker Ullah, for comfort, proportion or symmetry after cancer surgery.",
+        "h1": "Breast reduction and symmetrisation",
+        "lede": "Reduction mammoplasty reshapes heavy breasts into a lighter, higher and more comfortable form: for relief of symptoms, for proportion, or to balance the breasts after cancer surgery.",
+        "glance": [("Anaesthetic", "General"), ("Operation", "Around two to three hours"), ("Hospital stay", "Day case or one night"), ("Recovery", "Desk work at one to two weeks, exercise at about six")],
         "sections": """
 <h2>Who benefits</h2>
-<p>Heavy breasts are a physical burden: neck, shoulder and back pain, bra-strap grooving, skin irritation beneath the breast fold and real limits on exercise. A reduction removes excess tissue and skin, lifts the breast and repositions the nipple — exchanging weight and discomfort for scars that fade substantially over the first one to two years.</p>
-<h2>Symmetrisation after cancer surgery</h2>
-<p>As an oncoplastic surgeon, a large part of Mr Ullah's reduction practice is <strong>symmetrisation</strong> — reducing, lifting or reshaping the opposite breast so it matches a breast treated for cancer or reconstructed. This is a routine part of the reconstructive pathway and is usually covered by insurers as part of cancer treatment.</p>
+<p>Heavy breasts are a physical burden. Women describe pain in the neck, shoulders and back, grooves from bra straps, irritated skin beneath the breast and real limits on exercise. A reduction removes excess tissue and skin, lifts the breast and repositions the nipple. The scars fade considerably over the following one to two years.</p>
+<h2>Symmetry after cancer surgery</h2>
+<p>As an oncoplastic surgeon, much of Mr Ullah's reduction work is <strong>symmetrisation</strong>: reducing, lifting or reshaping one breast so that it matches a breast treated for cancer or reconstructed. It is a routine part of the reconstructive pathway and is usually covered by insurers as part of cancer treatment.</p>
 <h2>The operation and recovery</h2>
-<p>Breast reduction is performed under general anaesthetic and typically takes two to three hours, as a day case or with a single night in hospital. Most patients are back at desk work within one to two weeks and exercising fully at around six weeks. Mr Ullah discusses scar patterns, nipple sensation and the implications for breastfeeding candidly before any decision is made.</p>
+<p>A breast reduction is performed under general anaesthetic, takes around two to three hours, and is done as a day case or with one night in hospital. Most women return to desk work within one to two weeks and to full exercise at about six weeks. Before any decision, Mr Ullah talks plainly about scar patterns, nipple sensation and the effect on breastfeeding.</p>
 """,
         "faqs": [
-            ("Will breast reduction affect nipple sensation or breastfeeding?", "Both can be affected. Some change in nipple sensation is common early on and usually improves, though it can be permanent. Many women can still breastfeed after a reduction, but it cannot be guaranteed — if future breastfeeding matters to you, say so, as it influences technique and timing."),
-            ("What scars does a breast reduction leave?", "The usual pattern is a scar around the areola, a vertical line down to the breast fold, and often a line within the fold itself (the ‘anchor’ pattern). Scars are typically red and firm at first and fade substantially over 12–24 months."),
-            ("Is breast reduction covered by insurance?", "Cosmetic reduction generally is not, but symmetrisation after breast cancer surgery is usually treated as part of the reconstruction pathway. Your insurer confirms cover in advance either way."),
-            ("How long is recovery after breast reduction?", "Most women return to desk work within one to two weeks, drive at around two weeks once comfortable, and return to full exercise at about six weeks. A supportive bra is worn day and night for several weeks."),
+            ("Will breast reduction affect nipple sensation or breastfeeding?", "Both can be affected. Some change in nipple sensation is common at first and usually improves, although it can be permanent. Many women can breastfeed after a reduction, but it cannot be guaranteed. If future breastfeeding matters to you, say so, because it influences technique and timing."),
+            ("What scars does a breast reduction leave?", "Usually a scar around the areola, a vertical line down to the fold beneath the breast, and often a line within the fold itself, known as the anchor pattern. Scars are red and firm at first and fade considerably over 12 to 24 months."),
+            ("Is breast reduction covered by insurance?", "Cosmetic reduction generally is not. Symmetrisation after breast cancer surgery is usually treated as part of reconstruction. Your insurer will confirm cover in advance."),
+            ("How long is recovery after breast reduction?", "Most women are back at desk work within one to two weeks, driving at around two weeks, and exercising fully at about six weeks. A supportive bra is worn day and night for several weeks."),
         ],
         "related": ["breast-reconstruction", "breast-augmentation"],
     },
     {
         "slug": "breast-augmentation",
         "nav": "Breast augmentation",
-        "navdesc": "Implants for size, shape or symmetry",
-        "tags": ["Implants", "Symmetry"],
+        "short_desc": "Size, shape, symmetry",
+        "summary": "Implant augmentation for size or shape, and to restore symmetry after cancer surgery.",
         "title": "Breast Augmentation London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Breast augmentation with implants in London & Essex with consultant breast surgeon Mr Zaker Ullah FRCS: honest consultation, implant choices, recovery, safety and augmentation for symmetry after cancer surgery.",
-        "h1": "Breast <em>augmentation</em>",
-        "lede": "Augmentation uses an implant to increase the size or restore the fullness of the breast. Mr Ullah brings an oncoplastic surgeon's perspective: the same operation he uses to rebuild symmetry after cancer, applied with the same care to cosmetic goals.",
-        "glance": [("Anaesthetic", "General"), ("Operation", "Around 1 hour"), ("Hospital stay", "Usually day case"), ("Recovery", "Desk work ~1 week · exercise 4–6 weeks")],
+        "desc": "Breast augmentation in London and Essex with consultant breast surgeon Mr Zaker Ullah: an honest consultation, implant choices, safety, recovery and symmetry.",
+        "h1": "Breast augmentation",
+        "lede": "Augmentation uses an implant to increase the size or restore the fullness of the breast. Mr Ullah brings the judgement of an oncoplastic surgeon, who uses the same operation to restore symmetry after cancer.",
+        "glance": [("Anaesthetic", "General"), ("Operation", "Around one hour"), ("Hospital stay", "Usually a day case"), ("Recovery", "Desk work at a week, exercise at four to six")],
         "sections": """
 <h2>An honest consultation</h2>
-<p>A good augmentation begins with an honest conversation about proportion — what an implant can and cannot do for your frame, how size, profile and placement (over or under the muscle) change the result, and how breast and implant will change over years, not months. Mr Ullah has no interest in overselling: you receive the same measured advice he gives every patient.</p>
-<h2>Augmentation in the cancer setting</h2>
-<p>Augmentation is also a reconstructive tool. After breast-conserving surgery or reconstruction, an implant on one or both sides can restore volume and symmetry. Patients with a personal or family history of breast cancer receive specific advice on imaging and follow-up with implants in place.</p>
+<p>A good augmentation begins with a frank conversation about proportion: what an implant can and cannot do for your frame, how its size, profile and position over or under the muscle change the result, and how breast and implant will change over years rather than months. You will receive the same measured advice Mr Ullah gives every patient.</p>
+<h2>Augmentation after cancer</h2>
+<p>Augmentation is also a reconstructive tool. After breast conserving surgery or reconstruction, an implant on one or both sides can restore volume and symmetry. Patients with a personal or family history of breast cancer are given specific advice on imaging and follow up with implants in place.</p>
 <h2>The operation and aftercare</h2>
-<p>The procedure takes around an hour under general anaesthetic, usually as a day case. Expect to be back at desk work within about a week and exercising fully at four to six weeks. Implants are not lifetime devices: most patients should expect further surgery at some point, and Mr Ullah explains the realistic long-term picture — including rare implant-associated conditions — before you decide.</p>
+<p>The operation takes around an hour under general anaesthetic and is usually a day case. Most patients return to desk work within a week and to full exercise at four to six weeks. Implants are not lifetime devices and most women will need further surgery at some point. Mr Ullah explains the long term picture, including rare implant related conditions, before you decide.</p>
 """,
         "faqs": [
-            ("How long do breast implants last?", "Implants do not need replacing on a fixed schedule, but neither do they last forever — many patients have revision surgery within 10–15 years for wear, capsular contracture or a change of preference. Plan for maintenance over a lifetime, not a one-off operation."),
-            ("Are breast implants safe?", "Modern implants are well studied and serious complications are rare, but not zero — including capsular contracture, rupture and BIA-ALCL, a rare lymphoma associated with certain textured implants. Mr Ullah covers the current evidence so your decision is genuinely informed."),
-            ("Can I still have mammograms with implants?", "Yes. Screening remains effective, though implants can obscure some breast tissue and radiographers use additional views. Always tell the screening service you have implants when booking."),
+            ("How long do breast implants last?", "Implants do not need replacing on a fixed schedule, but they do not last forever. Many women have further surgery within 10 to 15 years for wear, capsular contracture or a change of preference. It is best to plan for maintenance over a lifetime."),
+            ("Are breast implants safe?", "Modern implants are well studied and serious complications are rare, but not unknown. They include capsular contracture, rupture and BIA-ALCL, a rare lymphoma associated with some textured implants. Mr Ullah explains the current evidence so that your decision is fully informed."),
+            ("Can I still have mammograms with implants?", "Yes. Screening remains effective, although implants can obscure some breast tissue and radiographers take additional views. Always tell the screening service that you have implants."),
         ],
         "related": ["breast-reduction", "fat-grafting"],
     },
     {
         "slug": "fat-grafting",
-        "nav": "Fat grafting (lipofilling)",
-        "navdesc": "Refining shape with your own tissue",
-        "tags": ["Lipofilling", "Contour"],
+        "nav": "Fat grafting",
+        "short_desc": "Lipofilling",
+        "summary": "Using your own fat to refine shape after surgery, correct contour and soften scar tissue.",
         "title": "Breast Fat Grafting & Lipofilling London | Mr Zaker Ullah",
-        "desc": "Fat grafting (lipofilling) to the breast in London & Essex: correcting dents after lumpectomy, refining reconstruction and softening radiotherapy changes, with consultant oncoplastic surgeon Mr Zaker Ullah FRCS.",
-        "h1": "Fat grafting <em>to the breast</em>",
-        "lede": "Fat grafting — lipofilling — moves a small amount of your own fat, harvested by gentle liposuction, into the breast to smooth contours, fill defects and soften scarred tissue.",
-        "glance": [("Anaesthetic", "Usually general"), ("Hospital stay", "Day case"), ("Sessions", "1–3, about 3 months apart"), ("Final result", "Judged at around 3 months")],
+        "desc": "Fat grafting (lipofilling) to the breast in London and Essex: correcting dents after lumpectomy, refining reconstruction and softening radiotherapy changes.",
+        "h1": "Fat grafting to the breast",
+        "lede": "Fat grafting, also called lipofilling, moves a small amount of your own fat into the breast by gentle liposuction, to smooth contours, fill defects and soften scarred tissue. Mr Ullah introduced the technique at Whipps Cross.",
+        "glance": [("Anaesthetic", "Usually general"), ("Hospital stay", "Day case"), ("Sessions", "One to three, about three months apart"), ("Final result", "Judged at around three months")],
         "sections": """
 <h2>What it is used for</h2>
-<p>In breast surgery, fat grafting is chiefly a refining tool: filling a dent left by breast-conserving cancer surgery, smoothing the edges of an implant reconstruction, softening tissue damaged by radiotherapy and correcting small asymmetries. It uses no foreign material and leaves only tiny marks at the donor and recipient sites.</p>
+<p>In breast surgery, fat grafting is above all a refining technique. It fills a dent left by breast conserving surgery, smooths the edges of an implant reconstruction, softens tissue affected by radiotherapy and corrects small differences between the breasts. No foreign material is used, and the marks left at the donor and treated sites are tiny.</p>
 <h2>How it works</h2>
-<p>Fat is harvested by gentle liposuction — usually from the abdomen or thighs — purified, and injected into the breast in fine threads so that each droplet gains a blood supply. A proportion of grafted fat (commonly 30–50%) is naturally resorbed in the first months, which is why larger corrections are often staged over two or three sessions a few months apart.</p>
+<p>Fat is taken by gentle liposuction, usually from the abdomen or thighs, then purified and placed in the breast in fine threads so that each droplet gains a blood supply. A proportion of the grafted fat, commonly 30 to 50 per cent, is naturally absorbed over the first few months. For that reason larger corrections are often carried out over two or three sessions.</p>
 <h2>Recovery</h2>
-<p>Fat grafting is usually a day-case procedure. Bruising at the donor site is the main after-effect; most patients are back to normal activities within days. The final result is judged at around three months, once swelling has settled.</p>
+<p>Fat grafting is usually a day case. Bruising where the fat was taken is the main after effect, and most patients return to normal activity within a few days. The final result is assessed at around three months, once swelling has settled.</p>
 """,
         "faqs": [
-            ("Is fat grafting safe after breast cancer?", "Current evidence has not shown lipofilling to increase the risk of cancer recurrence, and it is widely used in reconstructive practice. Grafted fat can cause benign changes on mammograms (oil cysts, calcification) which specialists recognise; your imaging team should always know you have had lipofilling."),
-            ("How many sessions will I need?", "Small refinements are often achieved in one session. Larger corrections typically need two or three sessions, spaced roughly three months apart, because a proportion of each graft is resorbed."),
-            ("Does the transferred fat behave like normal fat?", "Yes — once it has taken, grafted fat is living tissue. It feels natural and will gain and lose volume with your weight like fat anywhere else."),
+            ("Is fat grafting safe after breast cancer?", "Current evidence has not shown that fat grafting increases the risk of cancer returning, and it is widely used in reconstruction. Grafted fat can produce benign changes on mammograms, such as oil cysts or calcification, which specialists recognise. Always tell your imaging team that you have had fat grafting."),
+            ("How many sessions will I need?", "Small refinements often need a single session. Larger corrections usually need two or three sessions about three months apart, because some of each graft is absorbed."),
+            ("Does the transferred fat behave like normal fat?", "Yes. Once established, grafted fat is living tissue. It feels natural and will gain and lose volume with your weight, like fat elsewhere."),
         ],
         "related": ["breast-reconstruction", "breast-cancer-surgery"],
     },
     {
         "slug": "gynaecomastia",
-        "nav": "Gynaecomastia (men)",
-        "navdesc": "Male breast assessment &amp; reduction",
-        "tags": ["Men", "Liposuction", "Gland excision"],
+        "nav": "Gynaecomastia",
+        "short_desc": "Male breast reduction",
+        "summary": "Specialist assessment of the male breast, and surgery for established gynaecomastia.",
         "title": "Gynaecomastia Surgery London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Gynaecomastia (male breast reduction) in London & Essex with a consultant breast surgeon: specialist assessment, liposuction and gland excision, recovery and results with Mr Zaker Ullah FRCS.",
-        "h1": "Gynaecomastia — <em>male breast reduction</em>",
-        "lede": "Enlargement of male breast tissue is common, benign in the vast majority of cases, and very treatable. It still deserves a specialist assessment — both to rule out the rare serious cause and to get a result worth having.",
-        "glance": [("Anaesthetic", "General"), ("Hospital stay", "Day case"), ("Garment", "Compression vest for a few weeks"), ("Recovery", "Desk work ~1 week · exercise 4–6 weeks")],
+        "desc": "Gynaecomastia (male breast reduction) in London and Essex with a consultant breast surgeon: specialist assessment, liposuction and gland excision, recovery and results.",
+        "h1": "Gynaecomastia, or male breast reduction",
+        "lede": "Enlargement of the male breast is common, benign in nearly every case, and treatable. It still deserves a specialist assessment, both to exclude the rare serious cause and to achieve a result worth having.",
+        "glance": [("Anaesthetic", "General"), ("Hospital stay", "Day case"), ("Garment", "Compression vest for a few weeks"), ("Recovery", "Desk work at a week, exercise at four to six")],
         "sections": """
 <h2>First, a diagnosis</h2>
-<p>Gynaecomastia has many triggers: hormonal changes in adolescence and later life, weight, certain medications and occasionally underlying medical conditions. Male breast cancer is rare but real, which is why assessment by a <strong>breast specialist</strong> — with imaging and biopsy where indicated — comes before any discussion of surgery. Some gynaecomastia, particularly in teenagers, resolves on its own; some responds to treating the underlying cause.</p>
+<p>Gynaecomastia has many causes: hormonal change in adolescence and later life, weight, some medicines and, occasionally, an underlying medical condition. Male breast cancer is rare but does occur. For that reason assessment by a <strong>breast specialist</strong>, with imaging and biopsy where needed, comes before any discussion of surgery. Gynaecomastia in teenagers often settles without treatment, and some settles once the underlying cause is treated.</p>
 <h2>Surgery</h2>
-<p>Where the tissue is established and troubling, surgery removes it. Depending on the balance of glandular tissue and fat, Mr Ullah uses liposuction, direct excision of the gland through a small incision at the edge of the areola, or both. Significant skin excess occasionally needs additional techniques, which he will discuss openly if they apply to you.</p>
+<p>Where the tissue is established and troubling, surgery removes it. Depending on the balance of gland and fat, Mr Ullah uses liposuction, removal of the gland through a small incision at the edge of the areola, or both. Where there is significant excess skin, further techniques may be needed, and he will explain them if they apply to you.</p>
 <h2>Recovery and results</h2>
-<p>The operation is usually a day case under general anaesthetic. A compression garment is worn for a few weeks; most men return to desk work within a week and full exercise at four to six weeks. Once mature, the result is usually permanent, provided weight and any causative medication are managed.</p>
+<p>The operation is usually a day case under general anaesthetic. A compression garment is worn for a few weeks. Most men return to desk work within a week and to full exercise at four to six weeks. The result is usually permanent, provided weight and any responsible medicine are managed.</p>
 """,
         "faqs": [
-            ("Is gynaecomastia dangerous?", "Almost always no — it is benign glandular enlargement. But one-sided, firm or rapidly changing male breast tissue, or nipple discharge, should be assessed promptly to exclude male breast cancer, which although rare does occur."),
-            ("Will exercise get rid of gynaecomastia?", "Exercise and weight loss reduce the fatty component, but true glandular tissue does not respond to exercise. That is why chest exercises often make no visible difference — and why gland excision is part of the operation where gland predominates."),
-            ("What scars are left after gynaecomastia surgery?", "Liposuction leaves a few millimetre-scale marks. Gland excision usually adds a fine scar along the lower edge of the areola, where it tends to fade well."),
-            ("Is gynaecomastia surgery covered by insurance?", "Usually not when it is cosmetic, though insurers may cover assessment of a new lump or suspicious change. Self-pay prices are confirmed in writing by the hospital before you commit."),
+            ("Is gynaecomastia dangerous?", "Almost never. It is a benign enlargement of breast gland tissue. A firm lump on one side, a lump that is growing, or discharge from the nipple should be assessed promptly to exclude male breast cancer, which is rare but does occur."),
+            ("Will exercise get rid of gynaecomastia?", "Exercise and weight loss reduce the fatty part, but true gland tissue does not respond to exercise. This is why chest exercises often make no visible difference, and why removing the gland is part of the operation when gland predominates."),
+            ("What scars are left after gynaecomastia surgery?", "Liposuction leaves a few marks a few millimetres long. Removing the gland usually adds a fine scar along the lower edge of the areola, where it tends to fade well."),
+            ("Is gynaecomastia surgery covered by insurance?", "Usually not when it is cosmetic, although insurers may cover assessment of a new lump or a suspicious change. The hospital confirms self-pay prices in writing before you commit."),
         ],
         "related": ["benign-breast-conditions", "general-laparoscopic-surgery"],
     },
     {
         "slug": "general-laparoscopic-surgery",
-        "nav": "Hernia &amp; gallbladder",
-        "navdesc": "Keyhole general surgery",
-        "tags": ["Gallbladder", "Hernia", "Appendix"],
+        "nav": "Hernia and gallbladder",
+        "short_desc": "Keyhole surgery",
+        "summary": "Laparoscopic gallbladder removal, hernia repair and appendicectomy.",
         "title": "Keyhole Hernia & Gallbladder Surgery London | Mr Ullah FRCS",
-        "desc": "Keyhole (laparoscopic) general surgery in London & Essex: gallbladder removal, inguinal, umbilical and incisional hernia repair and appendicectomy with consultant general surgeon Mr Zaker Ullah FRCS.",
-        "h1": "General &amp; <em>laparoscopic</em> surgery",
-        "lede": "Alongside his breast practice, Mr Ullah maintains a general surgical practice in laparoscopic — keyhole — surgery: gallbladder removal, hernia repair and appendicectomy.",
-        "glance": [("Approach", "Keyhole wherever suitable"), ("Hospital stay", "Usually day case or one night"), ("Recovery", "Most back to normal within 2 weeks"), ("Published", "Research on laparoscopic hernia repair")],
+        "desc": "Keyhole (laparoscopic) surgery in London and Essex: gallbladder removal, inguinal, umbilical and incisional hernia repair and appendicectomy with Mr Zaker Ullah.",
+        "h1": "General and laparoscopic surgery",
+        "lede": "Alongside his breast practice, Mr Ullah has a general surgical practice in laparoscopic, or keyhole, surgery: gallbladder removal, hernia repair and appendicectomy.",
+        "glance": [("Approach", "Keyhole wherever suitable"), ("Hospital stay", "Usually a day case or one night"), ("Recovery", "Most people are back to normal within two weeks"), ("Research", "Published on laparoscopic hernia repair")],
         "sections": """
-<h2>Gallstones &amp; gallbladder removal</h2>
-<p>Gallstones that cause pain, inflammation or pancreatitis are best treated by removing the gallbladder — <strong>laparoscopic cholecystectomy</strong>. Performed through four small incisions, it is one of the most common operations in the UK; most patients go home the same day or after one night and are back to normal activity within a fortnight. You can live entirely normally without a gallbladder.</p>
+<h2>Gallstones and gallbladder removal</h2>
+<p>Gallstones that cause pain, inflammation or pancreatitis are best treated by removing the gallbladder, an operation called <strong>laparoscopic cholecystectomy</strong>. It is performed through four small incisions and is one of the most common operations in the United Kingdom. Most patients go home the same day or after one night and return to normal activity within a fortnight. Life without a gallbladder is entirely normal.</p>
 <h2>Hernia repair</h2>
-<p>A hernia — in the groin (inguinal), at the navel (umbilical) or through a previous scar (incisional) — will not repair itself. Mr Ullah repairs hernias laparoscopically and by open surgery, usually reinforced with mesh, choosing the approach that suits the hernia and the patient. He has published research on laparoscopic hernia repair techniques.</p>
+<p>A hernia in the groin (inguinal), at the navel (umbilical) or through a previous scar (incisional) will not repair itself. Mr Ullah repairs hernias by keyhole and by open surgery, usually reinforced with mesh, choosing the approach that suits the hernia and the patient. His keyhole hernia technique won the prize for best video presentation at the European Association for Endoscopic Surgery in 2003.</p>
 <h2>Appendicectomy</h2>
-<p>Suspected appendicitis needs urgent assessment. Where surgery is required, laparoscopic appendicectomy allows both confirmation of the diagnosis and treatment through keyhole incisions, with a faster recovery than open surgery.</p>
+<p>Suspected appendicitis needs urgent assessment. When surgery is required, a laparoscopic appendicectomy both confirms the diagnosis and treats it through small incisions, with a faster recovery than open surgery.</p>
 """,
         "faqs": [
-            ("What are the advantages of keyhole surgery?", "Smaller incisions mean less pain after surgery, shorter hospital stays, faster return to work and smaller scars. Not every patient or condition is suitable, and a small proportion of keyhole operations need conversion to open surgery for safety — that possibility is always part of consent."),
-            ("How long does hernia repair recovery take?", "Most patients return to desk work within one to two weeks after laparoscopic repair, and to heavy lifting at around four to six weeks. Open repair recovery is somewhat longer. You can drive once you can perform an emergency stop comfortably."),
-            ("Do gallstones always need surgery?", "No. Stones found incidentally that cause no symptoms can usually be left alone. Surgery is advised once stones cause pain or complications, because further attacks are then likely."),
+            ("What are the advantages of keyhole surgery?", "Smaller incisions mean less pain, a shorter stay in hospital, a faster return to work and smaller scars. Not every patient or condition is suitable, and a small proportion of keyhole operations are converted to open surgery for safety. That possibility is always discussed before consent."),
+            ("How long does hernia repair recovery take?", "After keyhole repair most people return to desk work within one to two weeks and to heavy lifting at four to six weeks. Recovery after open repair takes a little longer. You may drive once you can make an emergency stop comfortably."),
+            ("Do gallstones always need surgery?", "No. Gallstones found by chance that cause no symptoms can usually be left alone. Surgery is advised once they cause pain or complications, because further attacks are then likely."),
         ],
         "related": ["gynaecomastia", "benign-breast-conditions"],
     },
@@ -356,17 +346,16 @@ PODCAST = {
     "title": "5 Breast Cancer Questions Answered by a Surgeon",
     "season": 3, "episode": 2,
     "date": "2026-10-14", "date_label": "14 October 2026",
-    "duration": "PT34M04S", "duration_label": "34 min",
+    "duration": "PT34M04S", "duration_label": "34 minutes",
     "youtube": "rYpUCW_EbTY",
-    "spotify_episode": "5bFR1v4vIfJxn29kMQ4yn1",
     "spotify": "https://open.spotify.com/episode/5bFR1v4vIfJxn29kMQ4yn1",
     "apple": "https://podcasts.apple.com/us/podcast/5-breast-cancer-questions-answered-by-a-surgeon/id1843133154?i=1000796268423",
-    "summary": "Recorded in front of a live audience, breast cancer survivor Rosie Fawehimi sits down with the surgeon who diagnosed her and later performed her double mastectomy and reconstruction — Mr Ullah — to answer the five questions she hears most.",
+    "summary": "Recorded before a live audience. Rosie Fawehimi, a breast cancer survivor, talks to the surgeon who diagnosed her and later performed her double mastectomy and reconstruction, and puts to him the five questions she is asked most often.",
     "chapters": [
-        "Lumpectomy or mastectomy — how is the decision made?",
-        "Symptoms, self-checking and what to look for",
+        "Lumpectomy or mastectomy: how is the decision made?",
+        "Symptoms, self examination and what to look for",
         "Is breast cancer rising in young women?",
         "Does everyone need radiotherapy?",
-        "Triple-negative breast cancer, explained",
+        "Triple negative breast cancer, explained",
     ],
 }

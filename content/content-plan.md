@@ -36,7 +36,7 @@ Intent: I informational · C commercial · L local
 | 25 | Breast cyst keeps coming back: options | recurring breast cyst | I | Breast symptoms | backlog |
 | 26 | NHS two-week wait vs private one-stop clinic ★ | two week wait breast clinic | C | Private care explained | backlog |
 | 27 | Implant vs own-tissue (flap) reconstruction | implant vs flap reconstruction | I | Reconstruction & cosmetic | backlog |
-| 28 | Inverted nipple: new vs lifelong — when it matters | inverted nipple | I | Breast symptoms | backlog |
+| 28 | Inverted nipple: new vs lifelong, when it matters | inverted nipple | I | Breast symptoms | backlog |
 | 29 | Breast clinic near Chigwell, Loughton & Epping (The Holly) ★ | breast clinic loughton | L | Local clinics | backlog |
 | 30 | DCIS: what it is and surgery options | dcis surgery | I | Breast cancer | backlog |
 | 31 | Mammogram vs ultrasound vs MRI: which test and when | mammogram vs ultrasound | I | Breast symptoms | backlog |

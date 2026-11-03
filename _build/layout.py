@@ -11,38 +11,33 @@ from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.drzakerullah.com"
-TODAY = "2026-11-03"
 SITEMAP = []
 
 NAME = "Mr Md Zaker Ullah"
 SHORT = "Mr Zaker Ullah"
 POSTNOM = "MBBS FRCSEd FRCS (Gen. Surg.)"
+PHYSICIAN_REF = {"@id": SITE + "/#physician"}
 
-# ---------------------------------------------------------------- icons
-ARROW = '<svg class="arr" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg>'
-GO = '<span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>'
-CHEV = '<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>'
-STAR = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 15l-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg>'
-PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>'
-MARK = ('<svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="none" stroke="#b18c55" stroke-width="1"/>'
-        '<circle cx="24" cy="24" r="19.5" fill="#0b1b20"/>'
-        '<text x="24" y="30.5" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" font-style="italic" fill="#f6f2ea" letter-spacing="-0.5">zu</text></svg>')
+FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
+         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">')
 
 
-def stars(n=5, label=None):
-    lab = label or f"{n} out of 5 stars"
-    return f'<span class="stars" role="img" aria-label="{lab}">' + STAR * n + "</span>"
-
-
-def picture(base, alt, sizes, widths, ratio_w, ratio_h, lazy=True, cls=""):
-    """<picture> with WebP + JPEG fallbacks from assets/img/{base}-{w}.{ext}."""
-    webp = ", ".join(f"~/assets/img/{base}-{w}.webp {w}w" for w in widths)
-    jpg = ", ".join(f"~/assets/img/{base}-{w}.jpg {w}w" for w in widths)
+def picture(base, alt, sizes, widths, w, h, lazy=True):
+    """<picture> with WebP + JPEG sources from assets/img/{base}-{width}.{ext}."""
+    webp = ", ".join(f"~/assets/img/{base}-{x}.webp {x}w" for x in widths)
+    jpg = ", ".join(f"~/assets/img/{base}-{x}.jpg {x}w" for x in widths)
     mid = widths[len(widths) // 2]
     load = 'loading="lazy" decoding="async"' if lazy else 'fetchpriority="high" decoding="async"'
-    return (f'<picture{(" class=" + chr(34) + cls + chr(34)) if cls else ""}>'
-            f'<source type="image/webp" srcset="{webp}" sizes="{sizes}">'
-            f'<img src="~/assets/img/{base}-{mid}.jpg" srcset="{jpg}" sizes="{sizes}" alt="{escape(alt)}" width="{ratio_w}" height="{ratio_h}" {load}></picture>')
+    return (f'<picture><source type="image/webp" srcset="{webp}" sizes="{sizes}">'
+            f'<img src="~/assets/img/{base}-{mid}.jpg" srcset="{jpg}" sizes="{sizes}" alt="{escape(alt)}" width="{w}" height="{h}" {load}></picture>')
+
+
+def strip_tags(s):
+    s = re.sub(r"<[^>]+>", "", s)
+    for a, b in (("&rsquo;", "’"), ("&lsquo;", "‘"), ("&amp;", "&"), ("&nbsp;", " "), ("&ldquo;", "“"), ("&rdquo;", "”")):
+        s = s.replace(a, b)
+    return s
 
 
 def faq_html(faqs):
@@ -50,10 +45,6 @@ def faq_html(faqs):
         f'<details><summary>{escape(q)}</summary><div class="a">{"".join("<p>" + p + "</p>" for p in a.split("||"))}</div></details>'
         for q, a in faqs)
     return f'<div class="faq">{items}</div>'
-
-
-def strip_tags(s):
-    return re.sub(r"<[^>]+>", "", s).replace("&rsquo;", "’").replace("&amp;", "&").replace("&mdash;", "—").replace("&nbsp;", " ")
 
 
 def faq_schema(faqs):
@@ -71,49 +62,58 @@ def crumbs_schema(crumbs):
 def crumbs_html(crumbs):
     lis = []
     for i, (n, p) in enumerate(crumbs):
-        if i == len(crumbs) - 1:
-            lis.append(f'<li aria-current="page">{escape(n)}</li>')
-        else:
-            lis.append(f'<li><a href="~/{p}">{escape(n)}</a></li>')
-    return f'<nav class="crumbs" aria-label="Breadcrumb"><ol>{"".join(lis)}</ol></nav>'
+        lis.append(f'<li aria-current="page">{escape(n)}</li>' if i == len(crumbs) - 1 else f'<li><a href="~/{p}">{escape(n)}</a></li>')
+    return f'<ol class="crumbs" aria-label="Breadcrumb">{"".join(lis)}</ol>'
 
 
-PHYSICIAN_REF = {"@id": SITE + "/#physician"}
+# ---------------------------------------------------------------- navigation model
+def nav_model(nav):
+    return [
+        ("Treatments", "procedures", "~/procedures/", "Diagnosis and surgery for the breast, and keyhole general surgery.",
+         [(p["nav"], f"~/procedures/{p['slug']}/", p["short_desc"]) for p in nav["procedures"]]),
+        ("Clinics", "locations", "~/locations/", "Private consultations in central London and on the Essex border.",
+         [(l["name"], f"~/locations/{l['slug']}/", l["area"]) for l in nav["locations"]]),
+        ("About", "about", "~/biography/", "Training, appointments and the opinions of his patients.",
+         [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"{nav['rating']} from {nav['count']} reviews"),
+          ("Podcast", "~/podcast/", "Everything Changed, October 2026"), ("Second opinions", "~/second-opinion/", "An independent view")]),
+        ("Patients", "patients", "~/your-visit/", "Everything you need before your first appointment.",
+         [("Your first visit", "~/your-visit/", "What happens on the day"), ("Fees and insurance", "~/fees-and-insurance/", "Insured and self-funding"),
+          ("Questions answered", "~/faqs/", "Every common question"), ("Book a consultation", "~/booking/", "Enquiries and contact")]),
+    ]
 
 
-# ---------------------------------------------------------------- chrome
 def header(nav, active):
-    proc_links = "".join(
-        f'<a href="~/procedures/{p["slug"]}/"><strong>{p["nav"]}</strong><span>{p["navdesc"]}</span></a>'
-        for p in nav["procedures"])
-    loc_links = "".join(
-        f'<a href="~/locations/{l["slug"]}/"><strong>{l["name"]}</strong><span>{l["area"]}</span></a>'
-        for l in nav["locations"])
+    model = nav_model(nav)
 
-    def cur(key):
-        return ' aria-current="page"' if active == key else ""
+    def drop(item):
+        title, key, href, intro, links = item
+        cur = ' aria-current="page"' if active == key else ""
+        lis = "".join(f'<li><a href="{h}">{t}<span>{d}</span></a></li>' for t, h, d in links)
+        return (f'<div class="drop"><button type="button" aria-haspopup="true"{cur}>{title}</button>'
+                f'<div class="panel"><div class="wrap"><div class="intro"><span class="label">{title}</span><p>{intro}</p>'
+                f'<p><a class="more" href="{href}">Overview</a></p></div><ul>{lis}</ul></div></div></div>')
 
-    return f'''<div class="topbar"><div class="wrap">
-  <span class="tb-left"><span class="dot" aria-hidden="true"></span>Prompt private appointments for new breast symptoms</span>
-  <span class="tb-right"><span class="tb-hide">Fee-assured with all major UK insurers</span><a href="tel:{nav["phone_tel"]}">{nav["phone_label"]}</a></span>
-</div></div>
-<header class="site-header">
+    journal_cur = ' aria-current="page"' if active == "news" else ""
+    overlay_groups = "".join(
+        f'<div class="group"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
+        for t, _, _, _, links in model[:2])
+    overlay_small = "".join(
+        f'<div class="group small"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
+        for t, _, _, _, links in model[2:])
+    brand = f'<a class="brand" href="~/" aria-label="{SHORT}, home"><span class="n">Zaker Ullah</span><span class="r">Consultant Breast Surgeon · FRCS</span></a>'
+    return f'''<header class="site-header">
   <div class="wrap bar">
-    <a class="wordmark" href="~/" aria-label="{SHORT}, Consultant Breast Surgeon, home">{MARK}<span><span class="name">{SHORT}</span><span class="role">Consultant Breast Surgeon</span></span></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
-    <nav class="site-nav" id="nav" aria-label="Main">
-      <div class="nav-drop"><button type="button" aria-haspopup="true"{cur("procedures")}>Treatments {CHEV}</button>
-        <div class="mega">{proc_links}<div class="mega-foot"><span>Not sure where to start?</span><a class="link-arrow" href="~/procedures/">All treatments {ARROW}</a></div></div></div>
-      <div class="nav-drop"><button type="button" aria-haspopup="true"{cur("locations")}>Locations {CHEV}</button>
-        <div class="mega locs">{loc_links}<div class="mega-foot"><span>London &amp; Essex</span><a class="link-arrow" href="~/locations/">All clinics {ARROW}</a></div></div></div>
-      <a href="~/biography/"{cur("about")}>About</a>
-      <a href="~/reviews/"{cur("reviews")}>Reviews</a>
-      <a href="~/podcast/"{cur("podcast")}>Podcast</a>
-      <a href="~/news/"{cur("news")}>Insights</a>
-      <a class="btn sm" href="~/booking/">Book a consultation</a>
-    </nav>
+    <nav class="nav left" aria-label="Primary">{drop(model[0])}{drop(model[1])}{drop(model[2])}</nav>
+    {brand}
+    <nav class="nav right" aria-label="Secondary">{drop(model[3])}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book</a></nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="overlay">Menu</button>
   </div>
-</header>'''
+</header>
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="wrap top">{brand}<button class="menu-btn close" type="button" style="display:block">Close</button></div>
+  <nav class="wrap" aria-label="Menu">{overlay_groups}{overlay_small}<div class="group small"><span class="label">Journal</span><a href="~/news/">All articles</a></div></nav>
+  <div class="wrap foot">Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
+</div>'''
 
 
 def footer(nav):
@@ -121,33 +121,37 @@ def footer(nav):
     locs = "".join(f'<li><a href="~/locations/{l["slug"]}/">{l["name"]}</a></li>' for l in nav["locations"])
     return f'''<footer class="site-footer">
   <div class="wrap">
-    <div class="f-top">
-      <div>
-        <a class="wordmark" href="~/">{MARK}<span><span class="name">{SHORT}</span><span class="role">{POSTNOM}</span></span></a>
-        <p class="f-blurb">Consultant Oncoplastic Breast &amp; General Surgeon. Clinical Lead, Whipps Cross Breast Unit, Barts Health NHS Trust. GMC registration no.&nbsp;4368515.</p>
-        <div class="f-social"><a href="{nav["iwgc"]}" rel="noopener" target="_blank">iWantGreatCare</a><a href="~/podcast/">Podcast</a><a href="https://www.gmc-uk.org/registrants/4368515" rel="noopener" target="_blank">GMC register</a></div>
-      </div>
-      <div><h4>Treatments</h4><ul>{procs}<li><a href="~/second-opinion/">Second opinions</a></li></ul></div>
-      <div><h4>Clinics</h4><ul>{locs}<li><a href="~/booking/">Appointments</a></li></ul></div>
-      <div><h4>Practice</h4><ul><li><a href="~/biography/">About Mr Ullah</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast</a></li><li><a href="~/news/">Insights</a></li><li><a href="~/booking/">Book a consultation</a></li></ul></div>
+    <div class="f-brand"><div><p class="n">Zaker Ullah</p><p class="r">{NAME} · {POSTNOM}</p></div>
+      <a class="btn line" style="color:var(--on-night);border-color:var(--rule-night)" href="~/booking/">Book a consultation</a></div>
+    <div class="f-cols">
+      <div class="f-about"><h4>The practice</h4><p>Consultant Oncoplastic Breast and General Surgeon. Clinical Lead, Breast Unit, Whipps Cross University Hospital, Barts Health NHS Trust.</p>
+        <p>Private secretary<br><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a><br><a href="mailto:{nav["email"]}">{nav["email"]}</a></p></div>
+      <div><h4>Treatments</h4><ul>{procs}</ul></div>
+      <div><h4>Clinics</h4><ul>{locs}<li><a href="~/locations/">All clinics</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast</a></li><li><a href="~/news/">Journal</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a></li></ul></div>
     </div>
-    <div class="f-legal"><span>&copy; 2026 {NAME}. All rights reserved.</span><span>Information on this site is general and does not replace a consultation. In an emergency call 999.</span></div>
+    <div class="f-legal"><span>&copy; 2026 {NAME}</span><span>Information on this website is general and is not a substitute for a consultation. In an emergency, call 999.</span></div>
   </div>
 </footer>
-<div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a class="primary" href="~/booking/">Book a consultation</a></div>'''
+<div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book</a></div>'''
 
 
-def cta_band(title="Arrange a <em>consultation</em>", text=None, nav=None):
-    text = text or "Private appointments on Harley Street, in the City of London and at The Holly in Buckhurst Hill, with priority for new breast symptoms. Insured and self-funding patients welcome."
-    phones = f'<span>Private secretary: <a href="tel:{nav["phone_tel"]}">{nav["phone_label"].split(": ")[-1]}</a></span>' + "".join(f'<span>{l["short"]}: <a href="tel:{l["tel"]}">{l["phone"]}</a></span>' for l in nav["locations"] if l.get("phone"))
-    return f'''<div class="cta-wrap"><div class="wrap"><div class="cta reveal">
-  <div><p class="eyebrow">Appointments</p><h2>{title}</h2><p>{text}</p></div>
-  <div class="cta-side"><a class="btn gold" href="~/booking/">Book a consultation {ARROW}</a><a class="btn ghost on-dark" href="~/locations/">Choose a clinic</a><div class="cta-phones">{phones}</div></div>
-</div></div></div>'''
+def appointment_band(nav, title="Arrange a consultation", text=None):
+    text = text or "New breast symptoms are seen promptly. Insured and self-funding patients are welcome at each of his three private clinics."
+    return f'''<section class="section night"><div class="wrap appointment">
+  <div><span class="label">Appointments</span><h2 class="mt-2">{title}</h2><p class="lede">{text}</p>
+    <div class="actions"><a class="btn" href="~/booking/">Request an appointment</a><a class="btn line" href="~/locations/">The clinics</a></div></div>
+  <div class="contact">
+    <div><span class="label">Telephone</span><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
+    <div><span class="label">Email</span><a href="mailto:{nav["email"]}">{nav["email"]}</a></div>
+    <div><span class="label">Clinics</span><span class="v">Harley Street W1 · St Bartholomew&rsquo;s EC1 · The Holly, Buckhurst Hill IG9</span></div>
+  </div>
+</div></section>'''
 
 
 def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="website",
-           image="assets/img/og-card.png", priority="0.7", noindex=False, extra_head=""):
+           image="assets/img/og-card.png", priority="0.7", noindex=False, extra_head="", band=True):
     depth = path.strip("/").count("/") + 1 if path.strip("/") else 0
     rel = "../" * depth if depth else "./"
     if path == "404.html":
@@ -161,11 +165,10 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(desc)}">
-{'<meta name="robots" content="noindex">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large">'}
+<meta name="robots" content="{"noindex" if noindex else "index, follow, max-image-preview:large"}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#0b1b20">
-<meta name="geo.region" content="GB-LND">
-<meta property="og:site_name" content="{NAME} — Consultant Breast Surgeon">
+<meta name="theme-color" content="#f6f3ee">
+<meta property="og:site_name" content="{NAME}, Consultant Breast Surgeon">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="{escape(title)}">
 <meta property="og:description" content="{escape(desc)}">
@@ -174,28 +177,26 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta property="og:image" content="{SITE}/{image}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="~/assets/img/favicon.svg">
-<link rel="apple-touch-icon" href="~/assets/img/holly-head-600.jpg">
-<link rel="preload" href="~/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="~/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="~/assets/img/zu-head-400.jpg">
+<link rel="alternate" type="application/rss+xml" title="Journal" href="~/feed.xml">
+{FONTS}
 <link rel="stylesheet" href="~/assets/css/main.css">
 {extra_head}{blocks}
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 {header(nav, active)}
 <main id="main">
 {body}
+{appointment_band(nav) if band and not noindex else ""}
 </main>
-{cta_band(nav=nav) if path not in ("booking/",) and not noindex else ""}
 {footer(nav)}
 <script src="~/assets/js/main.js" defer></script>
 </body>
 </html>
 '''
     html = html.replace('"~/', '"' + rel).replace(" ~/", " " + rel)
-    out = os.path.join(ROOT, path, "index.html") if path else os.path.join(ROOT, "index.html")
-    if path == "404.html":
-        out = os.path.join(ROOT, "404.html")
+    out = os.path.join(ROOT, "404.html") if path == "404.html" else os.path.join(ROOT, path, "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w") as f:
         f.write(html)
