@@ -19,7 +19,7 @@ Push to `main` and GitHub Actions validates, builds and deploys to GitHub Pages.
 | Source | Produces |
 |---|---|
 | `_build/content.py` | Facts: treatments, clinics, insurers, verbatim iWantGreatCare reviews, podcast |
-| `_build/build.py` | Home, Biography, 8 treatment pages, Second opinion, 3 clinic pages, Your first visit, Fees and insurance, Questions answered, Reviews, Podcast, Journal, Booking, 404 |
+| `_build/build.py` | Home, Biography, 7 treatment pages, Second opinion, 3 clinic pages, Your first visit, Fees and insurance, Questions answered, Reviews, Podcast and videos, Journal (posts plus Bengali video pages at their old Squarespace URLs), Booking, 404 |
 | `_build/layout.py` | `<head>`, split navigation with drop-down panels, full-screen mobile menu, footer, appointment band |
 | `content/blog/*.md` | Blog posts → `/news/<slug>/` (+ FAQ schema from the FAQ section) |
 | `content/BLOG-RULES.md` | Editorial, medical, compliance and SEO rules for posts |
@@ -29,11 +29,11 @@ Push to `main` and GitHub Actions validates, builds and deploys to GitHub Pages.
 
 ## Design system
 
-*Caslon & Claret*. Libre Caslon Display and Text (the English Caslon tradition) for headings and
-reading, Hanken Grotesk for small tracked labels. Warm paper `#f6f3ee`, ink `#171513`, one accent,
-claret `#6b1f25`. Square corners, hairline rules, an editorial left rail for section labels, and
-black-and-white photography. No rounded cards, shadows, badges or gradients. House style: no em
-or en dashes anywhere (the validator enforces this for posts).
+*Navy, Cream & Coral*. Navy carries over from the original Squarespace site; cream and blush grounds
+keep it warm; coral is the single energetic accent. Newsreader (display and reading) with Plus
+Jakarta Sans (interface). Colour photography with an arched portrait. House style: always "Mr"
+Ullah (UK surgical convention; "Dr Zaker Ullah" is kept in schema alternateName and one FAQ for
+search), and no em or en dashes anywhere (the validator enforces this for posts).
 
 ## SEO built in
 

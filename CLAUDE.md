@@ -40,5 +40,8 @@ stories or facts about Mr Ullah.
 
 - Private secretary phone/email (from Bupa Finder; name spelling Wiles/Willes unconfirmed).
 - Direct booking numbers for The Harley Street Clinic and Nuffield St Bartholomew's.
-- Whether he still consults at Spire London East (removed, no source found).
+- Whether he still consults at Spire London East (listed on the old Squarespace site; not on any current profile, so not shown).
+- Secretary email: old site gave juliet.willes@nhs.net, Bupa gives juliet.willes@nuffieldhealth.com (used).
+- He does not offer breast augmentation. Never write about it as a service.
+- Always "Mr" Ullah, never "Dr", except in verbatim reviews.
 - Fee-assured status per insurer; insurer list is from his Nuffield profile.

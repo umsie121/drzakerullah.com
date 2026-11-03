@@ -13,12 +13,13 @@ from html import escape
 sys.path.insert(0, os.path.dirname(__file__))
 import content as C  # noqa: E402
 import md  # noqa: E402
-from layout import (NAME, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, crumbs_html, crumbs_schema,  # noqa: E402
+from layout import (NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, crumbs_html, crumbs_schema,  # noqa: E402
                     faq_html, faq_schema, picture, render, strip_tags)
 
 TODAY = datetime.date.fromisoformat(os.environ.get("BUILD_DATE", datetime.date.today().isoformat()))
 NAV = {"procedures": C.PROCEDURES, "locations": C.LOCATIONS, "phone": C.SEC_PHONE, "phone_tel": C.SEC_TEL,
-       "email": C.SEC_EMAIL, "iwgc": C.IWGC, "rating": C.IWGC_RATING, "count": C.IWGC_COUNT}
+       "email": C.SEC_EMAIL, "iwgc": C.IWGC, "rating": C.IWGC_RATING, "count": C.IWGC_COUNT,
+       "sec_name": C.SEC_NAME, "youtube": C.YOUTUBE_CHANNEL}
 PROC = {p["slug"]: p for p in C.PROCEDURES}
 ALL_POSTS = md.load_posts(os.path.join(ROOT, "content", "blog"), TODAY)
 POSTS = [p for p in ALL_POSTS if p["published"]]
@@ -104,25 +105,42 @@ def clinic_cols():
     return f'<div class="clinics">{"".join(out)}</div>'
 
 
+def stars():
+    return '<span class="stars" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>'
+
+
 def testimonials(items):
-    lis = "".join(f'<li><div class="who"><strong>Verified patient</strong>{where}<br>{d}</div><blockquote>{escape(q)}</blockquote></li>' for q, d, where in items)
+    lis = "".join(f'<li>{stars()}<blockquote>{escape(q)}</blockquote><div class="who"><strong>Verified patient</strong>, {where}, {d}</div></li>' for q, d, where in items)
     return f'<ul class="testimonials">{lis}</ul>'
+
+
+def review_cards(items):
+    lis = "".join(f'<figure class="review-card">{stars()}<blockquote>&ldquo;{escape(q)}&rdquo;</blockquote><figcaption>Verified patient, {where}, {d}</figcaption></figure>' for q, d, where in items)
+    return f'<div class="review-grid">{lis}</div>'
 
 
 def rating_block():
     return f'''<div class="rating"><span class="score">{C.IWGC_RATING}<small>out of 5</small></span>
-<p>From {C.IWGC_COUNT} independent, verified reviews on iWantGreatCare. Every one is five stars.</p></div>'''
+<p>{stars()}From {C.IWGC_COUNT} independent, verified reviews on iWantGreatCare. Every one is five stars.</p></div>'''
 
 
-def journal_list(posts):
-    lis = "".join(f'<li><a href="~/news/{p["slug"]}/"><span class="label">{escape(p["category"])}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>' for p in posts)
-    return f'<ul class="journal">{lis}</ul>'
+VIDEO_ENTRIES = [{**v, "description": v["desc"], "category": f"Video, in {v['lang']}", "date_obj": datetime.date.fromisoformat(v["date"]), "thumb": v["id"]} for v in C.VIDEOS]
+ENTRIES = sorted(POSTS + VIDEO_ENTRIES, key=lambda e: e["date_obj"], reverse=True)
 
 
-def video():
+def journal_list(entries, grid=True):
+    out = []
+    for p in entries:
+        thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
+        out.append(f'<li><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
+    return f'<ul class="journal{" grid" if grid else ""}">{"".join(out)}</ul>'
+
+
+def video(vid=None, title=None, label=None):
     P = C.PODCAST
-    return f'''<div class="video" data-yt="{P["youtube"]}"><img src="https://i.ytimg.com/vi/{P["youtube"]}/hqdefault.jpg" alt="{escape(P["title"])}, {P["show"]}" width="480" height="360" loading="lazy">
-<button class="play" type="button" aria-label="Play episode: {escape(P["title"])}"><span>Play episode · {P["duration_label"]}</span></button></div>'''
+    vid, title = vid or P["youtube"], title or P["title"]
+    return f'''<div class="video" data-yt="{vid}"><img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="{escape(title)}" width="480" height="360" loading="lazy">
+<button class="play" type="button" aria-label="Play video: {escape(title)}"><span>Play</span></button></div>'''
 
 
 def faq_section(faqs, title="Questions", label="Questions"):
@@ -152,55 +170,79 @@ def appt_aside():
 <a class="tel" href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a><a class="btn" href="~/booking/">Request an appointment</a></div>'''
 
 
+def quote_band(r, cls="section tone tight", label="A patient writes"):
+    return f'<section class="{cls}"><div class="wrap railed"><div class="rail"><span class="label">{label}</span></div><div><figure class="quote">{stars()}<blockquote class="mt-1">{escape(r[0])}</blockquote><figcaption><span>Verified patient, {r[2]}, {r[1]}</span><a class="more" href="~/reviews/">Rated {C.IWGC_RATING} by {C.IWGC_COUNT} patients</a></figcaption></figure></div></div></section>'
+
+
+HOME_FAQS = [
+    ("How quickly can I see Mr Ullah?", "New breast symptoms are given priority. Face to face appointments can often be arranged within days, and a video or telephone consultation can usually be arranged within 24 to 48 hours of your enquiry."),
+    ("Will I get my results on the same day?", "At his one-stop clinics, imaging and provisional results are usually given on the same day. Biopsy results, where a biopsy is needed, follow within a few days."),
+    ("Is Mr Ullah the same person as Dr Zaker Ullah?", "Yes. Surgeons in the United Kingdom who hold the fellowship of a Royal College of Surgeons are addressed as Mr rather than Dr. You may see him called Dr Zaker Ullah on his YouTube channel and in older articles; it is the same surgeon."),
+    ("Do I need a GP referral?", "Insured patients usually need one before their insurer will authorise the appointment. Self-funding patients can book directly. <a href=\"~/fees-and-insurance/\">Fees and insurance</a>."),
+]
+
+
 # ================================================================== HOME
 def build_home():
     P = C.PODCAST
-    lead = C.REVIEWS[0]
     body = f'''
 <section class="hero"><div class="wrap">
   <div class="hero-grid">
     <div>
-      <span class="label">Consultant Oncoplastic Breast Surgeon</span>
-      <h1 class="mt-2">Consultant breast surgeon in London and Essex</h1>
-      <p class="lede">{NAME} FRCS is Clinical Lead of the Breast Unit at Whipps Cross University Hospital. In private practice he sees patients at The Harley Street Clinic, Nuffield Health St Bartholomew&rsquo;s and Nuffield Health The Holly, Buckhurst Hill.</p>
-      <div class="actions"><a class="btn" href="~/booking/">Book a consultation</a><a class="btn line" href="~/procedures/">Treatments</a></div>
+      <span class="label">Consultant breast surgeon in London and Essex</span>
+      <h1 class="mt-2">Expert breast care, with time to listen</h1>
+      <p class="lede">{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
+      <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="btn line" href="~/procedures/">Explore treatments</a></div>
+      <div class="proof"><span>{stars()} <strong>{C.IWGC_RATING}</strong> from {C.IWGC_COUNT} patients</span><span class="sep"></span><span>Harley Street · St Bartholomew&rsquo;s · The Holly</span></div>
     </div>
-    <figure>{portrait(lazy=False)}<figcaption class="caption"><span>{NAME} FRCS</span><span>The Holly, Buckhurst Hill</span></figcaption></figure>
+    <div class="arch">{portrait(lazy=False)}
+      <div class="badge"><b>30+</b><span><strong style="color:var(--navy)">years in surgery</strong><br>Royal Marsden trained</span></div></div>
   </div>
   <div class="facts-strip">
-    <div><span class="k">Since 1987</span><span class="v">In medical practice, with UK surgical training from 1993</span></div>
+    <div><span class="k">Same day</span><span class="v">Imaging and provisional results at one-stop clinics</span></div>
+    <div><span class="k">24 to 48 hours</span><span class="v">For a video or telephone consultation</span></div>
     <div><span class="k">Clinical Lead</span><span class="v">Breast Unit, Whipps Cross, Barts Health NHS Trust</span></div>
-    <div><span class="k">FRCS</span><span class="v">Edinburgh 1996, General Surgery 2009</span></div>
-    <div><span class="k">{C.IWGC_RATING} of 5</span><span class="v">{C.IWGC_COUNT} verified reviews on iWantGreatCare</span></div>
+    <div><span class="k">English &amp; Bengali</span><span class="v">Consultations in either language</span></div>
   </div>
 </div></section>
 
-{railed("The practice", f"""<p class="statement fade">The treatment of breast cancer and the appearance of the breast are planned together, by one surgeon, from the first consultation. <span class="muted">That is the discipline of oncoplastic surgery, and the basis of Mr Ullah&rsquo;s practice.</span></p>
-<div class="cols-2 mt-3"><p class="stone">He trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, and has been a consultant at Barts Health NHS Trust since 2012. At Whipps Cross he introduced the one-stop breast clinic, so that examination, imaging and biopsy take place at a single visit.</p>
-<p class="stone">The surgeon who examines you is the surgeon who operates and who sees you afterwards. Every cancer case is also reviewed by a full multidisciplinary team. He consults in English and Bengali.</p></div>
-<p class="mt-3"><a class="more" href="~/biography/">Biography</a></p>""")}
-
-{railed("Treatments", f'<h2>Areas of practice</h2><div class="mt-3">{treatment_index()}</div><p class="mt-3"><a class="more" href="~/procedures/">All treatments</a></p>', sub=f"{len(C.PROCEDURES):02d}")}
-
-<section class="section tone"><div class="wrap railed"><div class="rail"><span class="label">Patients</span></div><div>
-  <figure class="quote fade"><blockquote>{escape(lead[0])}</blockquote><figcaption><span class="label">Verified patient, {lead[2]}</span><span class="label">{lead[1]}</span><span class="label">iWantGreatCare</span></figcaption></figure>
-  <div class="mt-4" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:2rem">{rating_block()}<a class="more" href="~/reviews/">Read patient reviews</a></div>
+<section class="section tight"><div class="wrap"><div class="reassure">
+  <div class="big">9<small> in 10</small></div>
+  <div><h2>Most breast lumps are not cancer</h2><p>Cysts, fibroadenomas and normal breast tissue are far more common. The only way to be sure is a proper assessment, and at a one-stop clinic that usually takes a single visit.</p></div>
+  <a class="btn" href="~/procedures/benign-breast-conditions/">The one-stop clinic</a>
 </div></div></section>
 
-{railed("Clinics", f'<h2>Three private clinics</h2><p class="lede mt-1">Central London, the City, and the border of London and Essex.</p><div class="mt-3">{clinic_cols()}</div>')}
+{railed("His approach", f"""<p class="statement fade">One surgeon plans your cancer treatment and the shape of your breast together, from the very first appointment. <span class="muted">That is oncoplastic surgery, and it is the heart of Mr Ullah&rsquo;s practice.</span></p>
+<div class="cols-2 mt-3"><p class="stone">He trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, and has been a consultant at Barts Health NHS Trust since 2012. At Whipps Cross he introduced the one-stop breast clinic and fat grafting for breast reconstruction.</p>
+<p class="stone">The surgeon who examines you is the surgeon who operates and who looks after you afterwards. Patients describe him, again and again, as someone who listens and never rushes.</p></div>
+<p class="mt-3"><a class="more" href="~/biography/">About Mr Ullah</a></p>""")}
 
-<section class="section night"><div class="wrap railed"><div class="rail"><span class="label">Podcast</span><span class="label">{P["date_label"]}</span></div><div class="pod">
-  {video()}
+<section class="section tone"><div class="wrap railed"><div class="rail"><span class="label">Treatments</span><span class="label">{len(C.PROCEDURES)} specialties</span></div><div>
+<h2>How Mr Ullah can help</h2><div class="mt-3">{treatment_index()}</div><p class="mt-3"><a class="more" href="~/procedures/">All treatments</a></p></div></div></section>
+
+<section class="section night"><div class="wrap railed"><div class="rail"><span class="label">Patient reviews</span></div><div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:2rem"><h2 style="max-width:13em">Kind, thorough and a safe pair of hands</h2>{rating_block()}</div>
+  <div class="mt-3">{review_cards(C.REVIEWS[:6])}</div>
+  <p class="mt-3"><a class="more" href="~/reviews/">Read every review</a></p>
+</div></div></section>
+
+{railed("Clinics", f'<h2>Three private clinics</h2><p class="lede mt-1">Central London, the City, and the border of London and Essex, with parking at The Holly.</p><div class="mt-3">{clinic_cols()}</div>')}
+
+<section class="section blush"><div class="wrap railed"><div class="rail"><span class="label">Watch and listen</span><span class="label">{P["date_label"]}</span></div><div>
+  <div class="pod">{video()}
   <div><h2>Five questions about breast cancer, answered by a surgeon</h2><p class="lede mt-1">Mr Ullah on <em>{P["show"]}</em>, recorded before a live audience.</p>
   <ol class="chapters">{"".join(f"<li>{c}</li>" for c in P["chapters"])}</ol>
-  <p class="mt-2"><a class="more" href="~/podcast/">Watch and listen</a></p></div>
+  <p class="mt-2"><a class="more" href="~/podcast/">Podcast and videos</a></p></div></div>
+  <p class="mt-3 stone">He also presents health advice in Bengali, for TV3 Bangla and on his own YouTube channel.</p>
 </div></div></section>
 
-{railed("Journal", f'<h2>From the journal</h2><div class="mt-3">{journal_list(POSTS[:4])}</div><p class="mt-3"><a class="more" href="~/news/">All articles</a></p>') if POSTS else ""}
+{railed("Journal", f'<h2>Clear answers, in plain English</h2><div class="mt-3">{journal_list(POSTS[:3])}</div><p class="mt-3"><a class="more" href="~/news/">All articles and videos</a></p>') if POSTS else ""}
+
+{faq_section(HOME_FAQS, "Questions patients ask first")}
 '''
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
-           desc=f"Mr Md Zaker Ullah FRCS, consultant oncoplastic breast surgeon in London and Essex, rated {C.IWGC_RATING} by {C.IWGC_COUNT} patients. Harley Street, St Bartholomew's and The Holly.",
-           body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE], priority="1.0")
+           desc=f"Mr Zaker Ullah FRCS, consultant breast surgeon in London and Essex, rated {C.IWGC_RATING} by {C.IWGC_COUNT} patients. Same day results at Harley Street, St Bartholomew's and The Holly.",
+           body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS)], priority="1.0")
 
 
 # ================================================================== ABOUT
@@ -220,14 +262,14 @@ def build_about():
 <p>Mr Ullah qualified in medicine in 1987 and began his surgical training in the United Kingdom in 1993. He trained through the North East Thames rotation, with higher surgical posts at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at <strong>St Mary&rsquo;s</strong>, <strong>The Royal Free</strong> and Broomfield hospitals. It was there that his interest in oncoplastic breast surgery took shape.</p>
 <h2>Consultant practice</h2>
 <p>He was appointed consultant at <strong>Barts Health NHS Trust in 2012</strong> and is Clinical Lead of the Breast Unit at Whipps Cross University Hospital. He introduced the hospital&rsquo;s <strong>one-stop breast clinic</strong>, where patients with new symptoms are examined, imaged and, where needed, biopsied at a single visit. He also introduced <strong>fat grafting</strong> for breast deformity at the hospital.</p>
-<p>His practice covers the full range of modern breast surgery: breast conserving cancer surgery and therapeutic mammoplasty, mastectomy, reconstruction with implants and with latissimus dorsi, chest wall perforator and Grisotti flaps, fat grafting, nipple reconstruction, risk reducing surgery for carriers of BRCA and other gene variants, and reduction and augmentation for symmetry. In general surgery he maintains a laparoscopic practice in gallstone disease, hernia repair and appendicectomy.</p>
+<p>His practice covers the full range of modern breast surgery: breast conserving cancer surgery and therapeutic mammoplasty, mastectomy, reconstruction with implants and with latissimus dorsi, chest wall perforator and Grisotti flaps, fat grafting, nipple reconstruction, risk reducing surgery for carriers of BRCA and other gene variants, and reduction and uplift for symmetry. In general surgery he maintains a laparoscopic practice in gallstone disease, hernia repair and appendicectomy.</p>
 <h2>Teaching and research</h2>
 <p>Mr Ullah is a clinical and educational supervisor to surgeons in training and directs the <strong>Whipps Cross Higher Surgery FRCS course</strong>, which prepares senior trainees for the fellowship examination of the Royal Colleges of Surgeons. He gives regular educational talks to local GPs.</p>
 <p>His keyhole hernia repair technique, using a glove balloon, won the prize for <strong>best video presentation at the European Association for Endoscopic Surgery</strong> in 2003. He has published research on oncoplastic reconstruction, laparoscopic hernia repair, breast cancer in Asian populations and diagnostic laparoscopy.</p>
 <h2>Beyond the clinic</h2>
 <p>He is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage, and speaks at international cancer meetings. In October 2026 he joined Rosie Fawehimi on her podcast <a href="~/podcast/"><em>Everything Changed</em></a> to answer the questions patients ask most.</p>
 </div></div></section>
-<section class="section night"><div class="wrap railed"><div class="rail"><span class="label">Career</span></div><div>
+<section class="section tone"><div class="wrap railed"><div class="rail"><span class="label">Career</span></div><div>
 <h2>Appointments and distinctions</h2>
 <ol class="timeline mt-3">
 <li><span class="y">1987</span><div><h3>Qualifies in medicine</h3><p>MBBS.</p></div></li>
@@ -273,7 +315,7 @@ def build_procedures():
     <div class="prose">{sections}<p class="note">This page is general information and not medical advice. Whether a procedure is right for you can only be decided in consultation.</p></div></div>
   <aside class="aside"><div class="block"><span class="label">At a glance</span><dl>{glance}</dl></div>{appt_aside()}<div class="block"><span class="label">Related</span><ul>{rel}</ul></div></aside>
 </div></section>
-<section class="section tone tight"><div class="wrap railed"><div class="rail"><span class="label">A patient writes</span></div><div><figure class="quote"><blockquote>{escape(q[0])}</blockquote><figcaption><span class="label">Verified patient, {q[2]}, {q[1]}</span><a class="more" href="~/reviews/">{C.IWGC_COUNT} reviews, {C.IWGC_RATING} of 5</a></figcaption></figure></div></div></section>
+{quote_band(q)}
 <div id="questions"></div>{faq_section(p["faqs"], f"Questions about {p['nav'].lower()}")}'''
         render(path, title=p["title"], desc=p["desc"], body=body, nav=NAV, active="procedures", priority="0.9",
                schema=[medical_page(path, p["h1"], p["desc"]),
@@ -300,7 +342,7 @@ def build_second_opinion():
 <li>They are considering risk reducing surgery because of a BRCA or other gene variant, or a strong family history</li>
 <li>They are unhappy with the result of previous breast surgery</li></ul>
 <h2>What Mr Ullah reviews</h2><p>Your history and examination, your imaging and pathology, and where useful a request for further tests or a specialist review of the scans or slides. You receive a clear explanation of what he would recommend and why, with a letter for you and for your existing team.</p></div>''') + \
-        f'<section class="section tone tight"><div class="wrap railed"><div class="rail"><span class="label">A patient writes</span></div><div><figure class="quote"><blockquote>{escape(C.REVIEWS[2][0])}</blockquote><figcaption><span class="label">Verified patient, {C.REVIEWS[2][2]}, {C.REVIEWS[2][1]}</span></figcaption></figure></div></div></section>' + \
+        quote_band(C.REVIEWS[2]) + \
         faq_section(faqs, "Questions about second opinions")
     desc = "Breast cancer second opinion in London and Essex with consultant oncoplastic surgeon Mr Zaker Ullah: diagnosis, mastectomy or conservation, and reconstruction options."
     render(path, title="Breast Cancer Second Opinion London | Mr Zaker Ullah FRCS", desc=desc, body=body, nav=NAV, active="about", priority="0.8",
@@ -328,7 +370,7 @@ def build_locations():
         faqs = [
             (f"How do I book with Mr Ullah at {l['name']}?", f"Call his private secretary on {C.SEC_PHONE}, send an enquiry through this website, or ask your GP to refer you to Mr Md Zaker Ullah at {l['name']}. Insured patients should obtain a pre-authorisation number from their insurer first."),
             (f"Where is {l['name']}?", f"{l['name']} is at {loc_address(l)}. {l['travel']}"),
-            ("Which conditions does Mr Ullah treat here?", "New breast lumps and breast pain, nipple discharge, breast cancer surgery, reconstruction, breast reduction and augmentation, fat grafting, gynaecomastia, and general surgery including hernia and gallbladder operations. Some operations take place only at particular hospitals; the secretary will advise."),
+            ("Which conditions does Mr Ullah treat here?", "New breast lumps and breast pain, nipple discharge, breast cancer surgery, reconstruction, breast reduction, fat grafting, gynaecomastia, and general surgery including hernia and gallbladder operations. Some operations take place only at particular hospitals; the secretary will advise."),
             ("Can I be seen quickly with a new breast symptom?", "Yes. New breast symptoms are given priority, with the aim of examination, imaging and any biopsy at a single visit."),
         ]
         others = "".join(f'<li><a href="~/locations/{o["slug"]}/">{o["name"]}</a></li>' for o in C.LOCATIONS if o is not l)
@@ -336,9 +378,9 @@ def build_locations():
                          actions=f'<a class="btn" href="~/booking/">Book at {l["short"]}</a><a class="btn line" href="{maps}" target="_blank" rel="noopener">Map</a>') + \
             railed("The clinic", '<ul class="list-plain">' + "".join(f"<li>{w}</li>" for w in l["why"]) + "</ul>") + \
             railed("Getting here", f'<p class="lede">{l["travel"]}</p><p class="mt-2"><a class="more" href="{maps}" target="_blank" rel="noopener">Open in Google Maps</a></p>', cls="section rule") + \
-            railed("Patients from", f'<p class="areas">{", ".join(l["serves"])}, and further afield.</p>', cls="section rule") + \
+            railed("Patients from", '<div class="areas">' + "".join(f"<span>{a}</span>" for a in l["serves"]) + '</div><p class="stone mt-1">And many travel from further afield.</p>', cls="section rule") + \
             railed("Treatments here", treatment_index(), cls="section rule") + \
-            f'<section class="section tone tight"><div class="wrap railed"><div class="rail"><span class="label">A patient writes</span></div><div><figure class="quote"><blockquote>{escape(C.REVIEWS[3][0])}</blockquote><figcaption><span class="label">Verified patient, {C.REVIEWS[3][2]}, {C.REVIEWS[3][1]}</span><a class="more" href="~/reviews/">All reviews</a></figcaption></figure></div></div></section>' + \
+            quote_band(C.REVIEWS[3]) + \
             faq_section(faqs, f"Seeing Mr Ullah at {l['short']}") + \
             railed("Other clinics", f'<ul class="list-plain">{others}</ul>', cls="section rule tight")
         clinic = {"@context": "https://schema.org", "@type": "MedicalClinic", "@id": f"{SITE}/{path}#clinic",
@@ -428,7 +470,7 @@ def build_reviews():
 def build_podcast():
     P = C.PODCAST
     path = "podcast/"
-    crumbs = [("Home", ""), ("Podcast", path)]
+    crumbs = [("Home", ""), ("Podcast and videos", path)]
     qa = [
         ("Lumpectomy or mastectomy: how is the decision made?", "It depends on the size of the cancer relative to the breast, where it lies, whether there is more than one area, genetics and, above all, the patient&rsquo;s own wishes. Oncoplastic techniques mean many women who once needed a mastectomy can keep their breast. <a href=\"~/news/lumpectomy-vs-mastectomy/\">Read the full article</a>." if any(p["slug"] == "lumpectomy-vs-mastectomy" for p in POSTS) else "It depends on the size of the cancer relative to the breast, where it lies, whether there is more than one area, genetics and, above all, the patient&rsquo;s own wishes. Oncoplastic techniques mean many women who once needed a mastectomy can keep their breast. <a href=\"~/procedures/breast-cancer-surgery/\">Breast cancer surgery</a>."),
         ("What symptoms should I look for, and how should I check?", "Not only a lump: dimpling of the skin, a change in size or shape, a newly inverted nipple, a rash on the nipple or bloodstained discharge, and persistent pain in one place. Know what is normal for you and have any change checked. <a href=\"~/news/breast-lump-when-to-see-a-specialist/\">When to see a specialist</a>."),
@@ -439,9 +481,10 @@ def build_podcast():
     body = page_head(crumbs, f"Podcast · {P['date_label']}", "Five questions about breast cancer, answered by a surgeon",
                      f"Mr Ullah on <em>{P['show']}</em>, season {P['season']}, episode {P['episode']}. {P['summary']}",
                      actions=f'<a class="btn" href="#watch">Watch</a><a class="btn line" href="{P["spotify"]}" target="_blank" rel="noopener">Spotify</a><a class="btn line" href="{P["apple"]}" target="_blank" rel="noopener">Apple Podcasts</a>') + \
-        f'<section class="section" id="watch"><div class="wrap railed"><div class="rail"><span class="label">Episode</span><span class="label">{P["duration_label"]}</span></div><div>{video()}<p class="caption"><span>Hosted by {P["host"]}</span><span>The video loads from YouTube when you press play</span></p></div></div></section>' + \
+        f'<section class="section" id="watch"><div class="wrap railed"><div class="rail"><span class="label">Episode</span><span class="label">{P["duration_label"]}</span></div><div>{video()}<p class="stone small mt-1">Hosted by {P["host"]}. The video loads from YouTube when you press play.</p></div></div></section>' + \
         faq_section(qa, "The five questions", "In this episode") + \
-        railed("About the show", f'<p class="lede"><em>Everything Changed</em> is {P["host"]}&rsquo;s podcast about life during and after breast cancer. In this live episode she talks to the surgeon who diagnosed her and later performed her double mastectomy and reconstruction.</p>', cls="section rule")
+        railed("About the show", f'<p class="lede"><em>Everything Changed</em> is {P["host"]}&rsquo;s podcast about life during and after breast cancer. In this live episode she talks to the surgeon who diagnosed her and later performed her double mastectomy and reconstruction.</p>', cls="section rule") + \
+        f'<section class="section blush"><div class="wrap railed"><div class="rail"><span class="label">In Bengali</span><span class="label">TV3 Bangla and YouTube</span></div><div><h2>Health advice in Bengali</h2><p class="lede mt-1">Mr Ullah presents health talks in Bengali for TV3 Bangla and on his own YouTube channel, from breast self-examination to questions about COVID-19.</p><div class="mt-3">{journal_list(VIDEO_ENTRIES)}</div><p class="mt-3"><a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">His YouTube channel</a></p></div></div></section>'
     ep = {"@context": "https://schema.org", "@type": "PodcastEpisode", "name": P["title"], "url": P["spotify"], "datePublished": P["date"],
           "timeRequired": P["duration"], "episodeNumber": P["episode"], "description": P["summary"],
           "partOfSeries": {"@type": "PodcastSeries", "name": P["show"]}, "actor": [{"@type": "Person", "name": P["host"]}, PHYSICIAN_REF],
@@ -449,8 +492,8 @@ def build_podcast():
     vid = {"@context": "https://schema.org", "@type": "VideoObject", "name": f"{P['title']}, {P['show']}", "description": P["summary"],
            "thumbnailUrl": f"https://i.ytimg.com/vi/{P['youtube']}/hqdefault.jpg", "uploadDate": P["date"], "duration": P["duration"],
            "embedUrl": f"https://www.youtube.com/embed/{P['youtube']}", "contentUrl": f"https://www.youtube.com/watch?v={P['youtube']}"}
-    render(path, title="Breast Cancer Podcast: 5 Questions for a Surgeon | Mr Ullah",
-           desc="Consultant breast surgeon Mr Zaker Ullah on Everything Changed with Rosie Fawehimi: mastectomy or lumpectomy, symptoms, young women, radiotherapy and triple negative cancer.",
+    render(path, title="Podcast & Videos | Breast Surgeon Mr Zaker Ullah FRCS",
+           desc="Breast surgeon Mr Zaker Ullah on the Everything Changed podcast with Rosie Fawehimi, and his Bengali health talks for TV3 Bangla and YouTube.",
            body=body, nav=NAV, active="about", priority="0.8", schema=[ep, vid, crumbs_schema(crumbs), faq_schema(qa)])
 
 
@@ -458,8 +501,8 @@ def build_podcast():
 def build_news():
     crumbs = [("Home", ""), ("Journal", "news/")]
     body = page_head(crumbs, "Journal", "The journal",
-                     "Plain English guides to breast symptoms, diagnosis, surgery and recovery, written and reviewed by Mr Ullah.") + \
-        railed(f"{len(POSTS)} articles", journal_list(POSTS))
+                     "Plain English guides to breast symptoms, diagnosis, surgery and recovery, written by Mr Ullah, alongside his health talks in Bengali.") + \
+        railed(f"{len(ENTRIES)} articles and videos", journal_list(ENTRIES))
     render("news/", title="Breast Health Articles & Advice | Mr Zaker Ullah",
            desc="Articles by London consultant breast surgeon Mr Zaker Ullah FRCS on breast lumps, breast cancer, oncoplastic surgery, reconstruction, gynaecomastia and private care.",
            body=body, nav=NAV, active="news", priority="0.8",
@@ -494,6 +537,26 @@ def build_news():
                nav=NAV, active="news", og_type="article", priority="0.7", schema=schema)
 
 
+def build_videos():
+    for v in C.VIDEOS:
+        path = f"news/{v['slug']}/"
+        crumbs = [("Home", ""), ("Journal", "news/"), (v["title"], path)]
+        d = datetime.date.fromisoformat(v["date"])
+        body = page_head(crumbs, f"Video, in {v['lang']}", escape(v["title"]), escape(v["desc"]),
+                         meta=[("Published", d.strftime("%-d %B %Y")), ("Language", v["lang"]), ("Source", v["by"])]) + \
+            f'<section class="section"><div class="wrap railed"><div class="rail"><span class="label">Watch</span></div><div style="max-width:56rem">{video(v["id"], v["title"])}<p class="stone small mt-1">The video loads from YouTube when you press play. <a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">More on YouTube</a></p></div></div></section>' + \
+            railed("More videos", journal_list([x for x in VIDEO_ENTRIES if x["slug"] != v["slug"]]), cls="section rule")
+        schema = [{"@context": "https://schema.org", "@type": "VideoObject", "name": v["title"], "description": v["desc"], "inLanguage": "bn",
+                   "thumbnailUrl": f"https://i.ytimg.com/vi/{v['id']}/hqdefault.jpg", "uploadDate": v["date"],
+                   "embedUrl": f"https://www.youtube.com/embed/{v['id']}", "contentUrl": f"https://www.youtube.com/watch?v={v['id']}", "actor": PHYSICIAN_REF},
+                  crumbs_schema(crumbs)]
+        render(path, title=f"{v['title']} | Mr Zaker Ullah"[:70], desc=v["desc"][:160], body=body, nav=NAV, active="news", priority="0.5", schema=schema)
+    # He does not offer augmentation; keep the old URL from 404ing.
+    render("procedures/breast-augmentation/", title="Treatments", desc="This page has moved.", nav=NAV, noindex=True,
+           extra_head='<meta http-equiv="refresh" content="0; url=../">',
+           body='<section class="section"><div class="wrap"><p>This page has moved. <a href="~/procedures/">See all treatments</a>.</p></div></section>')
+
+
 # ================================================================== BOOKING
 def build_booking():
     path = "booking/"
@@ -501,7 +564,7 @@ def build_booking():
     opts = "".join(f"<option>{l['name']}</option>" for l in C.LOCATIONS)
     procs = "".join(f"<option>{p['nav']}</option>" for p in C.PROCEDURES)
     body = page_head(crumbs, "Appointments", "Book a consultation",
-                     "Telephone the private secretary, or send an enquiry and the team will call you to arrange a time at the clinic you prefer. New breast symptoms are given priority.",
+                     "Telephone Ms Juliet Willes, Mr Ullah&rsquo;s private secretary, or send an enquiry and the team will call you back. New breast symptoms are given priority, and video or telephone consultations can usually be arranged within 24 to 48 hours.",
                      meta=[("Telephone", f'<a href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a>'), ("Email", f'<a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a>'), ("Rapid access", "Tuesday afternoons at The Holly")]) + f'''
 <section class="section"><div class="wrap railed"><div class="rail"><span class="label">Enquiry</span></div><div class="cols-2">
   <form class="form" id="enquiry" data-to="{C.SEC_EMAIL}">
@@ -551,7 +614,7 @@ def build_files():
 
 if __name__ == "__main__":
     build_home(); build_about(); build_procedures(); build_second_opinion(); build_locations(); build_patient_pages()
-    build_reviews(); build_podcast(); build_news(); build_booking(); build_404(); build_files()
+    build_reviews(); build_podcast(); build_news(); build_videos(); build_booking(); build_404(); build_files()
     print(f"Built {len(SITEMAP)} indexable pages · {len(POSTS)} posts live · {len(SCHEDULED)} scheduled")
     for s in SCHEDULED:
         print(f"  scheduled {s['date']}  {s['slug']}")

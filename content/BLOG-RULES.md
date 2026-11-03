@@ -52,6 +52,7 @@ Do **not** add a disclaimer, author box or CTA, the template adds them.
 
 - **First person as Mr Ullah** ("I", "my patients"), calm, warm, precise. Plain English at about
   a reading age of 12; explain every medical term the first time.
+- Always "Mr Ullah" or "Mr Zaker Ullah", never "Dr". He does not offer breast augmentation.
 - British English (tumour, oesophagus, anaesthetic, centre, organise, programme).
 - Reassure honestly: lead with the likely benign answer where true, but always safety-net.
 - Short sentences. No hype, no fear-mongering, no exclamation marks.

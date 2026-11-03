@@ -3,6 +3,9 @@
 All hrefs/srcs in page content are written with a leading "~/" meaning
 "site root"; render() rewrites them to the correct relative prefix so the
 site works from any folder (custom domain or GitHub Pages sub-path).
+
+Naming: always "Mr" Ullah (UK surgical convention for FRCS). "Dr" appears
+only in verbatim patient reviews and in schema alternateName for search.
 """
 import json
 import os
@@ -20,7 +23,7 @@ PHYSICIAN_REF = {"@id": SITE + "/#physician"}
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">')
 
 
 def picture(base, alt, sizes, widths, w, h, lazy=True):
@@ -66,17 +69,21 @@ def crumbs_html(crumbs):
     return f'<ol class="crumbs" aria-label="Breadcrumb">{"".join(lis)}</ol>'
 
 
+def brand(extra=""):
+    return f'<a class="brand{extra}" href="~/" aria-label="{SHORT}, home"><span class="mk" aria-hidden="true">ZU</span><span><span class="n">{SHORT}</span><span class="r">Consultant Breast Surgeon, FRCS</span></span></a>'
+
+
 # ---------------------------------------------------------------- navigation model
 def nav_model(nav):
     return [
-        ("Treatments", "procedures", "~/procedures/", "Diagnosis and surgery for the breast, and keyhole general surgery.",
+        ("Treatments", "procedures", "~/procedures/", "From a first breast symptom to surgery and reconstruction, under one consultant.",
          [(p["nav"], f"~/procedures/{p['slug']}/", p["short_desc"]) for p in nav["procedures"]]),
-        ("Clinics", "locations", "~/locations/", "Private consultations in central London and on the Essex border.",
+        ("Clinics", "locations", "~/locations/", "Private appointments in central London, the City and on the Essex border.",
          [(l["name"], f"~/locations/{l['slug']}/", l["area"]) for l in nav["locations"]]),
-        ("About", "about", "~/biography/", "Training, appointments and the opinions of his patients.",
-         [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"{nav['rating']} from {nav['count']} reviews"),
-          ("Podcast", "~/podcast/", "Everything Changed, October 2026"), ("Second opinions", "~/second-opinion/", "An independent view")]),
-        ("Patients", "patients", "~/your-visit/", "Everything you need before your first appointment.",
+        ("About", "about", "~/biography/", "His training, his patients' reviews, and his work on podcasts and television.",
+         [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"Rated {nav['rating']} by {nav['count']} patients"),
+          ("Podcast and videos", "~/podcast/", "Podcast, TV3 Bangla, YouTube"), ("Second opinions", "~/second-opinion/", "An independent view")]),
+        ("Patients", "patients", "~/your-visit/", "Everything you need to know before your first appointment.",
          [("Your first visit", "~/your-visit/", "What happens on the day"), ("Fees and insurance", "~/fees-and-insurance/", "Insured and self-funding"),
           ("Questions answered", "~/faqs/", "Every common question"), ("Book a consultation", "~/booking/", "Enquiries and contact")]),
     ]
@@ -94,24 +101,20 @@ def header(nav, active):
                 f'<p><a class="more" href="{href}">Overview</a></p></div><ul>{lis}</ul></div></div></div>')
 
     journal_cur = ' aria-current="page"' if active == "news" else ""
-    overlay_groups = "".join(
-        f'<div class="group"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
-        for t, _, _, _, links in model[:2])
-    overlay_small = "".join(
-        f'<div class="group small"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
-        for t, _, _, _, links in model[2:])
-    brand = f'<a class="brand" href="~/" aria-label="{SHORT}, home"><span class="n">Zaker Ullah</span><span class="r">Consultant Breast Surgeon · FRCS</span></a>'
-    return f'''<header class="site-header">
+    groups = "".join(
+        f'<div class="group{" small" if i > 1 else ""}"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
+        for i, (t, _, _, _, links) in enumerate(model))
+    return f'''<div class="topline"><div class="wrap"><span class="tl-l">New breast symptoms seen promptly, with imaging and provisional results on the same day</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
+<header class="site-header">
   <div class="wrap bar">
-    <nav class="nav left" aria-label="Primary">{drop(model[0])}{drop(model[1])}{drop(model[2])}</nav>
-    {brand}
-    <nav class="nav right" aria-label="Secondary">{drop(model[3])}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book</a></nav>
+    {brand()}
+    <nav class="nav" aria-label="Main">{"".join(drop(m) for m in model)}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book a consultation</a></nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="overlay">Menu</button>
   </div>
 </header>
 <div class="overlay" id="overlay" aria-hidden="true">
-  <div class="wrap top">{brand}<button class="menu-btn close" type="button" style="display:block">Close</button></div>
-  <nav class="wrap" aria-label="Menu">{overlay_groups}{overlay_small}<div class="group small"><span class="label">Journal</span><a href="~/news/">All articles</a></div></nav>
+  <div class="wrap top">{brand()}<button class="menu-btn close" type="button" style="display:block">Close</button></div>
+  <nav class="wrap" aria-label="Menu">{groups}<div class="group small"><span class="label">Journal</span><a href="~/news/">All articles</a></div></nav>
   <div class="wrap foot">Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
 </div>'''
 
@@ -121,31 +124,30 @@ def footer(nav):
     locs = "".join(f'<li><a href="~/locations/{l["slug"]}/">{l["name"]}</a></li>' for l in nav["locations"])
     return f'''<footer class="site-footer">
   <div class="wrap">
-    <div class="f-brand"><div><p class="n">Zaker Ullah</p><p class="r">{NAME} · {POSTNOM}</p></div>
-      <a class="btn line" style="color:var(--on-night);border-color:var(--rule-night)" href="~/booking/">Book a consultation</a></div>
     <div class="f-cols">
-      <div class="f-about"><h4>The practice</h4><p>Consultant Oncoplastic Breast and General Surgeon. Clinical Lead, Breast Unit, Whipps Cross University Hospital, Barts Health NHS Trust.</p>
-        <p>Private secretary<br><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a><br><a href="mailto:{nav["email"]}">{nav["email"]}</a></p></div>
+      <div class="f-about">{brand()}<p>Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. {POSTNOM}.</p>
+        <p class="contact">{nav["sec_name"]}, private secretary<br><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a><br><a href="mailto:{nav["email"]}">{nav["email"]}</a></p></div>
       <div><h4>Treatments</h4><ul>{procs}</ul></div>
       <div><h4>Clinics</h4><ul>{locs}<li><a href="~/locations/">All clinics</a></li></ul></div>
       <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
-      <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast</a></li><li><a href="~/news/">Journal</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast and videos</a></li><li><a href="~/news/">Journal</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="{nav["youtube"]}" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
-    <div class="f-legal"><span>&copy; 2026 {NAME}</span><span>Information on this website is general and is not a substitute for a consultation. In an emergency, call 999.</span></div>
+    <div class="f-legal"><span>&copy; 2026 {NAME}. GMC 4368515.</span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
   </div>
 </footer>
-<div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book</a></div>'''
+<div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book a consultation</a></div>'''
 
 
-def appointment_band(nav, title="Arrange a consultation", text=None):
-    text = text or "New breast symptoms are seen promptly. Insured and self-funding patients are welcome at each of his three private clinics."
-    return f'''<section class="section night"><div class="wrap appointment">
-  <div><span class="label">Appointments</span><h2 class="mt-2">{title}</h2><p class="lede">{text}</p>
-    <div class="actions"><a class="btn" href="~/booking/">Request an appointment</a><a class="btn line" href="~/locations/">The clinics</a></div></div>
-  <div class="contact">
-    <div><span class="label">Telephone</span><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
-    <div><span class="label">Email</span><a href="mailto:{nav["email"]}">{nav["email"]}</a></div>
-    <div><span class="label">Clinics</span><span class="v">Harley Street W1 · St Bartholomew&rsquo;s EC1 · The Holly, Buckhurst Hill IG9</span></div>
+def appointment_band(nav, title="Let&rsquo;s get you a clear answer", text=None):
+    text = text or "Most breast symptoms turn out to be nothing serious. A single appointment is usually all it takes to know for sure. Insured and self-funding patients are welcome at all three clinics."
+    return f'''<section class="section appt-band"><div class="wrap appointment">
+  <div><span class="label">Appointments</span><h2 class="mt-1">{title}</h2><p class="lede">{text}</p>
+    <div class="actions"><a class="btn" href="~/booking/">Request an appointment</a><a class="btn line" href="~/your-visit/">What to expect</a></div></div>
+  <div class="card">
+    <div><span class="k">Telephone</span><a class="big" href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
+    <div><span class="k">Secretary</span><span class="v">{nav["sec_name"]}</span></div>
+    <div><span class="k">Email</span><a href="mailto:{nav["email"]}">{nav["email"]}</a></div>
+    <div><span class="k">Clinics</span><span class="v">Harley Street W1 · St Bartholomew&rsquo;s EC1 · The Holly, Buckhurst Hill IG9</span></div>
   </div>
 </div></section>'''
 
@@ -167,7 +169,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta name="description" content="{escape(desc)}">
 <meta name="robots" content="{"noindex" if noindex else "index, follow, max-image-preview:large"}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#f6f3ee">
+<meta name="theme-color" content="#1c2a4a">
 <meta property="og:site_name" content="{NAME}, Consultant Breast Surgeon">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="{escape(title)}">

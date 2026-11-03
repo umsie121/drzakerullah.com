@@ -9,8 +9,9 @@ IWGC = "https://www.iwantgreatcare.org/doctors/mr-md-zaker-ullah"
 
 INSURERS = ["Bupa", "Bupa Global", "AXA Health", "Aviva", "Vitality", "WPA", "Cigna", "Healix", "Health-on-Line"]
 
-# Private secretary at Nuffield Health The Holly. Source: Bupa Finder profile.
-# TODO confirm number, email and name spelling with the office before launch.
+# Private secretary: Ms Juliet Willes. Name and number confirmed by the old Squarespace site;
+# email from Bupa Finder (old site gave an nhs.net address). TODO confirm which email to use.
+SEC_NAME = "Ms Juliet Willes"
 SEC_PHONE = "020 8936 1263"
 SEC_TEL = "+442089361263"
 SEC_EMAIL = "juliet.willes@nuffieldhealth.com"
@@ -184,7 +185,7 @@ PROCEDURES = [
 <h2>Reconstruction with your own tissue</h2>
 <p>A reconstruction made from your own tissue is warm and natural, and changes with you over time. Mr Ullah performs <strong>latissimus dorsi (LD) flap</strong> reconstruction, which brings muscle and skin from the back to the chest and is often combined with an implant. For suitable cancers near the nipple he also uses the <strong>Grisotti flap</strong>, which rebuilds the area from the breast's own tissue during the cancer operation.</p>
 <h2>Completing the result</h2>
-<p>Reconstruction is often completed in stages: <a href="~/procedures/fat-grafting/">fat grafting</a> to refine the contour, nipple reconstruction with a small local flap, and surgery to the other breast, whether a <a href="~/procedures/breast-reduction/">reduction</a>, an uplift or an <a href="~/procedures/breast-augmentation/">augmentation</a>, so that the two sit naturally together.</p>
+<p>Reconstruction is often completed in stages: <a href="~/procedures/fat-grafting/">fat grafting</a> to refine the contour, nipple reconstruction with a small local flap, and symmetrising surgery to the other breast, usually a <a href="~/procedures/breast-reduction/">reduction</a> or an uplift, so that the two sit naturally together.</p>
 """,
         "faqs": [
             ("Will a reconstructed breast look and feel natural?", "Reconstruction restores shape and symmetry in clothes very reliably, and modern techniques can look natural without clothes too. Sensation is usually reduced. Reconstructions made from your own tissue generally feel more natural than implants."),
@@ -218,32 +219,7 @@ PROCEDURES = [
             ("Is breast reduction covered by insurance?", "Cosmetic reduction generally is not. Symmetrisation after breast cancer surgery is usually treated as part of reconstruction. Your insurer will confirm cover in advance."),
             ("How long is recovery after breast reduction?", "Most women are back at desk work within one to two weeks, driving at around two weeks, and exercising fully at about six weeks. A supportive bra is worn day and night for several weeks."),
         ],
-        "related": ["breast-reconstruction", "breast-augmentation"],
-    },
-    {
-        "slug": "breast-augmentation",
-        "nav": "Breast augmentation",
-        "short_desc": "Size, shape, symmetry",
-        "summary": "Implant augmentation for size or shape, and to restore symmetry after cancer surgery.",
-        "title": "Breast Augmentation London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Breast augmentation in London and Essex with consultant breast surgeon Mr Zaker Ullah: an honest consultation, implant choices, safety, recovery and symmetry.",
-        "h1": "Breast augmentation",
-        "lede": "Augmentation uses an implant to increase the size or restore the fullness of the breast. Mr Ullah brings the judgement of an oncoplastic surgeon, who uses the same operation to restore symmetry after cancer.",
-        "glance": [("Anaesthetic", "General"), ("Operation", "Around one hour"), ("Hospital stay", "Usually a day case"), ("Recovery", "Desk work at a week, exercise at four to six")],
-        "sections": """
-<h2>An honest consultation</h2>
-<p>A good augmentation begins with a frank conversation about proportion: what an implant can and cannot do for your frame, how its size, profile and position over or under the muscle change the result, and how breast and implant will change over years rather than months. You will receive the same measured advice Mr Ullah gives every patient.</p>
-<h2>Augmentation after cancer</h2>
-<p>Augmentation is also a reconstructive tool. After breast conserving surgery or reconstruction, an implant on one or both sides can restore volume and symmetry. Patients with a personal or family history of breast cancer are given specific advice on imaging and follow up with implants in place.</p>
-<h2>The operation and aftercare</h2>
-<p>The operation takes around an hour under general anaesthetic and is usually a day case. Most patients return to desk work within a week and to full exercise at four to six weeks. Implants are not lifetime devices and most women will need further surgery at some point. Mr Ullah explains the long term picture, including rare implant related conditions, before you decide.</p>
-""",
-        "faqs": [
-            ("How long do breast implants last?", "Implants do not need replacing on a fixed schedule, but they do not last forever. Many women have further surgery within 10 to 15 years for wear, capsular contracture or a change of preference. It is best to plan for maintenance over a lifetime."),
-            ("Are breast implants safe?", "Modern implants are well studied and serious complications are rare, but not unknown. They include capsular contracture, rupture and BIA-ALCL, a rare lymphoma associated with some textured implants. Mr Ullah explains the current evidence so that your decision is fully informed."),
-            ("Can I still have mammograms with implants?", "Yes. Screening remains effective, although implants can obscure some breast tissue and radiographers take additional views. Always tell the screening service that you have implants."),
-        ],
-        "related": ["breast-reduction", "fat-grafting"],
+        "related": ["breast-reconstruction", "fat-grafting"],
     },
     {
         "slug": "fat-grafting",
@@ -359,3 +335,25 @@ PODCAST = {
         "Triple negative breast cancer, explained",
     ],
 }
+
+# ------------------------------------------------------------- videos
+# From the old Squarespace site (news) and Mr Ullah's YouTube channel. Titles via YouTube oEmbed.
+YOUTUBE_CHANNEL = "https://www.youtube.com/channel/UC6iPKoum-L-S0sFh2Pe3Fbw"
+VIDEOS = [
+    {"slug": "breast-cancer-self-examination-in-bangla", "id": "wzwnucrNKV4", "date": "2022-10-26", "lang": "Bengali",
+     "title": "Breast cancer self-examination, in Bangla",
+     "desc": "For Breast Cancer Awareness Month 2022, Mr Ullah explains in Bangla the signs and symptoms of breast cancer and how to examine your own breasts.",
+     "by": "His YouTube channel"},
+    {"slug": "coronavirus-qampa-in-bangla", "id": "HT83gMhNxCo", "date": "2021-03-08", "lang": "Bengali",
+     "title": "Coronavirus questions answered, in Bangla",
+     "desc": "Mr Ullah answers common questions about coronavirus for Bengali-speaking families, recorded during the pandemic.",
+     "by": "His YouTube channel"},
+    {"slug": "covid-advice-with-dr-zaker-ullah", "id": "ZXobptg2HVQ", "date": "2021-03-08", "lang": "Bengali",
+     "title": "COVID advice with Mr Zaker Ullah, on TV3 Bangla",
+     "desc": "A health advice segment for TV3 Bangla, in which Mr Ullah answers viewers' questions about COVID-19.",
+     "by": "TV3 Bangla"},
+    {"slug": "health-advice", "id": "q8_1uiu2Vnk", "date": "2021-03-08", "lang": "Bengali",
+     "title": "Health advice with Mr Zaker Ullah, on TV3 Bangla",
+     "desc": "Mr Ullah's health advice programme for TV3 Bangla, answering viewers' questions on everyday health.",
+     "by": "TV3 Bangla"},
+]

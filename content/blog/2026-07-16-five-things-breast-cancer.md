@@ -8,7 +8,7 @@ keyword: things to know about breast cancer
 category: Breast cancer
 related: breast-cancer-surgery, benign-breast-conditions
 ---
-Breast cancer is the most common cancer in the UK, and it is also one of the most treatable. After more than three decades in surgery, these are the five points I find myself repeating most often in clinic.
+Breast cancer is the most common cancer in the UK, and it is also one of the most treatable. A version of this article first appeared in *West Essex Life* magazine. After more than three decades in surgery, these are the five points I find myself repeating most often in clinic.
 
 ## 1. It is common, and survivable
 
