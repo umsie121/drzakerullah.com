@@ -94,8 +94,8 @@ def pages():
         out.append((f"procedures-{p['slug']}", "treatment", "Treatment", p["nav"], p["summary"]))
     for l in C.LOCATIONS:
         out.append((f"locations-{l['slug']}", "clinic", l["area"], l["name"], B.loc_address(l)))
-    out.append(("bn", "page", "বাংলা", "মি. মোঃ জাকের উল্লাহ", "কনসালটেন্ট ব্রেস্ট সার্জন, লন্ডন। বাংলা, ইংরেজি ও আরবিতে কনসালটেশন।"))
-    out.append(("ar", "page", "العربية", "الجرّاح محمد ذاكر الله", "استشاري جراحة الثدي في لندن. استشارات بالعربية والإنجليزية والبنغالية."))
+    out.append(("bn", "page", "বাংলা", "ডাঃ মোঃ জাকের উল্লাহ", "কনসালটেন্ট ব্রেস্ট সার্জন, লন্ডন। বাংলা, ইংরেজি ও আরবিতে কনসালটেশন।"))
+    out.append(("ar", "page", "العربية", "الدكتور محمد ذاكر الله", "استشاري جراحة الثدي في لندن. استشارات بالعربية والإنجليزية والبنغالية."))
     for p in B.ALL_POSTS:
         out.append((f"news-{p['slug']}", "post", p["category"], p["title"], ""))
     return out
