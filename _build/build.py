@@ -327,7 +327,7 @@ def build_home():
 <section class="band peach"><div class="wrap">
   <div class="sec-h" data-r><h2>Why patients choose Mr Ullah</h2></div>
   <div class="bento">
-    <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">30+ years</span><span class="v">in surgery. Trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, consultant at Barts Health since 2012, and Clinical Lead of the Whipps Cross Breast Unit. The surgeon who examines you is the one who operates, and who looks after you afterwards.</span><span class="more">Read his story</span></a>
+    <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">30+ years</span><span class="v">in surgery. Trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, consultant at Barts Health since 2012, and Clinical Lead of the Whipps Cross Breast Unit. He introduced the hospital&rsquo;s one-stop breast clinic and teaches surgeons preparing for the FRCS examination.</span><span class="more">Read his story</span></a>
     <a class="b" href="~/procedures/benign-breast-conditions/" data-r style="--d:1"><span class="k">One-stop clinic</span><span class="v">Examination, imaging and provisional results at a single visit for a new breast symptom.</span></a>
     <a class="b" href="~/procedures/breast-cancer-surgery/" data-r style="--d:2"><span class="k">Full cancer care</span><span class="v">From diagnosis to surgery and follow-up, with every case reviewed by a specialist team.</span></a>
     <a class="b" href="~/procedures/breast-reconstruction/" data-r style="--d:3"><span class="k">Reconstruction</span><span class="v">Cancer surgery and the shape of the breast planned together, from the first appointment.</span></a>
@@ -352,7 +352,7 @@ def build_home():
 {insurer_band()}
 
 <section class="band white"><div class="wrap tx">
-  <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All eight treatments</a></p></div>
+  <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">See all treatments</a></p></div>
   {tx_groups()}
 </div></section>
 
