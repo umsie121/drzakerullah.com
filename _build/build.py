@@ -81,14 +81,20 @@ def medical_page(path, name, desc):
 
 
 # ------------------------------------------------------------------ components
-def page_head(crumbs, label, h1, lede, actions="", meta=()):
+def author_chip(line):
+    """His face, name and a line of detail, shown in the title card of articles and treatment pages."""
+    return (f'<a class="who" href="~/biography/"><picture><source type="image/webp" srcset="~/assets/img/zu-face-320.webp"><img src="~/assets/img/zu-face-320.jpg" alt="" width="320" height="320"></picture>'
+            f'<span><b>Mr Zaker Ullah FRCS</b><small>{line}</small></span></a>')
+
+
+def page_head(crumbs, label, h1, lede, actions="", meta=(), author=""):
     """Page header: parent crumbs (never the current page), an eyebrow only when it adds something, then the title."""
     m = "".join(f'<div><span class="label">{k}</span><p>{v}</p></div>' for k, v in meta)
     trail = ('<nav class="crumbs" aria-label="Breadcrumb">' + '<span class="sep">/</span>'.join(f'<a href="~/{u}">{escape(t)}</a>' for t, u in crumbs[:-1]) + "</nav>") if len(crumbs) > 2 else ""
     shown = {strip_tags(t).lower() for t, _ in crumbs}
     eyebrow = f'<span class="ph-k">{label}</span>' if label and strip_tags(label).lower() not in shown else ""
     return f'''<header class="page-head"><div class="wrap ph">{trail}{eyebrow}
-<h1>{h1}</h1><p class="lede">{lede}</p>{f'<div class="actions">{actions}</div>' if actions else ""}
+<h1>{h1}</h1><p class="lede">{lede}</p>{author}{f'<div class="actions">{actions}</div>' if actions else ""}
 {f'<div class="meta">{m}</div>' if m else ""}</div></header>'''
 
 
@@ -497,11 +503,12 @@ f'<section class="section"><div class="wrap"><div class="prows">{"".join(proc_pa
         rel += "".join(f'<li><a href="~/news/{x["slug"]}/">{escape(x["title"])}</a></li>' for x in POSTS if p["slug"] in x["related"][:2])[:2000]
         q = C.REVIEWS[(i + 2) % len(C.REVIEWS)]
         body = page_head(crumbs, next((g for g, _, sl in C.PROC_GROUPS if p["slug"] in sl), ""), p["h1"], p["lede"],
-                         actions=f'<a class="btn" href="~/booking/">Book a consultation</a><a class="btn line" href="#questions">Questions</a>') + f'''
+                         actions=f'<a class="btn" href="~/booking/">Book a consultation</a><a class="btn line" href="#questions">Questions</a>',
+                         author=author_chip(f"Consultant Oncoplastic Breast Surgeon · Updated {UPDATED}")) + f'''
 {f'<figure class="post-hero"><div class="wrap"><div class="ph">{post_img(p, sizes="(min-width: 86rem) 80rem, 100vw", lazy=False)}</div><figcaption>Photo: <a href="{p.get("image_credit_url", "")}" target="_blank" rel="noopener">{escape(p.get("image_credit", ""))}</a> on <a href="https://unsplash.com/?utm_source=drzakerullah&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></div></figure>' if p.get("image") else ""}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")])}</div>
-  <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>Written and medically reviewed by <a href="~/biography/">{NAME} FRCS</a>. Updated {UPDATED}.</span></div>
+  <div>
     <div class="prose">{sections}<p class="note">This page is general information and not medical advice. Whether a procedure is right for you can only be decided in consultation.</p></div></div>
   <aside class="aside"><div class="block"><span class="label">At a glance</span><dl>{glance}</dl></div>{appt_aside()}<div class="block"><span class="label">Related</span><ul>{rel}</ul></div></aside>
 </div></section>
@@ -646,14 +653,26 @@ def build_patient_pages():
 def build_reviews():
     path = "reviews/"
     crumbs = [("Home", ""), ("Patient reviews", path)]
+    cards = [(q, f'Patient at {PLACES.get(w, w)} · {long_date(d)}', "iWantGreatCare", review_link(q), True) for q, d, w in C.REVIEWS] + \
+            [(q, f'{who} · Google review of The Holly · {d}', "Google", C.GOOGLE_MAPS, False) for q, who, d in C.GOOGLE_REVIEWS]
+    order = [0, 6, 1, 2, 7, 3, 4, 8, 5]
+    wall = "".join(f'<figure class="rw{" g" if not st else ""}" data-r><figcaption class="src">{src}</figcaption>{stars() if st else ""}<blockquote>{escape(q)}</blockquote>'
+                   f'<p class="by">{by}</p><a class="go" href="{href}" target="_blank" rel="noopener">Read on {src} ↗</a></figure>' for q, by, src, href, st in (cards[i] for i in order if i < len(cards)))
     body = page_head(crumbs, "Patient reviews", "What his patients say",
-                     f"Mr Ullah&rsquo;s reviews are collected independently by iWantGreatCare, the UK&rsquo;s platform for verified healthcare feedback, where every one of them is five stars. Patients also mention him in Google reviews of The Holly.",
-                     actions=f'<a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Read all on iWantGreatCare</a><a class="btn line" href="{C.IWGC}" target="_blank" rel="noopener">Leave a review</a>') + \
-        railed("Rating", rating_block()) + \
-        railed("In their words", testimonials(C.REVIEWS) + '<p class="note mt-2">Excerpts are reproduced word for word from public reviews on iWantGreatCare, some shortened where marked. They refer to care at The Holly and at Whipps Cross University Hospital.</p>', cls="section rule") + \
-        railed("On Google", google_reviews() + f'<p class="note mt-2">Excerpts are reproduced word for word from public Google reviews of <a href="{C.GOOGLE_MAPS}" target="_blank" rel="noopener">Nuffield Health The Holly</a> that mention Mr Ullah, shortened where marked. Reviewers are shown by their initials.</p>', cls="section rule") + \
-        railed("Meet Mr Ullah", f'<a class="fbv" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener"><span class="im"><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><i></i></span><span class="tx"><span class="label">Nuffield Health The Holly</span><b>Meet Mr Zaker Ullah, one of the breast surgeons at The Holly</b><span>A short introduction filmed by the hospital. Watch on Facebook ↗</span></span></a>', cls="section rule") + \
-        railed("Your experience", f'<p class="lede">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously. If something did not go as it should have, please also tell the hospital where you were treated.</p><p class="mt-2"><a class="more" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></p>', cls="section rule")
+                     "Independent, verified reviews from iWantGreatCare, alongside what patients say about Mr Ullah in Google reviews of The Holly.") + f'''
+<section class="rv-band"><div class="wrap rvb">
+  <div class="rvb-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. <strong>100%</strong> of his verified reviews are five stars.</p></div></div>
+  <div class="actions"><a class="btn coral" href="{C.IWGC}" target="_blank" rel="noopener">Read all on iWantGreatCare</a><a class="btn glass" href="{C.IWGC}" target="_blank" rel="noopener">Leave a review</a></div>
+</div></section>
+
+<section class="band ivory"><div class="wrap"><div class="rwall">{wall}</div>
+  <p class="note mt-3">Excerpts are reproduced word for word from public reviews on iWantGreatCare and Google, shortened where marked. Google reviewers are shown by their initials.</p></div></section>
+
+<section class="band stone"><div class="wrap duo">
+  <a class="fbv2" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener" data-r><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><span class="pl"></span><span class="cap">Meet Mr Ullah · a short film by Nuffield Health The Holly ↗</span></a>
+  <div data-r style="--d:1"><h2>Share your experience</h2><p class="lede mt-2">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously. If something did not go as it should have, please also tell the hospital where you were treated.</p>
+  <div class="actions mt-3"><a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></div></div>
+</div></section>'''
     render(path, title=f"Mr Zaker Ullah Reviews: Rated {C.IWGC_RATING}, 100% Five-Star",
            desc=f"Verified patient reviews of consultant breast surgeon Mr Md Zaker Ullah FRCS on iWantGreatCare: rated {C.IWGC_RATING} out of 5, with 100% five-star reviews.",
            body=body, nav=NAV, active="about", priority="0.8", schema=[crumbs_schema(crumbs)])
@@ -733,11 +752,11 @@ def build_news():
         # related reading: same topic first, then posts sharing a treatment, then the latest
         others = [x for x in POSTS if x is not p]
         more = sorted(others, key=lambda x: (x["category"] != p["category"], not set(x["related"]) & set(p["related"])))[:3]
-        body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), meta=[("Published", f'<time datetime="{p["date"]}">{date_label}</time>'), ("Reading time", f'{p["minutes"]} minutes'), ("Medically reviewed", reviewed)] + ([("As featured in", f'<em>{escape(p["featured"])}</em> magazine')] if p.get("featured") else []))}
+        body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), author=author_chip(f'<time datetime="{p["date"]}">{date_label}</time> · {p["minutes"]} min read' + (f' · As featured in <em>{escape(p["featured"])}</em>' if p.get("featured") else "")))}
 {f'<figure class="post-hero"><div class="wrap"><div class="ph">{post_img(p, sizes="(min-width: 86rem) 80rem, 100vw", lazy=False)}</div><figcaption>Photo: <a href="{p.get("image_credit_url", "")}" target="_blank" rel="noopener">{escape(p.get("image_credit", ""))}</a> on <a href="https://unsplash.com/?utm_source=drzakerullah&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></div></figure>' if p.get("image") else ""}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")] if faq else [])}</div>
-  <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>By <a href="~/biography/">{NAME} FRCS</a>, Consultant Oncoplastic Breast Surgeon.</span></div>
+  <div>
     <div class="prose">{html}{f'<h2 id="questions">Questions</h2>{faq}' if faq else ""}
     <div class="end-cta"><div><h3>Speak to Mr Ullah</h3><p>A consultation at The Holly, Canary Wharf or the City of London, or by video. Insured and self-funding patients welcome.</p></div><div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="more" href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a></div></div>
     <p class="note">This article is general information and not medical advice. If you have a breast symptom, arrange an assessment through your GP or a <a href="~/booking/">specialist clinic</a>. In an emergency, call 999.</p></div></div>
