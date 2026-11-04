@@ -3,4 +3,4 @@ Allow: /
 Disallow: /_build/
 Disallow: /content/
 
-Sitemap: https://www.drzakerullah.com/sitemap.xml
+Sitemap: https://drzakerullah.com/sitemap.xml

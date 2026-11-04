@@ -14,7 +14,7 @@ import re
 from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://www.drzakerullah.com"
+SITE = "https://drzakerullah.com"
 SITEMAP = []
 
 
