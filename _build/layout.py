@@ -85,7 +85,7 @@ def nav_model(nav):
     return [
         ("Treatments", "procedures", "~/procedures/", "From a first breast symptom to surgery and reconstruction, under one consultant.",
          [(p["nav"], f"~/procedures/{p['slug']}/", p["short_desc"]) for p in nav["procedures"]]),
-        ("Clinics", "locations", "~/locations/", "Private appointments in central London, the City and on the Essex border.",
+        ("Clinics", "locations", "~/locations/", "Private appointments in Canary Wharf, the City of London and on the Essex border.",
          [(l["name"], f"~/locations/{l['slug']}/", l["area"]) for l in nav["locations"]]),
         ("About", "about", "~/biography/", "His training, his patients' reviews, and his work on podcasts and television.",
          [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"Rated {nav['rating']}, {nav['count']}"),
