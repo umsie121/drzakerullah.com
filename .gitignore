@@ -4,3 +4,9 @@ _site/
 .claude/settings.local.json
 
 _build/.secrets/
+
+# local working notes (kept off the repo)
+CLAUDE.md
+content/BLOG-RULES.md
+content/content-plan.md
+.claude/
