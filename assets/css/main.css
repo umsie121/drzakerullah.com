@@ -1272,3 +1272,46 @@ h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3)
 .end-cta p { color: var(--on-deep-2); margin: 0.4rem 0 0 !important; }
 .end-cta .actions { align-items: center; gap: 1.4rem; }
 .end-cta .more { color: #fff; }
+
+/* page headers: full width, flowing out of the navbar, compact */
+.page-head { padding: 0; margin-bottom: 0; background: radial-gradient(70% 140% at 100% 0, rgba(238, 138, 108, 0.22) 0, transparent 55%), linear-gradient(180deg, var(--nav) 0, #3a1529 45%, var(--deep) 100%); border-radius: 0 0 var(--radius-lg) var(--radius-lg); color: var(--on-deep); }
+.page-head > .wrap { max-width: var(--max); background: none; border-radius: 0; padding-block: clamp(2rem, 7svh, 4rem) clamp(2.2rem, 7svh, 4rem); padding-inline: var(--gutter); }
+.page-head > .wrap::after { content: none; }
+.page-head .crumbs { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; margin-bottom: 1rem; }
+.page-head .crumbs a { color: rgba(251, 241, 236, 0.65); }
+.page-head .crumbs a:hover { color: #fff; }
+.page-head .crumbs .sep { color: rgba(251, 241, 236, 0.35); }
+.ph-k { display: block; margin-bottom: 0.8rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-soft); }
+.page-head h1 { max-width: 18em; }
+.page-head .lede { margin-top: clamp(0.8rem, 2svh, 1.2rem); max-width: 44rem; }
+.page-head .actions { margin-top: clamp(1.2rem, 3svh, 1.8rem); }
+.page-head .meta { margin-top: clamp(1.4rem, 3.5svh, 2.2rem); }
+.page-head + .section, .page-head + .post-hero { padding-top: clamp(2.2rem, 6svh, 3.5rem); }
+.post-hero { padding-top: clamp(1.6rem, 4svh, 2.4rem); }
+
+/* ============================================================ one weight system for Fraunces */
+:root { --fv: "opsz" 72, "SOFT" 50, "WONK" 1; }
+h1, h2, .display, .say-t, .bleed-cap, .hc .y, .tc .k, .meet-k dt, .b-deep .k, .rv-score b, .b-rate .k, .blead .t, .ctas-in h2, .end-cta h3, .insb-h p, .icontact .big {
+  font-weight: 560; font-variation-settings: var(--fv), "wght" 560; }
+h3, .b .k, .txg-h .t, .tx-list .t, .bcards .t, .journal .t, .pc h3, .hc h3, .txg-sub b, .clinic h3, .rc blockquote, .index .t, .partner h3, .ins.w2 {
+  font-weight: 600; font-variation-settings: var(--fv), "wght" 600; }
+.txg-h:hover .t, a.b:hover .k, .tx-list a:hover .t { font-variation-settings: var(--fv), "wght" 660; }
+.brand .n, .ctas-tel b { font-weight: 520; font-variation-settings: var(--fv), "wght" 520; }
+.h-anim { font-variation-settings: var(--fv), "wght" var(--w); }
+.h-anim.in { --w: 560; }
+.intl h1, .intl h2, .intl h3 { font-variation-settings: normal; }
+.intl-bn h1, .intl-bn h2 { font-weight: 800; } .intl-bn h3 { font-weight: 700; }
+.intl-ar h1, .intl-ar h2 { font-weight: 700; } .intl-ar h3 { font-weight: 600; }
+
+/* reviews on plum: glass and peach cards instead of stark white */
+.rv .rc { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(248, 195, 174, 0.16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--on-deep); box-shadow: none; }
+.rv .rc blockquote { color: #fff; }
+.rv .rc .stars { color: var(--accent-soft); }
+.rv .rc .by { color: rgba(251, 241, 236, 0.6); }
+.rv .rc .go { color: var(--accent-soft); }
+.rv .rc:nth-child(3n+2) { background: linear-gradient(160deg, #f8c3ae 0, #eea58c 100%); border-color: transparent; }
+.rv .rc:nth-child(3n+2) blockquote { color: var(--deep); }
+.rv .rc:nth-child(3n+2) .stars { color: var(--deep); }
+.rv .rc:nth-child(3n+2) .by { color: rgba(85, 32, 63, 0.7); }
+.rv .rc:nth-child(3n+2) .go { color: var(--deep); }
+.rv .rc:hover { border-color: var(--accent-soft); transform: translateY(-4px); }

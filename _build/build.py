@@ -82,11 +82,14 @@ def medical_page(path, name, desc):
 
 # ------------------------------------------------------------------ components
 def page_head(crumbs, label, h1, lede, actions="", meta=()):
+    """Page header: parent crumbs (never the current page), an eyebrow only when it adds something, then the title."""
     m = "".join(f'<div><span class="label">{k}</span><p>{v}</p></div>' for k, v in meta)
-    return f'''<header class="page-head"><div class="wrap">{crumbs_html(crumbs)}
-<div class="railed"><div class="rail"><span class="label">{label}</span></div><div>
+    trail = ('<nav class="crumbs" aria-label="Breadcrumb">' + '<span class="sep">/</span>'.join(f'<a href="~/{u}">{escape(t)}</a>' for t, u in crumbs[:-1]) + "</nav>") if len(crumbs) > 2 else ""
+    shown = {strip_tags(t).lower() for t, _ in crumbs}
+    eyebrow = f'<span class="ph-k">{label}</span>' if label and strip_tags(label).lower() not in shown else ""
+    return f'''<header class="page-head"><div class="wrap ph">{trail}{eyebrow}
 <h1>{h1}</h1><p class="lede">{lede}</p>{f'<div class="actions">{actions}</div>' if actions else ""}
-{f'<div class="meta">{m}</div>' if m else ""}</div></div></div></header>'''
+{f'<div class="meta">{m}</div>' if m else ""}</div></header>'''
 
 
 def railed(label, inner, sub="", cls="section"):
@@ -388,12 +391,12 @@ def build_about():
     ]
     chapters = [
         ("1987", "Qualifies in medicine", "MBBS. The beginning of a career in surgery that now spans nearly four decades."),
-        ("1993", "To London", "He begins surgical training in the United Kingdom on the North East Thames rotation, working through London teaching and district general hospitals."),
+        ("1993", "To London", "Mr Ullah begins surgical training in the United Kingdom on the North East Thames rotation, working through London teaching and district general hospitals."),
         ("1996", "Fellow of the Royal College of Surgeons of Edinburgh", "FRCSEd, the fellowship that marks a fully trained surgeon in the British tradition, and the reason he is addressed as Mr rather than Dr."),
-        ("2003", "A European prize", "His keyhole hernia repair technique, using a glove balloon, wins best video presentation at the European Association for Endoscopic Surgery."),
-        ("2009", "Specialist in general surgery", "FRCS in General Surgery, after higher training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield. It is here that his interest in oncoplastic breast surgery takes shape."),
+        ("2003", "A European prize", "Mr Ullah&rsquo;s keyhole hernia repair technique, using a glove balloon, wins best video presentation at the European Association for Endoscopic Surgery."),
+        ("2009", "Specialist in general surgery", "FRCS in General Surgery, after higher training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield. It is here that Mr Ullah&rsquo;s interest in oncoplastic breast surgery takes shape."),
         ("2012", "Consultant, Barts Health", "Appointed consultant oncoplastic breast and general surgeon at Whipps Cross University Hospital, part of Barts Health NHS Trust."),
-        ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. He directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Canary Wharf and St Bartholomew&rsquo;s, having previously consulted on Harley Street."),
+        ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. Mr Ullah also directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Canary Wharf and St Bartholomew&rsquo;s, having previously consulted on Harley Street."),
     ]
     media = {"2003": ("loop-room", "In front of an audience"), "2012": ("loop-chat", "Time for every question"), "Today": ("loop-summit", "On the international stage")}
     cards = []
@@ -432,10 +435,10 @@ def build_about():
   <ol class="hz-track" data-hztrack>{jn}</ol>
 </div></section>
 
-{cta_strip("Meet him in clinic", "Appointments at The Holly in Buckhurst Hill, Canary Wharf and the City of London, or by video.")}
+{cta_strip("Meet Mr Ullah in clinic", "Appointments at The Holly in Buckhurst Hill, Canary Wharf and the City of London, or by video.")}
 
 <section class="bleed"><figure>{loop('loop-stage', 'lv bleed-v')}</figure>
-  <div class="wrap"><p class="bleed-cap" data-r>He speaks at international cancer meetings, and is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage.</p></div></section>
+  <div class="wrap"><p class="bleed-cap" data-r>Mr Ullah speaks at international cancer meetings, and is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage.</p></div></section>
 
 <section class="band white"><div class="wrap">
   <div class="sec-h" data-r><h2>His practice today</h2><p>The full range of modern breast surgery, with one surgeon from first appointment to follow-up.</p></div>
@@ -455,7 +458,7 @@ def build_about():
 
 <section class="band peach"><div class="wrap duo">
   <figure class="duo-img" data-r>{loop('loop-podcast')}</figure>
-  <div data-r style="--d:1"><h2>In conversation</h2><p class="lede mt-2">In October 2026 he joined Rosie Fawehimi, whose breast cancer he diagnosed and treated, on her podcast <em>Everything Changed</em> to answer the questions patients ask most.</p><p class="mt-3"><a class="more" href="~/podcast/">Watch the episode</a></p></div>
+  <div data-r style="--d:1"><h2>In conversation</h2><p class="lede mt-2">In October 2026 Mr Ullah joined Rosie Fawehimi, whose breast cancer he diagnosed and treated, on her podcast <em>Everything Changed</em> to answer the questions patients ask most.</p><p class="mt-3"><a class="more" href="~/podcast/">Watch the episode</a></p></div>
 </div></section>
 
 {railed("Memberships", '<dl class="facts"><div><dt>Fellowships</dt><dd>Royal College of Surgeons of Edinburgh (FRCSEd). FRCS in General Surgery.</dd></div><div><dt>Associations</dt><dd>Association of Breast Surgery. Association of Surgeons of Great Britain and Ireland. European Association for Endoscopic Surgery.</dd></div><div><dt>Register</dt><dd>General Medical Council, no. 4368515, on the Specialist Register.</dd></div><div><dt>NHS</dt><dd>Consultant, Barts Health NHS Trust, since 2012.</dd></div></dl>')}
@@ -486,7 +489,7 @@ def build_procedures():
         rel = "".join(f'<li><a href="~/procedures/{s}/">{PROC[s]["nav"]}</a></li>' for s in p["related"])
         rel += "".join(f'<li><a href="~/news/{x["slug"]}/">{escape(x["title"])}</a></li>' for x in POSTS if p["slug"] in x["related"][:2])[:2000]
         q = C.REVIEWS[(i + 2) % len(C.REVIEWS)]
-        body = page_head(crumbs, f"Treatment {i + 1:02d}", p["h1"], p["lede"],
+        body = page_head(crumbs, next((g for g, _, sl in C.PROC_GROUPS if p["slug"] in sl), ""), p["h1"], p["lede"],
                          actions=f'<a class="btn" href="~/booking/">Book a consultation</a><a class="btn line" href="#questions">Questions</a>') + f'''
 {f'<figure class="post-hero"><div class="wrap"><div class="ph">{post_img(p, sizes="(min-width: 86rem) 80rem, 100vw", lazy=False)}</div><figcaption>Photo: <a href="{p.get("image_credit_url", "")}" target="_blank" rel="noopener">{escape(p.get("image_credit", ""))}</a> on <a href="https://unsplash.com/?utm_source=drzakerullah&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></div></figure>' if p.get("image") else ""}
 <section class="section"><div class="wrap article">

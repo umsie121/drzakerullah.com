@@ -22,10 +22,10 @@ Intent: I informational · C commercial · L local
 | 8d | Self-pay breast check: how private breast clinic pricing works (no prices) ★ | self pay breast clinic | C | Private care explained | backlog |
 | 8e | Sebaceous cyst removal: when and how ★ | sebaceous cyst removal private | C | General surgery | backlog |
 | 8f | Chest wall perforator flaps (LICAP, MICAP) after lumpectomy ★ | licap flap | I | Reconstruction & cosmetic | backlog |
-| 8g | Video consultations with a breast surgeon: when they work ★ | online breast surgeon consultation | C | Private care explained | backlog |
+| 8g | Video consultations with a breast surgeon: when they work ★ | online breast surgeon consultation | C | Private care explained | scheduled 2026-12-15 |
 | 8 | Breast reduction on the NHS vs private in North East London & Essex ★ | breast reduction nhs criteria essex | C | Reconstruction & cosmetic | backlog |
 | 9 | Clear vs bloody nipple discharge: what each means | nipple discharge causes | I | Breast symptoms | live 2025-12-09 |
-| 10 | Therapeutic mammoplasty: cancer surgery and a reduction in one ★ | therapeutic mammoplasty | I | Breast cancer | backlog |
+| 10 | Therapeutic mammoplasty: cancer surgery and a reduction in one ★ | therapeutic mammoplasty | I | Breast cancer | scheduled 2026-12-01 |
 | 11 | Gynaecomastia in teenage boys: will it go away? ★ | teenage gynaecomastia | I | Men's breast health | backlog |
 | 12 | Private one-stop breast clinic in London: what's included ★ | private breast clinic london | C | Private care explained | backlog |
 | 13 | Breast pain on one side: causes and when to get checked | breast pain one side | I | Breast symptoms | live 2026-02-10 |
@@ -34,28 +34,28 @@ Intent: I informational · C commercial · L local
 | 16 | Breast reduction by a breast surgeon vs a plastic surgeon ★ | breast surgeon vs plastic surgeon | C | Reconstruction & cosmetic | backlog |
 | 17 | Male breast cancer: symptoms and what to do ★ | male breast cancer symptoms | I | Men's breast health | live 2026-03-10 |
 | 18 | Lumpectomy recovery week by week | lumpectomy recovery | I | Living with & after | live 2026-08-11 |
-| 19 | Private breast care near the City: Barts for City & Canary Wharf workers ★ | breast clinic city of london | L | Local clinics | backlog |
+| 19 | Private breast care near the City: Barts for City & Canary Wharf workers ★ | breast clinic city of london | L | Local clinics | scheduled 2026-11-24 |
 | 20 | Dense breasts on a mammogram: what it means in the UK ★ | dense breasts mammogram uk | I | Breast symptoms | backlog |
-| 21 | Recalled after NHS breast screening: what happens next | recalled after mammogram | I | Breast symptoms | backlog |
-| 22 | Sentinel lymph node biopsy: what to expect | sentinel node biopsy | I | Breast cancer | backlog |
-| 23 | Gynaecomastia surgery: when you need gland excision, not just liposuction ★ | gynaecomastia gland excision | C | Men's breast health | backlog |
+| 21 | Recalled after NHS breast screening: what happens next | recalled after mammogram | I | Breast symptoms | scheduled 2026-11-17 |
+| 22 | Sentinel lymph node biopsy: what to expect | sentinel node biopsy | I | Breast cancer | scheduled 2027-01-12 |
+| 23 | Gynaecomastia surgery: when you need gland excision, not just liposuction ★ | gynaecomastia gland excision | C | Men's breast health | scheduled 2026-12-22 |
 | 24 | Mastectomy with immediate reconstruction: recovery timeline | mastectomy reconstruction recovery | I | Reconstruction & cosmetic | backlog |
 | 25 | Breast cyst keeps coming back: options | recurring breast cyst | I | Breast symptoms | backlog |
 | 26 | NHS two-week wait vs private one-stop clinic ★ | two week wait breast clinic | C | Private care explained | live 2026-05-12 |
 | 27 | Implant vs own-tissue (flap) reconstruction | implant vs flap reconstruction | I | Reconstruction & cosmetic | backlog |
-| 28 | Inverted nipple: new vs lifelong, when it matters | inverted nipple | I | Breast symptoms | backlog |
-| 29 | Breast clinic near Chigwell, Loughton & Epping (The Holly) ★ | breast clinic loughton | L | Local clinics | backlog |
+| 28 | Inverted nipple: new vs lifelong, when it matters | inverted nipple | I | Breast symptoms | scheduled 2026-12-08 |
+| 29 | Breast clinic near Chigwell, Loughton & Epping (The Holly) ★ | breast clinic loughton | L | Local clinics | scheduled 2027-01-05 |
 | 30 | DCIS: what it is and surgery options | dcis surgery | I | Breast cancer | backlog |
 | 31 | Mammogram vs ultrasound vs MRI: which test and when | mammogram vs ultrasound | I | Breast symptoms | backlog |
 | 32 | Lump in the armpit: when to see a breast surgeon | lump in armpit woman | I | Breast symptoms | backlog |
 | 33 | Gynaecomastia from steroids or medication ★ | gynaecomastia steroids | I | Men's breast health | backlog |
-| 34 | Family history of breast cancer: when to ask about BRCA testing | family history breast cancer risk | I | Breast cancer | backlog |
+| 34 | Family history of breast cancer: when to ask about BRCA testing | family history breast cancer risk | I | Breast cancer | scheduled 2026-12-29 |
 | 35 | Breast skin dimpling or "orange peel": what it can mean | breast skin dimpling | I | Breast symptoms | backlog |
 | 36 | Can I switch from NHS to private during breast cancer treatment? ★ | switch nhs to private cancer treatment | C | Private care explained | backlog |
 | 37 | Breast lump while breastfeeding | breast lump breastfeeding | I | Breast symptoms | backlog |
 | 38 | Fat grafting after lumpectomy: fixing a dent | fat grafting after lumpectomy | I | Reconstruction & cosmetic | backlog |
 | 39 | Laparoscopic gallbladder removal: recovery and what to expect | gallbladder removal recovery | I | General surgery | backlog |
-| 40 | Inguinal hernia: keyhole or open repair? | keyhole hernia repair | C | General surgery | backlog |
+| 40 | Inguinal hernia: keyhole or open repair? | keyhole hernia repair | C | General surgery | scheduled 2027-01-19 |
 | 41 | Whipps Cross breast unit: the NHS pathway explained ★ | whipps cross breast clinic | L | Local clinics | backlog |
 | 42 | Does everyone need radiotherapy after breast cancer surgery? | radiotherapy after lumpectomy | I | Breast cancer | backlog |
 | 43 | Triple-negative breast cancer explained | triple negative breast cancer | I | Breast cancer | backlog |
