@@ -931,8 +931,8 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 @media (max-width: 47.99rem) { .meet-k { grid-template-columns: 1fr 1fr; } .meet-f { aspect-ratio: 1; } }
 
 /* ============================================================ Bangla and Arabic pages */
-.intl-bn { --display: "Tiro Bangla", Georgia, serif; --sans: "Anek Bangla", "Helvetica Neue", Arial, sans-serif; }
-.intl-ar { --display: "Reem Kufi", "Readex Pro", sans-serif; --sans: "Readex Pro", "Helvetica Neue", Arial, sans-serif; }
+.intl-bn { --display: "Noto Serif Bengali", Georgia, serif; --sans: "Anek Bangla", "Helvetica Neue", Arial, sans-serif; }
+.intl-ar { --display: "Noto Naskh Arabic", Georgia, serif; --sans: "Noto Sans Arabic", "Helvetica Neue", Arial, sans-serif; }
 .intl h1, .intl h2, .intl h3, .intl .say-t, .intl .meet-k dt { letter-spacing: 0; font-variation-settings: normal; }
 .intl h1 { line-height: 1.15; font-weight: 700; }
 .intl h2 { line-height: 1.25; font-weight: 700; }
@@ -980,12 +980,12 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 [dir="rtl"] .bh-meta, [dir="rtl"] .meet-k { direction: rtl; }
 @media (max-width: 47.99rem) { .ih .langs a { padding: 0.3rem 0.6rem; font-size: 0.82rem; } .ib small { display: none; } .ih-call { display: none; } }
 
-.intl-bn h1, .intl-bn h2, .intl-bn h3, .intl-bn .isay, .intl-bn .ib span { font-weight: 400; }
+.intl-bn h1, .intl-bn h2 { font-weight: 650; } .intl-bn h3, .intl-bn .isay, .intl-bn .ib span { font-weight: 550; }
 .intl-bn .isay { line-height: 1.55; }
-.intl-ar h1, .intl-ar h2 { font-weight: 600; line-height: 1.4; }
-.intl-ar .isay { font-family: "Reem Kufi", sans-serif; font-weight: 500; line-height: 1.75; font-size: clamp(1.7rem, 3.4vw, 3rem); }
+.intl-ar h1, .intl-ar h2 { font-weight: 700; line-height: 1.45; }
+.intl-ar .isay { font-family: "Noto Naskh Arabic", serif; font-weight: 600; line-height: 1.75; font-size: clamp(1.7rem, 3.4vw, 3rem); }
 .intl-ar p, .intl-ar li { line-height: 1.9; }
-.langs a { font-family: "Figtree", "Anek Bangla", "Readex Pro", sans-serif; }
+.langs a { font-family: "Figtree", "Anek Bangla", "Noto Sans Arabic", sans-serif; }
 
 /* blog photos */
 .post-hero { background: var(--bg); padding-top: 0.5rem; }

@@ -21,12 +21,12 @@ ROOT = B.ROOT
 OUT = os.path.join(ROOT, "assets", "og")
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;'
-         '1,9..144,300..800,0..100,0..1&family=Figtree:wght@400..700&family=Tiro+Bangla&family=Anek+Bangla:wght@500&family=Reem+Kufi:wght@600&family=Readex+Pro:wght@500&display=block">')
+         '1,9..144,300..800,0..100,0..1&family=Figtree:wght@400..700&family=Noto+Serif+Bengali:wght@650&family=Anek+Bangla:wght@500&family=Noto+Naskh+Arabic:wght@700&family=Noto+Sans+Arabic:wght@500&display=block">')
 IMG = "file://" + os.path.join(ROOT, "assets", "img")
 
 BASE = """*{margin:0;box-sizing:border-box}html,body{width:1200px;height:630px;overflow:hidden}
-body{font-family:Figtree,"Anek Bangla","Readex Pro",sans-serif;-webkit-font-smoothing:antialiased}
-.serif{font-family:Fraunces,"Tiro Bangla","Reem Kufi",serif;font-variation-settings:"opsz" 144,"SOFT" 50,"WONK" 1;letter-spacing:-.04em}
+body{font-family:Figtree,"Anek Bangla","Noto Sans Arabic",sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:Fraunces,"Noto Serif Bengali","Noto Naskh Arabic",serif;font-variation-settings:"opsz" 144,"SOFT" 50,"WONK" 1;letter-spacing:-.04em}
 .k{font-weight:700;font-size:18px;letter-spacing:.07em;text-transform:uppercase}
 .mono{position:absolute;width:64px;height:64px;border-radius:16px;display:grid;place-items:center}
 .mono span{font-family:Fraunces,serif;font-style:italic;font-weight:560;font-size:44px;letter-spacing:-.06em;font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;transform:translate(-2px,-4px)}
