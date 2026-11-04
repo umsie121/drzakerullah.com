@@ -246,7 +246,7 @@ HOME_FAQS = [
 def build_home():
     body = f'''
 <section class="hero-frame"><div class="vhero">
-  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast, speaking at international healthcare events and at Nuffield Health The Holly."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
   <div class="copy">
     <div><span class="label">Consultant breast surgeon in London and Essex</span><h1>A breast surgeon who<br><i>takes the time to listen</i></h1></div>
     <div class="panel-intro"><p>{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
@@ -285,7 +285,7 @@ def build_home():
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
-                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast, speaking at international healthcare events and at Nuffield Health The Holly.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT24S"}],
+                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT20S"}],
            priority="1.0")
 
 
