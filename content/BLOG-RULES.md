@@ -20,6 +20,7 @@ description: 120 to 160 chars. Answers the query + says who is answering. No cli
 keyword: lumpectomy vs mastectomy                                   # ONE primary target query
 category: Breast cancer                                             # see categories below
 related: breast-cancer-surgery, breast-reconstruction               # procedure slugs from _build/content.py
+featured: West Essex Life                                            # optional: only if the article really appeared in that publication
 ---
 ```
 

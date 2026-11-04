@@ -139,7 +139,8 @@ def journal_list(entries, grid=True):
     out = []
     for p in entries:
         thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
-        out.append(f'<li><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
+        feat = " · As featured in " + escape(p["featured"]) if p.get("featured") else ""
+        out.append(f'<li><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
     return f'<ul class="journal{" grid" if grid else ""}">{"".join(out)}</ul>'
 
 
@@ -569,7 +570,7 @@ def build_news():
         faq = faq_html([(q, a.replace("<p>", "").replace("</p>", "||").rstrip("|")) for q, a in p["faqs"]]) if p["faqs"] else ""
         rel = "".join(f'<li><a href="~/procedures/{s}/">{PROC[s]["nav"]}</a></li>' for s in p["related"] if s in PROC)
         more = [x for x in POSTS if x is not p][:3]
-        body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), meta=[("Published", f'<time datetime="{p["date"]}">{date_label}</time>'), ("Reading time", f'{p["minutes"]} minutes'), ("Medically reviewed", reviewed)])}
+        body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), meta=[("Published", f'<time datetime="{p["date"]}">{date_label}</time>'), ("Reading time", f'{p["minutes"]} minutes'), ("Medically reviewed", reviewed)] + ([("As featured in", f'<em>{escape(p["featured"])}</em> magazine')] if p.get("featured") else []))}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")] if faq else [])}</div>
   <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>By <a href="~/biography/">{NAME} FRCS</a>, Consultant Oncoplastic Breast Surgeon.</span></div>
