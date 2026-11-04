@@ -426,3 +426,13 @@ BOOKING_PARTNERS = [
 # ------------------------------------------------------------- media mentions (text only, no logos)
 AS_SEEN = [("Everything Changed podcast", "~/podcast/"), ("TV3 Bangla", "~/podcast/#bengali"), ("West Essex Life", "~/news/five-things-breast-cancer/"),
            ("PHA Global Summit 2024", "https://www.youtube.com/watch?v=gBP0rsPeJ9A"), ("Nuffield Health", "https://www.facebook.com/thehollyprivatehospital/videos/2402001463487795/")]
+
+
+# Google reviews of Nuffield Health The Holly that mention Mr Ullah. Excerpts verbatim, reviewers shown by initials only.
+GOOGLE_MAPS = "https://maps.app.goo.gl/CPNXzmXfnKuMT2Sn9"
+GOOGLE_REVIEWS = [
+    ("Mr Ullah is a very, kind, professional doctor.", "W.C.", "September 2026"),
+    ("Doctor Ullah and team was also fantastic.", "H.C.", "June 2026"),
+    ("After having a scare of finding a lump on my breast. I found Dr Ullah and his team at Holly's hospital via bupa and I cannot praise enough the amazing care that I had. I felt comfortable immediately and everything moved swiftly…", "E.G.", "2025"),
+]
+HOLLY_VIDEO = "https://www.facebook.com/thehollyprivatehospital/videos/2402001463487795/"

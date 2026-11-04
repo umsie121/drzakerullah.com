@@ -116,6 +116,11 @@ def testimonials(items):
     return f'<ul class="testimonials">{lis}</ul>'
 
 
+def google_reviews():
+    lis = "".join(f'<li><blockquote>{escape(q)}</blockquote><div class="who">{who}, Google review of Nuffield Health The Holly, {d} · <a href="{C.GOOGLE_MAPS}" target="_blank" rel="noopener">Read on Google ↗</a></div></li>' for q, who, d in C.GOOGLE_REVIEWS)
+    return f'<ul class="testimonials">{lis}</ul>'
+
+
 def review_cards(items):
     lis = "".join(f'<figure class="review-card">{stars()}<blockquote>&ldquo;{escape(q)}&rdquo;</blockquote><figcaption>Verified patient, {where}, {d}</figcaption></figure>' for q, d, where in items)
     return f'<div class="review-grid">{lis}</div>'
@@ -241,7 +246,7 @@ HOME_FAQS = [
 def build_home():
     body = f'''
 <section class="hero-frame"><div class="vhero">
-  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and at Nuffield Health The Holly"><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast, speaking at international healthcare events and at Nuffield Health The Holly."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
   <div class="copy">
     <div><span class="label">Consultant breast surgeon in London and Essex</span><h1>A breast surgeon who<br><i>takes the time to listen</i></h1></div>
     <div class="panel-intro"><p>{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
@@ -259,7 +264,7 @@ def build_home():
 <div class="asseen"><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div></div>
 
 <section class="section tight"><div class="wrap split-head">
-  <div><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction, under one consultant who sees you throughout.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
+  <div><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction, under one consultant who sees you throughout. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a> &nbsp; <a class="more" href="~/biography/">About Mr Ullah</a></p></div>
   {treatment_index()}
 </div></section>
 
@@ -272,13 +277,6 @@ def build_home():
   {clinic_cols()}
 </div></section>
 
-<section class="section tone"><div class="wrap split-head">
-  <div><h2>His <i>approach</i></h2></div>
-  <div><p class="statement fade">One surgeon plans your cancer treatment and the shape of your breast together, from the very first appointment. <span class="muted">That is oncoplastic surgery, and it is the heart of Mr Ullah&rsquo;s practice.</span></p>
-  <div class="cols-2 mt-3"><p class="stone">He trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, and has been a consultant at Barts Health NHS Trust since 2012. At Whipps Cross he introduced the one-stop breast clinic and fat grafting for breast reconstruction.</p>
-  <p class="stone">The surgeon who examines you is the surgeon who operates and who looks after you afterwards. He consults in English and Bengali, in person, by video or by telephone.</p></div>
-  <p class="mt-2"><a class="more" href="~/biography/">About Mr Ullah</a></p></div>
-</div></section>
 
 {f'<section class="section"><div class="wrap split-head"><div><h2>Clear answers, <i>in plain English</i></h2><p>Guides to symptoms, surgery and recovery, written by Mr Ullah.</p><p class="mt-2"><a class="more" href="~/news/">All articles</a></p></div>{journal_list(POSTS[:2], grid=False)}</div></section>' if POSTS else ""}
 
@@ -287,7 +285,7 @@ def build_home():
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
-                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and at Nuffield Health The Holly.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT17S"}],
+                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast, speaking at international healthcare events and at Nuffield Health The Holly.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT24S"}],
            priority="1.0")
 
 
@@ -504,10 +502,12 @@ def build_reviews():
     path = "reviews/"
     crumbs = [("Home", ""), ("Patient reviews", path)]
     body = page_head(crumbs, "Patient reviews", "What his patients say",
-                     f"Mr Ullah&rsquo;s reviews are collected independently by iWantGreatCare, the UK&rsquo;s platform for verified healthcare feedback. Every one of them is five stars.",
+                     f"Mr Ullah&rsquo;s reviews are collected independently by iWantGreatCare, the UK&rsquo;s platform for verified healthcare feedback, where every one of them is five stars. Patients also mention him in Google reviews of The Holly.",
                      actions=f'<a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Read all on iWantGreatCare</a><a class="btn line" href="{C.IWGC}" target="_blank" rel="noopener">Leave a review</a>') + \
         railed("Rating", rating_block()) + \
         railed("In their words", testimonials(C.REVIEWS) + '<p class="note mt-2">Excerpts are reproduced word for word from public reviews on iWantGreatCare, some shortened where marked. They refer to care at The Holly and at Whipps Cross University Hospital.</p>', cls="section rule") + \
+        railed("On Google", google_reviews() + f'<p class="note mt-2">Excerpts are reproduced word for word from public Google reviews of <a href="{C.GOOGLE_MAPS}" target="_blank" rel="noopener">Nuffield Health The Holly</a> that mention Mr Ullah, shortened where marked. Reviewers are shown by their initials.</p>', cls="section rule") + \
+        railed("Meet Mr Ullah", f'<a class="fbv" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener"><span class="im"><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><i></i></span><span class="tx"><span class="label">Nuffield Health The Holly</span><b>Meet Mr Zaker Ullah, one of the breast surgeons at The Holly</b><span>A short introduction filmed by the hospital. Watch on Facebook ↗</span></span></a>', cls="section rule") + \
         railed("Your experience", f'<p class="lede">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously. If something did not go as it should have, please also tell the hospital where you were treated.</p><p class="mt-2"><a class="more" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></p>', cls="section rule")
     render(path, title=f"Mr Zaker Ullah Reviews: Rated {C.IWGC_RATING}, 100% Five-Star",
            desc=f"Verified patient reviews of consultant breast surgeon Mr Md Zaker Ullah FRCS on iWantGreatCare: rated {C.IWGC_RATING} out of 5, with 100% five-star reviews.",
