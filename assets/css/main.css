@@ -929,3 +929,53 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 .meet-k dd { margin-top: 0.4rem; font-size: 0.88rem; color: rgba(251, 241, 236, 0.6); }
 .meet .more { color: #fff; }
 @media (max-width: 47.99rem) { .meet-k { grid-template-columns: 1fr 1fr; } .meet-f { aspect-ratio: 1; } }
+
+/* ============================================================ Bangla and Arabic pages */
+.intl-bn { --display: "Noto Serif Bengali", Georgia, serif; --sans: "Hind Siliguri", "Helvetica Neue", Arial, sans-serif; }
+.intl-ar { --display: "Noto Naskh Arabic", Georgia, serif; --sans: "IBM Plex Sans Arabic", "Helvetica Neue", Arial, sans-serif; }
+.intl h1, .intl h2, .intl h3, .intl .say-t, .intl .meet-k dt { letter-spacing: 0; font-variation-settings: normal; }
+.intl h1 { line-height: 1.15; font-weight: 700; }
+.intl h2 { line-height: 1.25; font-weight: 700; }
+.intl h3 { font-weight: 600; }
+.intl p, .intl li { line-height: 1.85; }
+.intl .bio-hero h1 { font-size: clamp(2.8rem, 6.4vw, 6rem); }
+.intl .h-anim { --w: 700; }
+.isay { font-weight: 600; line-height: 1.6; font-size: clamp(1.6rem, 3.4vw, 3rem); }
+.ih { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.ih-in { display: flex; align-items: center; gap: 1.2rem; min-height: 4.6rem; }
+.ib { display: flex; flex-direction: column; line-height: 1.2; margin-inline-end: auto; }
+.ib span { font-family: var(--display); font-weight: 700; font-size: 1.2rem; color: var(--deep); }
+.ib small { font-size: 0.78rem; color: var(--muted); }
+.langs { display: inline-flex; gap: 0.2rem; padding: 0.25rem; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--white); }
+.langs a { padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.92rem; font-weight: 600; color: var(--deep); font-family: "Figtree", "Hind Siliguri", "IBM Plex Sans Arabic", sans-serif; }
+.langs a[aria-current] { background: var(--deep); color: #fff; }
+.ih-call { min-height: 2.8rem; padding: 0 1.2rem; }
+.intl .bio-hero { margin-top: 0; }
+.ie { display: block; color: var(--accent-soft); font-weight: 600; font-size: 0.95rem; margin-bottom: 1.2rem; }
+.intl .meet-t { max-width: 52rem; }
+.intl .pcs { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.ics { display: grid; gap: 1rem; }
+@media (min-width: 56rem) { .ics { grid-template-columns: repeat(3, 1fr); } }
+.ic { padding: 1.7rem 1.8rem; border-radius: var(--radius); border: 1px solid var(--line-strong); background: var(--white); }
+.ic p { margin-top: 0.6rem; color: var(--muted); }
+.ic .ad { font-size: 0.88rem; }
+.isteps { display: grid; gap: 1rem; }
+.isteps li { display: grid; grid-template-columns: 2.6rem 1fr; gap: 1rem; align-items: start; }
+.isteps .n { width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--deep); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.icontact { padding: 2rem; border-radius: var(--radius-lg); background: var(--deep); color: var(--on-deep); display: flex; flex-direction: column; gap: 0.6rem; }
+.icontact .k { color: var(--accent-soft); font-weight: 600; }
+.icontact .big { font-family: "Fraunces", serif; font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; }
+.icontact a { color: #fff; overflow-wrap: anywhere; }
+.iqs { display: grid; gap: 0.6rem; max-width: 52rem; }
+.iq { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); padding: 0 1.5rem; }
+.iq summary { cursor: pointer; padding: 1.2rem 0; font-weight: 600; font-size: 1.1rem; color: var(--deep); list-style: none; }
+.iq summary::-webkit-details-marker { display: none; }
+.iq p { padding-bottom: 1.3rem; color: var(--muted); }
+.ifoot { padding: 3rem 0 6rem; border-top: 1px solid var(--line-strong); display: block; }
+.ifoot .wrap { display: grid; gap: 1rem; justify-items: start; }
+.ifoot a { text-decoration: underline; text-underline-offset: 0.2em; }
+.ifoot .langs a { text-decoration: none; }
+[dir="rtl"] .bh-fig::before { background: linear-gradient(270deg, var(--ink-bg) 0, transparent 22%), linear-gradient(0deg, var(--ink-bg) 0, transparent 14%), linear-gradient(180deg, var(--ink-bg) 0, transparent 10%); }
+@media (min-width: 64rem) { [dir="rtl"] .bh-fig { margin-right: 0; margin-left: calc((min(100vw, var(--max)) - 100vw) / 2 - var(--gutter)); } }
+[dir="rtl"] .bh-meta, [dir="rtl"] .meet-k { direction: rtl; }
+@media (max-width: 47.99rem) { .ih .langs a { padding: 0.3rem 0.6rem; font-size: 0.82rem; } .ib small { display: none; } .ih-call { display: none; } }

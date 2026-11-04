@@ -14,6 +14,7 @@ from html import escape
 sys.path.insert(0, os.path.dirname(__file__))
 import content as C  # noqa: E402
 import md  # noqa: E402
+from intl import build_intl, hreflang  # noqa: E402
 from layout import (NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, crumbs_html, crumbs_schema,  # noqa: E402
                     faq_html, faq_schema, picture, render, strip_tags)
 
@@ -328,7 +329,7 @@ def build_home():
 
 <section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
-    render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
+    render("", extra_head=hreflang(), title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
                                        {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT20S"}],
@@ -835,7 +836,7 @@ def build_files():
 
 if __name__ == "__main__":
     build_home(); build_about(); build_procedures(); build_second_opinion(); build_locations(); build_patient_pages()
-    build_reviews(); build_podcast(); build_news(); build_videos(); build_booking(); build_remote(); build_legal(); build_404(); build_files()
+    build_reviews(); build_podcast(); build_news(); build_videos(); build_booking(); build_remote(); build_legal(); build_intl(); build_404(); build_files()
     print(f"Built {len(SITEMAP)} indexable pages · {len(POSTS)} posts live · {len(SCHEDULED)} scheduled")
     for s in SCHEDULED:
         print(f"  scheduled {s['date']}  {s['slug']}")

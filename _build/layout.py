@@ -142,7 +142,7 @@ def footer(nav):
       <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/remote-consultations/">Video and international</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
       <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast and videos</a></li><li><a href="~/news/">Blog</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="{nav["youtube"]}" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
-    <div class="f-legal"><span>&copy; 2026 {NAME} · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a> · <a href="~/privacy/">Privacy</a> · <a href="~/cookies/">Cookies</a></span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
+    <div class="f-legal"><span>&copy; 2026 {NAME} · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a> · <a href="~/privacy/">Privacy</a> · <a href="~/cookies/">Cookies</a> · <a href="~/bn/" lang="bn">বাংলা</a> · <a href="~/ar/" lang="ar">العربية</a></span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
   </div>
 </footer>
 <div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book a consultation</a></div>'''
