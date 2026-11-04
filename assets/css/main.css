@@ -1502,3 +1502,11 @@ body { font-size: 0.97rem; }
 .ins.lg img { height: 3.1rem; max-width: 10rem; }
 .ins.lg-axa img { height: 2.6rem; } .ins.lg-aviva img { height: 2rem; }
 @media (max-width: 47.99rem) { .ins.lg img { height: 2.5rem; } .ins.lg-axa img { height: 2.1rem; } .ins.lg-aviva img { height: 1.6rem; } }
+/* timeline alignment: years and titles share a baseline; dots centre on the years; the line runs through the dots */
+.vt-i { align-items: baseline; }
+.vt-y { font-size: 1.9rem; line-height: 1.2; }
+.vt-i h3 { line-height: 1.3; }
+.vt-i::before { top: calc(1.9rem * 1.2 / 2 - 0.5rem); }
+.vt-list::before { left: calc(0.5rem - 1px); top: 1.1rem; bottom: 3rem; }
+.vt .sec-h { margin-bottom: clamp(1.6rem, 4svh, 2.4rem); }
+@media (max-width: 40rem) { .vt-i { align-items: start; } .vt-y { font-size: 1.6rem; } .vt-i::before { top: calc(1.6rem * 1.2 / 2 - 0.5rem); } }
