@@ -1337,3 +1337,16 @@ h3, .b .k, .txg-h .t, .tx-list .t, .bcards .t, .journal .t, .pc h3, .hc h3, .txg
 .pp-deep .pp-d, .pp-deep .pp-l .d { color: var(--on-deep-2); }
 .pp-deep .pp-l li + li { border-color: rgba(248, 195, 174, 0.16); }
 .pp-deep .pp-l .go { border-color: rgba(248, 195, 174, 0.3); color: var(--accent-soft); }
+
+/* treatment panels: plum top half, ivory list below, all alike */
+.pp { padding: 0; overflow: hidden; background: var(--ivory); }
+.pp-top { padding: clamp(1.5rem, 3vw, 2.2rem) clamp(1.6rem, 3vw, 2.4rem) clamp(1.4rem, 2.6vw, 2rem); background: radial-gradient(80% 140% at 100% 0, rgba(238, 138, 108, 0.22) 0, transparent 55%), linear-gradient(160deg, #3a1529 0, var(--deep) 100%); color: var(--on-deep); }
+.pp-top .pp-n { color: var(--accent-soft); }
+.pp-top h2 { color: #fff; }
+.pp-top .pp-d { color: var(--on-deep-2); }
+.pp-l { padding: 0.4rem clamp(1.6rem, 3vw, 2.4rem) 1rem; margin-top: 0; }
+
+/* timeline heading spans the width; cards fit their content */
+.hz-head { width: 100%; }
+.hz-head h2 { flex: 1 1 auto; white-space: nowrap; }
+@media (min-width: 64rem) { .js .hz.pin .hz-track { flex: 0 0 auto; align-items: stretch; max-height: none; margin-top: clamp(0.5rem, 3svh, 2rem); } .js .hz.pin .hz-pin { justify-content: center; } .hc.hv { min-height: 18rem; } }

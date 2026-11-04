@@ -473,7 +473,7 @@ def build_about():
 def proc_panel(i, title, desc, slugs):
     """One area of practice: a title, a line of context and its treatments as rows."""
     rows = "".join(f'<li><a href="~/procedures/{PROC[x]["slug"]}/"><span class="t">{PROC[x]["nav"]}</span><span class="d">{PROC[x]["summary"]}</span><span class="go" aria-hidden="true">&rarr;</span></a></li>' for x in slugs)
-    return (f'<article class="pp{" pp-deep" if i == 1 else ""}" data-r style="--d:{i}"><span class="pp-n">0{i + 1}</span><h2>{title}</h2><p class="pp-d">{desc}</p>'
+    return (f'<article class="pp" data-r style="--d:{i}"><header class="pp-top"><span class="pp-n">0{i + 1}</span><h2>{title}</h2><p class="pp-d">{desc}</p></header>'
             f'<ul class="pp-l">{rows}</ul></article>')
 
 
