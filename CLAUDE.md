@@ -11,7 +11,7 @@ accuracy and GMC/ASA compliance outrank everything else.
 - Source: `_build/content.py` (facts, treatments, clinics, reviews, podcast), `_build/build.py`
   (page templates), `_build/layout.py` (header/footer/head), `content/blog/*.md` (posts).
 - Build: `python3 _build/build.py` · Validate posts: `python3 _build/validate.py`
-- Preview: `python3 -m http.server 8765` (or the `site` launch config).
+- Preview: `python3 _build/serve.py` (no-cache server; or the `site` launch config). Plain http.server lets browsers show stale pages.
 - Never hand-edit generated `index.html` files, edit the source and rebuild.
 - Deploy: push to `main`. GitHub Actions validates, builds and deploys to GitHub Pages, and
   **re-runs daily at 06:00 UTC**, so posts with a future `date` go live automatically on that day.
