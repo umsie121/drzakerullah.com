@@ -470,12 +470,19 @@ def build_about():
 
 
 # ================================================================== TREATMENTS
+def proc_panel(i, title, desc, slugs):
+    """One area of practice: a title, a line of context and its treatments as rows."""
+    rows = "".join(f'<li><a href="~/procedures/{PROC[x]["slug"]}/"><span class="t">{PROC[x]["nav"]}</span><span class="d">{PROC[x]["summary"]}</span><span class="go" aria-hidden="true">&rarr;</span></a></li>' for x in slugs)
+    return (f'<article class="pp{" pp-deep" if i == 1 else ""}" data-r style="--d:{i}"><span class="pp-n">0{i + 1}</span><h2>{title}</h2><p class="pp-d">{desc}</p>'
+            f'<ul class="pp-l">{rows}</ul></article>')
+
+
 def build_procedures():
     crumbs = [("Home", ""), ("Treatments", "procedures/")]
     body = page_head(crumbs, "Treatments", "Areas of practice",
                      "The diagnosis and surgical treatment of breast disease, benign and malignant, with oncoplastic and reconstructive surgery, the male breast, and keyhole general surgery.") + \
-"".join(railed(g, f'<p class="lede">{d}</p><div class="mt-3">{treatment_index([PROC[x] for x in sl])}</div>', cls="section" + (" rule" if i else "")) for i, (g, d, sl) in enumerate(C.PROC_GROUPS)) + \
-        railed("Where to begin", '<p class="lede">Not sure where to begin? Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.</p><p class="mt-2"><a class="more" href="~/booking/">Book a consultation</a></p>', cls="section rule")
+f'<section class="section"><div class="wrap"><div class="pgrid">{"".join(proc_panel(i, g, d, sl) for i, (g, d, sl) in enumerate(C.PROC_GROUPS))}</div></div></section>' + \
+        cta_strip("Not sure where to begin?", "Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.")
     items = {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/procedures/{p['slug']}/", "name": p["nav"]} for i, p in enumerate(C.PROCEDURES)]}
     render("procedures/", title="Breast Surgery Treatments London & Essex | Mr Zaker Ullah",
            desc="Breast surgery with Mr Zaker Ullah FRCS in Buckhurst Hill, Canary Wharf and the City: lump clinics, cancer surgery, reconstruction and gynaecomastia.",
