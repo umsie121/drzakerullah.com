@@ -670,7 +670,7 @@ def build_reviews():
 
 <section class="band stone"><div class="wrap duo">
   <a class="fbv2" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener" data-r><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><span class="pl"></span><span class="cap">Meet Mr Ullah · a short film by Nuffield Health The Holly ↗</span></a>
-  <div data-r style="--d:1"><h2>Share your experience</h2><p class="lede mt-2">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously. If something did not go as it should have, please also tell the hospital where you were treated.</p>
+  <div data-r style="--d:1"><h2>Share your experience</h2><p class="lede mt-2">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously.</p>
   <div class="actions mt-3"><a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></div></div>
 </div></section>'''
     render(path, title=f"Mr Zaker Ullah Reviews: Rated {C.IWGC_RATING}, 100% Five-Star",
