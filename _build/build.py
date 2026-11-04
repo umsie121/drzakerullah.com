@@ -55,7 +55,7 @@ PHYSICIAN = {
     "url": SITE + "/", "image": SITE + "/assets/img/zu-navy-900.jpg",
     "telephone": C.SEC_TEL, "email": C.SEC_EMAIL, "priceRange": "££££",
     "address": {"@type": "PostalAddress", "streetAddress": "High Road", "addressLocality": "Buckhurst Hill", "addressRegion": "Essex", "postalCode": "IG9 5HX", "addressCountry": "GB"},
-    "areaServed": ["London", "Essex", "Hertfordshire", "Central London", "East London", "North East London", "City of London"],
+    "areaServed": [{"@type": "Place", "name": n} for n in ["London", "Essex", "Canary Wharf", "Docklands", "Isle of Dogs", "City of London", "Clerkenwell", "Shoreditch", "Stratford", "Buckhurst Hill", "Woodford Green", "South Woodford", "Loughton", "Chigwell", "Epping", "Walthamstow", "Hertfordshire"]],
     "medicalSpecialty": ["Oncologic", "Surgical", "PlasticSurgery"], "isAcceptingNewPatients": True,
     "knowsLanguage": ["en-GB", "bn", "ar"],
     "identifier": {"@type": "PropertyValue", "propertyID": "GMC", "value": "4368515"},
@@ -69,7 +69,7 @@ PHYSICIAN = {
     "hospitalAffiliation": [hospital_schema(l) for l in C.LOCATIONS] + [{"@type": "Hospital", "name": "Whipps Cross University Hospital, Barts Health NHS Trust", "address": {"@type": "PostalAddress", "streetAddress": "Whipps Cross Road", "addressLocality": "London", "postalCode": "E11 1NR", "addressCountry": "GB"}}],
     "availableService": [{"@type": "MedicalProcedure", "name": p["nav"], "url": f"{SITE}/procedures/{p['slug']}/"} for p in C.PROCEDURES],
     "knowsAbout": C.KNOWS_ABOUT,
-    "sameAs": [C.IWGC, C.FACEBOOK, C.LINKEDIN, C.YOUTUBE_CHANNEL, "https://www.nuffieldhealth.com/consultants/mr-md-zaker-ullah", "https://www.doctify.com/uk/specialist/mr-md-z-ullah", "https://www.topdoctors.co.uk/doctor/zaker-ullah/", "https://www.finder.bupa.co.uk/Consultant/view/192096/mr_md_z_ullah", "https://whippscrosswf.com/people/mr-md-zaker-ullah/"],
+    "sameAs": [C.IWGC, C.FACEBOOK, C.LINKEDIN, C.YOUTUBE_CHANNEL, "https://www.nuffieldhealth.com/consultants/mr-md-zaker-ullah", "https://www.doctify.com/uk/specialist/mr-md-z-ullah", "https://www.topdoctors.co.uk/doctor/zaker-ullah/", "https://www.finder.bupa.co.uk/Consultant/view/192096/mr_md_z_ullah", "https://www.phin.org.uk/profiles/consultants/m-z-ullah-147475", "https://whippscrosswf.com/people/mr-md-zaker-ullah/"],
 }
 WEBSITE = {"@context": "https://schema.org", "@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": f"{NAME}, Consultant Breast Surgeon", "publisher": PHYSICIAN_REF, "inLanguage": "en-GB"}
 
@@ -247,6 +247,7 @@ HOME_FAQS = [
     ("How quickly can I see Mr Ullah?", "New breast symptoms are given priority. Face to face appointments can often be arranged within days, and a video or telephone consultation can usually be arranged within 24 to 48 hours of your enquiry."),
     ("Will I get my results on the same day?", "At his one-stop clinics, imaging and provisional results are usually given on the same day. Biopsy results, where a biopsy is needed, follow within a few days."),
     ("Is there a private breast surgeon near Woodford Green?", "Yes. Mr Ullah consults at Nuffield Health The Holly Hospital on the High Road in Buckhurst Hill, a few minutes from Woodford Green, Loughton and Chigwell, with parking on site."),
+    ("Is there a private breast surgeon in Canary Wharf?", "Yes. Mr Ullah sees patients at Bupa Wharfside Health Centre, 50 Bank Street, Canary Wharf E14, convenient for Docklands and the City. He also consults at Nuffield Health St Bartholomew&rsquo;s in the City of London."),
     ("Is Mr Ullah recognised by Bupa?", "Yes. Mr Ullah is a Bupa Platinum consultant, fee-assured, and part of Bupa&rsquo;s Open Referral network. He is also recognised by AXA Health, Aviva, Vitality, WPA, Cigna and other major insurers."),
     ("Is Mr Ullah the same person as Dr Zaker Ullah?", "Yes. Surgeons in the United Kingdom who hold the fellowship of a Royal College of Surgeons are addressed as Mr rather than Dr. You may see him called Dr Zaker Ullah on his YouTube channel and in older articles; it is the same surgeon."),
     ("Do I need a GP referral?", "Insured patients usually need one before their insurer will authorise the appointment. Self-funding patients can book directly. <a href=\"~/fees-and-insurance/\">Fees and insurance</a>."),
@@ -370,7 +371,7 @@ def build_home():
 <section class="band taupe"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
     render("", extra_head=hreflang(), title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
-           desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Canary Wharf and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
+           desc="Mr Zaker Ullah FRCS, consultant breast surgeon in Buckhurst Hill, Canary Wharf and the City of London. Bupa Platinum. 100% five-star. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
                                        {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT20S"}],
            priority="1.0")
@@ -460,7 +461,7 @@ def build_about():
 {railed("Memberships", '<dl class="facts"><div><dt>Fellowships</dt><dd>Royal College of Surgeons of Edinburgh (FRCSEd). FRCS in General Surgery.</dd></div><div><dt>Associations</dt><dd>Association of Breast Surgery. Association of Surgeons of Great Britain and Ireland. European Association for Endoscopic Surgery.</dd></div><div><dt>Register</dt><dd>General Medical Council, no. 4368515, on the Specialist Register.</dd></div><div><dt>NHS</dt><dd>Consultant, Barts Health NHS Trust, since 2012.</dd></div></dl>')}
 {faq_section(faqs, "About Mr Ullah")}'''
     render(path, title="Mr Md Zaker Ullah FRCS | Biography, Consultant Breast Surgeon",
-           desc="Biography of Mr Md Zaker Ullah FRCS: Royal Marsden trained oncoplastic breast surgeon, Barts Health consultant since 2012, Clinical Lead of the Whipps Cross Breast Unit.",
+           desc="Mr Md Zaker Ullah FRCS: Royal Marsden trained breast surgeon, Barts Health consultant since 2012 and Clinical Lead of the Whipps Cross Breast Unit.",
            body=body, nav=NAV, active="about", priority="0.9",
            schema=[PHYSICIAN, {"@context": "https://schema.org", "@type": "ProfilePage", "mainEntity": PHYSICIAN_REF, "dateModified": TODAY.isoformat()}, crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -474,7 +475,7 @@ def build_procedures():
         railed("Where to begin", '<p class="lede">Not sure where to begin? Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.</p><p class="mt-2"><a class="more" href="~/booking/">Book a consultation</a></p>', cls="section rule")
     items = {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/procedures/{p['slug']}/", "name": p["nav"]} for i, p in enumerate(C.PROCEDURES)]}
     render("procedures/", title="Breast Surgery Treatments London & Essex | Mr Zaker Ullah",
-           desc="Breast and general surgery with Mr Zaker Ullah FRCS in London and Essex: breast lump clinics, cancer surgery, reconstruction, reduction, gynaecomastia and keyhole surgery.",
+           desc="Breast surgery with Mr Zaker Ullah FRCS in Buckhurst Hill, Canary Wharf and the City: lump clinics, cancer surgery, reconstruction and gynaecomastia.",
            body=body, nav=NAV, active="procedures", priority="0.9", schema=[items, crumbs_schema(crumbs)])
 
     for i, p in enumerate(C.PROCEDURES):
@@ -523,7 +524,7 @@ def build_second_opinion():
 <h2>What Mr Ullah reviews</h2><p>Your history and examination, your imaging and pathology, and where useful a request for further tests or a specialist review of the scans or slides. You receive a clear explanation of what he would recommend and why, with a letter for you and for your existing team.</p></div>''') + \
         quote_band(C.REVIEWS[2]) + \
         faq_section(faqs, "Questions about second opinions")
-    desc = "Breast cancer second opinion in London and Essex with consultant oncoplastic surgeon Mr Zaker Ullah: diagnosis, mastectomy or conservation, and reconstruction options."
+    desc = "Breast cancer second opinion in London and Essex with Mr Zaker Ullah FRCS: your diagnosis, mastectomy or conservation, and reconstruction options."
     render(path, title="Breast Cancer Second Opinion London | Mr Zaker Ullah FRCS", desc=desc, body=body, nav=NAV, active="about", priority="0.8",
            schema=[medical_page(path, "Breast cancer second opinion", desc), crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -536,7 +537,7 @@ def build_locations():
         railed("Three clinics", clinic_cols()) + \
         railed("NHS", f'<h3>Whipps Cross University Hospital</h3><p class="stone mt-1" style="max-width:38rem">Whipps Cross Road, London E11 1NR. Mr Ullah is Clinical Lead of the Breast Unit, part of Barts Health NHS Trust. NHS referrals are made through your GP.</p><p class="mt-2"><a class="more" href="https://www.bartshealth.nhs.uk/find-a-consultant/contact/md-zaker-ullah-301/?consultant=301" target="_blank" rel="noopener">Barts Health profile</a></p>', cls="section rule")
     render("locations/", title="Private Breast Clinics London & Essex | Mr Zaker Ullah",
-           desc="Where to see breast surgeon Mr Zaker Ullah privately: Bupa Wharfside Health Centre, Canary Wharf E14, Nuffield Health St Bartholomew's EC1 and Nuffield Health The Holly, Buckhurst Hill IG9.",
+           desc="See breast surgeon Mr Zaker Ullah privately at The Holly, Buckhurst Hill IG9, Bupa Wharfside, Canary Wharf E14, or Nuffield Health St Bartholomew's EC1.",
            body=body, nav=NAV, active="locations", priority="0.9", schema=[crumbs_schema(crumbs)])
 
     for l in C.LOCATIONS:
@@ -550,11 +551,9 @@ def build_locations():
             (f"How do I book with Mr Ullah at {l['name']}?", f"Call his private secretary on {C.SEC_PHONE}, send an enquiry through this website, or ask your GP to refer you to Mr Md Zaker Ullah at {l['name']}. Insured patients should obtain a pre-authorisation number from their insurer first."),
             (f"Where is {l['name']}?", f"{l['name']} is at {loc_address(l)}. {l['travel']}"),
             ("Which conditions does Mr Ullah treat here?", "New breast lumps and breast pain, nipple discharge, breast cancer surgery, reconstruction, breast reduction, fat grafting, gynaecomastia, and general surgery including hernia and gallbladder operations. Some operations take place only at particular hospitals; the secretary will advise."),
-            ("Can I be seen quickly with a new breast symptom?", "Yes. New breast symptoms are given priority, with the aim of examination, imaging and any biopsy at a single visit."),
+            ("Can I be seen quickly with a new breast symptom?", "Yes. New breast symptoms are given priority. " + ("Mr Ullah examines you here, and any imaging or biopsy is arranged quickly at the hospital that suits you." if l["slug"] == "canary-wharf" else "The aim is examination, imaging and any biopsy at a single visit.")),
         ]
-        if l.get("local"):
-            faqs[0:0] = [("Is there a private breast surgeon near Woodford Green?", "Yes. Mr Ullah consults at Nuffield Health The Holly Hospital on the High Road in Buckhurst Hill, a few minutes from Woodford Green, South Woodford, Loughton and Chigwell, with parking on site. His Rapid Access Breast Clinic runs on Tuesday afternoons."),
-                         ("Can I see Mr Ullah at The Holly if I am an NHS patient at Whipps Cross?", "Yes, if you choose to be seen privately, either through insurance or as a self-funding patient. Mr Ullah leads the breast unit at Whipps Cross and many patients from the area see him at The Holly.")]
+        faqs[0:0] = l.get("faqs", [])
         others = "".join(f'<li><a href="~/locations/{o["slug"]}/">{o["name"]}</a></li>' for o in C.LOCATIONS if o is not l)
         body = page_head(crumbs, l["area"], l["h1"], l["intro"], meta=meta,
                          actions=f'<a class="btn" href="~/booking/">Book at {l["short"]}</a><a class="btn line" href="{maps}" target="_blank" rel="noopener">Map</a>') + \
@@ -570,7 +569,8 @@ def build_locations():
                   "name": f"{NAME}, Breast Surgeon at {l['name']}", "url": f"{SITE}/{path}", "image": PHYSICIAN["image"],
                   "telephone": C.SEC_TEL, "priceRange": "££££", "medicalSpecialty": ["Oncologic", "Surgical", "PlasticSurgery"],
                   "address": hospital_schema(l)["address"], "areaServed": l["serves"], "employee": PHYSICIAN_REF,
-                  "containedInPlace": hospital_schema(l), "hasMap": maps, "isAcceptingNewPatients": True}
+                  "containedInPlace": hospital_schema(l), "hasMap": maps, "isAcceptingNewPatients": True,
+                  "knowsLanguage": ["en-GB", "bn", "ar"], "description": l["desc"]}
         render(path, title=l["title"], desc=l["desc"], body=body, nav=NAV, active="locations", priority="0.9",
                schema=[clinic, crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -628,7 +628,7 @@ def build_patient_pages():
     body = page_head(crumbs, "Patients", "Questions answered", "Answers to the questions patients ask most often, gathered from every page of this website.") + \
         f'<section class="section"><div class="wrap article" style="grid-template-columns:var(--rail) minmax(0,1fr)"><div class="rail"><span class="label">Topics</span>{toc}</div><div>{inner}</div></div></section>'
     render(path, title="Breast Surgery Questions Answered | Mr Zaker Ullah FRCS",
-           desc="Answers from consultant breast surgeon Mr Zaker Ullah to common questions on breast lumps, cancer surgery, reconstruction, reduction, gynaecomastia, fees and appointments.",
+           desc="Consultant breast surgeon Mr Zaker Ullah answers common questions on breast lumps, cancer surgery, reconstruction, gynaecomastia, fees and booking.",
            body=body, nav=NAV, active="patients", priority="0.7", schema=[crumbs_schema(crumbs)])
 
 
@@ -711,6 +711,8 @@ def build_news():
         crumbs = [("Home", ""), ("Blog", "news/"), (p["title"], path)]
         date_label = p["date_obj"].strftime("%-d %B %Y")
         reviewed = datetime.date.fromisoformat(p.get("reviewed", p["date"])).strftime("%-d %B %Y")
+        for sp in SCHEDULED:  # a link to a post that is not live yet points to its treatment page meanwhile
+            p["html"] = p["html"].replace(f'href="~/news/{sp["slug"]}/"', f'href="~/procedures/{(sp["related"] or ["breast-cancer-surgery"])[0]}/"')
         html, toc = with_ids(p["html"])
         parts = html.split("<h2", 3)
         if len(parts) == 4:
@@ -805,7 +807,7 @@ def build_booking():
   </div>
 </div></div></section>
 {railed("Clinics", clinic_cols(), cls="section rule")}'''
-    render(path, title="Book a Private Breast Surgeon | Mr Zaker Ullah, The Holly & London",
+    render(path, title="Book a Private Breast Surgeon in London & Essex | Mr Zaker Ullah",
            desc=f"Book Mr Zaker Ullah FRCS online through Nuffield Health, Doctify, Top Doctors or Bupa, or call his private secretary on {C.SEC_PHONE}. Insured and self-pay welcome.",
            body=body, nav=NAV, active="patients", priority="0.9", schema=[crumbs_schema(crumbs)], band=False)
 
@@ -831,7 +833,7 @@ def build_remote():
         railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/canary-wharf/">Canary Wharf</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
 <p>For patients travelling from abroad for treatment, the practice can help you plan the timing of consultations, tests and surgery. Read more about <a href="~/second-opinion/">second opinions</a>.</p></div>''', cls="section rule") + \
         faq_section(faqs, "Questions about remote consultations")
-    desc = "Video consultations and international breast cancer second opinions with consultant breast surgeon Mr Zaker Ullah FRCS, in English, Bangla or Arabic, usually within 24 to 48 hours."
+    desc = "Video consultations and international breast cancer second opinions with Mr Zaker Ullah FRCS, in English, Bangla or Arabic, usually within 48 hours."
     render(path, title="Video Consultations & International Second Opinions | Mr Ullah", desc=desc, body=body, nav=NAV, active="patients", priority="0.7",
            schema=[medical_page(path, "Video consultations and international second opinions", desc), crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -883,7 +885,19 @@ def build_files():
             "## Key pages", f"- [Biography]({SITE}/biography/)", f"- [Book a consultation]({SITE}/booking/)", f"- [Your first visit]({SITE}/your-visit/)", f"- [Fees and insurance]({SITE}/fees-and-insurance/)",
             f"- [Questions answered]({SITE}/faqs/)", f"- [Reviews]({SITE}/reviews/)", f"- [Podcast]({SITE}/podcast/)", f"- [Second opinions]({SITE}/second-opinion/)", f"- [Video and international consultations]({SITE}/remote-consultations/)", "", "## Treatments"] + \
            [f"- [{p['nav']}]({SITE}/procedures/{p['slug']}/): {p['summary']}" for p in C.PROCEDURES] + ["", "## Clinics"] + \
-           [f"- [{l['name']}]({SITE}/locations/{l['slug']}/): {loc_address(l)}" for l in C.LOCATIONS] + ["", "## Blog"] + [f"- [{p['title']}]({SITE}/news/{p['slug']}/)" for p in POSTS]
+           [f"- [{l['name']}]({SITE}/locations/{l['slug']}/): {loc_address(l)}. Serves {', '.join(l['serves'])}." for l in C.LOCATIONS] + \
+           ["", "## Areas served (for people searching for a breast surgeon near them)",
+            f"- Canary Wharf, Docklands, Isle of Dogs, Wapping, Limehouse, Greenwich and Stratford: consultations at Bupa Wharfside Health Centre, 50 Bank Street, E14 5NT ({SITE}/locations/canary-wharf/).",
+            f"- City of London, Clerkenwell, Shoreditch, Holborn, Farringdon and Liverpool Street: Nuffield Health at St Bartholomew's Hospital, EC1A 7BS ({SITE}/locations/city-of-london/).",
+            f"- Buckhurst Hill, Woodford Green, South Woodford, Loughton, Chigwell, Epping and Walthamstow: Nuffield Health The Holly Hospital, IG9 5HX, with a Rapid Access Breast Clinic on Tuesday afternoons ({SITE}/locations/buckhurst-hill-essex/).",
+            f"- Anywhere in the UK or abroad: video and telephone consultations and second opinions, in English, Bangla or Arabic ({SITE}/remote-consultations/). Bangla page: {SITE}/bn/ · Arabic page: {SITE}/ar/.",
+            "", "## Quick facts",
+            "- Title: Mr (a UK surgical title for Fellows of the Royal College of Surgeons; sometimes written Dr Zaker Ullah).",
+            "- Over 30 years in surgery; consultant at Barts Health NHS Trust since 2012; Clinical Lead of the Whipps Cross Breast Unit.",
+            "- Trained at The Royal Marsden, St Mary's and The Royal Free in London.",
+            "- Treats: breast lumps and pain, breast cancer surgery, oncoplastic and reconstructive surgery, breast reduction, fat grafting, gynaecomastia, hernia and gallbladder surgery, skin lumps.",
+            "- Insurance: Bupa Platinum (fee-assured, Open Referral), plus AXA Health, Aviva, Vitality, WPA, Cigna and others; self-funding welcome.",
+            "", "## Blog"] + [f"- [{p['title']}]({SITE}/news/{p['slug']}/)" for p in POSTS]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
 
 

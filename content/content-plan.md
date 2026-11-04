@@ -60,3 +60,4 @@ Intent: I informational · C commercial · L local
 | 42 | Does everyone need radiotherapy after breast cancer surgery? | radiotherapy after lumpectomy | I | Breast cancer | backlog |
 | 43 | Triple-negative breast cancer explained | triple negative breast cancer | I | Breast cancer | backlog |
 | 44 | Lump after breast surgery: normal healing or not? | lump after breast surgery | I | Living with & after | backlog |
+| 45 | Private breast clinic in Canary Wharf: a breast surgeon near work ★ | private breast clinic canary wharf | L | Local clinics | live 2026-10-13 |

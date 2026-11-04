@@ -1,5 +1,5 @@
 ---
-title: "Private breast clinic near Woodford Green: what to expect at The Holly"
+title: "Private breast clinic near Woodford Green: The Holly explained"
 slug: private-breast-clinic-woodford-green
 date: 2025-11-11
 reviewed: 2026-11-04

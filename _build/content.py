@@ -43,6 +43,12 @@ LOCATIONS = [
         "desc": "Consultant oncoplastic breast surgeon at Bupa Wharfside Health Centre, Canary Wharf E14. Breast symptom assessment, breast cancer surgery and reconstruction.",
         "travel": "On Bank Street in Canary Wharf, a few minutes' walk from Canary Wharf station on the Jubilee line and the Elizabeth line, and close to the DLR.",
         "serves": ["Canary Wharf", "Docklands", "Isle of Dogs", "Wapping", "Limehouse", "Greenwich", "Stratford", "Bow", "City of London"],
+        "local": "For people who work in Canary Wharf, Docklands or the City, Bupa Wharfside on Bank Street means a specialist breast consultation without crossing London. It is a few minutes' walk from the Jubilee line, the Elizabeth line and the DLR, so an appointment can fit around the working day. Patients who live in the Isle of Dogs, Wapping, Limehouse, Greenwich and Stratford find it equally convenient.",
+        "faqs": [
+            ("Is there a private breast surgeon in Canary Wharf?", "Yes. Mr Ullah consults at Bupa Wharfside Health Centre, 50 Bank Street, London E14 5NT, for people who live or work in Canary Wharf, Docklands and the City."),
+            ("Can I use my employer's health insurance in Canary Wharf?", "Usually, yes. Most corporate policies cover a specialist consultation for a new breast symptom. Ask your insurer for a pre-authorisation number before the appointment. Mr Ullah is a Bupa Platinum consultant and recognised by the major UK insurers."),
+            ("Where are tests and surgery done if I am seen in Canary Wharf?", "Mr Ullah arranges any imaging, biopsy or surgery at the hospital that suits you best, usually Nuffield Health St Bartholomew's in the City or Nuffield Health The Holly in Buckhurst Hill."),
+        ],
         "intro": "Bupa's Wharfside Health Centre on Bank Street brings private consultations to the heart of Canary Wharf. Mr Ullah sees patients here who live or work in Docklands and the City, including many who use their employer's health insurance, and arranges any tests or surgery that follow at the hospital that suits them best.",
         "why": [
             "Consultations in the heart of Canary Wharf, close to the Jubilee and Elizabeth lines",
@@ -68,7 +74,12 @@ LOCATIONS = [
         "desc": "Private breast surgeon in the City of London at Nuffield Health St Bartholomew's. Breast lump clinics, breast cancer surgery and second opinions.",
         "travel": "Inside the St Bartholomew's Hospital site, a few minutes on foot from Farringdon, Barbican and St Paul's, and easily reached from Canary Wharf on the Elizabeth line.",
         "serves": ["The City", "Clerkenwell", "Islington", "Shoreditch", "Canary Wharf", "Southwark", "Hackney", "Tower Hamlets", "Holborn"],
-        "intro": "Nuffield Health's private hospital at St Bartholomew's sits within Britain's oldest hospital site, alongside one of Europe's leading cancer centres. It suits patients who work in the City or in east London and need an appointment that fits around the working day.",
+        "local": "For people who work in the City, Clerkenwell, Shoreditch or Holborn, Nuffield Health St Bartholomew's is a short walk from Farringdon, Barbican and St Paul's, and a few minutes from Liverpool Street and Moorgate. Consultations, imaging and day case surgery are on the same site, so appointments can fit around a working day.",
+        "faqs": [
+            ("Is there a private breast surgeon in the City of London?", "Yes. Mr Ullah sees patients at Nuffield Health at St Bartholomew's Hospital, 38 Giltspur Street, London EC1A 7BS, close to Farringdon, Barbican, St Paul's and Liverpool Street."),
+            ("Can I be seen near Liverpool Street or Moorgate?", "Yes. Nuffield Health St Bartholomew's is a short journey from both, and from Farringdon on the Elizabeth line, which also links it directly with Canary Wharf."),
+        ],
+        "intro": "Nuffield Health's private hospital at St Bartholomew's sits on the St Bartholomew's Hospital site, home to one of the country's major cancer centres. It suits patients who work in the City or in east London and need an appointment that fits around the working day.",
         "why": [
             "Private hospital within the St Bartholomew's campus",
             "Appointments that fit around a City or Canary Wharf working day",
@@ -96,6 +107,11 @@ LOCATIONS = [
         "intro": "Nuffield Health The Holly Hospital is one of Mr Ullah's three private clinics, and the home of his private secretary. A calm and well equipped hospital on the border of London and Essex, it is a few minutes from Woodford Green, Loughton and Chigwell, and serves patients from across Essex, Hertfordshire and north east London. Mr Ullah runs its Rapid Access Breast Clinic on Tuesday afternoons, with consultation and imaging on the same day.",
         "local": "For most patients in Woodford Green, South Woodford, Loughton and Chigwell, The Holly is the nearest private hospital with a consultant-led breast clinic. It sits on the High Road between Woodford Green and Loughton, with parking on site and Buckhurst Hill Central line station a short walk away. Many of Mr Ullah's NHS patients at nearby Whipps Cross choose to see him here privately.",
         "clinics": "Tuesday afternoon (Rapid Access Breast Clinic) and Thursday morning",
+        "faqs": [
+            ("Is there a private breast surgeon near Woodford Green?", "Yes. Mr Ullah consults at Nuffield Health The Holly Hospital on the High Road in Buckhurst Hill, a few minutes from Woodford Green, South Woodford, Loughton and Chigwell, with parking on site. His Rapid Access Breast Clinic runs on Tuesday afternoons."),
+            ("Can I see Mr Ullah at The Holly if I am an NHS patient at Whipps Cross?", "Yes, if you choose to be seen privately, either through insurance or as a self-funding patient. Mr Ullah leads the breast unit at Whipps Cross and many patients from the area see him at The Holly."),
+            ("Is there a breast clinic near Loughton or Chigwell?", "Yes. The Holly in Buckhurst Hill is a short drive from Loughton, Chigwell, Epping and Theydon Bois, and close to the M11 and M25."),
+        ],
         "why": [
             "Rapid Access Breast Clinic with Mr Ullah on Tuesday afternoons",
             "Parking on site, close to the M11 and M25",
@@ -190,7 +206,7 @@ PROCEDURES = [
         "short_desc": "Implant and flap",
         "summary": "Immediate and delayed reconstruction with implants, your own tissue, chest wall perforator flaps and fat grafting.",
         "title": "Breast Reconstruction London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Breast reconstruction after mastectomy or lumpectomy in London and Essex: immediate and delayed, implant, LD flap and Grisotti flap, fat grafting and nipple reconstruction.",
+        "desc": "Breast reconstruction in London and Essex after mastectomy or lumpectomy: immediate or delayed, implant, LD and Grisotti flaps, fat grafting and nipple.",
         "h1": "Breast reconstruction",
         "lede": "Reconstruction restores the shape of the breast after cancer surgery, either at the same operation or years later. Mr Ullah offers the full range of implant and tissue techniques, and is equally clear when no reconstruction is the right choice.",
         "glance": [("Timing", "Immediate, with the mastectomy, or delayed with no time limit"), ("Techniques", "Implant, LD flap, LICAP and MICAP flaps, Grisotti flap, fat grafting"), ("Hospital stay", "Typically one to three nights"), ("Insurance", "Usually covered as part of cancer treatment")],
@@ -271,7 +287,7 @@ PROCEDURES = [
         "short_desc": "Male breast reduction",
         "summary": "Specialist assessment of the male breast, and surgery for established gynaecomastia.",
         "title": "Gynaecomastia Surgery London & Essex | Mr Zaker Ullah FRCS",
-        "desc": "Gynaecomastia (male breast reduction) in London and Essex with a consultant breast surgeon: specialist assessment, liposuction and gland excision, recovery and results.",
+        "desc": "Gynaecomastia (male breast reduction) in London and Essex with a consultant breast surgeon: assessment, liposuction and gland excision, and recovery.",
         "h1": "Gynaecomastia, or male breast reduction",
         "lede": "Enlargement of the male breast is common, benign in nearly every case, and treatable. It still deserves a specialist assessment, both to exclude the rare serious cause and to achieve a result worth having.",
         "glance": [("Anaesthetic", "General"), ("Hospital stay", "Day case"), ("Garment", "Compression vest for a few weeks"), ("Recovery", "Desk work at a week, exercise at four to six")],
@@ -398,11 +414,11 @@ VIDEOS = [
      "by": "His YouTube channel"},
     {"slug": "covid-advice-with-dr-zaker-ullah", "id": "ZXobptg2HVQ", "date": "2021-03-08", "lang": "Bengali",
      "title": "COVID advice with Mr Zaker Ullah, on TV3 Bangla",
-     "desc": "A health advice segment for TV3 Bangla, in which Mr Ullah answers viewers' questions about COVID-19.",
+     "desc": "A health advice segment for TV3 Bangla, in which breast surgeon Mr Zaker Ullah answers viewers' questions about COVID-19, in Bangla.",
      "by": "TV3 Bangla"},
     {"slug": "health-advice", "id": "q8_1uiu2Vnk", "date": "2021-03-08", "lang": "Bengali",
      "title": "Health advice with Mr Zaker Ullah, on TV3 Bangla",
-     "desc": "Mr Ullah's health advice programme for TV3 Bangla, answering viewers' questions on everyday health.",
+     "desc": "Breast surgeon Mr Zaker Ullah's health advice programme for TV3 Bangla, answering viewers' questions on everyday health, in Bangla.",
      "by": "TV3 Bangla"},
 ]
 
