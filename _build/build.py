@@ -206,7 +206,7 @@ def reviews_section():
     rs = C.REVIEWS
     return f'''<section class="rv"><div class="wrap"><div class="rv-head" data-r>
   <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. 100% of his verified reviews are five stars.</p></div></div>
-  <div class="rv-cta"><h2>Kind, thorough and <i>never rushed</i></h2><a class="btn" href="~/reviews/">Read his reviews</a></div>
+  <div class="rv-cta"><h2>Kind, thorough and never rushed</h2><a class="btn" href="~/reviews/">Read his reviews</a></div>
 </div></div>
 <div class="marq" aria-label="Patient reviews"><div class="row">{"".join(review_card(r) for r in rs + rs)}</div></div></section>'''
 
@@ -257,14 +257,14 @@ def build_home():
   <div class="copy">
     <span class="label">Consultant breast surgeon · London and Essex</span>
     <h1 class="h-anim">A breast surgeon who<br><i>takes the time to listen</i></h1>
-    <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="chip-r" href="~/reviews/">{stars()}<span>5.0 · 100% five-star</span></a></div>
+    <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="hero-link" href="~/reviews/">Rated 5.0 on iWantGreatCare</a></div>
   </div>
 </div></section>
 
-<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("Most breast symptoms turn out to be nothing serious. At his one-stop clinics you have your imaging and provisional results on the same day, from the surgeon who will look after you throughout.")}</p></div></section>
+<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("Most breast symptoms turn out to be nothing serious. At Mr Ullah&rsquo;s one-stop clinics you have your imaging and provisional results on the same day, from the surgeon who will look after you throughout.")}</p></div></section>
 
 <section class="band peach"><div class="wrap">
-  <div class="sec-h" data-r><h2>Care that is <i>quick, close and covered</i></h2></div>
+  <div class="sec-h" data-r><h2>What to expect</h2></div>
   <div class="bento">
     <a class="b b-deep b-tall" href="~/your-visit/" data-r style="--d:0"><span class="k">Same day</span><span class="v">Imaging and provisional results at a single one-stop visit.</span><span class="more">Your first visit</span></a>
     <div class="b" data-r style="--d:1"><span class="k">24 to 48 hours</span><span class="v">To arrange a video or telephone consultation.</span></div>
@@ -276,7 +276,7 @@ def build_home():
 </div></section>
 
 <section class="band white"><div class="wrap tx">
-  <div class="sec-h sticky" data-r><span class="label">Treatments</span><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
+  <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
   <ol class="tx-list">{tx_rows()}</ol>
 </div></section>
 
@@ -285,11 +285,11 @@ def build_home():
 {podcast_panel()}
 
 <section class="band"><div class="wrap">
-  <div class="sec-h center" data-r><span class="label">Clinics</span><h2>Three private <i>clinics</i></h2></div>
+  <div class="sec-h center" data-r><h2>Three private clinics</h2></div>
   <div data-r>{clinic_cols()}</div>
 </div></section>
 
-<section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients <i>ask first</i></h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
+<section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
@@ -308,31 +308,66 @@ def build_about():
         ("Does Mr Ullah speak Bengali?", "Yes. Mr Ullah consults in English and Bengali, and many patients and families value discussing a diagnosis in their first language."),
         ("Can I see Mr Ullah for a second opinion?", "Yes. Many patients see him for a second opinion on a diagnosis or a proposed operation. <a href=\"~/second-opinion/\">More about second opinions</a>."),
     ]
-    body = page_head(crumbs, "Biography", NAME, f"Consultant Oncoplastic Breast and General Surgeon at Barts Health NHS Trust, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital.",
-                     meta=[("Qualifications", POSTNOM), ("GMC registration", '<a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">No. 4368515</a>'), ("Languages", "English and Bengali")]) + f'''
-<section class="section"><div class="wrap railed"><div class="rail"><figure class="figure tall">{portrait(sizes="(min-width: 64rem) 15rem, 92vw")}</figure></div>
-<div class="prose">
-<p>Mr Ullah qualified in medicine in 1987 and began his surgical training in the United Kingdom in 1993. He trained through the North East Thames rotation, with higher surgical posts at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at <strong>St Mary&rsquo;s</strong>, <strong>The Royal Free</strong> and Broomfield hospitals. It was there that his interest in oncoplastic breast surgery took shape.</p>
-<h2>Consultant practice</h2>
-<p>He was appointed consultant at <strong>Barts Health NHS Trust in 2012</strong> and is Clinical Lead of the Breast Unit at Whipps Cross University Hospital. He introduced the hospital&rsquo;s <strong>one-stop breast clinic</strong>, where patients with new symptoms are examined, imaged and, where needed, biopsied at a single visit. He also introduced <strong>fat grafting</strong> for breast deformity at the hospital.</p>
-<p>His practice covers the full range of modern breast surgery: breast conserving cancer surgery and therapeutic mammoplasty, mastectomy, reconstruction with implants and with latissimus dorsi, chest wall perforator and Grisotti flaps, fat grafting, nipple reconstruction, risk reducing surgery for carriers of BRCA and other gene variants, and reduction and uplift for symmetry. In general surgery he maintains a laparoscopic practice in gallstone disease, hernia repair and appendicectomy.</p>
-<h2>Teaching and research</h2>
-<p>Mr Ullah is a clinical and educational supervisor to surgeons in training and directs the <strong>Whipps Cross Higher Surgery FRCS course</strong>, which prepares senior trainees for the fellowship examination of the Royal Colleges of Surgeons. He gives regular educational talks to local GPs.</p>
-<p>His keyhole hernia repair technique, using a glove balloon, won the prize for <strong>best video presentation at the European Association for Endoscopic Surgery</strong> in 2003. He has published research on oncoplastic reconstruction, laparoscopic hernia repair, breast cancer in Asian populations and diagnostic laparoscopy.</p>
-<h2>Beyond the clinic</h2>
-<p>He is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage, and speaks at international cancer meetings. In October 2026 he joined Rosie Fawehimi on her podcast <a href="~/podcast/"><em>Everything Changed</em></a> to answer the questions patients ask most.</p>
-</div></div></section>
-<section class="section tone"><div class="wrap railed"><div class="rail"><span class="label">Career</span></div><div>
-<h2>Appointments and distinctions</h2>
-<ol class="timeline mt-3">
-<li><span class="y">1987</span><div><h3>Qualifies in medicine</h3><p>MBBS.</p></div></li>
-<li><span class="y">1993</span><div><h3>Begins surgical training in the United Kingdom</h3><p>North East Thames rotation through London teaching and district general hospitals.</p></div></li>
-<li><span class="y">1996</span><div><h3>Fellow of the Royal College of Surgeons of Edinburgh</h3><p>FRCSEd.</p></div></li>
-<li><span class="y">2003</span><div><h3>European Association for Endoscopic Surgery</h3><p>Best video presentation, for a keyhole hernia repair technique.</p></div></li>
-<li><span class="y">2009</span><div><h3>FRCS in General Surgery</h3><p>Specialty fellowship, following higher training including The Royal Marsden, St Mary&rsquo;s and The Royal Free.</p></div></li>
-<li><span class="y">2012</span><div><h3>Consultant, Barts Health NHS Trust</h3><p>Oncoplastic breast and general surgeon at Whipps Cross University Hospital.</p></div></li>
-<li><span class="y">Today</span><div><h3>Clinical Lead, Whipps Cross Breast Unit</h3><p>Leads the unit, directs the FRCS course, and sees private patients at Harley Street, St Bartholomew&rsquo;s and The Holly.</p></div></li>
-</ol></div></div></section>
+    chapters = [
+        ("1987", "Qualifies in medicine", "MBBS. The beginning of a career in surgery that now spans nearly four decades."),
+        ("1993", "To London", "He begins surgical training in the United Kingdom on the North East Thames rotation, working through London teaching and district general hospitals."),
+        ("1996", "Fellow of the Royal College of Surgeons of Edinburgh", "FRCSEd, the fellowship that marks a fully trained surgeon in the British tradition, and the reason he is addressed as Mr rather than Dr."),
+        ("2003", "A European prize", "His keyhole hernia repair technique, using a glove balloon, wins best video presentation at the European Association for Endoscopic Surgery."),
+        ("2009", "Specialist in general surgery", "FRCS in General Surgery, after higher training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield. It is here that his interest in oncoplastic breast surgery takes shape."),
+        ("2012", "Consultant, Barts Health", "Appointed consultant oncoplastic breast and general surgeon at Whipps Cross University Hospital, part of Barts Health NHS Trust."),
+        ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. He directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Harley Street and St Bartholomew&rsquo;s."),
+    ]
+    jn = "".join(f'<li class="ch" data-y="{y}"><span class="y">{y}</span><h2>{t}</h2><p>{d}</p></li>' for y, t, d in chapters)
+    practice = [
+        ("Breast cancer surgery", "Breast conserving surgery and therapeutic mammoplasty, mastectomy and lymph node surgery."),
+        ("Reconstruction", "Implants, latissimus dorsi, chest wall perforator and Grisotti flaps, fat grafting and nipple reconstruction."),
+        ("Risk reducing surgery", "For carriers of BRCA and other gene variants, planned around the patient and her family."),
+        ("Symmetry", "Reduction and uplift to balance the breasts after cancer surgery."),
+        ("General surgery", "A laparoscopic practice in gallstone disease, hernia repair and appendicectomy."),
+    ]
+    pr = "".join(f'<div class="pc" data-r style="--d:{i % 3}"><h3>{t}</h3><p>{d}</p></div>' for i, (t, d) in enumerate(practice))
+    body = f'''
+<section class="bio-hero" data-hero><div class="wrap">
+  {crumbs_html(crumbs)}
+  <div class="bh">
+    <div class="bh-copy">
+      <h1 class="h-anim">Mr Md Zaker Ullah</h1>
+      <p class="bh-sub">Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital.</p>
+      <dl class="bh-meta"><div><dt>Qualifications</dt><dd>{POSTNOM}</dd></div><div><dt>GMC</dt><dd><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">4368515</a></dd></div><div><dt>Languages</dt><dd>English and Bengali</dd></div></dl>
+    </div>
+    <figure class="bh-fig">{picture("zu-navy", "Mr Md Zaker Ullah, consultant oncoplastic breast surgeon", "(min-width: 64rem) 44vw, 100vw", [600, 900, 1300], 1020, 1542, lazy=False)}</figure>
+  </div>
+</div></section>
+
+<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From his first day in medicine in 1987 to leading a breast unit in east London, one idea runs through his work: plan the cancer treatment and the result together, and take the time to explain both.")}</p></div></section>
+
+<section class="journey"><div class="wrap jn">
+  <div class="jn-side" aria-hidden="true"><span class="jn-year" data-year>1987</span><span class="jn-track"><i data-progress></i></span></div>
+  <ol class="jn-list">{jn}</ol>
+</div></section>
+
+<section class="bleed"><figure data-par-wrap><picture><source type="image/webp" srcset="~/assets/img/bio-stage.webp"><img src="~/assets/img/bio-stage.jpg" alt="Mr Ullah speaking at a lectern at an international healthcare summit" width="1600" height="900" loading="lazy" data-par></picture></figure>
+  <div class="wrap"><p class="bleed-cap" data-r>He speaks at international cancer meetings, and is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage.</p></div></section>
+
+<section class="band white"><div class="wrap">
+  <div class="sec-h" data-r><h2>His practice today</h2><p>The full range of modern breast surgery, with one surgeon from first appointment to follow-up.</p></div>
+  <div class="pcs">{pr}</div>
+</div></section>
+
+<section class="band deep"><div class="wrap">
+  <div class="sec-h" data-r><h2>Teaching the next surgeons</h2></div>
+  <div class="tcs">
+    <div class="tc" data-r style="--d:0"><span class="k">FRCS</span><p>Directs the Whipps Cross Higher Surgery FRCS course, preparing senior trainees for the fellowship examination of the Royal Colleges of Surgeons.</p></div>
+    <div class="tc" data-r style="--d:1"><span class="k">Supervisor</span><p>Clinical and educational supervisor to surgeons in training, and a regular speaker to local GPs.</p></div>
+    <div class="tc" data-r style="--d:2"><span class="k">Research</span><p>Published on oncoplastic reconstruction, laparoscopic hernia repair, breast cancer in Asian populations and diagnostic laparoscopy.</p></div>
+  </div>
+</div></section>
+
+<section class="band peach"><div class="wrap duo">
+  <figure class="duo-img" data-r><picture><source type="image/webp" srcset="~/assets/img/bio-podcast.webp"><img src="~/assets/img/bio-podcast.jpg" alt="Mr Ullah in conversation on the Everything Changed podcast" width="1600" height="900" loading="lazy"></picture></figure>
+  <div data-r style="--d:1"><h2>In conversation</h2><p class="lede mt-2">In October 2026 he joined Rosie Fawehimi, whose breast cancer he diagnosed and treated, on her podcast <em>Everything Changed</em> to answer the questions patients ask most.</p><p class="mt-3"><a class="more" href="~/podcast/">Watch the episode</a></p></div>
+</div></section>
+
 {railed("Memberships", '<dl class="facts"><div><dt>Fellowships</dt><dd>Royal College of Surgeons of Edinburgh (FRCSEd). FRCS in General Surgery.</dd></div><div><dt>Associations</dt><dd>Association of Breast Surgery. Association of Surgeons of Great Britain and Ireland. European Association for Endoscopic Surgery.</dd></div><div><dt>Register</dt><dd>General Medical Council, no. 4368515, on the Specialist Register.</dd></div><div><dt>NHS</dt><dd>Consultant, Barts Health NHS Trust, since 2012.</dd></div></dl>')}
 {faq_section(faqs, "About Mr Ullah")}'''
     render(path, title="Mr Md Zaker Ullah FRCS | Biography, Consultant Breast Surgeon",

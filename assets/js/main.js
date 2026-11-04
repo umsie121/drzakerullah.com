@@ -106,12 +106,42 @@
   var hero = document.querySelector("[data-hero]");
   var say = document.querySelector("[data-say]");
   var words = say ? say.querySelectorAll(".w") : [];
-  if (!still && (hero || say)) {
+  var pars = document.querySelectorAll("[data-par]");
+  var jn = document.querySelector(".jn");
+  var chs = jn ? jn.querySelectorAll(".ch") : [];
+  var yearEl = document.querySelector("[data-year]");
+  var bar = document.querySelector("[data-progress]");
+  if (jn && chs.length) {
+    chs[0].classList.add("on");
+    var shown = chs[0].getAttribute("data-y");
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        chs.forEach(function (c) { c.classList.toggle("on", c === en.target); });
+        var y = en.target.getAttribute("data-y");
+        if (yearEl && y !== shown) {
+          shown = y; yearEl.classList.add("swap");
+          setTimeout(function () { yearEl.textContent = y; yearEl.classList.remove("swap"); }, 220);
+        }
+      });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    chs.forEach(function (c) { cio.observe(c); });
+  }
+  if (!still && (hero || say || pars.length || bar)) {
     var ticking = false;
     var update = function () {
       ticking = false;
       var vh = window.innerHeight;
       if (hero) hero.style.setProperty("--hp", Math.min(1, Math.max(0, window.scrollY / vh)).toFixed(3));
+      pars.forEach(function (el) {
+        var b = el.parentNode.getBoundingClientRect();
+        el.style.setProperty("--py", Math.min(1, Math.max(0, (vh - b.top) / (vh + b.height))).toFixed(3));
+      });
+      if (bar) {
+        var jr = jn.getBoundingClientRect();
+        bar.style.setProperty("--jp", Math.min(1, Math.max(0, (vh * 0.5 - jr.top) / jr.height)).toFixed(3));
+        bar.parentNode.style.setProperty("--jp", bar.style.getPropertyValue("--jp"));
+      }
       if (say) {
         var r = say.getBoundingClientRect();
         var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));

@@ -30,7 +30,7 @@ PHYSICIAN_REF = {"@id": SITE + "/#physician"}
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0,0;1,9..144,300..700,0,0&family=Figtree:wght@300..800&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Figtree:wght@300..800&display=swap">')
 
 
 def picture(base, alt, sizes, widths, w, h, lazy=True):
