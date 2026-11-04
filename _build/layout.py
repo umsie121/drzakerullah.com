@@ -92,7 +92,7 @@ def nav_model(nav):
           ("Podcast and videos", "~/podcast/", "Podcast, TV3 Bangla, YouTube"), ("Second opinions", "~/second-opinion/", "An independent view")]),
         ("Patients", "patients", "~/your-visit/", "Everything you need to know before your first appointment.",
          [("Your first visit", "~/your-visit/", "What happens on the day"), ("Fees and insurance", "~/fees-and-insurance/", "Insured and self-funding"),
-          ("Questions answered", "~/faqs/", "Every common question"), ("Book a consultation", "~/booking/", "Enquiries and contact")]),
+          ("Video and international", "~/remote-consultations/", "Consultations from anywhere"), ("Questions answered", "~/faqs/", "Every common question"), ("Book a consultation", "~/booking/", "Online, by phone or email")]),
     ]
 
 
@@ -137,10 +137,10 @@ def footer(nav):
         <p class="contact">{nav["sec_name"]}, private secretary<br><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a><br><a href="mailto:{nav["email"]}">{nav["email"]}</a></p></div>
       <div><h4>Treatments</h4><ul>{procs}</ul></div>
       <div><h4>Clinics</h4><ul>{locs}<li><a href="~/locations/">All clinics</a></li></ul></div>
-      <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/remote-consultations/">Video and international</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
       <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast and videos</a></li><li><a href="~/news/">Journal</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="{nav["youtube"]}" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
-    <div class="f-legal"><span>&copy; 2026 {NAME}. GMC 4368515.</span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
+    <div class="f-legal"><span>&copy; 2026 {NAME} · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a> · <a href="~/privacy/">Privacy</a> · <a href="~/cookies/">Cookies</a></span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
   </div>
 </footer>
 <div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book a consultation</a></div>'''

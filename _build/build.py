@@ -242,12 +242,11 @@ def build_home():
     body = f'''
 <section class="hero-frame"><div class="vhero">
   <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and at Nuffield Health The Holly"><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
-  <button class="rp" type="button" aria-label="Pause video">Pause</button>
   <div class="copy">
     <div><span class="label">Consultant breast surgeon in London and Essex</span><h1>A breast surgeon who<br><i>takes the time to listen</i></h1></div>
     <div class="panel-intro"><p>{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
       <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="btn glass" href="~/procedures/">Explore treatments</a></div>
-      <p class="proof">{stars()} Rated {C.IWGC_RATING}, 100% five-star · Bupa Platinum consultant</p></div>
+      <p class="proof">{stars()} Rated {C.IWGC_RATING}, 100% five-star · Bupa Platinum consultant · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a></p></div>
   </div>
 </div></section>
 
@@ -256,7 +255,8 @@ def build_home():
   <div><span class="k">24 to 48 hours</span><span class="v">For a video or telephone consultation</span></div>
   <div><span class="k">Clinical Lead</span><span class="v">Breast Unit, Whipps Cross, Barts Health NHS Trust</span></div>
   <div><span class="k">Bupa Platinum</span><span class="v">Platinum consultant, fee-assured, Open Referral network</span></div>
-</div></div>
+</div>
+<div class="asseen"><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div></div>
 
 <section class="section tight"><div class="wrap split-head">
   <div><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction, under one consultant who sees you throughout.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
@@ -287,7 +287,7 @@ def build_home():
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
-                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and at Nuffield Health The Holly.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04"}],
+                                       {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and at Nuffield Health The Holly.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT17S"}],
            priority="1.0")
 
 
@@ -452,7 +452,7 @@ VISIT_FAQS = [
 FEES_FAQS = [
     ("Do I need a GP referral if I am insured?", "Most insurers ask for a GP referral before they authorise a specialist appointment. Some accept a referral from a digital GP service included in your policy. Check with your insurer."),
     ("Is Mr Ullah fee-assured?", "Yes. Mr Ullah is a Bupa Platinum consultant and fee-assured with Bupa, and is recognised by the other major UK insurers, so you should not face a shortfall for his fees. Confirm your own cover with your insurer."),
-    ("How much does a consultation cost if I am self-funding?", "Consultation fees are set and confirmed by each hospital when you book. For tests or surgery, the hospital provides a written, fixed price before you commit."),
+    ("How much does a consultation cost if I am self-funding?", "Consultation fees are confirmed by the hospital or booking service when you book, before you attend. Imaging and biopsies are usually charged separately, and for tests or surgery you receive a written, fixed price before you commit."),
     ("Is breast reconstruction covered?", "Reconstruction after breast cancer, including surgery to the other breast for symmetry, is normally covered by insurers as part of cancer treatment. Cosmetic procedures generally are not."),
 ]
 
@@ -464,12 +464,13 @@ def build_patient_pages():
                      "What to expect from a first appointment with Mr Ullah, from booking to the plan you leave with.",
                      actions='<a class="btn" href="~/booking/">Book a consultation</a>') + \
         railed("Four stages", '''<ol class="steps">
-<li><h3>Booking</h3><p>Call the private secretary or send an enquiry. If you are insured, obtain a GP referral and a pre-authorisation number from your insurer.</p></li>
+<li><h3>Booking</h3><p>Book online with a partner, call the private secretary or send an enquiry. If you are insured, obtain a GP referral and a pre-authorisation number from your insurer.</p></li>
 <li><h3>Consultation</h3><p>A full history and examination with Mr Ullah himself, with time to talk and to ask questions.</p></li>
 <li><h3>Assessment</h3><p>Ultrasound, mammography and needle biopsy at the same visit where needed. This is triple assessment.</p></li>
 <li><h3>The plan</h3><p>Results and a written plan. If surgery is needed, the surgeon who examined you is the surgeon who operates.</p></li></ol>''') + \
         railed("Bring with you", '<ul class="list-plain"><li>Your GP referral letter, if you have one</li><li>Any previous breast imaging or biopsy results</li><li>A list of the medicines you take</li><li>Your insurance details and pre-authorisation number</li><li>A list of your questions</li></ul><p class="note mt-2">If you may need a mammogram, avoid deodorant and talcum powder on the day.</p>', cls="section rule") + \
         railed("Afterwards", '<div class="prose"><p>Imaging findings are usually explained on the day. Biopsy results normally take a few working days, after which Mr Ullah sees you again or telephones to explain them. If treatment is needed, it is planned with you and, for cancer, with a multidisciplinary team.</p><p>With your consent, Mr Ullah writes to your GP after each consultation. You can read about <a href="~/fees-and-insurance/">fees and insurance</a> or see <a href="~/faqs/">every common question</a>.</p></div>', cls="section rule") + \
+        railed("Your contact", secretary_block(), cls="section rule") + \
         faq_section(VISIT_FAQS, "Questions about your visit")
     render(path, title="Your First Appointment with a Breast Surgeon | Mr Zaker Ullah",
            desc="What happens at a first private appointment with consultant breast surgeon Mr Zaker Ullah: booking, examination, imaging and biopsy, results and what to bring.",
@@ -480,7 +481,7 @@ def build_patient_pages():
     body = page_head(crumbs, "Patients", "Fees and insurance",
                      "Mr Ullah sees insured and self-funding patients at each of his clinics. Here is how payment and authorisation work.") + \
         railed("Insured", f'<div class="prose"><p>Mr Ullah is recognised by the major UK private medical insurers and is fee-assured with the principal insurers, so you should not face a shortfall for his fees.</p><p>With Bupa he is a <strong>Platinum consultant</strong>, <strong>fee-assured</strong>, and part of Bupa&rsquo;s <strong>Open Referral network</strong>. If your GP gives an open referral, ask Bupa for Mr Md Z Ullah by name, or choose Nuffield Health The Holly in Buckhurst Hill.</p><p>Before your first appointment, most insurers ask for two things: a <strong>GP referral</strong>, and a <strong>pre-authorisation number</strong>, which you obtain by calling your insurer with the referral. Bring the number to your appointment.</p></div><div class="mt-3"><span class="label">Recognised by</span><div class="insurers mt-1">{"".join(f"<span>{i}</span>" for i in C.INSURERS)}</div></div>') + \
-        railed("Self-funding", '<div class="prose"><p>You do not need insurance or a referral. The hospital confirms the consultation fee when you book. If you need tests or surgery, it gives you a written, fixed price before anything is arranged, so there are no surprises.</p><p>Each hospital sets its own prices, which is why they are not published here. The <a href="~/booking/">private secretary</a> can tell you who to ask.</p></div>', cls="section rule") + \
+        railed("Self-funding", '<div class="prose"><p>You do not need insurance or a referral. Book with the hospital or booking service you prefer, and the consultation fee is confirmed when you book. If you need tests or surgery, you receive a written, fixed price before anything is arranged, so there are no surprises.</p><h3>What is usually charged separately</h3><ul><li>Imaging, such as mammogram or ultrasound, charged by the hospital</li><li>Biopsy and laboratory (pathology) fees</li><li>For surgery: the hospital stay, theatre and anaesthetist, usually combined in one fixed-price package</li></ul><p>Prices vary between hospitals and services, which is why they are quoted by each partner rather than listed here. The <a href="~/booking/">booking page</a> links to each one, and the private secretary can tell you what is included before you commit.</p></div>' + f'<div class="mt-3">{partner_cards()}</div>', cls="section rule") + \
         faq_section(FEES_FAQS, "Questions about fees")
     render(path, title="Fees & Insurance | Private Breast Surgeon Mr Zaker Ullah",
            desc="Seeing Mr Zaker Ullah privately: insurers he is recognised by, GP referrals and pre-authorisation, and how self-funding prices are confirmed by each hospital.",
@@ -534,7 +535,7 @@ def build_podcast():
         f'<section class="section" id="watch"><div class="wrap railed"><div class="rail"><span class="label">Episode</span><span class="label">{P["duration_label"]}</span></div><div>{video()}<p class="stone small mt-1">Hosted by {P["host"]}. The video loads from YouTube when you press play.</p></div></div></section>' + \
         faq_section(qa, "The five questions", "In this episode") + \
         railed("About the show", f'<p class="lede"><em>Everything Changed</em> is {P["host"]}&rsquo;s podcast about life during and after breast cancer. In this live episode she talks to the surgeon who diagnosed her and later performed her double mastectomy and reconstruction.</p>', cls="section rule") + \
-        f'<section class="section blush"><div class="wrap railed"><div class="rail"><span class="label">In Bengali</span><span class="label">TV3 Bangla and YouTube</span></div><div><h2>Health advice in Bengali</h2><p class="lede mt-1">Mr Ullah presents health talks in Bengali for TV3 Bangla and on his own YouTube channel, from breast self-examination to questions about COVID-19.</p><div class="mt-3">{journal_list(VIDEO_ENTRIES)}</div><p class="mt-3"><a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">His YouTube channel</a></p></div></div></section>'
+        f'<section class="section blush" id="bengali"><div class="wrap railed"><div class="rail"><span class="label">In Bengali</span><span class="label">TV3 Bangla and YouTube</span></div><div><h2>Health advice in Bengali</h2><p class="lede mt-1">Mr Ullah presents health talks in Bengali for TV3 Bangla and on his own YouTube channel, from breast self-examination to questions about COVID-19.</p><div class="mt-3">{journal_list(VIDEO_ENTRIES)}</div><p class="mt-3"><a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">His YouTube channel</a></p></div></div></section>'
     ep = {"@context": "https://schema.org", "@type": "PodcastEpisode", "name": P["title"], "url": P["spotify"], "datePublished": P["date"],
           "timeRequired": P["duration"], "episodeNumber": P["episode"], "description": P["summary"],
           "partOfSeries": {"@type": "PodcastSeries", "name": P["show"]}, "actor": [{"@type": "Person", "name": P["host"]}, PHYSICIAN_REF],
@@ -608,35 +609,105 @@ def build_videos():
 
 
 # ================================================================== BOOKING
+def partner_cards():
+    out = []
+    for p in C.BOOKING_PARTNERS:
+        extra = f'<p class="stone small mt-1">{p["extra"]}</p>' if p["extra"] else ""
+        out.append(f'<div class="partner"><span class="label">{p["kind"]}</span><h3>{p["name"]}</h3><p class="stone">Best for: {p["best"]}</p>{extra}<span class="sp"></span>'
+                   f'<a class="btn" href="{p["url"]}" target="_blank" rel="noopener">{p["cta"]} ↗</a></div>')
+    return f'<div class="partners">{"".join(out)}</div>'
+
+
+def secretary_block():
+    return f'''<div class="secblock"><div><span class="label">Your contact</span><h3>{C.SEC_NAME}</h3><p class="stone">Private secretary to Mr Ullah, at Nuffield Health The Holly Hospital, High Road, Buckhurst Hill IG9 5HX. She can book you at any of his clinics, answer questions about insurance and fees, and arrange a video or telephone consultation.</p></div>
+<dl class="facts"><div><dt>Telephone</dt><dd><a href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a></dd></div><div><dt>The Holly bookings</dt><dd><a href="tel:{C.HOLLY_APPTS_TEL}">{C.HOLLY_APPTS_PHONE}</a>, option 1 · <a href="mailto:{C.HOLLY_APPTS_EMAIL}">{C.HOLLY_APPTS_EMAIL}</a></dd></div></dl></div>'''
+
+
 def build_booking():
     path = "booking/"
     crumbs = [("Home", ""), ("Book a consultation", path)]
     opts = "".join(f"<option>{l['name']}</option>" for l in C.LOCATIONS)
     procs = "".join(f"<option>{p['nav']}</option>" for p in C.PROCEDURES)
-    body = page_head(crumbs, "Appointments", "Book a consultation",
-                     "Telephone Ms Juliet Willes, Mr Ullah&rsquo;s private secretary, or send an enquiry and the team will call you back. New breast symptoms are given priority, and video or telephone consultations can usually be arranged within 24 to 48 hours.",
-                     meta=[("Telephone", f'<a href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a>'), ("Email", f'<a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a>'), ("Rapid access", "Tuesday afternoons at The Holly")]) + f'''
-<section class="section"><div class="wrap railed"><div class="rail"><span class="label">Enquiry</span></div><div class="cols-2">
+    body = page_head(crumbs, "Appointments", "Book a <i>consultation</i>",
+                     "Book directly with the hospital or booking service that suits your clinic and insurer, or speak to Mr Ullah&rsquo;s private secretary. New breast symptoms are given priority, and video or telephone consultations can usually be arranged within 24 to 48 hours.",
+                     meta=[("Private secretary", f'<a href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a>'), ("The Holly bookings", f'<a href="tel:{C.HOLLY_APPTS_TEL}">{C.HOLLY_APPTS_PHONE}</a>, option 1'), ("Rapid access", "Tuesday afternoons at The Holly")]) + \
+        railed("Book online", f'<h2>Book with a <i>partner</i></h2><p class="lede mt-1">Each service books Mr Ullah directly. Choose the one that matches where you want to be seen and how you are paying.</p><div class="mt-3">{partner_cards()}</div><p class="note mt-2">These links open the partner&rsquo;s own website, which has its own terms and privacy policy. Prices are confirmed by the hospital or service when you book.</p>') + \
+        railed("Speak to us", secretary_block(), cls="section rule") + f'''
+<section class="section rule"><div class="wrap railed"><div class="rail"><span class="label">Or send an enquiry</span></div><div class="cols-2">
   <form class="form" id="enquiry" data-to="{C.SEC_EMAIL}">
     <div class="row"><label>Name<input name="name" required autocomplete="name"></label><label>Telephone<input name="phone" type="tel" required autocomplete="tel"></label></div>
     <div class="row"><label>Email<input name="email" type="email" autocomplete="email"></label><label>Clinic<select name="clinic">{opts}<option>No preference</option></select></label></div>
-    <div class="row"><label>Reason<select name="reason">{procs}<option>Second opinion</option><option>Other</option></select></label><label>Funding<select name="funding"><option>Private medical insurance</option><option>Self-funding</option><option>Not yet decided</option></select></label></div>
+    <div class="row"><label>Reason<select name="reason">{procs}<option>Second opinion</option><option>Remote or international consultation</option><option>Other</option></select></label><label>Funding<select name="funding"><option>Private medical insurance</option><option>Self-funding</option><option>Not yet decided</option></select></label></div>
     <label>Anything else (optional)<textarea name="message" placeholder="For example, the best time to call, or your insurer"></textarea></label>
-    <label class="consent"><input type="checkbox" required> I agree to be contacted about this enquiry by Mr Ullah&rsquo;s private practice.</label>
+    <label class="consent"><input type="checkbox" required> I agree to be contacted about this enquiry by Mr Ullah&rsquo;s private practice. <a href="~/privacy/">Privacy policy</a></label>
     <button class="btn" type="submit">Send enquiry</button>
   </form>
   <div>
-    <p class="stone">Your enquiry opens in your email application, addressed to Mr Ullah&rsquo;s private secretary. Please keep medical detail for the consultation.</p>
+    <p class="stone">Your enquiry opens in your own email application, addressed to Mr Ullah&rsquo;s private secretary. This website does not store what you type. Please keep medical detail for the consultation.</p>
     <dl class="facts mt-2"><div><dt>Insured</dt><dd>A GP referral and pre-authorisation number are needed by most insurers. <a href="~/fees-and-insurance/">Fees and insurance</a></dd></div>
     <div><dt>Self-funding</dt><dd>No referral is needed. The hospital confirms fees in advance.</dd></div>
-    <div><dt>Your visit</dt><dd>What happens and what to bring. <a href="~/your-visit/">Your first visit</a></dd></div>
+    <div><dt>From abroad</dt><dd>Video consultations and second opinions. <a href="~/remote-consultations/">Remote and international</a></dd></div>
     <div><dt>Urgent</dt><dd>If you are acutely unwell, call 999 or go to your nearest emergency department.</dd></div></dl>
   </div>
 </div></div></section>
 {railed("Clinics", clinic_cols(), cls="section rule")}'''
-    render(path, title="Book a Private Breast Surgeon in London | Mr Zaker Ullah",
-           desc=f"Book a private consultation with breast surgeon Mr Zaker Ullah FRCS at Harley Street, St Bartholomew's or The Holly, Buckhurst Hill. Telephone {C.SEC_PHONE}.",
+    render(path, title="Book a Private Breast Surgeon | Mr Zaker Ullah, The Holly & London",
+           desc=f"Book Mr Zaker Ullah FRCS online through Nuffield Health, Doctify, Top Doctors or Bupa, or call his private secretary on {C.SEC_PHONE}. Insured and self-pay welcome.",
            body=body, nav=NAV, active="patients", priority="0.9", schema=[crumbs_schema(crumbs)], band=False)
+
+
+def build_remote():
+    path = "remote-consultations/"
+    crumbs = [("Home", ""), ("Remote and international", path)]
+    faqs = [
+        ("Can I have a consultation with Mr Ullah by video?", "Yes. A video or telephone consultation can usually be arranged within 24 to 48 hours of your enquiry. If an examination or tests are needed, a face to face appointment is arranged afterwards."),
+        ("Can I get a second opinion from abroad?", "Yes. Mr Ullah reviews your reports and images, discusses them with you by video, and gives a written opinion that you can share with your own doctors. Treatment, if you choose it, takes place at one of his UK clinics."),
+        ("What should I send before a remote second opinion?", "Clinic letters, imaging reports and, where possible, the images themselves, biopsy or pathology reports, and a list of your medicines. Reports should be in English or come with a translation."),
+        ("Can the consultation be in Bengali?", "Yes. Mr Ullah consults in English and Bengali, which many families find helpful when discussing a diagnosis."),
+        ("How much does a remote consultation cost?", "The fee is confirmed by the practice when you book, before the consultation takes place. Some UK insurers cover remote consultations; check with yours."),
+    ]
+    body = page_head(crumbs, "Remote and international", "Video consultations and <i>second opinions from abroad</i>",
+                     "Mr Ullah offers video and telephone consultations, and second opinions for patients anywhere in the UK or overseas, in English or Bengali.",
+                     actions='<a class="btn" href="~/booking/">Arrange a video consultation</a>') + \
+        railed("How it works", '''<ol class="steps">
+<li><h3>Enquire</h3><p>Contact the private secretary. A video or telephone consultation can usually be arranged within 24 to 48 hours.</p></li>
+<li><h3>Send your records</h3><p>Clinic letters, imaging and pathology reports, in English or translated, and the images if you can.</p></li>
+<li><h3>Talk it through</h3><p>A consultation with Mr Ullah by secure video, with time to ask every question.</p></li>
+<li><h3>Your written opinion</h3><p>A clear letter explaining his view and recommended next steps, for you and your own doctors.</p></li></ol>''') + \
+        railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/harley-street/">Harley Street</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
+<p>For patients travelling from abroad for treatment, the practice can help you plan the timing of consultations, tests and surgery. Read more about <a href="~/second-opinion/">second opinions</a>.</p></div>''', cls="section rule") + \
+        faq_section(faqs, "Questions about remote consultations")
+    desc = "Video consultations and international breast cancer second opinions with consultant breast surgeon Mr Zaker Ullah FRCS, in English or Bengali, usually within 24 to 48 hours."
+    render(path, title="Video Consultations & International Second Opinions | Mr Ullah", desc=desc, body=body, nav=NAV, active="patients", priority="0.7",
+           schema=[medical_page(path, "Video consultations and international second opinions", desc), crumbs_schema(crumbs), faq_schema(faqs)])
+
+
+def build_legal():
+    path = "privacy/"
+    crumbs = [("Home", ""), ("Privacy policy", path)]
+    body = page_head(crumbs, "Legal", "Privacy policy", f"How Mr Ullah&rsquo;s private practice handles your personal information. Last updated {UPDATED}.") + \
+        railed("Policy", f'''<div class="prose">
+<h2>Who we are</h2><p>This website belongs to the private practice of {NAME} FRCS, consultant breast surgeon (GMC 4368515). For anything about your personal information, contact his private secretary, {C.SEC_NAME}, at <a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a> or on {C.SEC_PHONE}.</p>
+<h2>What this website collects</h2><p>This website does not use analytics, advertising or tracking cookies, and it does not store anything you type. The enquiry form does not send data to a server: it opens your own email application with a message addressed to the private secretary, and nothing is sent until you choose to send it.</p>
+<h2>Information you send us</h2><p>If you email or telephone the practice, we use your name, contact details and anything you tell us to arrange and provide your care. Information about your health is special category data, which we process to provide healthcare under UK GDPR Article 9(2)(h). Clinical records are held by the hospital where you are seen, under its own policies and retention periods.</p>
+<h2>Who we share it with</h2><p>Only those involved in your care or its payment: the hospital where you are seen, your GP (with your consent), and your insurer if you are claiming. We never sell your information.</p>
+<h2>Third parties on this website</h2><ul><li><strong>Google Fonts</strong>: the typefaces load from Google&rsquo;s servers, which receive your IP address in order to send the font files.</li><li><strong>YouTube</strong>: videos use YouTube&rsquo;s privacy enhanced mode and load only when you press play. YouTube may then set its own cookies.</li><li><strong>Booking partners</strong>: links to Nuffield Health, Doctify, Top Doctors, Bupa and iWantGreatCare open their websites, which have their own privacy policies.</li></ul>
+<h2>Your rights</h2><p>You can ask to see, correct or delete the information we hold about you, or object to how it is used, by contacting the private secretary. If you are unhappy with how your information has been handled, you can complain to the Information Commissioner&rsquo;s Office at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+</div>''')
+    render(path, title="Privacy Policy | Mr Zaker Ullah, Consultant Breast Surgeon", desc="How the private practice of consultant breast surgeon Mr Zaker Ullah handles personal information, and your rights under UK GDPR.",
+           body=body, nav=NAV, priority="0.2", schema=[crumbs_schema(crumbs)], band=False)
+
+    path = "cookies/"
+    crumbs = [("Home", ""), ("Cookie policy", path)]
+    body = page_head(crumbs, "Legal", "Cookie policy", f"Last updated {UPDATED}.") + \
+        railed("Policy", '''<div class="prose">
+<h2>Does this website use cookies?</h2><p>No. This website sets no cookies of its own and uses no analytics or advertising trackers, which is why you are not asked to accept cookies.</p>
+<h2>Embedded videos</h2><p>Videos use YouTube&rsquo;s privacy enhanced mode and nothing loads from YouTube until you press play. Once a video plays, YouTube may set cookies under its own policy.</p>
+<h2>Other websites</h2><p>Links to booking partners, review sites and social media take you to their websites, which have their own cookie policies.</p>
+<h2>If this changes</h2><p>If analytics or other cookies are ever added, this page will be updated and you will be asked for consent before any non-essential cookie is set.</p>
+<p>Questions? See the <a href="~/privacy/">privacy policy</a>.</p></div>''')
+    render(path, title="Cookie Policy | Mr Zaker Ullah, Consultant Breast Surgeon", desc="This website sets no cookies and uses no analytics or advertising trackers. Embedded YouTube videos load only when you press play.",
+           body=body, nav=NAV, priority="0.1", schema=[crumbs_schema(crumbs)], band=False)
 
 
 def build_404():
@@ -656,7 +727,7 @@ def build_files():
     llms = [f"# {NAME} FRCS, Consultant Oncoplastic Breast Surgeon, London and Essex", "",
             f"> {PHYSICIAN['description']} GMC 4368515. Rated {C.IWGC_RATING} out of 5 on iWantGreatCare (100% five-star). Bupa Platinum consultant, fee-assured, in Bupa's Open Referral network. Private secretary: {C.SEC_PHONE}.", "",
             "## Key pages", f"- [Biography]({SITE}/biography/)", f"- [Book a consultation]({SITE}/booking/)", f"- [Your first visit]({SITE}/your-visit/)", f"- [Fees and insurance]({SITE}/fees-and-insurance/)",
-            f"- [Questions answered]({SITE}/faqs/)", f"- [Reviews]({SITE}/reviews/)", f"- [Podcast]({SITE}/podcast/)", f"- [Second opinions]({SITE}/second-opinion/)", "", "## Treatments"] + \
+            f"- [Questions answered]({SITE}/faqs/)", f"- [Reviews]({SITE}/reviews/)", f"- [Podcast]({SITE}/podcast/)", f"- [Second opinions]({SITE}/second-opinion/)", f"- [Video and international consultations]({SITE}/remote-consultations/)", "", "## Treatments"] + \
            [f"- [{p['nav']}]({SITE}/procedures/{p['slug']}/): {p['summary']}" for p in C.PROCEDURES] + ["", "## Clinics"] + \
            [f"- [{l['name']}]({SITE}/locations/{l['slug']}/): {loc_address(l)}" for l in C.LOCATIONS] + ["", "## Journal"] + [f"- [{p['title']}]({SITE}/news/{p['slug']}/)" for p in POSTS]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
@@ -664,7 +735,7 @@ def build_files():
 
 if __name__ == "__main__":
     build_home(); build_about(); build_procedures(); build_second_opinion(); build_locations(); build_patient_pages()
-    build_reviews(); build_podcast(); build_news(); build_videos(); build_booking(); build_404(); build_files()
+    build_reviews(); build_podcast(); build_news(); build_videos(); build_booking(); build_remote(); build_legal(); build_404(); build_files()
     print(f"Built {len(SITEMAP)} indexable pages · {len(POSTS)} posts live · {len(SCHEDULED)} scheduled")
     for s in SCHEDULED:
         print(f"  scheduled {s['date']}  {s['slug']}")

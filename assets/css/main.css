@@ -539,3 +539,28 @@ body.locked { overflow: hidden; }
 .js .fade { opacity: 0; transform: translateY(12px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
 .js .fade.in { opacity: 1; transform: none; }
 .notfound { min-height: 55vh; display: grid; align-content: center; }
+
+/* ------------------------------------------------------------ booking partners, secretary, as seen on */
+.partners { display: grid; gap: 1rem; }
+@media (min-width: 48rem) { .partners { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 80rem) { .partners { grid-template-columns: repeat(4, 1fr); } }
+.partner { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; }
+.partner:first-child { background: var(--deep); border-color: var(--deep); color: var(--on-deep); }
+.partner:first-child h3 { color: #fff; }
+.partner:first-child .label { color: var(--accent-soft); }
+.partner:first-child .stone { color: var(--on-deep-2); }
+.partner:first-child .btn { background: var(--accent); border-color: var(--accent); color: var(--deep); }
+.partner h3 { margin-top: 0.5rem; }
+.partner > p { margin-top: 0.6rem; font-size: 0.93rem; }
+.partner .sp { flex: 1; min-height: 1.2rem; }
+.partner .btn { align-self: flex-start; min-height: 2.9rem; font-size: 0.9rem; }
+.secblock { display: grid; gap: 2rem; align-items: start; }
+@media (min-width: 56rem) { .secblock { grid-template-columns: 1fr 1.1fr; gap: 3rem; } }
+.secblock h3 { margin-top: 0.5rem; font-size: 1.7rem; }
+.secblock p { margin-top: 0.7rem; max-width: 30rem; }
+.asseen { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 2rem; padding: 1.4rem 0 0.4rem; border-top: 1px solid var(--line-strong); }
+.asseen .label { margin-right: 0.5rem; }
+.asseen a { font-family: var(--display); font-variation-settings: var(--fvs); font-size: 1.15rem; color: var(--muted); transition: color 0.25s; }
+.asseen a:hover { color: var(--deep); }
+.vhero .panel-intro .proof a { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: rgba(255, 255, 255, 0.4); }
+.site-footer .f-legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 0.2em; }

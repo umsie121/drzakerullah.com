@@ -48,6 +48,8 @@ stories or facts about Mr Ullah.
 - Direct booking numbers for The Harley Street Clinic and Nuffield St Bartholomew's.
 - Secretary email: old site gave juliet.willes@nhs.net, Bupa gives juliet.willes@nuffieldhealth.com (used).
 - He no longer consults at Spire London East (confirmed). Do not list it.
+- Fees are not published anywhere (not on PHIN, Bupa, Nuffield, Doctify or Top Doctors). Do not invent prices; booking goes via partners who quote them. If he submits fees to PHIN, add a fees table.
+- No ICO registration number is shown on the privacy policy; add it once confirmed.
 - He does not offer breast augmentation. Never write about it as a service.
 - Always "Mr" Ullah, never "Dr", except in verbatim reviews.
 - Fee-assured status per insurer; insurer list is from his Nuffield profile.

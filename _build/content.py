@@ -405,3 +405,24 @@ VIDEOS = [
      "desc": "Mr Ullah's health advice programme for TV3 Bangla, answering viewers' questions on everyday health.",
      "by": "TV3 Bangla"},
 ]
+
+# ------------------------------------------------------------- booking partners
+# Verified profile pages. Patients book with the provider that suits their insurer and clinic.
+HOLLY_APPTS_PHONE = "020 8505 3311"   # option 1, per Nuffield Health's own video
+HOLLY_APPTS_TEL = "+442085053311"
+HOLLY_APPTS_EMAIL = "hobkh.appointments@nuffieldhealth.com"
+BOOKING_PARTNERS = [
+    {"name": "Nuffield Health The Holly", "kind": "Hospital", "best": "Seeing Mr Ullah in Buckhurst Hill, insured or self-funding",
+     "url": "https://www.nuffieldhealth.com/consultants/mr-md-zaker-ullah", "cta": "Book online with Nuffield",
+     "extra": f"Or call {HOLLY_APPTS_PHONE}, option 1"},
+    {"name": "Doctify", "kind": "Booking platform", "best": "Choosing a time online, at The Holly or in London",
+     "url": "https://www.doctify.com/uk/specialist/mr-md-z-ullah", "cta": "Book on Doctify", "extra": ""},
+    {"name": "Top Doctors", "kind": "Booking platform", "best": "Self-funding patients comparing appointments",
+     "url": "https://www.topdoctors.co.uk/doctor/zaker-ullah/", "cta": "View on Top Doctors", "extra": ""},
+    {"name": "Bupa Finder", "kind": "Insurer directory", "best": "Bupa members, including Open Referral",
+     "url": "https://www.finder.bupa.co.uk/Consultant/view/192096/mr_md_z_ullah", "cta": "View on Bupa Finder", "extra": "Bupa Platinum consultant, fee-assured"},
+]
+
+# ------------------------------------------------------------- media mentions (text only, no logos)
+AS_SEEN = [("Everything Changed podcast", "~/podcast/"), ("TV3 Bangla", "~/podcast/#bengali"), ("West Essex Life", "~/news/five-things-breast-cancer/"),
+           ("PHA Global Summit 2024", "https://www.youtube.com/watch?v=gBP0rsPeJ9A"), ("Nuffield Health", "https://www.facebook.com/thehollyprivatehospital/videos/2402001463487795/")]
