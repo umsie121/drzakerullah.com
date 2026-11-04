@@ -161,7 +161,7 @@ def appointment_band(nav, title="Let&rsquo;s get you <i>a clear answer</i>", tex
 
 
 def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="website",
-           image="assets/img/og-card.png", priority="0.7", noindex=False, extra_head="", band=True):
+           image="assets/img/og-card.jpg", priority="0.7", noindex=False, extra_head="", band=True):
     depth = path.strip("/").count("/") + 1 if path.strip("/") else 0
     rel = "../" * depth if depth else "./"
     if path == "404.html":
@@ -185,9 +185,14 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta property="og:url" content="{canonical}">
 <meta property="og:type" content="{og_type}">
 <meta property="og:image" content="{SITE}/{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mr Zaker Ullah, consultant oncoplastic breast surgeon">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="~/assets/img/favicon.svg">
-<link rel="apple-touch-icon" href="~/assets/img/zu-head-400.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="~/assets/img/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="~/assets/img/icon-192.png">
+<link rel="apple-touch-icon" href="~/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="~/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="Journal" href="~/feed.xml">
 {FONTS}
 <link rel="stylesheet" href="~/assets/css/main.css?v={asset_v("assets/css/main.css")}">

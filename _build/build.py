@@ -50,7 +50,7 @@ PHYSICIAN = {
     "name": NAME, "alternateName": ["Mr Zaker Ullah", "Mr M Z Ullah", "Dr Zaker Ullah", "Mr Md Z Ullah"],
     "honorificPrefix": "Mr", "honorificSuffix": POSTNOM,
     "description": "Consultant oncoplastic breast and general surgeon in London and Essex. Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. Private practice at The Harley Street Clinic, Nuffield Health at St Bartholomew's and Nuffield Health The Holly Hospital.",
-    "url": SITE + "/", "image": SITE + "/assets/img/zu-portrait-900.jpg",
+    "url": SITE + "/", "image": SITE + "/assets/img/zu-navy-900.jpg",
     "telephone": C.SEC_TEL, "email": C.SEC_EMAIL, "priceRange": "££££",
     "address": {"@type": "PostalAddress", "streetAddress": "High Road", "addressLocality": "Buckhurst Hill", "addressRegion": "Essex", "postalCode": "IG9 5HX", "addressCountry": "GB"},
     "areaServed": ["London", "Essex", "Hertfordshire", "Central London", "East London", "North East London", "City of London"],
@@ -625,7 +625,7 @@ def build_news():
         posting = {"@context": "https://schema.org", "@type": ["BlogPosting", "MedicalWebPage"], "headline": p["title"], "description": p["description"],
                    "url": f"{SITE}/{path}", "mainEntityOfPage": f"{SITE}/{path}", "datePublished": p["date"], "dateModified": p.get("updated", p["date"]),
                    "lastReviewed": p.get("reviewed", p["date"]), "author": {"@type": "Person", "@id": SITE + "/#physician", "name": NAME, "url": SITE + "/biography/"},
-                   "reviewedBy": PHYSICIAN_REF, "publisher": PHYSICIAN_REF, "image": SITE + "/assets/img/og-card.png", "keywords": p["keyword"],
+                   "reviewedBy": PHYSICIAN_REF, "publisher": PHYSICIAN_REF, "image": SITE + "/assets/img/og-card.jpg", "keywords": p["keyword"],
                    "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-GB"}
         schema = [posting, crumbs_schema(crumbs)] + ([faq_schema(p["faqs_text"])] if p["faqs"] else [])
         render(path, title=p["title"] if len(p["title"]) > 44 else f'{p["title"]} | Mr Zaker Ullah', desc=p["description"], body=body,
