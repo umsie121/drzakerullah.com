@@ -36,6 +36,12 @@ When asked for blog posts:
 Medical facts: if unsure, leave it out. Never invent statistics, prices, study results, patient
 stories or facts about Mr Ullah.
 
+## Positioning
+
+- Lead with The Holly, Buckhurst Hill, for Woodford Green, Loughton and Chigwell; then Harley Street and St Bartholomew's.
+- Mention Bupa Platinum consultant (fee-assured, Open Referral network) wherever insurance comes up.
+- Show review quality as "5.0, 100% five-star", never the raw review count.
+
 ## Facts still to confirm with the practice (do not "fix" by guessing)
 
 - Private secretary phone/email (from Bupa Finder; name spelling Wiles/Willes unconfirmed).

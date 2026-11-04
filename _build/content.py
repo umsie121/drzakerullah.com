@@ -12,6 +12,15 @@ INSURERS = ["Bupa", "Bupa Global", "AXA Health", "Aviva", "Vitality", "WPA", "Ci
 # Private secretary: Ms Juliet Willes. Name and number confirmed by the old Squarespace site;
 # email from Bupa Finder (old site gave an nhs.net address). TODO confirm which email to use.
 SEC_NAME = "Ms Juliet Willes"
+FACEBOOK = "https://www.facebook.com/drzakerullah/"
+LINKEDIN = "https://uk.linkedin.com/in/md-zaker-ullah-40a9b474"
+# Areas of interest as listed on his Bupa Finder profile (used for schema knowsAbout / LLMs).
+KNOWS_ABOUT = ["Breast pain", "Breast lump", "Nipple discharge", "Breast cancer", "DCIS", "Mastectomy", "Breast reduction",
+               "Therapeutic mammoplasty", "Breast conserving surgery", "BRCA risk reducing surgery", "Sentinel lymph node biopsy",
+               "Targeted axillary dissection", "Axillary clearance", "Implant breast reconstruction", "Chest wall perforator flaps (LICAP, MICAP)",
+               "Latissimus dorsi flap reconstruction", "Benign breast disease", "Lipofilling", "Breast symmetrisation", "Nipple reconstruction",
+               "Gynaecomastia", "Male breast cancer", "Skin lesion excision", "Sebaceous cyst excision", "Lipoma excision", "Mole removal",
+               "Hernia repair", "Abscess incision and drainage", "One-stop breast clinic", "Family history breast cancer risk assessment"]
 SEC_PHONE = "020 8936 1263"
 SEC_TEL = "+442089361263"
 SEC_EMAIL = "juliet.willes@nuffieldhealth.com"
@@ -79,12 +88,13 @@ LOCATIONS = [
         "phone": "020 8505 3311",
         "tel": "+442085053311",
         "operator": "Nuffield Health",
-        "h1": "Breast surgeon in Essex, at The Holly",
-        "title": "Breast Surgeon Essex, Buckhurst Hill | Mr Zaker Ullah FRCS",
-        "desc": "Private breast surgeon in Essex at Nuffield Health The Holly, Buckhurst Hill IG9. Rapid access breast clinic, cancer surgery, reconstruction and reduction.",
+        "h1": "Breast surgeon in Buckhurst Hill, for Woodford Green, Loughton and Chigwell",
+        "title": "Breast Surgeon Buckhurst Hill & Woodford Green | Mr Ullah",
+        "desc": "Private breast surgeon at Nuffield Health The Holly, Buckhurst Hill IG9, minutes from Woodford Green, Loughton and Chigwell. Same day one-stop breast clinic.",
         "travel": "On the High Road in Buckhurst Hill at the edge of Epping Forest, with parking on site. Buckhurst Hill Central line station is close by, and the M11 and M25 are a few minutes away.",
-        "serves": ["Buckhurst Hill", "Loughton", "Chigwell", "Woodford", "Epping", "Theydon Bois", "Waltham Abbey", "Harlow", "Brentwood", "Chingford", "Walthamstow", "Romford", "Ilford", "Wanstead"],
-        "intro": "Nuffield Health The Holly Hospital is Mr Ullah's principal private base, and the home of his private secretary. A calm and well equipped hospital on the border of London and Essex, it serves patients from across Essex, Hertfordshire and north east London. Mr Ullah runs its Rapid Access Breast Clinic on Tuesday afternoons.",
+        "serves": ["Buckhurst Hill", "Woodford Green", "Woodford Wells", "South Woodford", "Loughton", "Chigwell", "Epping", "Theydon Bois", "Waltham Abbey", "Harlow", "Brentwood", "Chingford", "Walthamstow", "Romford", "Ilford", "Wanstead"],
+        "intro": "Nuffield Health The Holly Hospital is Mr Ullah's principal private base, and the home of his private secretary. A calm and well equipped hospital on the border of London and Essex, it is a few minutes from Woodford Green, Loughton and Chigwell, and serves patients from across Essex, Hertfordshire and north east London. Mr Ullah runs its Rapid Access Breast Clinic on Tuesday afternoons, with consultation and imaging on the same day.",
+        "local": "For most patients in Woodford Green, South Woodford, Loughton and Chigwell, The Holly is the nearest private hospital with a consultant-led breast clinic. It sits on the High Road between Woodford Green and Loughton, with parking on site and Buckhurst Hill Central line station a short walk away. Many of Mr Ullah's NHS patients at nearby Whipps Cross choose to see him here privately.",
         "clinics": "Tuesday afternoon (Rapid Access Breast Clinic) and Thursday morning",
         "why": [
             "Rapid Access Breast Clinic with Mr Ullah on Tuesday afternoons",
@@ -126,6 +136,8 @@ PROCEDURES = [
 <p>This is <strong>triple assessment</strong>, the standard of care for breast symptoms in the United Kingdom. Most patients leave the first appointment either reassured or with a clear plan.</p>
 <h2>If treatment is needed</h2>
 <p>Many benign conditions need no treatment once the diagnosis is certain. Where treatment helps, Mr Ullah offers drainage of cysts, removal of symptomatic fibroadenomas and other benign lumps, duct surgery for troublesome nipple discharge, and structured advice for breast pain.</p>
+<h2>Family history and breast cancer risk</h2>
+<p>If close relatives have had breast or ovarian cancer, Mr Ullah offers a personal risk assessment, with advice on screening, genetic testing and, for some women, risk reducing options. Most people with a family history are at only moderately raised risk, and a clear assessment is reassuring in itself.</p>
 <p>If a biopsy shows cancer, you are already in the care of an experienced <a href="~/procedures/breast-cancer-surgery/">oncoplastic breast surgeon</a>, and your treatment continues without changing hands.</p>
 """,
         "faqs": [
@@ -154,7 +166,9 @@ PROCEDURES = [
 <h2>Mastectomy</h2>
 <p>Some cancers, and some patients' own preferences, are better served by <strong>mastectomy</strong>. Where appropriate it can be skin sparing or nipple sparing, with <a href="~/procedures/breast-reconstruction/">immediate reconstruction</a>, so that the shape of the breast is restored before you wake. Mr Ullah discusses reconstruction before mastectomy, not after it.</p>
 <h2>The lymph nodes</h2>
-<p>Assessing the armpit (axilla) is part of almost every breast cancer operation. For most patients this means a <strong>sentinel lymph node biopsy</strong>: only the first one to three nodes draining the breast are removed, located with a tracer. It gives the oncologists the information they need and greatly reduces the risk of arm swelling (lymphoedema).</p>
+<p>Assessing the armpit (axilla) is part of almost every breast cancer operation. For most patients this means a <strong>sentinel lymph node biopsy</strong>: only the first one to three nodes draining the breast are removed, located with a tracer. It gives the oncologists the information they need and greatly reduces the risk of arm swelling (lymphoedema). After chemotherapy, a <strong>targeted axillary dissection</strong> can remove the specific nodes that were affected, and where needed an <strong>axillary clearance</strong> is performed.</p>
+<h2>DCIS and risk reducing surgery</h2>
+<p><strong>DCIS</strong> (ductal carcinoma in situ) is an early, non-invasive change that is usually treated with breast conserving surgery. For women who carry a BRCA or other high-risk gene variant, Mr Ullah offers <strong>risk reducing mastectomy</strong> with reconstruction, after careful counselling.</p>
 <h2>A team decision</h2>
 <p>Every cancer case is discussed by a multidisciplinary team of radiologists, pathologists, oncologists and specialist nurses, before and after surgery. Chemotherapy, radiotherapy and hormone treatment are planned around the operation so that each part of treatment supports the others.</p>
 """,
@@ -171,12 +185,12 @@ PROCEDURES = [
         "slug": "breast-reconstruction",
         "nav": "Breast reconstruction",
         "short_desc": "Implant and flap",
-        "summary": "Immediate and delayed reconstruction using implants, your own tissue, fat grafting and nipple reconstruction.",
+        "summary": "Immediate and delayed reconstruction with implants, your own tissue, chest wall perforator flaps and fat grafting.",
         "title": "Breast Reconstruction London & Essex | Mr Zaker Ullah FRCS",
         "desc": "Breast reconstruction after mastectomy or lumpectomy in London and Essex: immediate and delayed, implant, LD flap and Grisotti flap, fat grafting and nipple reconstruction.",
         "h1": "Breast reconstruction",
         "lede": "Reconstruction restores the shape of the breast after cancer surgery, either at the same operation or years later. Mr Ullah offers the full range of implant and tissue techniques, and is equally clear when no reconstruction is the right choice.",
-        "glance": [("Timing", "Immediate, with the mastectomy, or delayed with no time limit"), ("Techniques", "Implant, LD flap, Grisotti flap, fat grafting"), ("Hospital stay", "Typically one to three nights"), ("Insurance", "Usually covered as part of cancer treatment")],
+        "glance": [("Timing", "Immediate, with the mastectomy, or delayed with no time limit"), ("Techniques", "Implant, LD flap, LICAP and MICAP flaps, Grisotti flap, fat grafting"), ("Hospital stay", "Typically one to three nights"), ("Insurance", "Usually covered as part of cancer treatment")],
         "sections": """
 <h2>Immediate or delayed</h2>
 <p><strong>Immediate reconstruction</strong> takes place during the same operation as the mastectomy, so the shape of the breast is restored before you wake. <strong>Delayed reconstruction</strong> can be carried out months or years later; there is no time limit. The right choice depends on the cancer treatment planned, radiotherapy in particular, on your health and on your own preference. Some women choose not to have a reconstruction. That is a valid decision, and Mr Ullah will say so.</p>
@@ -184,6 +198,8 @@ PROCEDURES = [
 <p>The most common technique in the United Kingdom uses a silicone implant, sometimes supported by a mesh or tissue matrix, to recreate the breast. It avoids surgery elsewhere on the body and has a shorter recovery. In return, the breast feels less natural and is likely to need further surgery over a lifetime.</p>
 <h2>Reconstruction with your own tissue</h2>
 <p>A reconstruction made from your own tissue is warm and natural, and changes with you over time. Mr Ullah performs <strong>latissimus dorsi (LD) flap</strong> reconstruction, which brings muscle and skin from the back to the chest and is often combined with an implant. For suitable cancers near the nipple he also uses the <strong>Grisotti flap</strong>, which rebuilds the area from the breast's own tissue during the cancer operation.</p>
+<h2>Chest wall perforator flaps</h2>
+<p>After breast conserving surgery, a dent or loss of shape can be corrected with a <strong>chest wall perforator flap</strong> (LICAP or MICAP). Tissue from just beside the breast, on its own small blood supply, is moved into the defect, restoring natural shape without an implant and without surgery elsewhere on the body. It is an area of particular expertise for Mr Ullah.</p>
 <h2>Completing the result</h2>
 <p>Reconstruction is often completed in stages: <a href="~/procedures/fat-grafting/">fat grafting</a> to refine the contour, nipple reconstruction with a small local flap, and symmetrising surgery to the other breast, usually a <a href="~/procedures/breast-reduction/">reduction</a> or an uplift, so that the two sit naturally together.</p>
 """,
@@ -286,7 +302,7 @@ PROCEDURES = [
 <h2>Gallstones and gallbladder removal</h2>
 <p>Gallstones that cause pain, inflammation or pancreatitis are best treated by removing the gallbladder, an operation called <strong>laparoscopic cholecystectomy</strong>. It is performed through four small incisions and is one of the most common operations in the United Kingdom. Most patients go home the same day or after one night and return to normal activity within a fortnight. Life without a gallbladder is entirely normal.</p>
 <h2>Hernia repair</h2>
-<p>A hernia in the groin (inguinal), at the navel (umbilical) or through a previous scar (incisional) will not repair itself. Mr Ullah repairs hernias by keyhole and by open surgery, usually reinforced with mesh, choosing the approach that suits the hernia and the patient. His keyhole hernia technique won the prize for best video presentation at the European Association for Endoscopic Surgery in 2003.</p>
+<p>Mr Ullah repairs all types of hernia. A hernia in the groin (inguinal), at the navel (umbilical) or through a previous scar (incisional) will not repair itself. Mr Ullah repairs hernias by keyhole and by open surgery, usually reinforced with mesh, choosing the approach that suits the hernia and the patient. His keyhole hernia technique won the prize for best video presentation at the European Association for Endoscopic Surgery in 2003.</p>
 <h2>Appendicectomy</h2>
 <p>Suspected appendicitis needs urgent assessment. When surgery is required, a laparoscopic appendicectomy both confirms the diagnosis and treats it through small incisions, with a faster recovery than open surgery.</p>
 """,
@@ -296,6 +312,38 @@ PROCEDURES = [
             ("Do gallstones always need surgery?", "No. Gallstones found by chance that cause no symptoms can usually be left alone. Surgery is advised once they cause pain or complications, because further attacks are then likely."),
         ],
         "related": ["gynaecomastia", "benign-breast-conditions"],
+    },
+    {
+        "slug": "lumps-cysts-skin-lesions",
+        "nav": "Lumps, cysts and moles",
+        "short_desc": "Minor skin surgery",
+        "summary": "Removal of lipomas, sebaceous cysts, moles and other skin lesions, usually under local anaesthetic.",
+        "title": "Lipoma, Cyst & Mole Removal Essex & London | Mr Zaker Ullah",
+        "desc": "Private removal of lipomas, sebaceous cysts, moles and skin lesions at The Holly, Buckhurst Hill, and in London, by consultant surgeon Mr Zaker Ullah FRCS.",
+        "h1": "Lumps, cysts, moles and skin lesions",
+        "lede": "Lumps under the skin and changing moles are common reasons to see a surgeon. Mr Ullah assesses and removes them, usually as a short procedure under local anaesthetic, with every specimen sent for analysis.",
+        "glance": [("Anaesthetic", "Usually local"), ("Procedure", "Often 20 to 45 minutes"), ("Hospital stay", "You go home the same day"), ("Results", "Laboratory report, usually within one to two weeks")],
+        "sections": """
+<h2>What Mr Ullah treats</h2>
+<ul>
+<li><strong>Lipomas</strong>: soft, slow growing lumps of fat under the skin</li>
+<li><strong>Sebaceous (epidermoid) cysts</strong>, including those that keep becoming inflamed</li>
+<li><strong>Moles and skin lesions</strong> that are changing, bleeding, catching on clothing or simply unwanted</li>
+<li><strong>Abscesses</strong>, which need prompt drainage</li>
+<li>Other <strong>soft tissue lumps</strong> that need a diagnosis</li>
+</ul>
+<h2>Assessment first</h2>
+<p>Most lumps under the skin are harmless, but a few need a different plan. Mr Ullah examines the lump and, where it helps, arranges an ultrasound scan before deciding on treatment. A lump that is large, deep, growing quickly or painful is always imaged first. Any mole with features of concern is removed completely and examined in the laboratory, and if melanoma is confirmed, your care continues with the appropriate specialist team.</p>
+<h2>The procedure</h2>
+<p>Most lumps, cysts and moles are removed under local anaesthetic, through an incision planned to leave the neatest possible scar, closed with fine stitches. You go home the same day. Stitches usually come out after one to two weeks, and the laboratory report follows within a similar time.</p>
+""",
+        "faqs": [
+            ("Is a lipoma dangerous?", "Lipomas are benign, and many can be left alone. They are usually removed when they are growing, uncomfortable or unwanted. A lump that is large, deep, painful or growing quickly should be scanned first to be sure of the diagnosis."),
+            ("Will removing a sebaceous cyst leave a scar?", "There is always a small scar, usually a fine line a little longer than the cyst. Removing the whole cyst wall reduces the chance of it coming back."),
+            ("Should a changing mole be checked?", "Yes. A mole that is changing in size, shape or colour, has an irregular edge, bleeds or itches should be seen promptly. Most are harmless, but a mole of concern is removed and examined in the laboratory."),
+            ("Is minor skin surgery covered by insurance?", "Insurers usually cover the removal of lesions that are suspicious or causing symptoms, but not purely cosmetic removal. Self-funding patients receive a fixed price from the hospital in advance."),
+        ],
+        "related": ["general-laparoscopic-surgery", "benign-breast-conditions"],
     },
 ]
 

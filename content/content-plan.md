@@ -2,7 +2,7 @@
 
 Researched November 2026 from a review of who ranks for London and Essex breast surgery queries,
 and where competitors are weak. ★ = results currently weak or dominated by directories/cosmetic
-clinics, so a quick win. Work top to bottom. When you write a post, change its status to
+clinics, so a quick win. Work top to bottom. Priority audiences: patients in Buckhurst Hill, Woodford Green, Loughton, Chigwell and north east London, and insured or self-funding private patients anywhere in London. When you write a post, change its status to
 `scheduled YYYY-MM-DD` (or `live`). Add new ideas at the bottom.
 
 Intent: I informational · C commercial · L local
@@ -16,6 +16,13 @@ Intent: I informational · C commercial · L local
 | 5 | Can I see a private breast surgeon without a GP referral? | see breast surgeon without gp referral | C | Private care explained | live |
 | 6 | A lump behind the nipple in men | lump behind nipple male | I | Men's breast health | live |
 | 7 | Lumpectomy or mastectomy? | lumpectomy vs mastectomy | I | Breast cancer | scheduled 2026-11-10 |
+| 8a | Private breast clinic near Woodford Green: what to expect at The Holly ★ | private breast clinic woodford green | L | Local clinics | backlog |
+| 8b | Bupa open referral: how to choose your breast surgeon ★ | bupa open referral breast surgeon | C | Private care explained | backlog |
+| 8c | Lipoma removal privately in Essex: assessment, procedure, recovery ★ | lipoma removal essex | C | General surgery | backlog |
+| 8d | Self-pay breast check: how private breast clinic pricing works (no prices) ★ | self pay breast clinic | C | Private care explained | backlog |
+| 8e | Sebaceous cyst removal: when and how ★ | sebaceous cyst removal private | C | General surgery | backlog |
+| 8f | Chest wall perforator flaps (LICAP, MICAP) after lumpectomy ★ | licap flap | I | Reconstruction & cosmetic | backlog |
+| 8g | Video consultations with a breast surgeon: when they work ★ | online breast surgeon consultation | C | Private care explained | backlog |
 | 8 | Breast reduction on the NHS vs private in North East London & Essex ★ | breast reduction nhs criteria essex | C | Reconstruction & cosmetic | backlog |
 | 9 | Clear vs bloody nipple discharge: what each means | nipple discharge causes | I | Breast symptoms | backlog |
 | 10 | Therapeutic mammoplasty: cancer surgery and a reduction in one ★ | therapeutic mammoplasty | I | Breast cancer | backlog |

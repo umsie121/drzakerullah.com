@@ -70,7 +70,7 @@ def crumbs_html(crumbs):
 
 
 def brand(extra=""):
-    return f'<a class="brand{extra}" href="~/" aria-label="{SHORT}, home"><span class="mk" aria-hidden="true">ZU</span><span><span class="n">{SHORT}</span><span class="r">Consultant Breast Surgeon, FRCS</span></span></a>'
+    return f'<a class="brand{extra}" href="~/" aria-label="{SHORT}, home"><span class="mk" aria-hidden="true">ZU</span><span><span class="n">{SHORT}</span><span class="r">Consultant Breast Surgeon</span></span></a>'
 
 
 # ---------------------------------------------------------------- navigation model
@@ -81,7 +81,7 @@ def nav_model(nav):
         ("Clinics", "locations", "~/locations/", "Private appointments in central London, the City and on the Essex border.",
          [(l["name"], f"~/locations/{l['slug']}/", l["area"]) for l in nav["locations"]]),
         ("About", "about", "~/biography/", "His training, his patients' reviews, and his work on podcasts and television.",
-         [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"Rated {nav['rating']} by {nav['count']} patients"),
+         [("Biography", "~/biography/", "Training and career"), ("Patient reviews", "~/reviews/", f"Rated {nav['rating']}, {nav['count']}"),
           ("Podcast and videos", "~/podcast/", "Podcast, TV3 Bangla, YouTube"), ("Second opinions", "~/second-opinion/", "An independent view")]),
         ("Patients", "patients", "~/your-visit/", "Everything you need to know before your first appointment.",
          [("Your first visit", "~/your-visit/", "What happens on the day"), ("Fees and insurance", "~/fees-and-insurance/", "Insured and self-funding"),
@@ -104,7 +104,7 @@ def header(nav, active):
     groups = "".join(
         f'<div class="group{" small" if i > 1 else ""}"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
         for i, (t, _, _, _, links) in enumerate(model))
-    return f'''<div class="topline"><div class="wrap"><span class="tl-l">New breast symptoms seen promptly, with imaging and provisional results on the same day</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
+    return f'''<div class="topline"><div class="wrap"><span class="tl-l">Bupa Platinum consultant · Same day imaging and results for new breast symptoms</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
 <header class="site-header">
   <div class="wrap bar">
     {brand()}
@@ -125,7 +125,7 @@ def footer(nav):
     return f'''<footer class="site-footer">
   <div class="wrap">
     <div class="f-cols">
-      <div class="f-about">{brand()}<p>Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. {POSTNOM}.</p>
+      <div class="f-about">{brand()}<p>Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. Bupa Platinum consultant, fee-assured. {POSTNOM}.</p>
         <p class="contact">{nav["sec_name"]}, private secretary<br><a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a><br><a href="mailto:{nav["email"]}">{nav["email"]}</a></p></div>
       <div><h4>Treatments</h4><ul>{procs}</ul></div>
       <div><h4>Clinics</h4><ul>{locs}<li><a href="~/locations/">All clinics</a></li></ul></div>

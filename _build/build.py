@@ -18,7 +18,7 @@ from layout import (NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, cr
 
 TODAY = datetime.date.fromisoformat(os.environ.get("BUILD_DATE", datetime.date.today().isoformat()))
 NAV = {"procedures": C.PROCEDURES, "locations": C.LOCATIONS, "phone": C.SEC_PHONE, "phone_tel": C.SEC_TEL,
-       "email": C.SEC_EMAIL, "iwgc": C.IWGC, "rating": C.IWGC_RATING, "count": C.IWGC_COUNT,
+       "email": C.SEC_EMAIL, "iwgc": C.IWGC, "rating": C.IWGC_RATING, "count": "100% five-star",
        "sec_name": C.SEC_NAME, "youtube": C.YOUTUBE_CHANNEL}
 PROC = {p["slug"]: p for p in C.PROCEDURES}
 ALL_POSTS = md.load_posts(os.path.join(ROOT, "content", "blog"), TODAY)
@@ -65,7 +65,8 @@ PHYSICIAN = {
     "award": "European Association for Endoscopic Surgery, best video presentation (2003)",
     "hospitalAffiliation": [hospital_schema(l) for l in C.LOCATIONS] + [{"@type": "Hospital", "name": "Whipps Cross University Hospital, Barts Health NHS Trust", "address": {"@type": "PostalAddress", "streetAddress": "Whipps Cross Road", "addressLocality": "London", "postalCode": "E11 1NR", "addressCountry": "GB"}}],
     "availableService": [{"@type": "MedicalProcedure", "name": p["nav"], "url": f"{SITE}/procedures/{p['slug']}/"} for p in C.PROCEDURES],
-    "sameAs": [C.IWGC, "https://www.nuffieldhealth.com/consultants/mr-md-zaker-ullah", "https://www.doctify.com/uk/specialist/mr-md-z-ullah", "https://www.topdoctors.co.uk/doctor/zaker-ullah/", "https://www.finder.bupa.co.uk/Consultant/view/192096/mr_md_z_ullah", "https://whippscrosswf.com/people/mr-md-zaker-ullah/"],
+    "knowsAbout": C.KNOWS_ABOUT,
+    "sameAs": [C.IWGC, C.FACEBOOK, C.LINKEDIN, C.YOUTUBE_CHANNEL, "https://www.nuffieldhealth.com/consultants/mr-md-zaker-ullah", "https://www.doctify.com/uk/specialist/mr-md-z-ullah", "https://www.topdoctors.co.uk/doctor/zaker-ullah/", "https://www.finder.bupa.co.uk/Consultant/view/192096/mr_md_z_ullah", "https://whippscrosswf.com/people/mr-md-zaker-ullah/"],
 }
 WEBSITE = {"@context": "https://schema.org", "@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": f"{NAME}, Consultant Breast Surgeon", "publisher": PHYSICIAN_REF, "inLanguage": "en-GB"}
 
@@ -121,7 +122,7 @@ def review_cards(items):
 
 def rating_block():
     return f'''<div class="rating"><span class="score">{C.IWGC_RATING}<small>out of 5</small></span>
-<p>{stars()}From {C.IWGC_COUNT} independent, verified reviews on iWantGreatCare. Every one is five stars.</p></div>'''
+<p>{stars()}Average rating on iWantGreatCare, where 100% of his independent, verified reviews are five stars.</p></div>'''
 
 
 VIDEO_ENTRIES = [{**v, "description": v["desc"], "category": f"Video, in {v['lang']}", "date_obj": datetime.date.fromisoformat(v["date"]), "thumb": v["id"]} for v in C.VIDEOS]
@@ -171,7 +172,7 @@ def appt_aside():
 
 
 def quote_band(r, cls="section tone tight", label="A patient writes"):
-    return f'<section class="{cls}"><div class="wrap railed"><div class="rail"><span class="label">{label}</span></div><div><figure class="quote">{stars()}<blockquote class="mt-1">{escape(r[0])}</blockquote><figcaption><span>Verified patient, {r[2]}, {r[1]}</span><a class="more" href="~/reviews/">Rated {C.IWGC_RATING} by {C.IWGC_COUNT} patients</a></figcaption></figure></div></div></section>'
+    return f'<section class="{cls}"><div class="wrap railed"><div class="rail"><span class="label">{label}</span></div><div><figure class="quote">{stars()}<blockquote class="mt-1">{escape(r[0])}</blockquote><figcaption><span>Verified patient, {r[2]}, {r[1]}</span><a class="more" href="~/reviews/">Rated {C.IWGC_RATING}, 100% five-star</a></figcaption></figure></div></div></section>'
 
 
 HOME_FAQS = [
@@ -179,6 +180,7 @@ HOME_FAQS = [
     ("Will I get my results on the same day?", "At his one-stop clinics, imaging and provisional results are usually given on the same day. Biopsy results, where a biopsy is needed, follow within a few days."),
     ("Is Mr Ullah the same person as Dr Zaker Ullah?", "Yes. Surgeons in the United Kingdom who hold the fellowship of a Royal College of Surgeons are addressed as Mr rather than Dr. You may see him called Dr Zaker Ullah on his YouTube channel and in older articles; it is the same surgeon."),
     ("Do I need a GP referral?", "Insured patients usually need one before their insurer will authorise the appointment. Self-funding patients can book directly. <a href=\"~/fees-and-insurance/\">Fees and insurance</a>."),
+    ("Is Mr Ullah recognised by Bupa?", "Yes. Mr Ullah is a Bupa Platinum consultant, fee-assured, and part of Bupa&rsquo;s Open Referral network. He is also recognised by AXA Health, Aviva, Vitality, WPA, Cigna and other major insurers."),
 ]
 
 
@@ -193,7 +195,7 @@ def build_home():
       <h1 class="mt-2">Expert breast care, with time to listen</h1>
       <p class="lede">{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
       <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="btn line" href="~/procedures/">Explore treatments</a></div>
-      <div class="proof"><span>{stars()} <strong>{C.IWGC_RATING}</strong> from {C.IWGC_COUNT} patients</span><span class="sep"></span><span>Harley Street · St Bartholomew&rsquo;s · The Holly</span></div>
+      <div class="proof"><span>{stars()} <strong>{C.IWGC_RATING}</strong>, 100% five-star reviews</span><span class="sep"></span><span>Consultations in English and Bengali</span></div>
     </div>
     <div class="arch">{portrait(lazy=False)}
       <div class="badge"><b>30+</b><span><strong style="color:var(--navy)">years in surgery</strong><br>Royal Marsden trained</span></div></div>
@@ -202,7 +204,7 @@ def build_home():
     <div><span class="k">Same day</span><span class="v">Imaging and provisional results at one-stop clinics</span></div>
     <div><span class="k">24 to 48 hours</span><span class="v">For a video or telephone consultation</span></div>
     <div><span class="k">Clinical Lead</span><span class="v">Breast Unit, Whipps Cross, Barts Health NHS Trust</span></div>
-    <div><span class="k">English &amp; Bengali</span><span class="v">Consultations in either language</span></div>
+    <div><span class="k">Bupa Platinum</span><span class="v">Platinum consultant, fee-assured, in Bupa&rsquo;s Open Referral network</span></div>
   </div>
 </div></section>
 
@@ -241,7 +243,7 @@ def build_home():
 {faq_section(HOME_FAQS, "Questions patients ask first")}
 '''
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
-           desc=f"Mr Zaker Ullah FRCS, consultant breast surgeon in London and Essex, rated {C.IWGC_RATING} by {C.IWGC_COUNT} patients. Same day results at Harley Street, St Bartholomew's and The Holly.",
+           desc=f"Mr Zaker Ullah FRCS, consultant breast surgeon in London and Essex, 100% five-star reviews. Same day results at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS)], priority="1.0")
 
 
@@ -373,10 +375,14 @@ def build_locations():
             ("Which conditions does Mr Ullah treat here?", "New breast lumps and breast pain, nipple discharge, breast cancer surgery, reconstruction, breast reduction, fat grafting, gynaecomastia, and general surgery including hernia and gallbladder operations. Some operations take place only at particular hospitals; the secretary will advise."),
             ("Can I be seen quickly with a new breast symptom?", "Yes. New breast symptoms are given priority, with the aim of examination, imaging and any biopsy at a single visit."),
         ]
+        if l.get("local"):
+            faqs[0:0] = [("Is there a private breast surgeon near Woodford Green?", "Yes. Mr Ullah consults at Nuffield Health The Holly Hospital on the High Road in Buckhurst Hill, a few minutes from Woodford Green, South Woodford, Loughton and Chigwell, with parking on site. His Rapid Access Breast Clinic runs on Tuesday afternoons."),
+                         ("Can I see Mr Ullah at The Holly if I am an NHS patient at Whipps Cross?", "Yes, if you choose to be seen privately, either through insurance or as a self-funding patient. Mr Ullah leads the breast unit at Whipps Cross and many patients from the area see him at The Holly.")]
         others = "".join(f'<li><a href="~/locations/{o["slug"]}/">{o["name"]}</a></li>' for o in C.LOCATIONS if o is not l)
         body = page_head(crumbs, l["area"], l["h1"], l["intro"], meta=meta,
                          actions=f'<a class="btn" href="~/booking/">Book at {l["short"]}</a><a class="btn line" href="{maps}" target="_blank" rel="noopener">Map</a>') + \
             railed("The clinic", '<ul class="list-plain">' + "".join(f"<li>{w}</li>" for w in l["why"]) + "</ul>") + \
+            (railed("Close to home", f'<p class="lede">{l["local"]}</p>') if l.get("local") else "") + \
             railed("Getting here", f'<p class="lede">{l["travel"]}</p><p class="mt-2"><a class="more" href="{maps}" target="_blank" rel="noopener">Open in Google Maps</a></p>', cls="section rule") + \
             railed("Patients from", '<div class="areas">' + "".join(f"<span>{a}</span>" for a in l["serves"]) + '</div><p class="stone mt-1">And many travel from further afield.</p>', cls="section rule") + \
             railed("Treatments here", treatment_index(), cls="section rule") + \
@@ -401,7 +407,7 @@ VISIT_FAQS = [
 ]
 FEES_FAQS = [
     ("Do I need a GP referral if I am insured?", "Most insurers ask for a GP referral before they authorise a specialist appointment. Some accept a referral from a digital GP service included in your policy. Check with your insurer."),
-    ("Is Mr Ullah fee-assured?", "Mr Ullah is recognised by the major UK private medical insurers and is fee-assured with the principal insurers, so you should not face a shortfall for his fees. Confirm your own cover with your insurer."),
+    ("Is Mr Ullah fee-assured?", "Yes. Mr Ullah is a Bupa Platinum consultant and fee-assured with Bupa, and is recognised by the other major UK insurers, so you should not face a shortfall for his fees. Confirm your own cover with your insurer."),
     ("How much does a consultation cost if I am self-funding?", "Consultation fees are set and confirmed by each hospital when you book. For tests or surgery, the hospital provides a written, fixed price before you commit."),
     ("Is breast reconstruction covered?", "Reconstruction after breast cancer, including surgery to the other breast for symmetry, is normally covered by insurers as part of cancer treatment. Cosmetic procedures generally are not."),
 ]
@@ -429,7 +435,7 @@ def build_patient_pages():
     crumbs = [("Home", ""), ("Fees and insurance", path)]
     body = page_head(crumbs, "Patients", "Fees and insurance",
                      "Mr Ullah sees insured and self-funding patients at each of his clinics. Here is how payment and authorisation work.") + \
-        railed("Insured", f'<div class="prose"><p>Mr Ullah is recognised by the major UK private medical insurers and is fee-assured with the principal insurers, so you should not face a shortfall for his fees.</p><p>Before your first appointment, most insurers ask for two things: a <strong>GP referral</strong>, and a <strong>pre-authorisation number</strong>, which you obtain by calling your insurer with the referral. Bring the number to your appointment.</p></div><div class="mt-3"><span class="label">Recognised by</span><div class="insurers mt-1">{"".join(f"<span>{i}</span>" for i in C.INSURERS)}</div></div>') + \
+        railed("Insured", f'<div class="prose"><p>Mr Ullah is recognised by the major UK private medical insurers and is fee-assured with the principal insurers, so you should not face a shortfall for his fees.</p><p>With Bupa he is a <strong>Platinum consultant</strong>, <strong>fee-assured</strong>, and part of Bupa&rsquo;s <strong>Open Referral network</strong>. If your GP gives an open referral, ask Bupa for Mr Md Z Ullah by name, or choose Nuffield Health The Holly in Buckhurst Hill.</p><p>Before your first appointment, most insurers ask for two things: a <strong>GP referral</strong>, and a <strong>pre-authorisation number</strong>, which you obtain by calling your insurer with the referral. Bring the number to your appointment.</p></div><div class="mt-3"><span class="label">Recognised by</span><div class="insurers mt-1">{"".join(f"<span>{i}</span>" for i in C.INSURERS)}</div></div>') + \
         railed("Self-funding", '<div class="prose"><p>You do not need insurance or a referral. The hospital confirms the consultation fee when you book. If you need tests or surgery, it gives you a written, fixed price before anything is arranged, so there are no surprises.</p><p>Each hospital sets its own prices, which is why they are not published here. The <a href="~/booking/">private secretary</a> can tell you who to ask.</p></div>', cls="section rule") + \
         faq_section(FEES_FAQS, "Questions about fees")
     render(path, title="Fees & Insurance | Private Breast Surgeon Mr Zaker Ullah",
@@ -453,13 +459,13 @@ def build_reviews():
     path = "reviews/"
     crumbs = [("Home", ""), ("Patient reviews", path)]
     body = page_head(crumbs, "Patient reviews", "What his patients say",
-                     f"Mr Ullah&rsquo;s reviews are collected independently by iWantGreatCare, the UK&rsquo;s platform for verified healthcare feedback. All {C.IWGC_COUNT} are five stars.",
+                     f"Mr Ullah&rsquo;s reviews are collected independently by iWantGreatCare, the UK&rsquo;s platform for verified healthcare feedback. Every one of them is five stars.",
                      actions=f'<a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Read all on iWantGreatCare</a><a class="btn line" href="{C.IWGC}" target="_blank" rel="noopener">Leave a review</a>') + \
         railed("Rating", rating_block()) + \
         railed("In their words", testimonials(C.REVIEWS) + '<p class="note mt-2">Excerpts are reproduced word for word from public reviews on iWantGreatCare, some shortened where marked. They refer to care at The Holly and at Whipps Cross University Hospital.</p>', cls="section rule") + \
         railed("Your experience", f'<p class="lede">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously. If something did not go as it should have, please also tell the hospital where you were treated.</p><p class="mt-2"><a class="more" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></p>', cls="section rule")
-    render(path, title=f"Mr Zaker Ullah Reviews: {C.IWGC_RATING} from {C.IWGC_COUNT} Patients",
-           desc=f"Verified patient reviews of consultant breast surgeon Mr Md Zaker Ullah FRCS on iWantGreatCare: rated {C.IWGC_RATING} out of 5 from {C.IWGC_COUNT} reviews, all five stars.",
+    render(path, title=f"Mr Zaker Ullah Reviews: Rated {C.IWGC_RATING}, 100% Five-Star",
+           desc=f"Verified patient reviews of consultant breast surgeon Mr Md Zaker Ullah FRCS on iWantGreatCare: rated {C.IWGC_RATING} out of 5, with 100% five-star reviews.",
            body=body, nav=NAV, active="about", priority="0.8", schema=[crumbs_schema(crumbs)])
     render("feedback/", title="Patient reviews", desc="This page has moved to /reviews/.", nav=NAV, noindex=True,
            extra_head='<meta http-equiv="refresh" content="0; url=../reviews/">',
@@ -604,7 +610,7 @@ def build_files():
     items = "".join(f"<item><title>{e(p['title'])}</title><link>{SITE}/news/{p['slug']}/</link><guid>{SITE}/news/{p['slug']}/</guid><pubDate>{datetime.datetime.combine(p['date_obj'], datetime.time(8)).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(p['description'])}</description></item>" for p in POSTS)
     open(os.path.join(ROOT, "feed.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Journal of Mr Zaker Ullah</title><link>{SITE}/news/</link><description>Articles by consultant breast surgeon Mr Md Zaker Ullah FRCS</description><language>en-gb</language>{items}</channel></rss>\n')
     llms = [f"# {NAME} FRCS, Consultant Oncoplastic Breast Surgeon, London and Essex", "",
-            f"> {PHYSICIAN['description']} GMC 4368515. Rated {C.IWGC_RATING} out of 5 from {C.IWGC_COUNT} verified reviews on iWantGreatCare. Private secretary: {C.SEC_PHONE}.", "",
+            f"> {PHYSICIAN['description']} GMC 4368515. Rated {C.IWGC_RATING} out of 5 on iWantGreatCare (100% five-star). Bupa Platinum consultant, fee-assured, in Bupa's Open Referral network. Private secretary: {C.SEC_PHONE}.", "",
             "## Key pages", f"- [Biography]({SITE}/biography/)", f"- [Book a consultation]({SITE}/booking/)", f"- [Your first visit]({SITE}/your-visit/)", f"- [Fees and insurance]({SITE}/fees-and-insurance/)",
             f"- [Questions answered]({SITE}/faqs/)", f"- [Reviews]({SITE}/reviews/)", f"- [Podcast]({SITE}/podcast/)", f"- [Second opinions]({SITE}/second-opinion/)", "", "## Treatments"] + \
            [f"- [{p['nav']}]({SITE}/procedures/{p['slug']}/): {p['summary']}" for p in C.PROCEDURES] + ["", "## Clinics"] + \
