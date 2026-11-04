@@ -308,14 +308,17 @@ def build_home():
 <section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From a first worrying symptom to surgery and reconstruction, Mr Ullah looks after you himself. When treatment is needed, he plans the cancer surgery and the final result together, and takes the time to explain both.")}</p></div></section>
 
 <section class="band peach"><div class="wrap">
-  <div class="sec-h" data-r><h2>What to expect</h2></div>
+  <div class="sec-h" data-r><h2>Why patients choose Mr Ullah</h2></div>
   <div class="bento">
-    <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">One surgeon</span><span class="v">The surgeon who examines you is the one who operates, and who looks after you afterwards.</span><span class="more">About Mr Ullah</span></a>
-    <a class="b" href="~/your-visit/" data-r style="--d:1"><span class="k">Same day results</span><span class="v">Imaging and provisional results at a one-stop visit, for new breast symptoms.</span></a>
-    <a class="b" href="~/fees-and-insurance/" data-r style="--d:2"><span class="k">Bupa Platinum</span><span class="v">Fee-assured, Open Referral network. AXA, Aviva, Vitality and WPA recognised.</span></a>
-    <a class="b b-wide b-img" href="~/locations/" data-r style="--d:1"><span class="k">Three private clinics</span><span class="v">The Holly in Buckhurst Hill, near Woodford Green and Loughton. Bupa Wharfside in Canary Wharf. Nuffield Health St Bartholomew&rsquo;s in the City.</span><span class="more">All clinics</span></a>
-    <a class="b b-rate" href="~/reviews/" data-r style="--d:2"><span class="k">5.0</span>{stars()}<span class="v">100% five-star on iWantGreatCare</span></a>
+    <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">30+ years</span><span class="v">in surgery. Trained at The Royal Marsden, St Mary&rsquo;s and The Royal Free, consultant at Barts Health since 2012, and Clinical Lead of the Whipps Cross Breast Unit. The surgeon who examines you is the one who operates, and who looks after you afterwards.</span><span class="more">Read his story</span></a>
+    <a class="b" href="~/procedures/benign-breast-conditions/" data-r style="--d:1"><span class="k">One-stop clinic</span><span class="v">Examination, imaging and provisional results at a single visit for a new breast symptom.</span></a>
+    <a class="b" href="~/procedures/breast-cancer-surgery/" data-r style="--d:2"><span class="k">Full cancer care</span><span class="v">From diagnosis to surgery and follow-up, with every case reviewed by a specialist team.</span></a>
+    <a class="b" href="~/procedures/breast-reconstruction/" data-r style="--d:3"><span class="k">Reconstruction</span><span class="v">Cancer surgery and the shape of the breast planned together, from the first appointment.</span></a>
+    <a class="b" href="~/fees-and-insurance/" data-r style="--d:1"><span class="k">Bupa Platinum</span><span class="v">Fee-assured, in the Open Referral network, and recognised by the major insurers.</span></a>
+    <a class="b" href="~/locations/" data-r style="--d:2"><span class="k">Three clinics</span><span class="v">Buckhurst Hill, Canary Wharf and the City of London.</span></a>
+    <a class="b b-rate" href="~/reviews/" data-r style="--d:3"><span class="k">5.0</span>{stars()}<span class="v">100% five-star on iWantGreatCare</span></a>
   </div>
+</div>
 </div></section>
 
 <section class="meet"><div class="wrap meet-in">
