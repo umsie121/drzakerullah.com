@@ -1239,3 +1239,5 @@ h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3)
 .band.taupe details { border-color: rgba(85, 32, 63, 0.14); }
 .appt-band { background: var(--taupe); }
 .appt-band > .wrap { background: radial-gradient(70% 120% at 100% 0, rgba(238, 138, 108, 0.25) 0, transparent 55%), linear-gradient(160deg, #3a1529 0, #1a0f08 100%); }
+@media (max-width: 62rem) { .vhero { height: auto; min-height: 0; max-height: none; } .vhero h1 { font-size: clamp(2.5rem, 9.5vw, 3.8rem); } }
+@media (max-width: 62rem) { [data-hero] .copy { opacity: 1; transform: none; } [data-hero] .vhero { transform: none; } }
