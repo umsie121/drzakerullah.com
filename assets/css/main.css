@@ -1167,3 +1167,20 @@ h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3)
   .vhero .copy { padding-bottom: clamp(1.4rem, 3.2svh, 2.4rem); }
   .vhero::after { background: linear-gradient(180deg, rgba(40, 14, 30, 0.1) 0, transparent 22%, transparent 58%, color-mix(in srgb, var(--deep) 62%, transparent) 86%, color-mix(in srgb, var(--deep) 88%, transparent) 100%); }
 }
+
+/* navbar: deep mulberry with light type, for contrast */
+.site-header { background: color-mix(in srgb, var(--deep) 94%, transparent); }
+.site-header.scrolled { box-shadow: 0 10px 30px -18px rgba(26, 15, 8, 0.6); }
+.site-header .brand .n { color: #fff; }
+.site-header .brand .r { color: var(--accent-soft); }
+.site-header .nav > a, .site-header .nav .drop > button { color: var(--on-deep); }
+.site-header .nav > a:not(.btn):hover, .site-header .nav .drop:hover > button, .site-header .nav .drop:focus-within > button { background: rgba(255, 255, 255, 0.1); }
+.site-header .nav [aria-current="page"] { color: var(--accent-soft); }
+.site-header .nav > a.btn { background: var(--accent); border-color: var(--accent); color: var(--deep); font-weight: 700; }
+.site-header .nav > a.btn:hover { background: var(--accent-soft); border-color: var(--accent-soft); }
+.site-header .menu-btn { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.ih { background: color-mix(in srgb, var(--deep) 94%, transparent); border-bottom-color: transparent; }
+.ih .ib span { color: #fff; } .ih .ib small { color: var(--accent-soft); }
+.ih .langs { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); }
+.ih .langs a { color: var(--on-deep); }
+.ih .langs a[aria-current] { background: #fff; color: var(--deep); }
