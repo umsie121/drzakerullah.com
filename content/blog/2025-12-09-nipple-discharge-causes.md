@@ -8,6 +8,11 @@ keyword: nipple discharge causes
 category: Breast symptoms
 related: benign-breast-conditions
 image_query: woman reading at home
+image: blog/nipple-discharge-causes
+image_id: v8DSLoY80Xk
+image_alt: Woman in red shirt reading book
+image_credit: Matias North
+image_credit_url: https://unsplash.com/@matias_north?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** most nipple discharge has a benign cause. Milky discharge from both breasts is usually hormonal or linked to medicines. Thick green or brown discharge is often duct ectasia. Clear or bloody discharge from one duct, appearing on its own, is most often a small benign growth called a papilloma, but it always needs a specialist check.
 

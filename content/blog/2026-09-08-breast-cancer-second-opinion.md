@@ -8,6 +8,11 @@ keyword: breast cancer second opinion
 category: Private care explained
 related: breast-cancer-surgery, breast-reconstruction
 image_query: two people talking at table
+image: blog/breast-cancer-second-opinion
+image_id: VZQAo20ArSA
+image_alt: A man sitting at a table talking to a woman
+image_credit: Vitaly Gariev
+image_credit_url: https://unsplash.com/@silverkblack?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** a breast cancer second opinion is worth considering when a mastectomy has been advised and you want to know if your breast can be kept, when reconstruction has not been fully discussed, or when the diagnosis feels unclear. It rarely needs to delay treatment. Bring your reports and imaging, and expect your current team to be supportive.
 

@@ -8,6 +8,11 @@ keyword: male breast cancer symptoms
 category: Men's breast health
 related: gynaecomastia, breast-cancer-surgery
 image_query: older man portrait
+image: blog/male-breast-cancer-symptoms
+image_id: okxFqy9p3BE
+image_alt: A man with a serious look on his face
+image_credit: Mehdi Raad
+image_credit_url: https://unsplash.com/@mehdihraad?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** the commonest male breast cancer symptom is a firm, usually painless lump in the chest, often just to one side of the nipple. Other signs are a nipple that turns inwards, discharge (sometimes bloodstained), a sore or rash on the nipple, and a lump in the armpit. Most chest lumps in men are benign, but any of these should be checked promptly.
 

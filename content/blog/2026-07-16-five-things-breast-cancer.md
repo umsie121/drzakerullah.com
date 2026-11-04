@@ -8,7 +8,8 @@ keyword: things to know about breast cancer
 category: Breast cancer
 related: breast-cancer-surgery, benign-breast-conditions
 featured: West Essex Life
-image_query: women friends walking park
+image_query: two women talking over coffee
+image_id: uo8SjX9V-U4
 ---
 Breast cancer is the most common cancer in the UK, and it is also one of the most treatable. A version of this article first appeared in *West Essex Life* magazine. After more than three decades in surgery, these are the five points I find myself repeating most often in clinic.
 

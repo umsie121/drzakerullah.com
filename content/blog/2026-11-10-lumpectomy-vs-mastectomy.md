@@ -8,6 +8,11 @@ keyword: lumpectomy vs mastectomy
 category: Breast cancer
 related: breast-cancer-surgery, breast-reconstruction
 image_query: doctor patient conversation
+image: blog/lumpectomy-vs-mastectomy
+image_id: tl447mekwuQ
+image_alt: A smiling doctor in a white coat talking to a patient in a clinic
+image_credit: National Cancer Institute
+image_credit_url: https://unsplash.com/@nci?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** for most women with early breast cancer, breast-conserving surgery (lumpectomy) followed by radiotherapy gives the same long-term survival as mastectomy. The choice depends on the size and position of the cancer relative to the breast, whether there is more than one area, genetics and, above all, your own priorities.
 

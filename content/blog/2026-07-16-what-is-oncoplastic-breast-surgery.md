@@ -8,6 +8,11 @@ keyword: oncoplastic breast surgery
 category: Breast cancer
 related: breast-cancer-surgery, breast-reconstruction
 image_query: operating theatre lights
+image: blog/what-is-oncoplastic-breast-surgery
+image_id: D5PVKPbA_wg
+image_alt: Surgeons in sterile gowns and masks performing surgery
+image_credit: Navy Medicine
+image_credit_url: https://unsplash.com/@navymedicine?utm_source=drzakerullah&utm_medium=referral
 ---
 For most of the twentieth century, breast cancer surgery had one objective: remove the cancer. What the breast looked like afterwards was, at best, a secondary concern. Oncoplastic surgery, the field in which I have spent my consultant career, rejects that trade-off. It plans the cancer operation and the appearance of the breast together, in the same operation, by the same surgeon.
 

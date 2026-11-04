@@ -8,6 +8,11 @@ keyword: lipoma removal essex
 category: General surgery
 related: lumps-cysts-skin-lesions
 image_query: essex countryside
+image: blog/lipoma-removal-essex
+image_id: -8MWSzAthuQ
+image_alt: People riding boat on river during daytime
+image_credit: Anisa Mustafa
+image_credit_url: https://unsplash.com/@mussi?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** a lipoma is a harmless, soft lump of fat under the skin. Many can be left alone. Lipoma removal in Essex is usually a short day procedure under local anaesthetic, and I do it at The Holly in Buckhurst Hill. A lump that is large, deep, hard, painful or growing should be scanned before anyone removes it.
 

@@ -8,6 +8,11 @@ keyword: found a breast lump what next
 category: Breast symptoms
 related: benign-breast-conditions, breast-cancer-surgery
 image_query: woman by window soft light
+image: blog/breast-lump-when-to-see-a-specialist
+image_id: LZ03UAy1SMc
+image_alt: A woman sitting on a window sill
+image_credit: Kelly Sikkema
+image_credit_url: https://unsplash.com/@kellysikkema?utm_source=drzakerullah&utm_medium=referral
 ---
 Finding a lump in your breast is frightening. It is worth saying straight away: most breast lumps, roughly nine in ten, are benign. Cysts, fibroadenomas and ordinary nodular breast tissue are all far more common than cancer. But no examining finger, including mine, can reliably tell them apart. Diagnosis needs a process, and the process is quick.
 
