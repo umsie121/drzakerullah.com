@@ -217,7 +217,7 @@ def review_card(r):
 
 def reviews_section():
     rs = C.REVIEWS
-    return f'''<section class="rv"><div class="wrap"><div class="rv-head" data-r>
+    return f'''<section class="rv lux-dark"><div class="wrap"><div class="rv-head" data-r>
   <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. 100% of his verified reviews are five stars.</p></div></div>
   <div class="rv-cta"><h2>Kind, thorough and never rushed</h2><a class="btn" href="~/reviews/">Read his reviews</a></div>
 </div></div>
@@ -330,7 +330,7 @@ def build_home():
 </div>
 </div></section>
 
-<section class="meet"><div class="wrap meet-in">
+<section class="meet lux-dark"><div class="wrap meet-in">
   <figure class="meet-f" data-r>{picture("zu-navy", "Mr Md Zaker Ullah, Consultant Oncoplastic Breast Surgeon", "(min-width: 64rem) 36vw, 92vw", [600, 900, 1300], 1020, 1542)}</figure>
   <div class="meet-t" data-r style="--d:1">
     <h2>Meet Mr Ullah</h2>
@@ -352,14 +352,14 @@ def build_home():
 
 {podcast_panel()}
 
-<section class="band"><div class="wrap">
+<section class="band stone"><div class="wrap">
   <div class="sec-h center" data-r><h2>Three private clinics</h2></div>
   <div data-r>{clinic_cols()}</div>
 </div></section>
 
-{f'<section class="band white"><div class="wrap"><div class="sec-row" data-r><h2>From the blog</h2><a class="more" href="~/news/">All articles</a></div>{blog_cards(POSTS)}</div></section>' if POSTS else ""}
+{f'<section class="band ivory"><div class="wrap"><div class="sec-row" data-r><h2>From the blog</h2><a class="more" href="~/news/">All articles</a></div>{blog_cards(POSTS)}</div></section>' if POSTS else ""}
 
-<section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
+<section class="band taupe"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
     render("", extra_head=hreflang(), title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Canary Wharf and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",

@@ -1214,3 +1214,28 @@ h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3)
 .site-header.scrolled .bar { background: color-mix(in srgb, var(--nav) 90%, transparent); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(248, 195, 174, 0.12); }
 .ih { background: color-mix(in srgb, var(--nav) 96%, transparent); }
 .overlay { background: var(--nav); }
+
+/* ============================================================ home: a richer rhythm of grounds */
+:root { --ivory: #fdf8f4; --champagne: #f6e6da; --stone: #efe3da; --taupe: #e7d6cc; --plum-ink: #2a1220; }
+/* fine film grain on dark grounds */
+.lux-dark { position: relative; isolation: isolate; }
+.lux-dark::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.say { background: radial-gradient(120% 90% at 15% 0, #fffaf6 0, var(--ivory) 45%, #f7ece5 100%); }
+.band.peach { background: radial-gradient(90% 70% at 85% 10%, rgba(248, 195, 174, 0.55) 0, transparent 60%), linear-gradient(180deg, #f7ece5 0, var(--champagne) 100%); }
+.meet { background: radial-gradient(70% 90% at 0 100%, rgba(125, 58, 96, 0.35) 0, transparent 60%), #1a0f08; }
+.insb { background: linear-gradient(180deg, var(--stone) 0, #f3e9e2 100%); }
+.insb .ins { background: rgba(255, 255, 255, 0.7); }
+.band.white:has(.tx) { background: var(--ivory); }
+.rv { background: radial-gradient(90% 80% at 100% 0, rgba(238, 138, 108, 0.22) 0, transparent 55%), linear-gradient(180deg, #3a1529 0, var(--plum-ink) 100%); padding-bottom: var(--section); }
+.rv .rv-head { background: transparent; border: 1px solid rgba(248, 195, 174, 0.18); }
+.rv .rc { background: rgba(255, 250, 247, 0.96); border-color: transparent; }
+.podp { background: linear-gradient(180deg, var(--champagne) 0, #f8ede6 100%); padding-bottom: var(--section); }
+.podp .box { background: rgba(255, 250, 247, 0.75); border-color: rgba(226, 198, 186, 0.6); backdrop-filter: blur(6px); }
+.band.stone { background: var(--stone); }
+.band.stone .clinic { background: rgba(255, 250, 247, 0.85); }
+.band.ivory { background: var(--ivory); }
+.band.taupe { background: radial-gradient(80% 100% at 100% 100%, rgba(248, 195, 174, 0.35) 0, transparent 60%), var(--taupe); }
+.band.taupe details { border-color: rgba(85, 32, 63, 0.14); }
+.appt-band { background: var(--taupe); }
+.appt-band > .wrap { background: radial-gradient(70% 120% at 100% 0, rgba(238, 138, 108, 0.25) 0, transparent 55%), linear-gradient(160deg, #3a1529 0, #1a0f08 100%); }
