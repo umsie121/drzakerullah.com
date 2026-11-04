@@ -408,10 +408,10 @@ def build_about():
     media = {"2003": ("loop-room", "In front of an audience"), "2012": ("loop-chat", "Time for every question"), "Today": ("loop-summit", "On the international stage")}
     cards = []
     for y, t, d in chapters:
-        cards.append(f'<li class="hc"><span class="y">{y}</span><h3>{t}</h3><p>{d}</p></li>')
+        cards.append(f'<li class="vt-i" data-r><span class="vt-y">{y}</span><div><h3>{t}</h3><p>{d}</p></div></li>')
         if y in media:
             v, cap = media[y]
-            cards.append(f'<li class="hc hv">{loop(v)}<span class="cap">{cap}</span></li>')
+            cards.append(f'<li class="vt-v" data-r><figure>{loop(v)}<figcaption>{cap}</figcaption></figure></li>')
     jn = "".join(cards)
     practice = [
         ("Breast cancer surgery", "Breast conserving surgery and therapeutic mammoplasty, mastectomy and lymph node surgery."),
@@ -437,9 +437,9 @@ def build_about():
 
 <section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From his first day in medicine in 1987 to leading a breast unit in London, one idea runs through his work: plan the cancer treatment and the result together, and take the time to explain both.")}</p></div></section>
 
-<section class="hz" data-hz><div class="hz-pin">
-  <div class="wrap hz-head"><h2>A career in surgery</h2><span class="hz-bar"><i data-hzbar></i></span></div>
-  <ol class="hz-track" data-hztrack>{jn}</ol>
+<section class="vt"><div class="wrap">
+  <div class="sec-h" data-r><h2>A career in surgery</h2></div>
+  <ol class="vt-list">{jn}</ol>
 </div></section>
 
 {cta_strip("Meet Mr Ullah in clinic", "Appointments at The Holly in Buckhurst Hill, Canary Wharf and the City of London, or by video.")}
