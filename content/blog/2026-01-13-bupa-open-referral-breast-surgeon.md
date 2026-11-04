@@ -55,7 +55,7 @@ All three names on your shortlist will be recognised by Bupa and will meet Bupa'
 
 **Are they on the GMC specialist register?** Every doctor practising in the UK is listed on the General Medical Council's online register. You can search by name or GMC number and see whether they hold specialist registration, and in which specialty. My GMC number is 4368515, and I would encourage you to check any surgeon you are considering, including me.
 
-**Where and when do they see patients?** Look at the hospitals they work at and the clinic days. I see private patients at Nuffield Health The Holly in Buckhurst Hill, which is my main base, with a Rapid Access Breast Clinic on Tuesday afternoons. I also consult at The Harley Street Clinic and at Nuffield Health St Bartholomew's in the City.
+**Where and when do they see patients?** Look at the hospitals they work at and the clinic days. I see private patients at three clinics. At Nuffield Health The Holly in Buckhurst Hill I run a Rapid Access Breast Clinic on Tuesday afternoons. I also consult at Bupa's Wharfside Health Centre in Canary Wharf and at Nuffield Health St Bartholomew's in the City.
 
 :::note
 If you have a new breast lump, a skin or nipple change, or a symptom that worries you, do not wait on paperwork. See your GP, or ask Bupa whether your policy includes Direct Access for suspected cancer. The NHS urgent referral route is also always open to you.

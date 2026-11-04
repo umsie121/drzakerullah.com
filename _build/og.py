@@ -47,7 +47,7 @@ h1{{margin-top:22px;font-size:{size}px;line-height:1.02;font-weight:560;color:#5
 .mono{{right:80px;top:64px;background:#55203f}} .mono span{{color:#f8c3ae}}
 .foot{{color:#55203f;border-top:1.5px solid rgba(85,32,63,.18);padding-top:26px;bottom:48px}} .foot .m{{color:#76656d;font-weight:500}}"""
         body = f"""<div class="mono"><span>zu</span></div><div class="t"><span class="k">{html.escape(eyebrow)}</span><h1 class="serif">{t}</h1>{f'<p class="sub">{html.escape(sub)}</p>' if sub else ''}</div>
-<div class="foot"><img src="{IMG}/zu-navy-600.jpg"><span>Mr Zaker Ullah FRCS</span><span class="m">Consultant breast surgeon</span><span class="sp"></span><span class="m">drzakerullah.com</span></div>"""
+<div class="foot"><img src="{IMG}/zu-navy-600.jpg"><span>Mr Zaker Ullah FRCS</span><span class="m">Consultant Breast Surgeon</span><span class="sp"></span><span class="m">drzakerullah.com</span></div>"""
     elif kind in ("treatment", "clinic"):
         css = BASE + f""" body{{background:radial-gradient(120% 140% at 100% 0,#7d3a60 0,#55203f 45%,#3a1529 100%);color:#fbf1ec}}
 .t{{position:absolute;left:80px;top:168px;right:400px}} .t .k{{color:#f8c3ae}}
@@ -59,7 +59,7 @@ h1{{margin-top:24px;font-size:{size + 8}px;line-height:.98;font-weight:560;color
 .foot{{color:#fff}} .foot .m{{color:rgba(251,241,236,.6);font-weight:500}}"""
         body = f"""<div class="mono"><span>zu</span></div><div class="t"><span class="k">{html.escape(eyebrow)}</span><h1 class="serif">{t}</h1>{f'<p class="sub">{html.escape(sub)}</p>' if sub else ''}</div>
 <div class="ring"><img src="{IMG}/zu-navy-900.jpg"></div>
-<div class="foot"><span>Mr Zaker Ullah FRCS</span><span class="m">Consultant oncoplastic breast surgeon</span><span class="sp"></span><span class="m">drzakerullah.com</span></div>"""
+<div class="foot"><span>Mr Zaker Ullah FRCS</span><span class="m">Consultant Oncoplastic Breast Surgeon</span><span class="sp"></span><span class="m">drzakerullah.com</span></div>"""
     else:
         css = BASE + f""" body{{background:#1a0f08;color:#fbf1ec}}
 .p{{position:absolute;right:0;top:0;width:520px;height:630px;background:url({IMG}/zu-navy-1300.jpg) 50% 16%/cover}}
@@ -80,14 +80,14 @@ def pages():
         ("biography", "page", "Biography", "Mr Md Zaker Ullah", "From the Royal Marsden to leading the Whipps Cross Breast Unit."),
         ("reviews", "page", "Patient reviews", "Kind, thorough and never rushed", "Rated 5.0 on iWantGreatCare. 100% five-star."),
         ("podcast", "page", "Everything Changed podcast", "Five questions about breast cancer", "Answered by a breast surgeon."),
-        ("booking", "page", "Appointments", "Book a consultation", "The Holly, Buckhurst Hill, Harley Street and the City of London."),
+        ("booking", "page", "Appointments", "Book a consultation", "The Holly, Buckhurst Hill, Canary Wharf and the City of London."),
         ("faqs", "page", "Questions answered", "What patients ask first", "Appointments, results, insurance and surgery."),
         ("fees-and-insurance", "page", "Fees and insurance", "Insured or self-funding", "Bupa Platinum consultant, fee-assured. Most major insurers."),
         ("your-visit", "page", "Your first visit", "What happens on the day", "Consultation, imaging and provisional results, usually at one visit."),
         ("second-opinion", "page", "Second opinions", "An independent view", "On a diagnosis or a proposed operation."),
         ("remote-consultations", "page", "Video and international", "Consultations from anywhere", "By video or telephone, in English, Bangla or Arabic."),
         ("procedures", "treatment", "Treatments", "Areas of practice", "Breast symptoms, breast cancer, reconstruction, and men's and general surgery."),
-        ("locations", "clinic", "Clinics", "Three private clinics", "The Holly, Buckhurst Hill · Harley Street · St Bartholomew's, City of London."),
+        ("locations", "clinic", "Clinics", "Three private clinics", "The Holly, Buckhurst Hill · Canary Wharf · St Bartholomew's, City of London."),
         ("news", "post", "Blog", "Clear answers, in plain English", "Guides to breast symptoms, surgery and recovery, written by Mr Ullah."),
     ]
     for p in C.PROCEDURES:

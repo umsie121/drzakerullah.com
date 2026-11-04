@@ -73,7 +73,7 @@ Contact details and links for each are on my [booking page](~/booking/). When yo
 
 Scan findings are usually explained before you leave. Biopsy results normally take a few working days, and I go through them with you myself, either in clinic or by phone.
 
-If you need treatment, you stay with me. The Holly has full operating theatres, so many operations, from removing a benign lump to [breast cancer surgery](~/procedures/breast-cancer-surgery/), can be done at the same hospital, close to home. If your care is better suited to central London, I also operate at The Harley Street Clinic and at Nuffield Health St Bartholomew's, and I will talk that through with you.
+If you need treatment, you stay with me. The Holly has full operating theatres, so many operations, from removing a benign lump to [breast cancer surgery](~/procedures/breast-cancer-surgery/), can be done at the same hospital, close to home. If your care is better suited to central London, I also see patients at Bupa's Wharfside Health Centre in Canary Wharf and operate at Nuffield Health St Bartholomew's, and I will talk that through with you.
 
 :::note
 If you have a new lump, a change in the skin, or a change in the nipple, please do not wait for a convenient appointment. See your GP or book promptly. Most breast symptoms turn out to be benign, but every one deserves a proper assessment.

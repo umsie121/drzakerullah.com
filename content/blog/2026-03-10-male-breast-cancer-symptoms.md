@@ -57,7 +57,7 @@ Because there is so little tissue between the nipple and the chest muscle, a can
 There is nothing unusual about a man attending a breast clinic, and the staff are used to it. The examination is short, you can bring someone with you, and a chaperone is always offered.
 
 :::note
-If you have noticed any of these changes, see your GP or a breast specialist without waiting to see whether it settles. In the NHS, NICE guideline NG12 sets out when a GP should make an urgent suspected cancer referral, and an unexplained breast lump is one of those reasons, for men as well as women. Privately, you can [book an assessment directly](~/booking/) at The Holly in Buckhurst Hill, Harley Street or St Bartholomew's.
+If you have noticed any of these changes, see your GP or a breast specialist without waiting to see whether it settles. In the NHS, NICE guideline NG12 sets out when a GP should make an urgent suspected cancer referral, and an unexplained breast lump is one of those reasons, for men as well as women. Privately, you can [book an assessment directly](~/booking/) at The Holly in Buckhurst Hill, Canary Wharf or St Bartholomew's.
 :::
 
 ## How male breast cancer is diagnosed

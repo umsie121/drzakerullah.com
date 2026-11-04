@@ -90,7 +90,7 @@ Banned (validator enforces): "best surgeon", "leading", "world-class", "number o
   **at least one treatment page**, plus where relevant a clinic page (`~/locations/…/`),
   `~/second-opinion/`, `~/booking/`, `~/podcast/` or an earlier post (`~/news/slug/`).
   Descriptive anchor text, never "click here".
-- Local intent: mention the real clinic(s) where it helps the reader, Harley Street W1,
+- Local intent: mention the real clinic(s) where it helps the reader, Bupa Wharfside Health Centre, Canary Wharf E14,
   Nuffield Health St Bartholomew's EC1, Nuffield Health The Holly, Buckhurst Hill IG9.
   **Never** create pages or posts for places he does not practise (doorway pages).
 - No external links needed; if used, only to NHS, NICE, CRUK, Breast Cancer Now or ABS.

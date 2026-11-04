@@ -31,7 +31,7 @@ UPDATED = TODAY.strftime("%-d %B %Y")
 
 
 def portrait(lazy=True, sizes="(min-width: 64rem) 38vw, 92vw"):
-    return picture("zu-portrait", "Mr Md Zaker Ullah, consultant breast surgeon, at Nuffield Health The Holly Hospital", sizes, [600, 900, 1300], 957, 1277, lazy=lazy)
+    return picture("zu-portrait", "Mr Md Zaker Ullah, Consultant Breast Surgeon, at Nuffield Health The Holly Hospital", sizes, [600, 900, 1300], 957, 1277, lazy=lazy)
 
 
 def loc_address(l):
@@ -51,7 +51,7 @@ PHYSICIAN = {
     "@context": "https://schema.org", "@type": "Physician", "@id": SITE + "/#physician",
     "name": NAME, "alternateName": ["Mr Zaker Ullah", "Mr M Z Ullah", "Dr Zaker Ullah", "Mr Md Z Ullah"],
     "honorificPrefix": "Mr", "honorificSuffix": POSTNOM,
-    "description": "Consultant oncoplastic breast and general surgeon in London and Essex. Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. Private practice at The Harley Street Clinic, Nuffield Health at St Bartholomew's and Nuffield Health The Holly Hospital.",
+    "description": "Consultant oncoplastic breast and general surgeon in London and Essex. Clinical Lead of the Breast Unit at Whipps Cross University Hospital, Barts Health NHS Trust. Private practice at Bupa Wharfside Health Centre in Canary Wharf, Nuffield Health at St Bartholomew's and Nuffield Health The Holly Hospital.",
     "url": SITE + "/", "image": SITE + "/assets/img/zu-navy-900.jpg",
     "telephone": C.SEC_TEL, "email": C.SEC_EMAIL, "priceRange": "££££",
     "address": {"@type": "PostalAddress", "streetAddress": "High Road", "addressLocality": "Buckhurst Hill", "addressRegion": "Essex", "postalCode": "IG9 5HX", "addressCountry": "GB"},
@@ -105,7 +105,7 @@ def clinic_cols():
         tel = l["phone"] or C.SEC_PHONE
         tel_href = l["tel"] or C.SEC_TEL
         out.append(f'<div class="clinic"><span class="label">{l["area"]}</span><h3>{l["name"]}</h3><address>{l["street"]}<br>{l["locality"]} {l["postcode"]}</address>'
-                   f'<a class="tel" href="tel:{tel_href}">{tel}</a><span class="sp"></span><a class="more" href="~/locations/{l["slug"]}/">Clinic details</a></div>')
+                   f'<a class="tel" href="tel:{tel_href}">{tel}</a><span class="sp"></span><a class="more" href="~/locations/{l["slug"]}/" data-sheet>Clinic details</a></div>')
     return f'<div class="clinics">{"".join(out)}</div>'
 
 
@@ -178,7 +178,7 @@ def toc_html(toc, extra=()):
 
 
 def appt_aside():
-    return f'''<div class="block appt"><h3>Arrange a consultation</h3><p>The Holly, Buckhurst Hill, Harley Street and the City of London.</p>
+    return f'''<div class="block appt"><h3>Arrange a consultation</h3><p>The Holly, Buckhurst Hill, Canary Wharf and the City of London.</p>
 <a class="tel" href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a><a class="btn" href="~/booking/">Request an appointment</a></div>'''
 
 
@@ -251,6 +251,15 @@ def loop(name, cls="lv"):
             f'<source data-src="~/assets/video/{name}.webm" type="video/webm"><source data-src="~/assets/video/{name}.mp4" type="video/mp4"></video>')
 
 
+def insurer_band():
+    """A slow, floating band of the insurers who recognise Mr Ullah."""
+    styles = ["w1", "w2", "w3", "w4", "w5"]
+    chips = "".join(f'<span class="ins {styles[i % 5]}">{escape(n)}</span>' for i, n in enumerate(C.INSURERS))
+    return (f'<section class="insb" aria-label="Recognised by insurers"><div class="wrap insb-h"><p>Recognised by the major UK and international insurers</p>'
+            f'<a class="more" href="~/fees-and-insurance/">Fees and insurance</a></div>'
+            f'<div class="insm"><div class="row">{chips}{chips}{chips}</div></div></section>')
+
+
 def say_words(text):
     """Wrap each word so the statement can light up word by word as it scrolls into view."""
     return " ".join(f'<span class="w">{w}</span>' for w in text.split())
@@ -290,7 +299,7 @@ def build_home():
 <section class="hero-frame" data-hero><div class="vhero">
   <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
   <div class="copy">
-    <span class="label">Consultant breast surgeon · London and Essex</span>
+    <span class="label">Consultant Oncoplastic Breast Surgeon · London and Essex</span>
     <h1 class="h-anim">A breast surgeon who<br><i>takes the time to listen</i></h1>
     <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="hero-link" href="~/reviews/">Rated 5.0 on iWantGreatCare</a></div>
   </div>
@@ -304,22 +313,23 @@ def build_home():
     <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">One surgeon</span><span class="v">The surgeon who examines you is the one who operates, and who looks after you afterwards.</span><span class="more">About Mr Ullah</span></a>
     <a class="b" href="~/your-visit/" data-r style="--d:1"><span class="k">Same day results</span><span class="v">Imaging and provisional results at a one-stop visit, for new breast symptoms.</span></a>
     <a class="b" href="~/fees-and-insurance/" data-r style="--d:2"><span class="k">Bupa Platinum</span><span class="v">Fee-assured, Open Referral network. AXA, Aviva, Vitality and WPA recognised.</span></a>
-    <a class="b b-wide b-img" href="~/locations/buckhurst-hill-essex/" data-r style="--d:1"><span class="k">The Holly, Buckhurst Hill</span><span class="v">Minutes from Woodford Green, Loughton and Chigwell, with parking on site. Also Harley Street and the City.</span><span class="more">Clinic details</span></a>
+    <a class="b b-wide b-img" href="~/locations/" data-r style="--d:1"><span class="k">Three private clinics</span><span class="v">The Holly in Buckhurst Hill, near Woodford Green and Loughton. Bupa Wharfside in Canary Wharf. Nuffield Health St Bartholomew&rsquo;s in the City.</span><span class="more">All clinics</span></a>
     <a class="b b-rate" href="~/reviews/" data-r style="--d:2"><span class="k">5.0</span>{stars()}<span class="v">100% five-star on iWantGreatCare</span></a>
   </div>
-  <div class="asseen" data-r><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div>
 </div></section>
 
 <section class="meet"><div class="wrap meet-in">
-  <figure class="meet-f" data-r>{picture("zu-navy", "Mr Md Zaker Ullah, consultant oncoplastic breast surgeon", "(min-width: 64rem) 36vw, 92vw", [600, 900, 1300], 1020, 1542)}</figure>
+  <figure class="meet-f" data-r>{picture("zu-navy", "Mr Md Zaker Ullah, Consultant Oncoplastic Breast Surgeon", "(min-width: 64rem) 36vw, 92vw", [600, 900, 1300], 1020, 1542)}</figure>
   <div class="meet-t" data-r style="--d:1">
     <h2>Meet Mr Ullah</h2>
     <p class="lede mt-2">Mr Md Zaker Ullah FRCS has worked in surgery for over 30 years. He trained in London at <strong>The Royal Marsden</strong>, <strong>St Mary&rsquo;s</strong> and <strong>The Royal Free</strong>, and has been a consultant at Barts Health NHS Trust since 2012.</p>
     <p class="mt-2">Today he is Clinical Lead of the Breast Unit at Whipps Cross University Hospital, where he introduced the one-stop breast clinic and fat grafting for reconstruction. He also directs the hospital&rsquo;s FRCS course, preparing senior surgeons for their fellowship examination.</p>
-    <dl class="meet-k"><div><dt>30+</dt><dd>years in surgery</dd></div><div><dt>2012</dt><dd>consultant, Barts Health</dd></div><div><dt>Clinical Lead</dt><dd>Whipps Cross Breast Unit</dd></div></dl>
+    <dl class="meet-k"><div><dt>30+</dt><dd>Years in surgery</dd></div><div><dt>2012</dt><dd>Consultant, Barts Health</dd></div><div><dt>Clinical Lead</dt><dd>Whipps Cross Breast Unit</dd></div></dl>
     <p class="mt-3"><a class="more" href="~/biography/">Read his story</a></p>
   </div>
 </div></section>
+
+{insurer_band()}
 
 <section class="band white"><div class="wrap tx">
   <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All eight treatments</a></p></div>
@@ -340,7 +350,7 @@ def build_home():
 <section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
     render("", extra_head=hreflang(), title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
-           desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
+           desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Canary Wharf and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",
            body=body, nav=NAV, schema=[PHYSICIAN, WEBSITE, faq_schema(HOME_FAQS),
                                        {"@context": "https://schema.org", "@type": "VideoObject", "name": "Mr Zaker Ullah, highlights", "description": "Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events.", "thumbnailUrl": SITE + "/assets/video/reel-poster.jpg", "contentUrl": SITE + "/assets/video/reel.mp4", "uploadDate": "2026-11-04", "duration": "PT20S"}],
            priority="1.0")
@@ -362,7 +372,7 @@ def build_about():
         ("2003", "A European prize", "His keyhole hernia repair technique, using a glove balloon, wins best video presentation at the European Association for Endoscopic Surgery."),
         ("2009", "Specialist in general surgery", "FRCS in General Surgery, after higher training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield. It is here that his interest in oncoplastic breast surgery takes shape."),
         ("2012", "Consultant, Barts Health", "Appointed consultant oncoplastic breast and general surgeon at Whipps Cross University Hospital, part of Barts Health NHS Trust."),
-        ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. He directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Harley Street and St Bartholomew&rsquo;s."),
+        ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. He directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Canary Wharf and St Bartholomew&rsquo;s, having previously consulted on Harley Street."),
     ]
     media = {"2003": ("loop-room", "In front of an audience"), "2012": ("loop-chat", "Time for every question"), "Today": ("loop-summit", "On the international stage")}
     cards = []
@@ -390,7 +400,7 @@ def build_about():
       <p class="bh-sub">Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital.</p>
       <dl class="bh-meta"><div><dt>Qualifications</dt><dd>{POSTNOM}</dd></div><div><dt>GMC</dt><dd><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">4368515</a></dd></div></dl>
     </div>
-    <figure class="bh-fig">{picture("zu-navy", "Mr Md Zaker Ullah, consultant oncoplastic breast surgeon", "(min-width: 64rem) 44vw, 100vw", [600, 900, 1300], 1020, 1542, lazy=False)}</figure>
+    <figure class="bh-fig">{picture("zu-navy", "Mr Md Zaker Ullah, Consultant Oncoplastic Breast Surgeon", "(min-width: 64rem) 44vw, 100vw", [600, 900, 1300], 1020, 1542, lazy=False)}</figure>
   </div>
 </div></section>
 
@@ -504,7 +514,7 @@ def build_locations():
         railed("Three clinics", clinic_cols()) + \
         railed("NHS", f'<h3>Whipps Cross University Hospital</h3><p class="stone mt-1" style="max-width:38rem">Whipps Cross Road, London E11 1NR. Mr Ullah is Clinical Lead of the Breast Unit, part of Barts Health NHS Trust. NHS referrals are made through your GP.</p><p class="mt-2"><a class="more" href="https://www.bartshealth.nhs.uk/find-a-consultant/contact/md-zaker-ullah-301/?consultant=301" target="_blank" rel="noopener">Barts Health profile</a></p>', cls="section rule")
     render("locations/", title="Private Breast Clinics London & Essex | Mr Zaker Ullah",
-           desc="Where to see breast surgeon Mr Zaker Ullah privately: The Harley Street Clinic W1, Nuffield Health St Bartholomew's EC1 and Nuffield Health The Holly, Buckhurst Hill IG9.",
+           desc="Where to see breast surgeon Mr Zaker Ullah privately: Bupa Wharfside Health Centre, Canary Wharf E14, Nuffield Health St Bartholomew's EC1 and Nuffield Health The Holly, Buckhurst Hill IG9.",
            body=body, nav=NAV, active="locations", priority="0.9", schema=[crumbs_schema(crumbs)])
 
     for l in C.LOCATIONS:
@@ -615,6 +625,9 @@ def build_reviews():
     render(path, title=f"Mr Zaker Ullah Reviews: Rated {C.IWGC_RATING}, 100% Five-Star",
            desc=f"Verified patient reviews of consultant breast surgeon Mr Md Zaker Ullah FRCS on iWantGreatCare: rated {C.IWGC_RATING} out of 5, with 100% five-star reviews.",
            body=body, nav=NAV, active="about", priority="0.8", schema=[crumbs_schema(crumbs)])
+    render("locations/harley-street/", title="Clinics", desc="This page has moved.", nav=NAV, noindex=True,
+           extra_head='<meta http-equiv="refresh" content="0; url=../canary-wharf/"><link rel="canonical" href="' + SITE + '/locations/canary-wharf/">',
+           body='<section class="section"><div class="wrap"><p>Mr Ullah now consults in Canary Wharf. <a href="~/locations/canary-wharf/">Canary Wharf clinic</a>.</p></div></section>')
     render("feedback/", title="Patient reviews", desc="This page has moved to /reviews/.", nav=NAV, noindex=True,
            extra_head='<meta http-equiv="refresh" content="0; url=../reviews/">',
            body='<section class="section"><div class="wrap"><p>This page has moved. <a href="~/reviews/">Read patient reviews</a>.</p></div></section>')
@@ -788,7 +801,7 @@ def build_remote():
 <li><h3>Send your records</h3><p>Clinic letters, imaging and pathology reports, in English or translated, and the images if you can.</p></li>
 <li><h3>Talk it through</h3><p>A consultation with Mr Ullah by secure video, with time to ask every question.</p></li>
 <li><h3>Your written opinion</h3><p>A clear letter explaining his view and recommended next steps, for you and your own doctors.</p></li></ol>''') + \
-        railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/harley-street/">Harley Street</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
+        railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/canary-wharf/">Canary Wharf</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
 <p>For patients travelling from abroad for treatment, the practice can help you plan the timing of consultations, tests and surgery. Read more about <a href="~/second-opinion/">second opinions</a>.</p></div>''', cls="section rule") + \
         faq_section(faqs, "Questions about remote consultations")
     desc = "Video consultations and international breast cancer second opinions with consultant breast surgeon Mr Zaker Ullah FRCS, in English, Bangla or Arabic, usually within 24 to 48 hours."
@@ -801,7 +814,7 @@ def build_legal():
     crumbs = [("Home", ""), ("Privacy policy", path)]
     body = page_head(crumbs, "Legal", "Privacy policy", f"How Mr Ullah&rsquo;s private practice handles your personal information. Last updated {UPDATED}.") + \
         railed("Policy", f'''<div class="prose">
-<h2>Who we are</h2><p>This website belongs to the private practice of {NAME} FRCS, consultant breast surgeon (GMC 4368515). For anything about your personal information, contact his private secretary, {C.SEC_NAME}, at <a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a> or on {C.SEC_PHONE}.</p>
+<h2>Who we are</h2><p>This website belongs to the private practice of {NAME} FRCS, Consultant Breast Surgeon (GMC 4368515). For anything about your personal information, contact his private secretary, {C.SEC_NAME}, at <a href="mailto:{C.SEC_EMAIL}">{C.SEC_EMAIL}</a> or on {C.SEC_PHONE}.</p>
 <h2>What this website collects</h2><p>This website does not use analytics, advertising or tracking cookies, and it does not store anything you type. The enquiry form does not send data to a server: it opens your own email application with a message addressed to the private secretary, and nothing is sent until you choose to send it.</p>
 <h2>Information you send us</h2><p>If you email or telephone the practice, we use your name, contact details and anything you tell us to arrange and provide your care. Information about your health is special category data, which we process to provide healthcare under UK GDPR Article 9(2)(h). Clinical records are held by the hospital where you are seen, under its own policies and retention periods.</p>
 <h2>Who we share it with</h2><p>Only those involved in your care or its payment: the hospital where you are seen, your GP (with your consent), and your insurer if you are claiming. We never sell your information.</p>

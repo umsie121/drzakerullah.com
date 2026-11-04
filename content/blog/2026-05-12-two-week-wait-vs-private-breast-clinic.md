@@ -46,7 +46,7 @@ Going private does not buy you better tests. It buys you choices, and for some p
 - **Choosing who.** You see the consultant you chose, by name, rather than whichever member of the team is running clinic that day. In the NHS you will be seen by a skilled specialist, but it may be a different person at each visit.
 - **Continuity.** At my private clinics, the surgeon who examines you is the surgeon who gives your results and, if needed, does your operation. Some patients find that steadying, particularly if the news is not straightforward.
 - **Time.** Private appointments usually allow longer for questions, and a partner or relative is welcome to come in with you.
-- **Where.** You pick the hospital. For many of my patients in Woodford Green, Loughton and Chigwell, that is [The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), where I run the Rapid Access Breast Clinic on Tuesday afternoons. Others prefer Harley Street or the City.
+- **Where.** You pick the hospital. For many of my patients in Woodford Green, Loughton and Chigwell, that is [The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), where I run the Rapid Access Breast Clinic on Tuesday afternoons. Others prefer [Canary Wharf](~/locations/canary-wharf/) or the City.
 
 Private care does come with costs. If you are self-funding, the hospital confirms the consultation fee when you book and gives you a written quote before any tests or surgery. If you have insurance, check your cover and get a pre-authorisation number first. I am a Bupa Platinum consultant, fee-assured and part of Bupa's Open Referral network, and fee-assured with the other major insurers too. My secretary can talk you through how this works for your policy when you [book an appointment](~/booking/).
 

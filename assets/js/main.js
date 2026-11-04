@@ -102,6 +102,73 @@
 
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Clinic pages open in an overlay sheet (the full pages remain for search and direct links)
+  (function () {
+    var sheet, body, lastFocus;
+    var isClinic = function (a) {
+      var u; try { u = new URL(a.href, location.href); } catch (e) { return false; }
+      return u.origin === location.origin && /\/locations\/[^/]+\/$/.test(u.pathname) && u.pathname !== location.pathname && !/harley-street/.test(u.pathname);
+    };
+    var close = function () {
+      if (!sheet) return;
+      sheet.classList.remove("on"); document.body.classList.remove("locked");
+      if (lastFocus) lastFocus.focus();
+    };
+    var build = function () {
+      sheet = document.createElement("div");
+      sheet.className = "sheet"; sheet.setAttribute("role", "dialog"); sheet.setAttribute("aria-modal", "true"); sheet.setAttribute("aria-label", "Clinic");
+      sheet.innerHTML = '<div class="sheet-bg"></div><div class="sheet-p"><button type="button" class="sheet-x" aria-label="Close">&times;</button><div class="sheet-b"></div></div>';
+      document.body.appendChild(sheet);
+      body = sheet.querySelector(".sheet-b");
+      sheet.querySelector(".sheet-x").addEventListener("click", close);
+      sheet.querySelector(".sheet-bg").addEventListener("click", close);
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    };
+    var open = function (href) {
+      if (!sheet) build();
+      lastFocus = document.activeElement;
+      body.innerHTML = '<p class="sheet-load">Loading</p>';
+      sheet.classList.add("on"); document.body.classList.add("locked");
+      sheet.querySelector(".sheet-x").focus();
+      fetch(href).then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var main = doc.querySelector("main"); if (!main) { location.href = href; return; }
+        main.querySelectorAll(".appt-band, .crumbs, script").forEach(function (n) { n.remove(); });
+        main.querySelectorAll("[href], [src], [srcset], [poster]").forEach(function (n) {
+          ["href", "src", "poster"].forEach(function (k) { var v = n.getAttribute(k); if (v && !/^(https?:|mailto:|tel:|#)/.test(v)) n.setAttribute(k, new URL(v, href).href); });
+          var ss = n.getAttribute("srcset");
+          if (ss) n.setAttribute("srcset", ss.split(",").map(function (p) { var b = p.trim().split(/\s+/); b[0] = new URL(b[0], href).href; return b.join(" "); }).join(", "));
+        });
+        main.querySelectorAll("[data-r]").forEach(function (n) { n.classList.add("in"); });
+        body.innerHTML = main.innerHTML + '<p class="sheet-full"><a class="more" href="' + href + '">Open the full clinic page</a></p>';
+        body.scrollTop = 0;
+      }).catch(function () { location.href = href; });
+    };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[href]");
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target === "_blank" || !isClinic(a)) return;
+      if (a.closest(".sheet")) return;
+      e.preventDefault();
+      if (typeof setMenu === "function") setMenu(false);
+      open(a.href);
+    });
+  })();
+
+  // Offer the Bangla or Arabic page to visitors whose device is set to that language (never redirect)
+  (function () {
+    if (document.documentElement.lang.indexOf("en") !== 0) return;
+    var pref = (navigator.languages || [navigator.language || ""]).map(function (l) { return (l || "").slice(0, 2).toLowerCase(); });
+    var want = pref[0] === "ar" ? "ar" : pref[0] === "bn" ? "bn" : null;
+    try { if (!want || localStorage.getItem("langhint") === "no") return; } catch (e) { if (!want) return; }
+    var copy = { ar: ["هذه الصفحة متوفرة بالعربية", "العربية"], bn: ["এই পেজটি বাংলায়ও আছে", "বাংলা"] }[want];
+    var root = document.querySelector('link[rel="icon"]').getAttribute("href").split("assets/")[0];
+    var d = document.createElement("div");
+    d.className = "langhint"; d.setAttribute("lang", want); d.setAttribute("dir", want === "ar" ? "rtl" : "ltr");
+    d.innerHTML = '<span>' + copy[0] + '</span><a href="' + root + want + '/">' + copy[1] + '</a><button type="button" aria-label="Close">&times;</button>';
+    d.querySelector("button").addEventListener("click", function () { d.remove(); try { localStorage.setItem("langhint", "no"); } catch (e) {} });
+    document.body.appendChild(d);
+  })();
+
   // Looping clips: load and play only while on screen
   var clips = document.querySelectorAll("video[data-lazy]");
   if ("IntersectionObserver" in window && !still && clips.length) {

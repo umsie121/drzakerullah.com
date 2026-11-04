@@ -77,7 +77,7 @@ For many women, a clear explanation is the treatment. Once they know it is a str
 
 Evening primrose oil, vitamin E and cutting out caffeine are often suggested, but the evidence for them is limited, and NICE does not routinely recommend them. If the pain is still severe after about three months of these measures, a specialist can discuss other options. The [NHS page on breast pain](https://www.nhs.uk/conditions/breast-pain/) is a good plain summary of self-help, and NICE's [summary on cyclical breast pain](https://cks.nice.org.uk/topics/breast-pain-cyclical/) sets out what GPs are advised to do.
 
-If you would like to be examined, you can [book an appointment](~/booking/) at The Holly, Harley Street or St Bartholomew's.
+If you would like to be examined, you can [book an appointment](~/booking/) at The Holly, Canary Wharf or St Bartholomew's.
 
 ## Frequently asked questions
 

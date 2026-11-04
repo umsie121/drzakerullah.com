@@ -87,7 +87,7 @@ Recovery from either procedure is usually quick.
 
 The main risks of either procedure are bruising, a collection of blood (haematoma), infection and, after larger lumps, a small change in the contour of the breast. These are uncommon, and I will go through the ones that apply to you before you decide. The removed tissue is always sent to the laboratory, and I see you to discuss the result.
 
-If you have a fibroadenoma and are not sure whether to keep watching it, or you have a new lump that has not yet been checked, you can [book an appointment](~/booking/) at [The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), Harley Street or St Bartholomew's. My guide on [when a breast lump needs a specialist](~/news/breast-lump-when-to-see-a-specialist/) may also help.
+If you have a fibroadenoma and are not sure whether to keep watching it, or you have a new lump that has not yet been checked, you can [book an appointment](~/booking/) at [The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), [Canary Wharf](~/locations/canary-wharf/) or St Bartholomew's. My guide on [when a breast lump needs a specialist](~/news/breast-lump-when-to-see-a-specialist/) may also help.
 
 ## Frequently asked questions
 

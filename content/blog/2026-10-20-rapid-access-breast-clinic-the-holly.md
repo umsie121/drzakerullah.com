@@ -38,7 +38,7 @@ Imaging results are usually explained on the day. Biopsy results normally take a
 The Holly is on the High Road in Buckhurst Hill, on the edge of Epping Forest, with on-site parking. Buckhurst Hill Central line station is nearby, and the M11 and M25 are minutes away. [Full clinic details](~/locations/buckhurst-hill-essex/).
 
 :::note
-If you have a new breast symptom and would rather be seen in central London, I also consult at [The Harley Street Clinic](~/locations/harley-street/) and [Nuffield Health at St Bartholomew's](~/locations/city-of-london/).
+If you have a new breast symptom and would rather be seen in central London, I also consult at [Bupa Wharfside Health Centre in Canary Wharf](~/locations/canary-wharf/) and [Nuffield Health at St Bartholomew's](~/locations/city-of-london/).
 :::
 
 ## Frequently asked questions

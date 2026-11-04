@@ -68,7 +68,7 @@ So a second opinion is not about overruling a team. It is about looking at the s
 
 Much of a second opinion is a review of reports and images, so it can often be done by video or telephone consultation. This suits patients outside London or abroad, and people who want an answer quickly. If I need to examine you, or arrange further imaging or a biopsy, we would then meet in person.
 
-Face to face second opinions are available at [Nuffield Health The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), convenient for Woodford Green, Loughton and Chigwell, as well as at Harley Street and Nuffield Health St Bartholomew's in the City. More detail is on the [second opinion page](~/second-opinion/).
+Face to face second opinions are available at [Nuffield Health The Holly in Buckhurst Hill](~/locations/buckhurst-hill-essex/), convenient for Woodford Green, Loughton and Chigwell, as well as at Canary Wharf and Nuffield Health St Bartholomew's in the City. More detail is on the [second opinion page](~/second-opinion/).
 
 ## Frequently asked questions
 

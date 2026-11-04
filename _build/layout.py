@@ -157,7 +157,7 @@ def appointment_band(nav, title="Let&rsquo;s get you <i>a clear answer</i>", tex
     <div><span class="k">Telephone</span><a class="big" href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
     <div><span class="k">Secretary</span><span class="v">{nav["sec_name"]}</span></div>
     <div><span class="k">Email</span><a href="mailto:{nav["email"]}">{nav["email"]}</a></div>
-    <div><span class="k">Clinics</span><span class="v">The Holly, Buckhurst Hill IG9 · Harley Street W1 · St Bartholomew&rsquo;s EC1</span></div>
+    <div><span class="k">Clinics</span><span class="v">The Holly, Buckhurst Hill IG9 · Canary Wharf E14 · St Bartholomew&rsquo;s EC1</span></div>
   </div>
 </div></div></section>'''
 
@@ -192,7 +192,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta property="og:image" content="{SITE}/{image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Mr Zaker Ullah, consultant oncoplastic breast surgeon">
+<meta property="og:image:alt" content="Mr Zaker Ullah, Consultant Oncoplastic Breast Surgeon">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="~/assets/img/icon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="~/assets/img/icon-192.png">

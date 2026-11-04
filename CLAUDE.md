@@ -39,7 +39,7 @@ stories or facts about Mr Ullah.
 
 ## Positioning
 
-- Lead with The Holly, Buckhurst Hill, for Woodford Green, Loughton and Chigwell; then Harley Street and St Bartholomew's.
+- Treat the three private clinics equally: Nuffield Health The Holly (Buckhurst Hill), Bupa Wharfside Health Centre (Canary Wharf) and Nuffield Health St Bartholomew's (City). He no longer consults on Harley Street; it may only be mentioned as past experience.
 - Mention Bupa Platinum consultant (fee-assured, Open Referral network) wherever insurance comes up.
 - Show review quality as "5.0, 100% five-star", never the raw review count.
 
