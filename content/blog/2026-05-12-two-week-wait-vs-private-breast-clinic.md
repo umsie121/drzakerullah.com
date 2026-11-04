@@ -8,7 +8,11 @@ keyword: two week wait breast clinic
 category: Private care explained
 related: benign-breast-conditions
 image_query: modern hospital building exterior
-image_id: ZCO_5Y29s8k
+image_id: 1c8sj2IO2I4
+image: blog/two-week-wait-vs-private-breast-clinic
+image_alt: Brown concrete building under blue sky during daytime
+image_credit: National Cancer Institute
+image_credit_url: https://unsplash.com/@nci?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** the NHS "two week wait" breast clinic is the urgent referral your GP makes for a breast symptom. You have a full triple assessment and should know within 28 days whether cancer has been found or ruled out. A private one-stop clinic offers the same tests, with a choice of time and consultant. Both are good routes.
 

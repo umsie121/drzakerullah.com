@@ -9,7 +9,11 @@ category: Breast cancer
 related: breast-cancer-surgery, benign-breast-conditions
 featured: West Essex Life
 image_query: two women talking over coffee
-image_id: uo8SjX9V-U4
+image_id: K8XYGbw4Ahg
+image: blog/five-things-breast-cancer
+image_alt: Two people holding gray mugs at table
+image_credit: Priscilla Du Preez 🇨🇦
+image_credit_url: https://unsplash.com/@priscilladupreez?utm_source=drzakerullah&utm_medium=referral
 ---
 Breast cancer is the most common cancer in the UK, and it is also one of the most treatable. A version of this article first appeared in *West Essex Life* magazine. After more than three decades in surgery, these are the five points I find myself repeating most often in clinic.
 

@@ -8,7 +8,11 @@ keyword: breast pain one side
 category: Breast symptoms
 related: benign-breast-conditions
 image_query: woman relaxing at home window light
-image_id: 23GoNP_XFRI
+image_id: vLjqtnvEICA
+image: blog/breast-pain-one-side
+image_alt: Hand holding a glass of dark liquid with sunlight shadows
+image_credit: Blake Wisz
+image_credit_url: https://unsplash.com/@blakewisz?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** breast pain on one side is common and is very rarely a sign of breast cancer when it is the only symptom. The usual causes are hormonal changes, pain from the muscles and joints of the chest wall, a cyst, or infection. Get checked if you also feel a lump or notice skin or nipple changes, if the breast is red and hot, or if pain stays in one spot.
 

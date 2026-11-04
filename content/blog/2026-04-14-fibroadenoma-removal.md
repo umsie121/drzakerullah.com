@@ -8,7 +8,11 @@ keyword: fibroadenoma removal
 category: Breast symptoms
 related: benign-breast-conditions
 image_query: calm hospital waiting room
-image_id: 87ev1NvhDsU
+image_id: FFA8yd4OynY
+image: blog/fibroadenoma-removal
+image_alt: Brown and white padded armchairs
+image_credit: smallbox
+image_credit_url: https://unsplash.com/@reoutput?utm_source=drzakerullah&utm_medium=referral
 ---
 **In short:** most fibroadenomas can safely be left alone once triple assessment has confirmed the diagnosis. They are benign and do not usually raise your risk of breast cancer. Fibroadenoma removal is worth considering if the lump is large, growing, painful, uncertain on biopsy, or simply troubling you. It can be done by surgical excision or, for smaller lumps, vacuum-assisted excision.
 
