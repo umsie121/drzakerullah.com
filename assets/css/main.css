@@ -1162,3 +1162,8 @@ h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3)
   .bh-fig { height: 100%; max-height: none; align-self: stretch; }
   .bh-fig img { object-position: 50% 6%; }
 }
+/* hero: copy sits lower so more of the video shows */
+@media (min-width: 62.01rem) {
+  .vhero .copy { padding-bottom: clamp(1.4rem, 3.2svh, 2.4rem); }
+  .vhero::after { background: linear-gradient(180deg, rgba(40, 14, 30, 0.1) 0, transparent 22%, transparent 58%, color-mix(in srgb, var(--deep) 62%, transparent) 86%, color-mix(in srgb, var(--deep) 88%, transparent) 100%); }
+}
