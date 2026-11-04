@@ -219,7 +219,7 @@ def reviews_section():
     rs = C.REVIEWS
     return f'''<section class="rv lux-dark"><div class="wrap"><div class="rv-head" data-r>
   <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. 100% of his verified reviews are five stars.</p></div></div>
-  <div class="rv-cta"><h2>Kind, thorough and never rushed</h2><a class="btn" href="~/reviews/">Read his reviews</a></div>
+  <div class="rv-cta"><h2>Kind, thorough and never rushed</h2><div class="actions"><a class="btn coral" href="~/booking/">Book with Mr Ullah</a><a class="btn" href="~/reviews/">Read his reviews</a></div></div>
 </div></div>
 <div class="marq" aria-label="Patient reviews"><div class="row">{"".join(review_card(r) for r in rs + rs)}</div></div></section>'''
 
@@ -267,6 +267,13 @@ def insurer_band():
     return (f'<section class="insb" aria-label="Recognised by insurers"><div class="wrap insb-h"><p>Recognised by the major UK and international insurers</p>'
             f'<a class="more" href="~/fees-and-insurance/">Fees and insurance</a></div>'
             f'<div class="insm"><div class="row">{chips}{chips}{chips}</div></div></section>')
+
+
+def cta_strip(title, text, alt=("Call the private secretary", None)):
+    """A slim booking prompt: a line of copy, a primary button and a phone link."""
+    return (f'<section class="ctas"><div class="wrap"><div class="ctas-in" data-r><div><h2>{title}</h2><p>{text}</p></div>'
+            f'<div class="ctas-a"><a class="btn coral" href="~/booking/">Book a consultation</a>'
+            f'<a class="ctas-tel" href="tel:{C.SEC_TEL}"><span>{alt[0]}</span><b>{C.SEC_PHONE}</b></a></div></div></div></section>')
 
 
 def say_words(text):
@@ -337,7 +344,7 @@ def build_home():
     <p class="lede mt-2">Mr Md Zaker Ullah FRCS has worked in surgery for over 30 years. He trained in London at <strong>The Royal Marsden</strong>, <strong>St Mary&rsquo;s</strong> and <strong>The Royal Free</strong>, and has been a consultant at Barts Health NHS Trust since 2012.</p>
     <p class="mt-2">Today he is Clinical Lead of the Breast Unit at Whipps Cross University Hospital, where he introduced the one-stop breast clinic and fat grafting for reconstruction. He also directs the hospital&rsquo;s FRCS course, preparing senior surgeons for their fellowship examination.</p>
     <dl class="meet-k"><div><dt>30+</dt><dd>Years in surgery</dd></div><div><dt>2012</dt><dd>Consultant, Barts Health</dd></div><div><dt>Clinical Lead</dt><dd>Whipps Cross Breast Unit</dd></div></dl>
-    <p class="mt-3"><a class="more" href="~/biography/">Read his story</a></p>
+    <div class="actions mt-3"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="more" href="~/biography/">Read his story</a></div>
   </div>
 </div></section>
 
@@ -348,6 +355,7 @@ def build_home():
   {tx_groups()}
 </div></section>
 
+{cta_strip("Not sure where to start?", "Most people begin with a single consultation. Insured and self-funding patients are welcome at all three clinics.")}
 {reviews_section()}
 
 {podcast_panel()}
@@ -422,6 +430,8 @@ def build_about():
   <div class="wrap hz-head"><h2>A career in surgery</h2><span class="hz-bar"><i data-hzbar></i></span></div>
   <ol class="hz-track" data-hztrack>{jn}</ol>
 </div></section>
+
+{cta_strip("Meet him in clinic", "Appointments at The Holly in Buckhurst Hill, Canary Wharf and the City of London, or by video.")}
 
 <section class="bleed"><figure>{loop('loop-stage', 'lv bleed-v')}</figure>
   <div class="wrap"><p class="bleed-cap" data-r>He speaks at international cancer meetings, and is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage.</p></div></section>
@@ -702,6 +712,10 @@ def build_news():
         date_label = p["date_obj"].strftime("%-d %B %Y")
         reviewed = datetime.date.fromisoformat(p.get("reviewed", p["date"])).strftime("%-d %B %Y")
         html, toc = with_ids(p["html"])
+        parts = html.split("<h2", 3)
+        if len(parts) == 4:
+            html = parts[0] + "<h2" + parts[1] + "<h2" + parts[2] + (f'<aside class="inline-cta"><p>Questions about your own situation? A consultation with Mr Ullah can often be arranged within days.</p>'
+                    f'<a class="btn coral" href="~/booking/">Book a consultation</a></aside>') + "<h2" + parts[3]
         faq = faq_html([(q, a.replace("<p>", "").replace("</p>", "||").rstrip("|")) for q, a in p["faqs"]]) if p["faqs"] else ""
         rel = "".join(f'<li><a href="~/procedures/{s}/">{PROC[s]["nav"]}</a></li>' for s in p["related"] if s in PROC)
         # related reading: same topic first, then posts sharing a treatment, then the latest
@@ -713,6 +727,7 @@ def build_news():
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")] if faq else [])}</div>
   <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>By <a href="~/biography/">{NAME} FRCS</a>, Consultant Oncoplastic Breast Surgeon.</span></div>
     <div class="prose">{html}{f'<h2 id="questions">Questions</h2>{faq}' if faq else ""}
+    <div class="end-cta"><div><h3>Speak to Mr Ullah</h3><p>A consultation at The Holly, Canary Wharf or the City of London, or by video. Insured and self-funding patients welcome.</p></div><div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="more" href="tel:{C.SEC_TEL}">{C.SEC_PHONE}</a></div></div>
     <p class="note">This article is general information and not medical advice. If you have a breast symptom, arrange an assessment through your GP or a <a href="~/booking/">specialist clinic</a>. In an emergency, call 999.</p></div></div>
   <aside class="aside">{appt_aside()}{f'<div class="block"><span class="label">Treatments</span><ul>{rel}</ul></div>' if rel else ""}<div class="block"><span class="label">Further reading</span><ul><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">The podcast</a></li><li><a href="~/your-visit/">Your first visit</a></li></ul></div></aside>
 </div></section></article>
