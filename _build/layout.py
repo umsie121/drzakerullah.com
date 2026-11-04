@@ -7,6 +7,7 @@ site works from any folder (custom domain or GitHub Pages sub-path).
 Naming: always "Mr" Ullah (UK surgical convention for FRCS). "Dr" appears
 only in verbatim patient reviews and in schema alternateName for search.
 """
+import hashlib
 import json
 import os
 import re
@@ -16,6 +17,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.drzakerullah.com"
 SITEMAP = []
 
+
+def asset_v(rel):
+    """Short content hash so browsers refetch CSS/JS when they change."""
+    with open(os.path.join(ROOT, rel), "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()[:8]
+
 NAME = "Mr Md Zaker Ullah"
 SHORT = "Mr Zaker Ullah"
 POSTNOM = "MBBS FRCSEd FRCS (Gen. Surg.)"
@@ -23,7 +30,7 @@ PHYSICIAN_REF = {"@id": SITE + "/#physician"}
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0,0;1,9..144,300..700,0,0&family=Figtree:wght@400;500;600;700&display=swap">')
 
 
 def picture(base, alt, sizes, widths, w, h, lazy=True):
@@ -104,11 +111,12 @@ def header(nav, active):
     groups = "".join(
         f'<div class="group{" small" if i > 1 else ""}"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
         for i, (t, _, _, _, links) in enumerate(model))
-    return f'''<div class="topline"><div class="wrap"><span class="tl-l">Bupa Platinum consultant · Same day imaging and results for new breast symptoms</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
+    return f'''<div class="topline" hidden><div class="wrap"><span class="tl-l">Bupa Platinum consultant · Same day imaging and results for new breast symptoms</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
 <header class="site-header">
   <div class="wrap bar">
+    <nav class="nav left" aria-label="Primary">{"".join(drop(m) for m in model[:3])}</nav>
     {brand()}
-    <nav class="nav" aria-label="Main">{"".join(drop(m) for m in model)}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book a consultation</a></nav>
+    <nav class="nav right" aria-label="Secondary">{drop(model[3])}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book</a></nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="overlay">Menu</button>
   </div>
 </header>
@@ -138,18 +146,18 @@ def footer(nav):
 <div class="mbar" aria-label="Quick contact"><a href="tel:{nav["phone_tel"]}">Call</a><a href="~/booking/">Book a consultation</a></div>'''
 
 
-def appointment_band(nav, title="Let&rsquo;s get you a clear answer", text=None):
+def appointment_band(nav, title="Let&rsquo;s get you <i>a clear answer</i>", text=None):
     text = text or "Most breast symptoms turn out to be nothing serious. A single appointment is usually all it takes to know for sure. Insured and self-funding patients are welcome at all three clinics."
-    return f'''<section class="section appt-band"><div class="wrap appointment">
+    return f'''<section class="appt-band"><div class="wrap"><div class="appointment">
   <div><span class="label">Appointments</span><h2 class="mt-1">{title}</h2><p class="lede">{text}</p>
     <div class="actions"><a class="btn" href="~/booking/">Request an appointment</a><a class="btn line" href="~/your-visit/">What to expect</a></div></div>
   <div class="card">
     <div><span class="k">Telephone</span><a class="big" href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
     <div><span class="k">Secretary</span><span class="v">{nav["sec_name"]}</span></div>
     <div><span class="k">Email</span><a href="mailto:{nav["email"]}">{nav["email"]}</a></div>
-    <div><span class="k">Clinics</span><span class="v">Harley Street W1 · St Bartholomew&rsquo;s EC1 · The Holly, Buckhurst Hill IG9</span></div>
+    <div><span class="k">Clinics</span><span class="v">The Holly, Buckhurst Hill IG9 · Harley Street W1 · St Bartholomew&rsquo;s EC1</span></div>
   </div>
-</div></section>'''
+</div></div></section>'''
 
 
 def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="website",
@@ -169,7 +177,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta name="description" content="{escape(desc)}">
 <meta name="robots" content="{"noindex" if noindex else "index, follow, max-image-preview:large"}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#1c2a4a">
+<meta name="theme-color" content="#55203f">
 <meta property="og:site_name" content="{NAME}, Consultant Breast Surgeon">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="{escape(title)}">
@@ -182,7 +190,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <link rel="apple-touch-icon" href="~/assets/img/zu-head-400.jpg">
 <link rel="alternate" type="application/rss+xml" title="Journal" href="~/feed.xml">
 {FONTS}
-<link rel="stylesheet" href="~/assets/css/main.css">
+<link rel="stylesheet" href="~/assets/css/main.css?v={asset_v("assets/css/main.css")}">
 {extra_head}{blocks}
 </head>
 <body>
@@ -193,7 +201,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 {appointment_band(nav) if band and not noindex else ""}
 </main>
 {footer(nav)}
-<script src="~/assets/js/main.js" defer></script>
+<script src="~/assets/js/main.js?v={asset_v("assets/js/main.js")}" defer></script>
 </body>
 </html>
 '''

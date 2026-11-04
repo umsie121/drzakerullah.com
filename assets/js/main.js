@@ -9,6 +9,7 @@
   function setMenu(open) {
     if (!overlay) return;
     overlay.classList.toggle("open", open);
+    if (open) overlay.scrollTop = 0;
     overlay.setAttribute("aria-hidden", open ? "false" : "true");
     if (openBtn) openBtn.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("locked", open);
@@ -55,6 +56,37 @@
         "?subject=" + encodeURIComponent("Appointment enquiry: " + d.get("reason")) +
         "&body=" + encodeURIComponent(lines.join("\n"));
     });
+  }
+
+
+  // Hero reel: pause / play control
+  document.querySelectorAll(".vhero .rp").forEach(function (b) {
+    var v = b.parentNode.querySelector("video");
+    if (!v) return;
+    b.addEventListener("click", function () {
+      if (v.paused) { v.play(); b.textContent = "Pause"; b.setAttribute("aria-label", "Pause video"); }
+      else { v.pause(); b.textContent = "Play"; b.setAttribute("aria-label", "Play video"); }
+    });
+  });
+
+  // Podcast lightbox: the YouTube player loads only when opened
+  var lb = document.getElementById("lb");
+  if (lb) {
+    var fr = document.getElementById("lbfr");
+    var heroV = document.querySelector(".vhero video");
+    var openPod = function () {
+      fr.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + fr.getAttribute("data-yt") + '?autoplay=1&rel=0" title="Podcast episode" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      lb.classList.add("on"); document.body.classList.add("locked");
+      if (heroV) heroV.pause();
+      var x = lb.querySelector(".x"); if (x) x.focus();
+    };
+    var closePod = function () {
+      lb.classList.remove("on"); document.body.classList.remove("locked"); fr.innerHTML = "";
+      if (heroV && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) heroV.play();
+    };
+    document.querySelectorAll("[data-open-pod]").forEach(function (b) { b.addEventListener("click", openPod); });
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.closest(".x")) closePod(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lb.classList.contains("on")) closePod(); });
   }
 
   // Gentle fade for statement blocks below the fold

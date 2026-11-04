@@ -29,11 +29,12 @@ Push to `main` and GitHub Actions validates, builds and deploys to GitHub Pages.
 
 ## Design system
 
-*Navy, Cream & Coral*. Navy carries over from the original Squarespace site; cream and blush grounds
-keep it warm; coral is the single energetic accent. Newsreader (display and reading) with Plus
-Jakarta Sans (interface). Colour photography with an arched portrait. House style: always "Mr"
-Ullah (UK surgical convention; "Dr Zaker Ullah" is kept in schema alternateName and one FAQ for
-search), and no em or en dashes anywhere (the validator enforces this for posts).
+*Mulberry & Peach, editorial*. Deep mulberry `#55203f`, peach accent `#ee8a6c`, warm cream grounds.
+Fraunces for headings (set at a medium optical size, SOFT 0, so strokes stay sturdy) with Figtree for text.
+Rounded inset panels; the home hero is a looping, silent 19-second highlights reel
+(`assets/video/`, with a poster image, pause control and reduced-motion fallback). Reviews show
+5.0 and 100% five-star (never the raw count), each linked to iWantGreatCare. House style: always
+"Mr" Ullah, no em or en dashes, no references to hands.
 
 ## SEO built in
 

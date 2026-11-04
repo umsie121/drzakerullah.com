@@ -105,6 +105,9 @@ LOCATIONS = [
     },
 ]
 
+# Lead with The Holly (Buckhurst Hill / Woodford Green), then central London.
+LOCATIONS = [LOCATIONS[2], LOCATIONS[0], LOCATIONS[1]]
+
 NHS_BASE = {"name": "Whipps Cross University Hospital", "trust": "Barts Health NHS Trust",
             "street": "Whipps Cross Road", "locality": "Leytonstone, London", "postcode": "E11 1NR"}
 
