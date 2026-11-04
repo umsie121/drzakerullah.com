@@ -1361,3 +1361,36 @@ h3, .b .k, .txg-h .t, .tx-list .t, .bcards .t, .journal .t, .pc h3, .hc h3, .txg
 .pr .pp-l { padding: 0; margin: 0; }
 .pr .pp-l li:first-child a { padding-top: 0.2rem; }
 @media (min-width: 56rem) { .pr-h { position: sticky; top: calc(var(--header) + 1.5rem); } }
+
+/* ============================================================ tighter overall scale */
+:root {
+  --t-display: clamp(2.3rem, min(5.8vw, 8.8svh), 5.6rem);
+  --t-page: clamp(2rem, min(4.2vw, 7svh), 4rem);
+  --t-h2: clamp(1.6rem, min(3vw, 5.4svh), 2.8rem);
+  --t-h3: clamp(1.08rem, min(1.45vw, 2.6svh), 1.35rem);
+  --t-say: clamp(1.4rem, min(2.9vw, 4.8svh), 2.7rem);
+  --section: clamp(2.8rem, 8svh, 5.2rem);
+  --header: 4.9rem;
+}
+body { font-size: 0.97rem; }
+.lede { font-size: clamp(1rem, 1.15vw, 1.12rem); }
+.btn { min-height: 2.9rem; padding: 0 1.35rem; font-size: 0.93rem; }
+.brand .n, .site-header .brand .n { font-size: 1.4rem; }
+.site-header.scrolled .bar { height: 3.6rem; }
+.site-header.scrolled .brand .n { font-size: 1.2rem; }
+.nav > a, .nav .drop > button { font-size: 0.9rem; }
+.b .k { font-size: clamp(1.15rem, min(1.6vw, 2.9svh), 1.55rem); }
+.b-deep .k, .rv-score b, .b-rate .k, .hc .y, .tc .k { font-size: clamp(1.9rem, min(3.3vw, 5.8svh), 3.3rem); }
+.txg-h .t, .blead .t { font-size: clamp(1.35rem, min(2.1vw, 3.8svh), 1.95rem); }
+.pr-h h2 { font-size: clamp(1.45rem, min(2.3vw, 4.2svh), 2.05rem); }
+.pp-l .t { font-size: 1.15rem; }
+.b { padding: clamp(1.3rem, 2.1vw, 1.8rem); }
+.bento { grid-auto-rows: minmax(clamp(8rem, 19svh, 10.5rem), auto); }
+.meet-k dt { font-size: clamp(1.5rem, 2.2vw, 2rem); }
+.ctas-in h2 { font-size: clamp(1.4rem, min(2.4vw, 4.4svh), 2.1rem); }
+.say { padding-block: clamp(3.2rem, 11svh, 7rem); }
+.vhero .copy > .label { font-size: 0.68rem; }
+.hc { padding: 1.6rem 1.7rem 1.8rem; }
+.pc, .ic, .tc { padding: clamp(1.3rem, 2.2vw, 1.9rem); }
+.marq .rc { width: 21rem; }
+.rc blockquote { font-size: 1.05rem; }
