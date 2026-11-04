@@ -1350,3 +1350,14 @@ h3, .b .k, .txg-h .t, .tx-list .t, .bcards .t, .journal .t, .pc h3, .hc h3, .txg
 .hz-head { width: 100%; }
 .hz-head h2 { flex: 1 1 auto; white-space: nowrap; }
 @media (min-width: 64rem) { .js .hz.pin .hz-track { flex: 0 0 auto; align-items: stretch; max-height: none; margin-top: clamp(0.5rem, 3svh, 2rem); } .js .hz.pin .hz-pin { justify-content: center; } .hc.hv { min-height: 18rem; } }
+
+/* treatments index: editorial rows on ivory */
+.prows { border-bottom: 1px solid var(--line-strong); }
+.pr { display: grid; gap: 1rem 4rem; padding-block: clamp(1.8rem, 4.5svh, 2.8rem); border-top: 1px solid var(--line-strong); }
+@media (min-width: 56rem) { .pr { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr); align-items: start; } }
+.pr-n { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent-ink); }
+.pr-h h2 { margin-top: 0.5rem; font-size: clamp(1.7rem, min(2.8vw, 5svh), 2.5rem); }
+.pr-h p { margin-top: 0.6rem; color: var(--muted); max-width: 26rem; }
+.pr .pp-l { padding: 0; margin: 0; }
+.pr .pp-l li:first-child a { padding-top: 0.2rem; }
+@media (min-width: 56rem) { .pr-h { position: sticky; top: calc(var(--header) + 1.5rem); } }

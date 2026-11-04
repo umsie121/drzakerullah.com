@@ -473,7 +473,7 @@ def build_about():
 def proc_panel(i, title, desc, slugs):
     """One area of practice: a title, a line of context and its treatments as rows."""
     rows = "".join(f'<li><a href="~/procedures/{PROC[x]["slug"]}/"><span class="t">{PROC[x]["nav"]}</span><span class="d">{PROC[x]["summary"]}</span><span class="go" aria-hidden="true">&rarr;</span></a></li>' for x in slugs)
-    return (f'<article class="pp" data-r style="--d:{i}"><header class="pp-top"><span class="pp-n">0{i + 1}</span><h2>{title}</h2><p class="pp-d">{desc}</p></header>'
+    return (f'<article class="pr" data-r><div class="pr-h"><span class="pr-n">0{i + 1}</span><h2>{title}</h2><p>{desc}</p></div>'
             f'<ul class="pp-l">{rows}</ul></article>')
 
 
@@ -481,7 +481,7 @@ def build_procedures():
     crumbs = [("Home", ""), ("Treatments", "procedures/")]
     body = page_head(crumbs, "Treatments", "Areas of practice",
                      "The diagnosis and surgical treatment of breast disease, benign and malignant, with oncoplastic and reconstructive surgery, the male breast, and keyhole general surgery.") + \
-f'<section class="section"><div class="wrap"><div class="pgrid">{"".join(proc_panel(i, g, d, sl) for i, (g, d, sl) in enumerate(C.PROC_GROUPS))}</div></div></section>' + \
+f'<section class="section"><div class="wrap"><div class="prows">{"".join(proc_panel(i, g, d, sl) for i, (g, d, sl) in enumerate(C.PROC_GROUPS))}</div></div></section>' + \
         cta_strip("Not sure where to begin?", "Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.")
     items = {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/procedures/{p['slug']}/", "name": p["nav"]} for i, p in enumerate(C.PROCEDURES)]}
     render("procedures/", title="Breast Surgery Treatments London & Essex | Mr Zaker Ullah",
