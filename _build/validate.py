@@ -18,7 +18,8 @@ BANNED = [r"\bbest (breast )?surgeon\b", r"\bleading\b", r"\bworld[- ]class\b", 
           r"\bmiracle\b", r"\brevolutionary\b", r"\bcutting[- ]edge\b"]
 STANDARD_FROM = datetime.date(2026, 11, 4)  # posts dated from here must meet the full standard
 VALID_LINKS = ({f"~/procedures/{p['slug']}/" for p in C.PROCEDURES} | {f"~/locations/{l['slug']}/" for l in C.LOCATIONS} |
-               {"~/", "~/procedures/", "~/locations/", "~/biography/", "~/reviews/", "~/podcast/", "~/booking/", "~/second-opinion/", "~/news/"})
+               {"~/", "~/procedures/", "~/locations/", "~/biography/", "~/reviews/", "~/podcast/", "~/booking/", "~/second-opinion/", "~/news/",
+                "~/fees-and-insurance/", "~/your-visit/", "~/remote-consultations/", "~/faqs/"})
 
 
 def main():

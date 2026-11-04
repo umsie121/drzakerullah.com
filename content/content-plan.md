@@ -16,24 +16,24 @@ Intent: I informational · C commercial · L local
 | 5 | Can I see a private breast surgeon without a GP referral? | see breast surgeon without gp referral | C | Private care explained | live |
 | 6 | A lump behind the nipple in men | lump behind nipple male | I | Men's breast health | live |
 | 7 | Lumpectomy or mastectomy? | lumpectomy vs mastectomy | I | Breast cancer | scheduled 2026-11-10 |
-| 8a | Private breast clinic near Woodford Green: what to expect at The Holly ★ | private breast clinic woodford green | L | Local clinics | backlog |
-| 8b | Bupa open referral: how to choose your breast surgeon ★ | bupa open referral breast surgeon | C | Private care explained | backlog |
-| 8c | Lipoma removal privately in Essex: assessment, procedure, recovery ★ | lipoma removal essex | C | General surgery | backlog |
+| 8a | Private breast clinic near Woodford Green: what to expect at The Holly ★ | private breast clinic woodford green | L | Local clinics | live 2025-11-11 |
+| 8b | Bupa open referral: how to choose your breast surgeon ★ | bupa open referral breast surgeon | C | Private care explained | live 2026-01-13 |
+| 8c | Lipoma removal privately in Essex: assessment, procedure, recovery ★ | lipoma removal essex | C | General surgery | live 2026-06-09 |
 | 8d | Self-pay breast check: how private breast clinic pricing works (no prices) ★ | self pay breast clinic | C | Private care explained | backlog |
 | 8e | Sebaceous cyst removal: when and how ★ | sebaceous cyst removal private | C | General surgery | backlog |
 | 8f | Chest wall perforator flaps (LICAP, MICAP) after lumpectomy ★ | licap flap | I | Reconstruction & cosmetic | backlog |
 | 8g | Video consultations with a breast surgeon: when they work ★ | online breast surgeon consultation | C | Private care explained | backlog |
 | 8 | Breast reduction on the NHS vs private in North East London & Essex ★ | breast reduction nhs criteria essex | C | Reconstruction & cosmetic | backlog |
-| 9 | Clear vs bloody nipple discharge: what each means | nipple discharge causes | I | Breast symptoms | backlog |
+| 9 | Clear vs bloody nipple discharge: what each means | nipple discharge causes | I | Breast symptoms | live 2025-12-09 |
 | 10 | Therapeutic mammoplasty: cancer surgery and a reduction in one ★ | therapeutic mammoplasty | I | Breast cancer | backlog |
 | 11 | Gynaecomastia in teenage boys: will it go away? ★ | teenage gynaecomastia | I | Men's breast health | backlog |
 | 12 | Private one-stop breast clinic in London: what's included ★ | private breast clinic london | C | Private care explained | backlog |
-| 13 | Breast pain on one side: causes and when to get checked | breast pain one side | I | Breast symptoms | backlog |
-| 14 | Do I need a second opinion after a breast cancer diagnosis? | breast cancer second opinion | C | Private care explained | backlog |
-| 15 | Fibroadenoma: remove it or leave it? | fibroadenoma removal | I | Breast symptoms | backlog |
+| 13 | Breast pain on one side: causes and when to get checked | breast pain one side | I | Breast symptoms | live 2026-02-10 |
+| 14 | Do I need a second opinion after a breast cancer diagnosis? | breast cancer second opinion | C | Private care explained | live 2026-09-08 |
+| 15 | Fibroadenoma: remove it or leave it? | fibroadenoma removal | I | Breast symptoms | live 2026-04-14 |
 | 16 | Breast reduction by a breast surgeon vs a plastic surgeon ★ | breast surgeon vs plastic surgeon | C | Reconstruction & cosmetic | backlog |
-| 17 | Male breast cancer: symptoms and what to do ★ | male breast cancer symptoms | I | Men's breast health | backlog |
-| 18 | Lumpectomy recovery week by week | lumpectomy recovery | I | Living with & after | backlog |
+| 17 | Male breast cancer: symptoms and what to do ★ | male breast cancer symptoms | I | Men's breast health | live 2026-03-10 |
+| 18 | Lumpectomy recovery week by week | lumpectomy recovery | I | Living with & after | live 2026-08-11 |
 | 19 | Private breast care near the City: Barts for City & Canary Wharf workers ★ | breast clinic city of london | L | Local clinics | backlog |
 | 20 | Dense breasts on a mammogram: what it means in the UK ★ | dense breasts mammogram uk | I | Breast symptoms | backlog |
 | 21 | Recalled after NHS breast screening: what happens next | recalled after mammogram | I | Breast symptoms | backlog |
@@ -41,7 +41,7 @@ Intent: I informational · C commercial · L local
 | 23 | Gynaecomastia surgery: when you need gland excision, not just liposuction ★ | gynaecomastia gland excision | C | Men's breast health | backlog |
 | 24 | Mastectomy with immediate reconstruction: recovery timeline | mastectomy reconstruction recovery | I | Reconstruction & cosmetic | backlog |
 | 25 | Breast cyst keeps coming back: options | recurring breast cyst | I | Breast symptoms | backlog |
-| 26 | NHS two-week wait vs private one-stop clinic ★ | two week wait breast clinic | C | Private care explained | backlog |
+| 26 | NHS two-week wait vs private one-stop clinic ★ | two week wait breast clinic | C | Private care explained | live 2026-05-12 |
 | 27 | Implant vs own-tissue (flap) reconstruction | implant vs flap reconstruction | I | Reconstruction & cosmetic | backlog |
 | 28 | Inverted nipple: new vs lifelong, when it matters | inverted nipple | I | Breast symptoms | backlog |
 | 29 | Breast clinic near Chigwell, Loughton & Epping (The Holly) ★ | breast clinic loughton | L | Local clinics | backlog |

@@ -169,6 +169,9 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
     if path == "404.html":
         rel = "/"  # served from arbitrary URLs, so links must be absolute
     canonical = SITE + "/" + path
+    key = path.strip("/").replace("/", "-")
+    if image == "assets/img/og-card.jpg" and key and os.path.exists(os.path.join(ROOT, "assets", "og", f"{key}.jpg")):
+        image = f"assets/og/{key}.jpg"
     blocks = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schema)
     html = f'''<!DOCTYPE html>
 <html lang="en-GB">

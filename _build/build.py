@@ -219,7 +219,7 @@ APPLE_SVG = '<svg viewBox="0 0 24 24" fill="#9933CC" aria-hidden="true"><path d=
 def podcast_panel():
     P = C.PODCAST
     return f'''<section class="podp"><div class="box" data-r>
-  <button class="vid" type="button" data-open-pod aria-label="Watch the episode"><img src="https://i.ytimg.com/vi/{P["youtube"]}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"><i></i><span>Season {P["season"]}, episode {P["episode"]} · {P["duration_label"]} · recorded live</span></button>
+  <button class="vid" type="button" data-open-pod aria-label="Watch the episode"><img src="https://i.ytimg.com/vi/{P["youtube"]}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"><i></i></button>
   <div><span class="label">As featured on Everything Changed</span>
     <h2>Five questions about breast cancer, <i>answered by a surgeon</i></h2>
     <p class="sub">Breast cancer survivor Rosie Fawehimi sits down with the surgeon who diagnosed her, and later performed her double mastectomy and reconstruction.</p>
@@ -640,7 +640,9 @@ def build_news():
         html, toc = with_ids(p["html"])
         faq = faq_html([(q, a.replace("<p>", "").replace("</p>", "||").rstrip("|")) for q, a in p["faqs"]]) if p["faqs"] else ""
         rel = "".join(f'<li><a href="~/procedures/{s}/">{PROC[s]["nav"]}</a></li>' for s in p["related"] if s in PROC)
-        more = [x for x in POSTS if x is not p][:3]
+        # related reading: same topic first, then posts sharing a treatment, then the latest
+        others = [x for x in POSTS if x is not p]
+        more = sorted(others, key=lambda x: (x["category"] != p["category"], not set(x["related"]) & set(p["related"])))[:3]
         body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), meta=[("Published", f'<time datetime="{p["date"]}">{date_label}</time>'), ("Reading time", f'{p["minutes"]} minutes'), ("Medically reviewed", reviewed)] + ([("As featured in", f'<em>{escape(p["featured"])}</em> magazine')] if p.get("featured") else []))}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")] if faq else [])}</div>
@@ -653,7 +655,7 @@ def build_news():
         posting = {"@context": "https://schema.org", "@type": ["BlogPosting", "MedicalWebPage"], "headline": p["title"], "description": p["description"],
                    "url": f"{SITE}/{path}", "mainEntityOfPage": f"{SITE}/{path}", "datePublished": p["date"], "dateModified": p.get("updated", p["date"]),
                    "lastReviewed": p.get("reviewed", p["date"]), "author": {"@type": "Person", "@id": SITE + "/#physician", "name": NAME, "url": SITE + "/biography/"},
-                   "reviewedBy": PHYSICIAN_REF, "publisher": PHYSICIAN_REF, "image": SITE + "/assets/img/og-card.jpg", "keywords": p["keyword"],
+                   "reviewedBy": PHYSICIAN_REF, "publisher": PHYSICIAN_REF, "image": SITE + (f"/assets/og/news-{p['slug']}.jpg" if os.path.exists(os.path.join(ROOT, "assets", "og", f"news-{p['slug']}.jpg")) else "/assets/img/og-card.jpg"), "keywords": p["keyword"],
                    "articleSection": p["category"], "wordCount": p["words"], "inLanguage": "en-GB"}
         schema = [posting, crumbs_schema(crumbs)] + ([faq_schema(p["faqs_text"])] if p["faqs"] else [])
         render(path, title=p["title"] if len(p["title"]) > 44 else f'{p["title"]} | Mr Zaker Ullah', desc=p["description"], body=body,

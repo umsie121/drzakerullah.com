@@ -29,7 +29,7 @@ When asked for blog posts:
    answer first, Mr Ullah's first-person voice, 900 to 1,600 words, ≥3 internal links, FAQ section.
 5. Update each topic's status in `content/content-plan.md` to `scheduled YYYY-MM-DD`.
 6. Run `python3 _build/validate.py` and fix **all** errors (and word-count warnings), then
-   `python3 _build/build.py`. Scheduled posts are validated but not built until their date.
+   `python3 _build/og.py` (renders each new post's share card with local Chrome) and `python3 _build/build.py`. Scheduled posts are validated but not built until their date.
 7. Commit ("Schedule blog posts: <first date> to <last date>") and push to `main`.
 8. Report the schedule as a table (date · title · keyword).
 
