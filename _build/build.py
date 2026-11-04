@@ -20,7 +20,8 @@ from layout import (NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, cr
 TODAY = datetime.date.fromisoformat(os.environ.get("BUILD_DATE", datetime.date.today().isoformat()))
 NAV = {"procedures": C.PROCEDURES, "locations": C.LOCATIONS, "phone": C.SEC_PHONE, "phone_tel": C.SEC_TEL,
        "email": C.SEC_EMAIL, "iwgc": C.IWGC, "rating": C.IWGC_RATING, "count": "100% five-star",
-       "sec_name": C.SEC_NAME, "youtube": C.YOUTUBE_CHANNEL}
+       "sec_name": C.SEC_NAME, "youtube": C.YOUTUBE_CHANNEL,
+       "groups": [(g, [p for p in C.PROCEDURES if p["slug"] in sl]) for g, _, sl in C.PROC_GROUPS]}
 PROC = {p["slug"]: p for p in C.PROCEDURES}
 ALL_POSTS = md.load_posts(os.path.join(ROOT, "content", "blog"), TODAY)
 POSTS = [p for p in ALL_POSTS if p["published"]]
@@ -140,7 +141,7 @@ def journal_list(entries, grid=True):
     for p in entries:
         thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
         feat = " · As featured in " + escape(p["featured"]) if p.get("featured") else ""
-        out.append(f'<li><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
+        out.append(f'<li data-cat="{escape(p["category"])}"><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
     return f'<ul class="journal{" grid" if grid else ""}">{"".join(out)}</ul>'
 
 
@@ -246,8 +247,25 @@ def say_words(text):
     return " ".join(f'<span class="w">{w}</span>' for w in text.split())
 
 
-def tx_rows():
-    return "".join(f'<li data-r style="--d:{i % 4}"><a href="~/procedures/{p["slug"]}/"><span class="t">{p["nav"]}</span><span class="d">{p["summary"]}</span><span class="go" aria-hidden="true">&rarr;</span></a></li>' for i, p in enumerate(C.PROCEDURES))
+def tx_groups():
+    """Four treatment areas; each opens to show its treatments."""
+    out = []
+    for i, (title, desc, slugs) in enumerate(C.PROC_GROUPS):
+        ps = [PROC[x] for x in slugs]
+        if len(ps) == 1:
+            p = ps[0]
+            out.append(f'<li data-r style="--d:{i}"><a class="txg-h" href="~/procedures/{p["slug"]}/"><span class="t">{title}</span><span class="d">{desc}</span><span class="go" aria-hidden="true">+</span></a></li>')
+        else:
+            subs = "".join(f'<li><a href="~/procedures/{p["slug"]}/"><b>{p["nav"]}</b><span>{p["summary"]}</span></a></li>' for p in ps)
+            out.append(f'<li data-r style="--d:{i}"><details><summary class="txg-h"><span class="t">{title}</span><span class="d">{desc}</span><span class="go" aria-hidden="true">+</span></summary><ul class="txg-sub">{subs}</ul></details></li>')
+    return f'<ol class="txg">{"".join(out)}</ol>'
+
+
+def blog_cards(posts, n=3):
+    out = []
+    for p in posts[:n]:
+        out.append(f'<li data-r><a href="~/news/{p["slug"]}/"><span class="c">{escape(p["category"])}</span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span><span class="m">{p["date_obj"].strftime("%-d %B %Y")} · {p["minutes"]} min read</span></a></li>')
+    return f'<ul class="bcards">{"".join(out)}</ul>'
 
 
 def build_home():
@@ -276,8 +294,8 @@ def build_home():
 </div></section>
 
 <section class="band white"><div class="wrap tx">
-  <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
-  <ol class="tx-list">{tx_rows()}</ol>
+  <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All eight treatments</a></p></div>
+  {tx_groups()}
 </div></section>
 
 {reviews_section()}
@@ -288,6 +306,8 @@ def build_home():
   <div class="sec-h center" data-r><h2>Three private clinics</h2></div>
   <div data-r>{clinic_cols()}</div>
 </div></section>
+
+{f'<section class="band white"><div class="wrap"><div class="sec-row" data-r><h2>From the blog</h2><a class="more" href="~/news/">All articles</a></div>{blog_cards(POSTS)}</div></section>' if POSTS else ""}
 
 <section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients ask first</h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
@@ -381,7 +401,8 @@ def build_procedures():
     crumbs = [("Home", ""), ("Treatments", "procedures/")]
     body = page_head(crumbs, "Treatments", "Areas of practice",
                      "The diagnosis and surgical treatment of breast disease, benign and malignant, with oncoplastic and reconstructive surgery, the male breast, and keyhole general surgery.") + \
-        railed("Index", treatment_index() + '<p class="note mt-3" style="max-width:38rem">Not sure where to begin? Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.</p>')
+"".join(railed(g, f'<p class="lede">{d}</p><div class="mt-3">{treatment_index([PROC[x] for x in sl])}</div>', cls="section" + (" rule" if i else "")) for i, (g, d, sl) in enumerate(C.PROC_GROUPS)) + \
+        railed("Where to begin", '<p class="lede">Not sure where to begin? Start with a consultation. The right operation, and whether to operate at all, follows from the diagnosis.</p><p class="mt-2"><a class="more" href="~/booking/">Book a consultation</a></p>', cls="section rule")
     items = {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/procedures/{p['slug']}/", "name": p["nav"]} for i, p in enumerate(C.PROCEDURES)]}
     render("procedures/", title="Breast Surgery Treatments London & Essex | Mr Zaker Ullah",
            desc="Breast and general surgery with Mr Zaker Ullah FRCS in London and Essex: breast lump clinics, cancer surgery, reconstruction, reduction, gynaecomastia and keyhole surgery.",
@@ -594,19 +615,26 @@ def build_podcast():
 
 # ================================================================== JOURNAL
 def build_news():
-    crumbs = [("Home", ""), ("Journal", "news/")]
-    body = page_head(crumbs, "Journal", "The journal",
-                     "Plain English guides to breast symptoms, diagnosis, surgery and recovery, written by Mr Ullah, alongside his health talks in Bengali.") + \
-        railed(f"{len(ENTRIES)} articles and videos", journal_list(ENTRIES))
+    crumbs = [("Home", ""), ("Blog", "news/")]
+    cats = sorted({e["category"] for e in ENTRIES})
+    lead, rest = (POSTS[0], [e for e in ENTRIES if e is not POSTS[0]]) if POSTS else (None, ENTRIES)
+    chips = '<button type="button" class="on" data-cat="">All</button>' + "".join(f'<button type="button" data-cat="{escape(c)}">{escape(c)}</button>' for c in cats)
+    feat = (f'<a class="blead" href="~/news/{lead["slug"]}/" data-r><span class="c">Latest · {escape(lead["category"])}</span><span class="t">{escape(lead["title"])}</span>'
+            f'<span class="d">{escape(lead["description"])}</span><span class="m">{lead["date_obj"].strftime("%-d %B %Y")} · {lead["minutes"]} min read</span></a>') if lead else ""
+    body = f'''<section class="blog-head"><div class="wrap">{crumbs_html(crumbs)}<h1 class="h-anim">Blog</h1>
+<p class="lede mt-2">Plain English guides to breast symptoms, diagnosis, surgery and recovery, written by Mr Ullah, alongside his health talks in Bengali.</p></div></section>
+<section class="band white" style="padding-top:2rem"><div class="wrap">{feat}
+<div class="bfilter" role="group" aria-label="Filter by topic">{chips}</div>
+{journal_list(rest)}</div></section>'''
     render("news/", title="Breast Health Articles & Advice | Mr Zaker Ullah",
            desc="Articles by London consultant breast surgeon Mr Zaker Ullah FRCS on breast lumps, breast cancer, oncoplastic surgery, reconstruction, gynaecomastia and private care.",
            body=body, nav=NAV, active="news", priority="0.8",
-           schema=[crumbs_schema(crumbs), {"@context": "https://schema.org", "@type": "Blog", "name": "Journal of Mr Zaker Ullah", "url": SITE + "/news/", "author": PHYSICIAN_REF,
+           schema=[crumbs_schema(crumbs), {"@context": "https://schema.org", "@type": "Blog", "name": "Mr Zaker Ullah's blog", "url": SITE + "/news/", "author": PHYSICIAN_REF,
                                            "blogPost": [{"@type": "BlogPosting", "headline": p["title"], "url": f"{SITE}/news/{p['slug']}/", "datePublished": p["date"]} for p in POSTS]}])
 
     for p in POSTS:
         path = f"news/{p['slug']}/"
-        crumbs = [("Home", ""), ("Journal", "news/"), (p["title"], path)]
+        crumbs = [("Home", ""), ("Blog", "news/"), (p["title"], path)]
         date_label = p["date_obj"].strftime("%-d %B %Y")
         reviewed = datetime.date.fromisoformat(p.get("reviewed", p["date"])).strftime("%-d %B %Y")
         html, toc = with_ids(p["html"])
@@ -635,7 +663,7 @@ def build_news():
 def build_videos():
     for v in C.VIDEOS:
         path = f"news/{v['slug']}/"
-        crumbs = [("Home", ""), ("Journal", "news/"), (v["title"], path)]
+        crumbs = [("Home", ""), ("Blog", "news/"), (v["title"], path)]
         d = datetime.date.fromisoformat(v["date"])
         body = page_head(crumbs, f"Video, in {v['lang']}", escape(v["title"]), escape(v["desc"]),
                          meta=[("Published", d.strftime("%-d %B %Y")), ("Language", v["lang"]), ("Source", v["by"])]) + \
@@ -767,13 +795,13 @@ def build_files():
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
     open(os.path.join(ROOT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /_build/\nDisallow: /content/\n\nSitemap: {SITE}/sitemap.xml\n")
     items = "".join(f"<item><title>{e(p['title'])}</title><link>{SITE}/news/{p['slug']}/</link><guid>{SITE}/news/{p['slug']}/</guid><pubDate>{datetime.datetime.combine(p['date_obj'], datetime.time(8)).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(p['description'])}</description></item>" for p in POSTS)
-    open(os.path.join(ROOT, "feed.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Journal of Mr Zaker Ullah</title><link>{SITE}/news/</link><description>Articles by consultant breast surgeon Mr Md Zaker Ullah FRCS</description><language>en-gb</language>{items}</channel></rss>\n')
+    open(os.path.join(ROOT, "feed.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Blog of Mr Zaker Ullah</title><link>{SITE}/news/</link><description>Articles by consultant breast surgeon Mr Md Zaker Ullah FRCS</description><language>en-gb</language>{items}</channel></rss>\n')
     llms = [f"# {NAME} FRCS, Consultant Oncoplastic Breast Surgeon, London and Essex", "",
             f"> {PHYSICIAN['description']} GMC 4368515. Rated {C.IWGC_RATING} out of 5 on iWantGreatCare (100% five-star). Bupa Platinum consultant, fee-assured, in Bupa's Open Referral network. Private secretary: {C.SEC_PHONE}.", "",
             "## Key pages", f"- [Biography]({SITE}/biography/)", f"- [Book a consultation]({SITE}/booking/)", f"- [Your first visit]({SITE}/your-visit/)", f"- [Fees and insurance]({SITE}/fees-and-insurance/)",
             f"- [Questions answered]({SITE}/faqs/)", f"- [Reviews]({SITE}/reviews/)", f"- [Podcast]({SITE}/podcast/)", f"- [Second opinions]({SITE}/second-opinion/)", f"- [Video and international consultations]({SITE}/remote-consultations/)", "", "## Treatments"] + \
            [f"- [{p['nav']}]({SITE}/procedures/{p['slug']}/): {p['summary']}" for p in C.PROCEDURES] + ["", "## Clinics"] + \
-           [f"- [{l['name']}]({SITE}/locations/{l['slug']}/): {loc_address(l)}" for l in C.LOCATIONS] + ["", "## Journal"] + [f"- [{p['title']}]({SITE}/news/{p['slug']}/)" for p in POSTS]
+           [f"- [{l['name']}]({SITE}/locations/{l['slug']}/): {loc_address(l)}" for l in C.LOCATIONS] + ["", "## Blog"] + [f"- [{p['title']}]({SITE}/news/{p['slug']}/)" for p in POSTS]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
 
 

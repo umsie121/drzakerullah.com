@@ -103,6 +103,8 @@ def header(nav, active):
         title, key, href, intro, links = item
         cur = ' aria-current="page"' if active == key else ""
         lis = "".join(f'<li><a href="{h}">{t}<span>{d}</span></a></li>' for t, h, d in links)
+        if key == "procedures" and nav.get("groups"):
+            lis = "".join(f'<li class="grp"><span class="gh">{g}</span>' + "".join(f'<a href="~/procedures/{p["slug"]}/">{p["nav"]}</a>' for p in ps) + "</li>" for g, ps in nav["groups"])
         return (f'<div class="drop"><button type="button" aria-haspopup="true"{cur}>{title}</button>'
                 f'<div class="panel"><div class="wrap"><div class="intro"><span class="label">{title}</span><p>{intro}</p>'
                 f'<p><a class="more" href="{href}">Overview</a></p></div><ul>{lis}</ul></div></div></div>')
@@ -116,13 +118,13 @@ def header(nav, active):
   <div class="wrap bar">
     <nav class="nav left" aria-label="Primary">{"".join(drop(m) for m in model[:3])}</nav>
     {brand()}
-    <nav class="nav right" aria-label="Secondary">{drop(model[3])}<a href="~/news/"{journal_cur}>Journal</a><a class="btn" href="~/booking/">Book</a></nav>
+    <nav class="nav right" aria-label="Secondary">{drop(model[3])}<a href="~/news/"{journal_cur}>Blog</a><a class="btn" href="~/booking/">Book</a></nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="overlay">Menu</button>
   </div>
 </header>
 <div class="overlay" id="overlay" aria-hidden="true">
   <div class="wrap top">{brand()}<button class="menu-btn close" type="button" style="display:block">Close</button></div>
-  <nav class="wrap" aria-label="Menu">{groups}<div class="group small"><span class="label">Journal</span><a href="~/news/">All articles</a></div></nav>
+  <nav class="wrap" aria-label="Menu">{groups}<div class="group small"><span class="label">Blog</span><a href="~/news/">All articles</a></div></nav>
   <div class="wrap foot">Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
 </div>'''
 
@@ -138,7 +140,7 @@ def footer(nav):
       <div><h4>Treatments</h4><ul>{procs}</ul></div>
       <div><h4>Clinics</h4><ul>{locs}<li><a href="~/locations/">All clinics</a></li></ul></div>
       <div><h4>Patients</h4><ul><li><a href="~/your-visit/">Your first visit</a></li><li><a href="~/fees-and-insurance/">Fees and insurance</a></li><li><a href="~/second-opinion/">Second opinions</a></li><li><a href="~/remote-consultations/">Video and international</a></li><li><a href="~/faqs/">Questions answered</a></li><li><a href="~/booking/">Book</a></li></ul></div>
-      <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast and videos</a></li><li><a href="~/news/">Journal</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="{nav["youtube"]}" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="~/biography/">Biography</a></li><li><a href="~/reviews/">Patient reviews</a></li><li><a href="~/podcast/">Podcast and videos</a></li><li><a href="~/news/">Blog</a></li><li><a href="{nav["iwgc"]}" target="_blank" rel="noopener">iWantGreatCare</a></li><li><a href="{nav["youtube"]}" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="f-legal"><span>&copy; 2026 {NAME} · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a> · <a href="~/privacy/">Privacy</a> · <a href="~/cookies/">Cookies</a></span><span>Information on this website is general and not a substitute for a consultation. In an emergency, call 999.</span></div>
   </div>
@@ -193,7 +195,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <link rel="icon" type="image/png" sizes="192x192" href="~/assets/img/icon-192.png">
 <link rel="apple-touch-icon" href="~/assets/img/apple-touch-icon.png">
 <link rel="manifest" href="~/site.webmanifest">
-<link rel="alternate" type="application/rss+xml" title="Journal" href="~/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Blog" href="~/feed.xml">
 {FONTS}
 <link rel="stylesheet" href="~/assets/css/main.css?v={asset_v("assets/css/main.css")}">
 {extra_head}{blocks}

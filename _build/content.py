@@ -436,3 +436,11 @@ GOOGLE_REVIEWS = [
     ("After having a scare of finding a lump on my breast. I found Dr Ullah and his team at Holly's hospital via bupa and I cannot praise enough the amazing care that I had. I felt comfortable immediately and everything moved swiftly…", "E.G.", "2025"),
 ]
 HOLLY_VIDEO = "https://www.facebook.com/thehollyprivatehospital/videos/2402001463487795/"
+
+# Treatments grouped into four areas for the home page, menu and treatments index.
+PROC_GROUPS = [
+    ("Breast symptoms", "A new lump, pain or change, assessed quickly at a one-stop clinic.", ["benign-breast-conditions"]),
+    ("Breast cancer", "Breast conserving surgery, mastectomy and lymph node surgery, planned with the result in mind.", ["breast-cancer-surgery"]),
+    ("Reconstruction and reshaping", "Rebuilding, reducing and refining the breast, during or after cancer treatment.", ["breast-reconstruction", "breast-reduction", "fat-grafting"]),
+    ("Men's and general surgery", "The male breast, keyhole hernia and gallbladder surgery, and skin lumps.", ["gynaecomastia", "general-laparoscopic-surgery", "lumps-cysts-skin-lesions"]),
+]

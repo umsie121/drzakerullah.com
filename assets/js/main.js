@@ -89,6 +89,17 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lb.classList.contains("on")) closePod(); });
   }
 
+  // Blog: filter articles by topic
+  var bf = document.querySelector(".bfilter");
+  if (bf) {
+    bf.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      bf.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+      var c = b.getAttribute("data-cat");
+      document.querySelectorAll(".journal li[data-cat]").forEach(function (li) { li.hidden = !!c && li.getAttribute("data-cat") !== c; });
+    });
+  }
+
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Scroll reveal for sections and cards
