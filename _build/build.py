@@ -204,12 +204,9 @@ def review_card(r):
 
 def reviews_section():
     rs = C.REVIEWS
-    bars = '<p class="pct"><b>100%</b> five-star reviews</p>' + "".join(
-        f'<div><span>{n} ★</span><i><em style="--v:{100 if n == 5 else 0}%"></em></i><span>{100 if n == 5 else 0}%</span></div>' for n in (5, 4, 3, 2, 1))
-    return f'''<section class="rv"><div class="wrap"><div class="rv-head">
-  <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare, from independent, verified patient reviews</p></div></div>
-  <div class="rv-bars">{bars}</div>
-  <div class="rv-cta"><h2>Kind, thorough and <i>never rushed</i></h2><p>Every review he has received on iWantGreatCare is five stars.</p><a class="btn" href="~/reviews/">Read his reviews</a></div>
+    return f'''<section class="rv"><div class="wrap"><div class="rv-head" data-r>
+  <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. 100% of his verified reviews are five stars.</p></div></div>
+  <div class="rv-cta"><h2>Kind, thorough and <i>never rushed</i></h2><a class="btn" href="~/reviews/">Read his reviews</a></div>
 </div></div>
 <div class="marq" aria-label="Patient reviews"><div class="row">{"".join(review_card(r) for r in rs + rs)}</div></div></section>'''
 
@@ -220,7 +217,7 @@ APPLE_SVG = '<svg viewBox="0 0 24 24" fill="#9933CC" aria-hidden="true"><path d=
 
 def podcast_panel():
     P = C.PODCAST
-    return f'''<section class="podp"><div class="box">
+    return f'''<section class="podp"><div class="box" data-r>
   <button class="vid" type="button" data-open-pod aria-label="Watch the episode"><img src="https://i.ytimg.com/vi/{P["youtube"]}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"><i></i><span>Season {P["season"]}, episode {P["episode"]} · {P["duration_label"]} · recorded live</span></button>
   <div><span class="label">As featured on Everything Changed</span>
     <h2>Five questions about breast cancer, <i>answered by a surgeon</i></h2>
@@ -244,44 +241,55 @@ HOME_FAQS = [
 
 
 # ================================================================== HOME
+def say_words(text):
+    """Wrap each word so the statement can light up word by word as it scrolls into view."""
+    return " ".join(f'<span class="w">{w}</span>' for w in text.split())
+
+
+def tx_rows():
+    return "".join(f'<li data-r style="--d:{i % 4}"><a href="~/procedures/{p["slug"]}/"><span class="t">{p["nav"]}</span><span class="d">{p["summary"]}</span><span class="go" aria-hidden="true">&rarr;</span></a></li>' for i, p in enumerate(C.PROCEDURES))
+
+
 def build_home():
     body = f'''
-<section class="hero-frame"><div class="vhero">
+<section class="hero-frame" data-hero><div class="vhero">
   <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
   <div class="copy">
-    <div><span class="label">Consultant breast surgeon in London and Essex</span><h1>A breast surgeon who<br><i>takes the time to listen</i></h1></div>
-    <div class="panel-intro"><p>{SHORT} is a consultant oncoplastic breast surgeon and leads the Breast Unit at Whipps Cross University Hospital. Most breast symptoms turn out to be nothing serious, and his one-stop clinics give you imaging and provisional results on the same day. When surgery is needed, he plans the treatment and the result together.</p>
-      <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="btn glass" href="~/procedures/">Explore treatments</a></div>
-      <p class="proof">{stars()} Rated {C.IWGC_RATING}, 100% five-star · Bupa Platinum consultant · <a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">GMC 4368515</a></p></div>
+    <span class="label">Consultant breast surgeon · London and Essex</span>
+    <h1 class="h-anim">A breast surgeon who<br><i>takes the time to listen</i></h1>
+    <div class="actions"><a class="btn coral" href="~/booking/">Book a consultation</a><a class="chip-r" href="~/reviews/">{stars()}<span>5.0 · 100% five-star</span></a></div>
   </div>
 </div></section>
 
-<div class="wrap"><div class="facts-strip">
-  <div><span class="k">Same day</span><span class="v">Imaging and provisional results at one-stop clinics</span></div>
-  <div><span class="k">24 to 48 hours</span><span class="v">For a video or telephone consultation</span></div>
-  <div><span class="k">Clinical Lead</span><span class="v">Breast Unit, Whipps Cross, Barts Health NHS Trust</span></div>
-  <div><span class="k">Bupa Platinum</span><span class="v">Platinum consultant, fee-assured, Open Referral network</span></div>
-</div>
-<div class="asseen"><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div></div>
+<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("Most breast symptoms turn out to be nothing serious. At his one-stop clinics you have your imaging and provisional results on the same day, from the surgeon who will look after you throughout.")}</p></div></section>
 
-<section class="section tight"><div class="wrap split-head">
-  <div><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction, under one consultant who sees you throughout. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a> &nbsp; <a class="more" href="~/biography/">About Mr Ullah</a></p></div>
-  {treatment_index()}
+<section class="band peach"><div class="wrap">
+  <div class="sec-h" data-r><h2>Care that is <i>quick, close and covered</i></h2></div>
+  <div class="bento">
+    <a class="b b-deep b-tall" href="~/your-visit/" data-r style="--d:0"><span class="k">Same day</span><span class="v">Imaging and provisional results at a single one-stop visit.</span><span class="more">Your first visit</span></a>
+    <div class="b" data-r style="--d:1"><span class="k">24 to 48 hours</span><span class="v">To arrange a video or telephone consultation.</span></div>
+    <a class="b" href="~/fees-and-insurance/" data-r style="--d:2"><span class="k">Bupa Platinum</span><span class="v">Fee-assured, Open Referral network. AXA, Aviva, Vitality and WPA recognised.</span></a>
+    <a class="b b-wide b-img" href="~/locations/buckhurst-hill-essex/" data-r style="--d:1"><span class="k">The Holly, Buckhurst Hill</span><span class="v">Minutes from Woodford Green, Loughton and Chigwell, with parking on site. Also Harley Street and the City.</span><span class="more">Clinic details</span></a>
+    <a class="b b-rate" href="~/reviews/" data-r style="--d:2"><span class="k">5.0</span>{stars()}<span class="v">100% five-star on iWantGreatCare</span></a>
+  </div>
+  <div class="asseen" data-r><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div>
+</div></section>
+
+<section class="band white"><div class="wrap tx">
+  <div class="sec-h sticky" data-r><span class="label">Treatments</span><h2>How Mr Ullah <i>can help</i></h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All treatments</a></p></div>
+  <ol class="tx-list">{tx_rows()}</ol>
 </div></section>
 
 {reviews_section()}
 
 {podcast_panel()}
 
-<section class="section"><div class="wrap split-head">
-  <div><h2>Three private <i>clinics</i></h2><p>Buckhurst Hill on the edge of Woodford Green and Epping Forest, Harley Street, and the City of London.</p><p class="mt-2"><a class="more" href="~/locations/">All clinics</a></p></div>
-  {clinic_cols()}
+<section class="band"><div class="wrap">
+  <div class="sec-h center" data-r><span class="label">Clinics</span><h2>Three private <i>clinics</i></h2></div>
+  <div data-r>{clinic_cols()}</div>
 </div></section>
 
-
-{f'<section class="section"><div class="wrap split-head"><div><h2>Clear answers, <i>in plain English</i></h2><p>Guides to symptoms, surgery and recovery, written by Mr Ullah.</p><p class="mt-2"><a class="more" href="~/news/">All articles</a></p></div>{journal_list(POSTS[:2], grid=False)}</div></section>' if POSTS else ""}
-
-<section class="section rule"><div class="wrap split-head"><div><h2>Questions patients <i>ask first</i></h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div>{faq_html(HOME_FAQS)}</div></section>
+<section class="band blush"><div class="wrap split-head"><div data-r><h2>Questions patients <i>ask first</i></h2><p class="mt-2"><a class="more" href="~/faqs/">All questions</a></p></div><div data-r>{faq_html(HOME_FAQS)}</div></div></section>
 '''
     render("", title="Breast Surgeon London & Essex | Mr Zaker Ullah FRCS",
            desc="Mr Zaker Ullah FRCS, consultant breast surgeon at The Holly, Buckhurst Hill, Harley Street and St Bartholomew's. Bupa Platinum. 100% five-star reviews. Same day results.",

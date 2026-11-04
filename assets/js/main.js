@@ -89,14 +89,38 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lb.classList.contains("on")) closePod(); });
   }
 
-  // Gentle fade for statement blocks below the fold
-  var fades = document.querySelectorAll(".fade");
-  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Scroll reveal for sections and cards
+  var reveals = document.querySelectorAll("[data-r], .fade, .h-anim");
+  if ("IntersectionObserver" in window && !still) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { rootMargin: "0px 0px -10% 0px" });
-    fades.forEach(function (el) { io.observe(el); });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
   } else {
-    fades.forEach(function (el) { el.classList.add("in"); });
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Scroll-linked effects: the hero eases back, the statement lights up word by word
+  var hero = document.querySelector("[data-hero]");
+  var say = document.querySelector("[data-say]");
+  var words = say ? say.querySelectorAll(".w") : [];
+  if (!still && (hero || say)) {
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      var vh = window.innerHeight;
+      if (hero) hero.style.setProperty("--hp", Math.min(1, Math.max(0, window.scrollY / vh)).toFixed(3));
+      if (say) {
+        var r = say.getBoundingClientRect();
+        var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+        var lit = p * words.length;
+        for (var i = 0; i < words.length; i++) words[i].style.setProperty("--on", Math.min(1, Math.max(0, lit - i)).toFixed(2));
+      }
+    };
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   }
 })();
