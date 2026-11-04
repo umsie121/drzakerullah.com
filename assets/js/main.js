@@ -102,6 +102,48 @@
 
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Looping clips: load and play only while on screen
+  var clips = document.querySelectorAll("video[data-lazy]");
+  if ("IntersectionObserver" in window && !still && clips.length) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.dataset.loaded) { v.querySelectorAll("source").forEach(function (s) { s.src = s.dataset.src; }); v.load(); v.dataset.loaded = "1"; }
+          var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+        } else if (v.dataset.loaded) { v.pause(); }
+      });
+    }, { rootMargin: "200px 0px" });
+    clips.forEach(function (v) { vio.observe(v); });
+  }
+
+  // Timeline: pin and move sideways while scrolling (larger screens)
+  var hz = document.querySelector("[data-hz]");
+  var hzTrack = hz && hz.querySelector("[data-hztrack]");
+  var hzBar = hz && hz.querySelector("[data-hzbar]");
+  var hzWide = window.matchMedia("(min-width: 64rem)");
+  var hzSize = function () {
+    if (!hz) return;
+    var on = hzWide.matches && !still;
+    hz.classList.toggle("pin", on);
+    if (on) { var extra = hzTrack.scrollWidth - window.innerWidth; hz.style.setProperty("--hzh", (window.innerHeight + Math.max(0, extra)) + "px"); hz.dataset.extra = Math.max(0, extra); }
+  };
+  var hzMove = function () {
+    if (!hz) return;
+    var r = hz.getBoundingClientRect(), span = r.height - window.innerHeight;
+    var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+    if (hz.classList.contains("pin")) hz.style.setProperty("--hzx", (p * (+hz.dataset.extra || 0)).toFixed(1));
+    else p = hzTrack.scrollLeft / Math.max(1, hzTrack.scrollWidth - hzTrack.clientWidth);
+    if (hzBar) hzBar.parentNode.style.setProperty("--hzp", p.toFixed(3));
+  };
+  if (hz) {
+    hzSize(); hzMove();
+    window.addEventListener("resize", function () { hzSize(); hzMove(); });
+    window.addEventListener("scroll", function () { requestAnimationFrame(hzMove); }, { passive: true });
+    hzTrack.addEventListener("scroll", hzMove, { passive: true });
+    window.addEventListener("load", function () { hzSize(); hzMove(); });
+  }
+
   // Scroll reveal for sections and cards
   var reveals = document.querySelectorAll("[data-r], .fade, .h-anim");
   if ("IntersectionObserver" in window && !still) {

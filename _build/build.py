@@ -56,7 +56,7 @@ PHYSICIAN = {
     "address": {"@type": "PostalAddress", "streetAddress": "High Road", "addressLocality": "Buckhurst Hill", "addressRegion": "Essex", "postalCode": "IG9 5HX", "addressCountry": "GB"},
     "areaServed": ["London", "Essex", "Hertfordshire", "Central London", "East London", "North East London", "City of London"],
     "medicalSpecialty": ["Oncologic", "Surgical", "PlasticSurgery"], "isAcceptingNewPatients": True,
-    "knowsLanguage": ["en-GB", "bn"],
+    "knowsLanguage": ["en-GB", "bn", "ar"],
     "identifier": {"@type": "PropertyValue", "propertyID": "GMC", "value": "4368515"},
     "hasCredential": [
         {"@type": "EducationalOccupationalCredential", "name": "MBBS", "credentialCategory": "degree"},
@@ -242,6 +242,12 @@ HOME_FAQS = [
 
 
 # ================================================================== HOME
+def loop(name, cls="lv"):
+    """A short, silent, looping clip that only loads and plays while on screen."""
+    return (f'<video class="{cls}" muted loop playsinline preload="none" poster="~/assets/video/{name}.jpg" data-lazy aria-hidden="true">'
+            f'<source data-src="~/assets/video/{name}.webm" type="video/webm"><source data-src="~/assets/video/{name}.mp4" type="video/mp4"></video>')
+
+
 def say_words(text):
     """Wrap each word so the statement can light up word by word as it scrolls into view."""
     return " ".join(f'<span class="w">{w}</span>' for w in text.split())
@@ -293,6 +299,17 @@ def build_home():
   <div class="asseen" data-r><span class="label">As seen on</span>{"".join(f'<a href="{u}"{"" if u.startswith("~") else " target=_blank rel=noopener"}>{n}</a>' for n, u in C.AS_SEEN)}</div>
 </div></section>
 
+<section class="meet"><div class="wrap meet-in">
+  <figure class="meet-f" data-r>{picture("zu-navy", "Mr Md Zaker Ullah, consultant oncoplastic breast surgeon", "(min-width: 64rem) 36vw, 92vw", [600, 900, 1300], 1020, 1542)}</figure>
+  <div class="meet-t" data-r style="--d:1">
+    <h2>Meet Mr Ullah</h2>
+    <p class="lede mt-2">Mr Md Zaker Ullah FRCS has worked in surgery for over 30 years. He trained in London at <strong>The Royal Marsden</strong>, <strong>St Mary&rsquo;s</strong> and <strong>The Royal Free</strong>, and has been a consultant at Barts Health NHS Trust since 2012.</p>
+    <p class="mt-2">Today he is Clinical Lead of the Breast Unit at Whipps Cross University Hospital, where he introduced the one-stop breast clinic and fat grafting for reconstruction. He also directs the hospital&rsquo;s FRCS course, preparing senior surgeons for their fellowship examination.</p>
+    <dl class="meet-k"><div><dt>30+</dt><dd>years in surgery</dd></div><div><dt>2012</dt><dd>consultant, Barts Health</dd></div><div><dt>Clinical Lead</dt><dd>Whipps Cross Breast Unit</dd></div></dl>
+    <p class="mt-3"><a class="more" href="~/biography/">Read his story</a></p>
+  </div>
+</div></section>
+
 <section class="band white"><div class="wrap tx">
   <div class="sec-h sticky" data-r><h2>How Mr Ullah can help</h2><p>From a first worrying symptom to surgery and reconstruction. As an oncoplastic surgeon, he plans your cancer treatment and the shape of your breast together.</p><p class="mt-2"><a class="more" href="~/procedures/">All eight treatments</a></p></div>
   {tx_groups()}
@@ -325,7 +342,6 @@ def build_about():
     faqs = [
         ("Why is Mr Ullah called Mr and not Dr?", "In British surgical tradition, doctors who gain the fellowship of a Royal College of Surgeons are addressed as Mr, Miss, Ms or Mrs rather than Dr. The title marks the completion of advanced surgical training."),
         ("Does Mr Ullah treat NHS patients?", "Yes. He leads the NHS breast unit at Whipps Cross University Hospital, part of Barts Health NHS Trust. NHS referrals are made through your GP in the usual way. This website describes his private practice."),
-        ("Does Mr Ullah speak Bengali?", "Yes. Mr Ullah consults in English and Bengali, and many patients and families value discussing a diagnosis in their first language."),
         ("Can I see Mr Ullah for a second opinion?", "Yes. Many patients see him for a second opinion on a diagnosis or a proposed operation. <a href=\"~/second-opinion/\">More about second opinions</a>."),
     ]
     chapters = [
@@ -337,7 +353,14 @@ def build_about():
         ("2012", "Consultant, Barts Health", "Appointed consultant oncoplastic breast and general surgeon at Whipps Cross University Hospital, part of Barts Health NHS Trust."),
         ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. He directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Harley Street and St Bartholomew&rsquo;s."),
     ]
-    jn = "".join(f'<li class="ch" data-y="{y}"><span class="y">{y}</span><h2>{t}</h2><p>{d}</p></li>' for y, t, d in chapters)
+    media = {"2003": ("loop-room", "In front of an audience"), "2012": ("loop-chat", "Time for every question"), "Today": ("loop-summit", "On the international stage")}
+    cards = []
+    for y, t, d in chapters:
+        cards.append(f'<li class="hc"><span class="y">{y}</span><h3>{t}</h3><p>{d}</p></li>')
+        if y in media:
+            v, cap = media[y]
+            cards.append(f'<li class="hc hv">{loop(v)}<span class="cap">{cap}</span></li>')
+    jn = "".join(cards)
     practice = [
         ("Breast cancer surgery", "Breast conserving surgery and therapeutic mammoplasty, mastectomy and lymph node surgery."),
         ("Reconstruction", "Implants, latissimus dorsi, chest wall perforator and Grisotti flaps, fat grafting and nipple reconstruction."),
@@ -346,6 +369,7 @@ def build_about():
         ("General surgery", "A laparoscopic practice in gallstone disease, hernia repair and appendicectomy."),
     ]
     pr = "".join(f'<div class="pc" data-r style="--d:{i % 3}"><h3>{t}</h3><p>{d}</p></div>' for i, (t, d) in enumerate(practice))
+    pr += '<a class="pc pc-cta" href="~/procedures/" data-r style="--d:2"><h3>All treatments</h3><p>What each operation involves, and how to arrange a consultation.</p><span class="more">See treatments</span></a>'
     body = f'''
 <section class="bio-hero" data-hero><div class="wrap">
   {crumbs_html(crumbs)}
@@ -353,20 +377,20 @@ def build_about():
     <div class="bh-copy">
       <h1 class="h-anim">Mr Md Zaker Ullah</h1>
       <p class="bh-sub">Consultant Oncoplastic Breast and General Surgeon, and Clinical Lead of the Breast Unit at Whipps Cross University Hospital.</p>
-      <dl class="bh-meta"><div><dt>Qualifications</dt><dd>{POSTNOM}</dd></div><div><dt>GMC</dt><dd><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">4368515</a></dd></div><div><dt>Languages</dt><dd>English and Bengali</dd></div></dl>
+      <dl class="bh-meta"><div><dt>Qualifications</dt><dd>{POSTNOM}</dd></div><div><dt>GMC</dt><dd><a href="https://www.gmc-uk.org/registrants/4368515" target="_blank" rel="noopener">4368515</a></dd></div></dl>
     </div>
     <figure class="bh-fig">{picture("zu-navy", "Mr Md Zaker Ullah, consultant oncoplastic breast surgeon", "(min-width: 64rem) 44vw, 100vw", [600, 900, 1300], 1020, 1542, lazy=False)}</figure>
   </div>
 </div></section>
 
-<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From his first day in medicine in 1987 to leading a breast unit in east London, one idea runs through his work: plan the cancer treatment and the result together, and take the time to explain both.")}</p></div></section>
+<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From his first day in medicine in 1987 to leading a breast unit in London, one idea runs through his work: plan the cancer treatment and the result together, and take the time to explain both.")}</p></div></section>
 
-<section class="journey"><div class="wrap jn">
-  <div class="jn-side" aria-hidden="true"><span class="jn-year" data-year>1987</span><span class="jn-track"><i data-progress></i></span></div>
-  <ol class="jn-list">{jn}</ol>
+<section class="hz" data-hz><div class="hz-pin">
+  <div class="wrap hz-head"><h2>A career in surgery</h2><span class="hz-bar"><i data-hzbar></i></span></div>
+  <ol class="hz-track" data-hztrack>{jn}</ol>
 </div></section>
 
-<section class="bleed"><figure data-par-wrap><picture><source type="image/webp" srcset="~/assets/img/bio-stage.webp"><img src="~/assets/img/bio-stage.jpg" alt="Mr Ullah speaking at a lectern at an international healthcare summit" width="1600" height="900" loading="lazy" data-par></picture></figure>
+<section class="bleed"><figure>{loop('loop-stage', 'lv bleed-v')}</figure>
   <div class="wrap"><p class="bleed-cap" data-r>He speaks at international cancer meetings, and is a trustee of Planetary Health Academia, a consortium of doctors of Bangladeshi heritage.</p></div></section>
 
 <section class="band white"><div class="wrap">
@@ -383,8 +407,10 @@ def build_about():
   </div>
 </div></section>
 
+<section class="clap"><div class="wrap"><figure class="clap-f" data-r>{loop('loop-applause')}<figcaption>Recorded live in front of an audience, October 2026.</figcaption></figure></div></section>
+
 <section class="band peach"><div class="wrap duo">
-  <figure class="duo-img" data-r><picture><source type="image/webp" srcset="~/assets/img/bio-podcast.webp"><img src="~/assets/img/bio-podcast.jpg" alt="Mr Ullah in conversation on the Everything Changed podcast" width="1600" height="900" loading="lazy"></picture></figure>
+  <figure class="duo-img" data-r>{loop('loop-podcast')}</figure>
   <div data-r style="--d:1"><h2>In conversation</h2><p class="lede mt-2">In October 2026 he joined Rosie Fawehimi, whose breast cancer he diagnosed and treated, on her podcast <em>Everything Changed</em> to answer the questions patients ask most.</p><p class="mt-3"><a class="more" href="~/podcast/">Watch the episode</a></p></div>
 </div></section>
 
@@ -737,11 +763,11 @@ def build_remote():
         ("Can I have a consultation with Mr Ullah by video?", "Yes. A video or telephone consultation can usually be arranged within 24 to 48 hours of your enquiry. If an examination or tests are needed, a face to face appointment is arranged afterwards."),
         ("Can I get a second opinion from abroad?", "Yes. Mr Ullah reviews your reports and images, discusses them with you by video, and gives a written opinion that you can share with your own doctors. Treatment, if you choose it, takes place at one of his UK clinics."),
         ("What should I send before a remote second opinion?", "Clinic letters, imaging reports and, where possible, the images themselves, biopsy or pathology reports, and a list of your medicines. Reports should be in English or come with a translation."),
-        ("Can the consultation be in Bengali?", "Yes. Mr Ullah consults in English and Bengali, which many families find helpful when discussing a diagnosis."),
+        ("Which languages does Mr Ullah consult in?", "English, Bangla and Arabic. Many patients and families find it easier to discuss a diagnosis in their first language. <a href=\"~/bn/\">বাংলা</a> · <a href=\"~/ar/\">العربية</a>"),
         ("How much does a remote consultation cost?", "The fee is confirmed by the practice when you book, before the consultation takes place. Some UK insurers cover remote consultations; check with yours."),
     ]
     body = page_head(crumbs, "Remote and international", "Video consultations and <i>second opinions from abroad</i>",
-                     "Mr Ullah offers video and telephone consultations, and second opinions for patients anywhere in the UK or overseas, in English or Bengali.",
+                     "Mr Ullah offers video and telephone consultations, and second opinions for patients anywhere in the UK or overseas, in English, Bangla or Arabic.",
                      actions='<a class="btn" href="~/booking/">Arrange a video consultation</a>') + \
         railed("How it works", '''<ol class="steps">
 <li><h3>Enquire</h3><p>Contact the private secretary. A video or telephone consultation can usually be arranged within 24 to 48 hours.</p></li>
@@ -751,7 +777,7 @@ def build_remote():
         railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/harley-street/">Harley Street</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
 <p>For patients travelling from abroad for treatment, the practice can help you plan the timing of consultations, tests and surgery. Read more about <a href="~/second-opinion/">second opinions</a>.</p></div>''', cls="section rule") + \
         faq_section(faqs, "Questions about remote consultations")
-    desc = "Video consultations and international breast cancer second opinions with consultant breast surgeon Mr Zaker Ullah FRCS, in English or Bengali, usually within 24 to 48 hours."
+    desc = "Video consultations and international breast cancer second opinions with consultant breast surgeon Mr Zaker Ullah FRCS, in English, Bangla or Arabic, usually within 24 to 48 hours."
     render(path, title="Video Consultations & International Second Opinions | Mr Ullah", desc=desc, body=body, nav=NAV, active="patients", priority="0.7",
            schema=[medical_page(path, "Video consultations and international second opinions", desc), crumbs_schema(crumbs), faq_schema(faqs)])
 

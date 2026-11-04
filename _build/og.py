@@ -85,7 +85,7 @@ def pages():
         ("fees-and-insurance", "page", "Fees and insurance", "Insured or self-funding", "Bupa Platinum consultant, fee-assured. Most major insurers."),
         ("your-visit", "page", "Your first visit", "What happens on the day", "Consultation, imaging and provisional results, usually at one visit."),
         ("second-opinion", "page", "Second opinions", "An independent view", "On a diagnosis or a proposed operation."),
-        ("remote-consultations", "page", "Video and international", "Consultations from anywhere", "By video or telephone, in English or Bengali."),
+        ("remote-consultations", "page", "Video and international", "Consultations from anywhere", "By video or telephone, in English, Bangla or Arabic."),
         ("procedures", "treatment", "Treatments", "Areas of practice", "Breast symptoms, breast cancer, reconstruction, and men's and general surgery."),
         ("locations", "clinic", "Clinics", "Three private clinics", "The Holly, Buckhurst Hill · Harley Street · St Bartholomew's, City of London."),
         ("news", "post", "Blog", "Clear answers, in plain English", "Guides to breast symptoms, surgery and recovery, written by Mr Ullah."),
