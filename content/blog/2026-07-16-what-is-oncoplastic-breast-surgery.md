@@ -7,6 +7,7 @@ description: Oncoplastic surgery removes breast cancer and reshapes the breast i
 keyword: oncoplastic breast surgery
 category: Breast cancer
 related: breast-cancer-surgery, breast-reconstruction
+image_query: operating theatre lights
 ---
 For most of the twentieth century, breast cancer surgery had one objective: remove the cancer. What the breast looked like afterwards was, at best, a secondary concern. Oncoplastic surgery, the field in which I have spent my consultant career, rejects that trade-off. It plans the cancer operation and the appearance of the breast together, in the same operation, by the same surgeon.
 

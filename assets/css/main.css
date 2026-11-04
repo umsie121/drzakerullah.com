@@ -931,8 +931,8 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 @media (max-width: 47.99rem) { .meet-k { grid-template-columns: 1fr 1fr; } .meet-f { aspect-ratio: 1; } }
 
 /* ============================================================ Bangla and Arabic pages */
-.intl-bn { --display: "Noto Serif Bengali", Georgia, serif; --sans: "Hind Siliguri", "Helvetica Neue", Arial, sans-serif; }
-.intl-ar { --display: "Noto Naskh Arabic", Georgia, serif; --sans: "IBM Plex Sans Arabic", "Helvetica Neue", Arial, sans-serif; }
+.intl-bn { --display: "Tiro Bangla", Georgia, serif; --sans: "Anek Bangla", "Helvetica Neue", Arial, sans-serif; }
+.intl-ar { --display: "Reem Kufi", "Readex Pro", sans-serif; --sans: "Readex Pro", "Helvetica Neue", Arial, sans-serif; }
 .intl h1, .intl h2, .intl h3, .intl .say-t, .intl .meet-k dt { letter-spacing: 0; font-variation-settings: normal; }
 .intl h1 { line-height: 1.15; font-weight: 700; }
 .intl h2 { line-height: 1.25; font-weight: 700; }
@@ -979,3 +979,26 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 @media (min-width: 64rem) { [dir="rtl"] .bh-fig { margin-right: 0; margin-left: calc((min(100vw, var(--max)) - 100vw) / 2 - var(--gutter)); } }
 [dir="rtl"] .bh-meta, [dir="rtl"] .meet-k { direction: rtl; }
 @media (max-width: 47.99rem) { .ih .langs a { padding: 0.3rem 0.6rem; font-size: 0.82rem; } .ib small { display: none; } .ih-call { display: none; } }
+
+.intl-bn h1, .intl-bn h2, .intl-bn h3, .intl-bn .isay, .intl-bn .ib span { font-weight: 400; }
+.intl-bn .isay { line-height: 1.55; }
+.intl-ar h1, .intl-ar h2 { font-weight: 600; line-height: 1.4; }
+.intl-ar .isay { font-family: "Reem Kufi", sans-serif; font-weight: 500; line-height: 1.75; font-size: clamp(1.7rem, 3.4vw, 3rem); }
+.intl-ar p, .intl-ar li { line-height: 1.9; }
+.langs a { font-family: "Figtree", "Anek Bangla", "Readex Pro", sans-serif; }
+
+/* blog photos */
+.post-hero { background: var(--bg); padding-top: 0.5rem; }
+.post-hero .ph { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 21 / 9; background: var(--bg-2); }
+.post-hero img { width: 100%; height: 100%; object-fit: cover; }
+.post-hero figcaption { margin-top: 0.6rem; font-size: 0.8rem; color: var(--muted); }
+.post-hero figcaption a { text-decoration: underline; text-underline-offset: 0.15em; }
+.bcards .pic { display: block; margin: calc(-1 * clamp(1.5rem, 2.5vw, 2.2rem)) calc(-1 * clamp(1.5rem, 2.5vw, 2.2rem)) 0.6rem; aspect-ratio: 16 / 10; overflow: hidden; }
+.bcards .pic img, .journal .thumb.photo img, .blead .pic img { width: 100%; height: 100%; object-fit: cover; }
+.journal .thumb.photo::after { content: none; }
+.blead.has-pic { display: grid; grid-template-columns: 1fr; padding: 0; overflow: hidden; }
+.blead.has-pic > :not(.pic) { padding-inline: clamp(2rem, 5vw, 4rem); }
+.blead.has-pic .c { padding-top: clamp(2rem, 4vw, 3rem); }
+.blead.has-pic .m { padding-bottom: clamp(2rem, 4vw, 3rem); }
+.blead .pic { aspect-ratio: 21 / 8; overflow: hidden; display: block; }
+@media (max-width: 47.99rem) { .post-hero .ph { aspect-ratio: 16 / 10; } .blead .pic { aspect-ratio: 16 / 10; } }

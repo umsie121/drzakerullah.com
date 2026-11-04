@@ -7,6 +7,7 @@ description: A private breast clinic near Woodford Green: getting to The Holly, 
 keyword: private breast clinic woodford green
 category: Local clinics
 related: benign-breast-conditions, breast-cancer-surgery
+image_query: english village green
 ---
 **In short:** the nearest private breast clinic to Woodford Green is at Nuffield Health The Holly Hospital, a short drive up the High Road in Buckhurst Hill. I see patients there on Tuesday afternoons and Thursday mornings. You can come insured, usually with a GP referral, or self-funding without one, and most new symptoms are assessed in a single visit.
 

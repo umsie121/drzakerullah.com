@@ -7,6 +7,7 @@ description: How the NHS two week wait breast clinic pathway works, what a priva
 keyword: two week wait breast clinic
 category: Private care explained
 related: benign-breast-conditions
+image_query: hospital corridor
 ---
 **In short:** the NHS "two week wait" breast clinic is the urgent referral your GP makes for a breast symptom. You have a full triple assessment and should know within 28 days whether cancer has been found or ruled out. A private one-stop clinic offers the same tests, with a choice of time and consultant. Both are good routes.
 

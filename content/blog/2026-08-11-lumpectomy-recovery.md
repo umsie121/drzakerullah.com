@@ -7,6 +7,7 @@ description: Lumpectomy recovery, from the day of surgery to six weeks: wounds, 
 keyword: lumpectomy recovery
 category: Living with & after
 related: breast-cancer-surgery
+image_query: woman walking autumn path
 ---
 **In short:** lumpectomy recovery is usually quicker than people expect. Most women go home the same day, need simple painkillers for a week or so, and return to desk work within one to two weeks. Wounds heal over two to three weeks. If lymph nodes were removed from the armpit, arm exercises matter, and radiotherapy usually starts a few weeks later.
 

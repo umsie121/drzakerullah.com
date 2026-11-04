@@ -7,6 +7,7 @@ description: Self-funding patients can usually book a private breast surgeon dir
 keyword: see breast surgeon without gp referral
 category: Private care explained
 related: benign-breast-conditions, breast-cancer-surgery
+image_query: hospital reception calm
 ---
 **In short:** if you are paying for yourself, you can usually book a private consultation with a breast surgeon directly, with no GP referral. If you are using private medical insurance, most insurers ask for a GP referral before they authorise the appointment.
 

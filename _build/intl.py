@@ -17,8 +17,8 @@ LANGS = {
 }
 
 FONTS = {
-    "bn": "family=Noto+Serif+Bengali:wght@400..800&family=Hind+Siliguri:wght@400;500;600",
-    "ar": "family=Noto+Naskh+Arabic:wght@400..700&family=IBM+Plex+Sans+Arabic:wght@400;500;600",
+    "bn": "family=Tiro+Bangla&family=Anek+Bangla:wght@300..700",
+    "ar": "family=Reem+Kufi:wght@400..700&family=Readex+Pro:wght@300..600",
 }
 
 T = {

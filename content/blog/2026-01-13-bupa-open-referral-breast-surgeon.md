@@ -7,6 +7,7 @@ description: How Bupa Open Referral works for breast symptoms, what fee-assured 
 keyword: bupa open referral breast surgeon
 category: Private care explained
 related: benign-breast-conditions, breast-cancer-surgery
+image_query: paperwork desk coffee
 ---
 **In short:** with a Bupa Open Referral, your GP names the specialty you need, such as breast surgery, rather than a particular surgeon. When you call Bupa, they offer you a choice of up to three recognised, fee-assured consultants. You can look each one up on Bupa Finder, and you choose who you see.
 

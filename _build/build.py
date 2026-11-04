@@ -141,6 +141,8 @@ def journal_list(entries, grid=True):
     out = []
     for p in entries:
         thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
+        if not thumb and p.get("image"):
+            thumb = f'<span class="thumb photo">{post_img(p)}</span>'
         feat = " · As featured in " + escape(p["featured"]) if p.get("featured") else ""
         out.append(f'<li data-cat="{escape(p["category"])}"><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
     return f'<ul class="journal{" grid" if grid else ""}">{"".join(out)}</ul>'
@@ -268,10 +270,18 @@ def tx_groups():
     return f'<ol class="txg">{"".join(out)}</ol>'
 
 
+def post_img(p, sizes="(min-width: 56rem) 33vw, 92vw", lazy=True):
+    """The post's Unsplash photo, if it has one."""
+    if not p.get("image"):
+        return ""
+    return picture(p["image"], p.get("image_alt", ""), sizes, [800, 1600], 1600, 1067, lazy=lazy)
+
+
 def blog_cards(posts, n=3):
     out = []
     for p in posts[:n]:
-        out.append(f'<li data-r><a href="~/news/{p["slug"]}/"><span class="c">{escape(p["category"])}</span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span><span class="m">{p["date_obj"].strftime("%-d %B %Y")} · {p["minutes"]} min read</span></a></li>')
+        pic = f'<span class="pic">{post_img(p)}</span>' if p.get("image") else ""
+        out.append(f'<li data-r><a href="~/news/{p["slug"]}/">{pic}<span class="c">{escape(p["category"])}</span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span><span class="m">{p["date_obj"].strftime("%-d %B %Y")} · {p["minutes"]} min read</span></a></li>')
     return f'<ul class="bcards">{"".join(out)}</ul>'
 
 
@@ -286,13 +296,13 @@ def build_home():
   </div>
 </div></section>
 
-<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("Most breast symptoms turn out to be nothing serious. At Mr Ullah&rsquo;s one-stop clinics you have your imaging and provisional results on the same day, from the surgeon who will look after you throughout.")}</p></div></section>
+<section class="say"><div class="wrap"><p class="say-t" data-say>{say_words("From a first worrying symptom to surgery and reconstruction, Mr Ullah looks after you himself. When treatment is needed, he plans the cancer surgery and the final result together, and takes the time to explain both.")}</p></div></section>
 
 <section class="band peach"><div class="wrap">
   <div class="sec-h" data-r><h2>What to expect</h2></div>
   <div class="bento">
-    <a class="b b-deep b-tall" href="~/your-visit/" data-r style="--d:0"><span class="k">Same day</span><span class="v">Imaging and provisional results at a single one-stop visit.</span><span class="more">Your first visit</span></a>
-    <div class="b" data-r style="--d:1"><span class="k">24 to 48 hours</span><span class="v">To arrange a video or telephone consultation.</span></div>
+    <a class="b b-deep b-tall" href="~/biography/" data-r style="--d:0"><span class="k">One surgeon</span><span class="v">The surgeon who examines you is the one who operates, and who looks after you afterwards.</span><span class="more">About Mr Ullah</span></a>
+    <a class="b" href="~/your-visit/" data-r style="--d:1"><span class="k">Same day results</span><span class="v">Imaging and provisional results at a one-stop visit, for new breast symptoms.</span></a>
     <a class="b" href="~/fees-and-insurance/" data-r style="--d:2"><span class="k">Bupa Platinum</span><span class="v">Fee-assured, Open Referral network. AXA, Aviva, Vitality and WPA recognised.</span></a>
     <a class="b b-wide b-img" href="~/locations/buckhurst-hill-essex/" data-r style="--d:1"><span class="k">The Holly, Buckhurst Hill</span><span class="v">Minutes from Woodford Green, Loughton and Chigwell, with parking on site. Also Harley Street and the City.</span><span class="more">Clinic details</span></a>
     <a class="b b-rate" href="~/reviews/" data-r style="--d:2"><span class="k">5.0</span>{stars()}<span class="v">100% five-star on iWantGreatCare</span></a>
@@ -445,6 +455,7 @@ def build_procedures():
         q = C.REVIEWS[(i + 2) % len(C.REVIEWS)]
         body = page_head(crumbs, f"Treatment {i + 1:02d}", p["h1"], p["lede"],
                          actions=f'<a class="btn" href="~/booking/">Book a consultation</a><a class="btn line" href="#questions">Questions</a>') + f'''
+{f'<figure class="post-hero"><div class="wrap"><div class="ph">{post_img(p, sizes="(min-width: 86rem) 80rem, 100vw", lazy=False)}</div><figcaption>Photo: <a href="{p.get("image_credit_url", "")}" target="_blank" rel="noopener">{escape(p.get("image_credit", ""))}</a> on <a href="https://unsplash.com/?utm_source=drzakerullah&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></div></figure>' if p.get("image") else ""}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")])}</div>
   <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>Written and medically reviewed by <a href="~/biography/">{NAME} FRCS</a>. Updated {UPDATED}.</span></div>
@@ -646,7 +657,8 @@ def build_news():
     cats = sorted({e["category"] for e in ENTRIES})
     lead, rest = (POSTS[0], [e for e in ENTRIES if e is not POSTS[0]]) if POSTS else (None, ENTRIES)
     chips = '<button type="button" class="on" data-cat="">All</button>' + "".join(f'<button type="button" data-cat="{escape(c)}">{escape(c)}</button>' for c in cats)
-    feat = (f'<a class="blead" href="~/news/{lead["slug"]}/" data-r><span class="c">Latest · {escape(lead["category"])}</span><span class="t">{escape(lead["title"])}</span>'
+    lead_pic = f'<span class="pic">{post_img(lead, sizes="(min-width: 64rem) 80vw, 92vw")}</span>' if lead and lead.get("image") else ""
+    feat = (f'<a class="blead{" has-pic" if lead.get("image") else ""}" href="~/news/{lead["slug"]}/" data-r>{lead_pic}<span class="c">Latest · {escape(lead["category"])}</span><span class="t">{escape(lead["title"])}</span>'
             f'<span class="d">{escape(lead["description"])}</span><span class="m">{lead["date_obj"].strftime("%-d %B %Y")} · {lead["minutes"]} min read</span></a>') if lead else ""
     body = f'''<section class="blog-head"><div class="wrap">{crumbs_html(crumbs)}<h1 class="h-anim">Blog</h1>
 <p class="lede mt-2">Plain English guides to breast symptoms, diagnosis, surgery and recovery, written by Mr Ullah, alongside his health talks in Bengali.</p></div></section>
@@ -671,6 +683,7 @@ def build_news():
         others = [x for x in POSTS if x is not p]
         more = sorted(others, key=lambda x: (x["category"] != p["category"], not set(x["related"]) & set(p["related"])))[:3]
         body = f'''<article>{page_head(crumbs, f'{escape(p["category"])}', escape(p["title"]), escape(p["description"]), meta=[("Published", f'<time datetime="{p["date"]}">{date_label}</time>'), ("Reading time", f'{p["minutes"]} minutes'), ("Medically reviewed", reviewed)] + ([("As featured in", f'<em>{escape(p["featured"])}</em> magazine')] if p.get("featured") else []))}
+{f'<figure class="post-hero"><div class="wrap"><div class="ph">{post_img(p, sizes="(min-width: 86rem) 80rem, 100vw", lazy=False)}</div><figcaption>Photo: <a href="{p.get("image_credit_url", "")}" target="_blank" rel="noopener">{escape(p.get("image_credit", ""))}</a> on <a href="https://unsplash.com/?utm_source=drzakerullah&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></div></figure>' if p.get("image") else ""}
 <section class="section"><div class="wrap article">
   <div class="rail"><span class="label">Contents</span>{toc_html(toc, [("questions", "Questions")] if faq else [])}</div>
   <div><div class="byline"><img src="~/assets/img/zu-head-400.webp" alt="" width="400" height="400" loading="lazy"><span>By <a href="~/biography/">{NAME} FRCS</a>, Consultant Oncoplastic Breast Surgeon.</span></div>

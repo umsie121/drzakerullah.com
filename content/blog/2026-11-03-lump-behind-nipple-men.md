@@ -7,6 +7,7 @@ description: A lump behind the nipple in a man is usually gynaecomastia, but mal
 keyword: lump behind nipple male
 category: Men's breast health
 related: gynaecomastia, benign-breast-conditions
+image_query: man thoughtful portrait
 ---
 **In short:** a rubbery, slightly tender lump directly behind the nipple in a man is most often **gynaecomastia**, a benign growth of breast gland tissue. But men do get breast cancer, and the only way to know for sure is a proper breast assessment. Any new lump should be checked, and you can [book an assessment](~/booking/) directly.
 

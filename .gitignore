@@ -2,3 +2,5 @@
 __pycache__/
 _site/
 .claude/settings.local.json
+
+_build/.secrets/

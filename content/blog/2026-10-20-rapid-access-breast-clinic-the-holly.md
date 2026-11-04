@@ -7,6 +7,7 @@ description: A guide to the private Rapid Access Breast Clinic at Nuffield Healt
 keyword: private breast clinic essex
 category: Local clinics
 related: benign-breast-conditions, breast-cancer-surgery
+image_query: epping forest
 ---
 **In short:** the Rapid Access Breast Clinic at Nuffield Health The Holly Hospital in Buckhurst Hill is a private one-stop clinic. You see a consultant breast surgeon, have any scans you need and, if necessary, a biopsy, usually in a single afternoon. I run it on Tuesday afternoons.
 

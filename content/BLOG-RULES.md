@@ -21,6 +21,7 @@ keyword: lumpectomy vs mastectomy                                   # ONE primar
 category: Breast cancer                                             # see categories below
 related: breast-cancer-surgery, breast-reconstruction               # procedure slugs from _build/content.py
 featured: West Essex Life                                            # optional: only if the article really appeared in that publication
+image_query: doctor patient conversation                             # Unsplash search for the header photo: calm, non-clinical, no bodies or ribbons
 ---
 ```
 
