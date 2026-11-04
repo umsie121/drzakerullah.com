@@ -1496,3 +1496,9 @@ body { font-size: 0.97rem; }
 .vt-v figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(40, 14, 30, 0.65) 0, transparent 60%); }
 .vt-v figcaption { position: absolute; z-index: 1; left: 1.3rem; bottom: 1rem; color: #fff; font-family: var(--display); font-weight: 560; font-size: 1.2rem; }
 @media (max-width: 40rem) { .vt-i { grid-template-columns: 1fr; } .vt-v figure { aspect-ratio: 16 / 9; } }
+.ins.lg img { display: block; height: 2.6rem; width: auto; max-width: 9rem; }
+.ins.lg-axa img, .ins.lg-aviva img { height: 1.9rem; }
+@media (max-width: 47.99rem) { .ins.lg img { height: 2.1rem; } .ins.lg-axa img, .ins.lg-aviva img { height: 1.55rem; } }
+.ins.lg img { height: 3.1rem; max-width: 10rem; }
+.ins.lg-axa img { height: 2.6rem; } .ins.lg-aviva img { height: 2rem; }
+@media (max-width: 47.99rem) { .ins.lg img { height: 2.5rem; } .ins.lg-axa img { height: 2.1rem; } .ins.lg-aviva img { height: 1.6rem; } }

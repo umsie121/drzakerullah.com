@@ -274,7 +274,9 @@ def loop(name, cls="lv"):
 def insurer_band():
     """A slow, floating band of the insurers who recognise Mr Ullah."""
     styles = ["w1", "w2", "w3", "w4", "w5"]
-    chips = "".join(f'<span class="ins {styles[i % 5]}">{escape(n)}</span>' for i, n in enumerate(C.INSURERS))
+    logos = {"Bupa": "bupa", "AXA Health": "axa", "Aviva": "aviva", "Vitality": "vitality", "WPA": "wpa"}
+    chips = "".join((f'<span class="ins lg lg-{logos[n]}"><img src="~/assets/img/ins/{logos[n]}.svg" alt="{escape(n)}" loading="lazy"></span>' if n in logos
+                     else f'<span class="ins {styles[i % 5]}">{escape(n)}</span>') for i, n in enumerate(C.INSURERS))
     return (f'<section class="insb" aria-label="Recognised by insurers"><div class="wrap insb-h"><p>Recognised by the major UK and international insurers</p>'
             f'<a class="more" href="~/fees-and-insurance/">Fees and insurance</a></div>'
             f'<div class="insm"><div class="row">{chips}{chips}{chips}</div></div></section>')
