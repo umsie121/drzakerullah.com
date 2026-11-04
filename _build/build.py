@@ -298,7 +298,7 @@ def post_img(p, sizes="(min-width: 56rem) 33vw, 92vw", lazy=True):
 def blog_cards(posts, n=3):
     out = []
     for p in posts[:n]:
-        pic = f'<span class="pic">{post_img(p)}</span>' if p.get("image") else ""
+        pic = f'<span class="pic">{post_img(p)}</span>' if p.get("image") else f'<span class="pic ph" aria-hidden="true"><i>zu</i><em>{escape(p["category"])}</em></span>'
         out.append(f'<li data-r><a href="~/news/{p["slug"]}/">{pic}<span class="c">{escape(p["category"])}</span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span><span class="m">{p["date_obj"].strftime("%-d %B %Y")} · {p["minutes"]} min read</span></a></li>')
     return f'<ul class="bcards">{"".join(out)}</ul>'
 
