@@ -1510,3 +1510,11 @@ body { font-size: 0.97rem; }
 .vt-list::before { left: calc(0.5rem - 1px); top: 1.1rem; bottom: 3rem; }
 .vt .sec-h { margin-bottom: clamp(1.6rem, 4svh, 2.4rem); }
 @media (max-width: 40rem) { .vt-i { align-items: start; } .vt-y { font-size: 1.6rem; } .vt-i::before { top: calc(1.6rem * 1.2 / 2 - 0.5rem); } }
+
+/* Biography: clips sit below the timeline, not against a year */
+.vt-reel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: clamp(1rem, 3svh, 2rem); }
+.vt-c { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; }
+.vt-c video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vt-c::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(40, 14, 30, 0.7) 0, transparent 55%); }
+.vt-c figcaption { position: absolute; z-index: 1; left: 1rem; right: 1rem; bottom: 0.9rem; color: #fff; font-family: var(--display); font-weight: 560; font-size: 1.05rem; line-height: 1.25; }
+@media (max-width: 40rem) { .vt-reel { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; } .vt-c { scroll-snap-align: start; } }

@@ -403,17 +403,13 @@ def build_about():
         ("1993", "To London", "Mr Ullah begins surgical training in the United Kingdom on the North East Thames rotation, working through London teaching and district general hospitals."),
         ("1996", "Fellow of the Royal College of Surgeons of Edinburgh", "FRCSEd, the fellowship that marks a fully trained surgeon in the British tradition, and the reason he is addressed as Mr rather than Dr."),
         ("2003", "A European prize", "Mr Ullah&rsquo;s keyhole hernia repair technique, using a glove balloon, wins best video presentation at the European Association for Endoscopic Surgery."),
-        ("2009", "Specialist in general surgery", "FRCS in General Surgery, after higher training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield. It is here that Mr Ullah&rsquo;s interest in oncoplastic breast surgery takes shape."),
+        ("2009", "Specialist in general surgery", "Completes higher surgical training at <strong>The Royal Marsden</strong>, Europe&rsquo;s largest specialist cancer centre, and at St Mary&rsquo;s, The Royal Free and Broomfield, and gains the FRCS in General Surgery. These years shape Mr Ullah&rsquo;s focus on oncoplastic breast surgery."),
         ("2012", "Consultant, Barts Health", "Appointed consultant oncoplastic breast and general surgeon at Whipps Cross University Hospital, part of Barts Health NHS Trust."),
         ("Today", "Leading the breast unit", "Clinical Lead of the Whipps Cross Breast Unit, where he introduced the <strong>one-stop breast clinic</strong> and <strong>fat grafting</strong> for breast reconstruction. Mr Ullah also directs the Whipps Cross Higher Surgery FRCS course and sees private patients at The Holly, Canary Wharf and St Bartholomew&rsquo;s, having previously consulted on Harley Street."),
     ]
-    media = {"2003": ("loop-room", "In front of an audience"), "2012": ("loop-chat", "Time for every question"), "Today": ("loop-summit", "On the international stage")}
-    cards = []
-    for y, t, d in chapters:
-        cards.append(f'<li class="vt-i" data-r><span class="vt-y">{y}</span><div><h3>{t}</h3><p>{d}</p></div></li>')
-        if y in media:
-            v, cap = media[y]
-            cards.append(f'<li class="vt-v" data-r><figure>{loop(v)}<figcaption>{cap}</figcaption></figure></li>')
+    cards = [f'<li class="vt-i" data-r><span class="vt-y">{y}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for y, t, d in chapters]
+    clips = [("loop-room", "In front of an audience"), ("loop-chat", "Time for every question"), ("loop-summit", "On the international stage")]
+    reel = "".join(f'<figure class="vt-c" data-r style="--d:{i}">{loop(v)}<figcaption>{cap}</figcaption></figure>' for i, (v, cap) in enumerate(clips))
     jn = "".join(cards)
     practice = [
         ("Breast cancer surgery", "Breast conserving surgery and therapeutic mammoplasty, mastectomy and lymph node surgery."),
@@ -442,6 +438,7 @@ def build_about():
 <section class="vt"><div class="wrap">
   <div class="sec-h" data-r><h2>A career in surgery</h2></div>
   <ol class="vt-list">{jn}</ol>
+  <div class="vt-reel">{reel}</div>
 </div></section>
 
 {cta_strip("Meet Mr Ullah in clinic", "Appointments at The Holly in Buckhurst Hill, Canary Wharf and the City of London, or by video.")}
