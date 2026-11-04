@@ -111,8 +111,8 @@ def header(nav, active):
 
     journal_cur = ' aria-current="page"' if active == "news" else ""
     groups = "".join(
-        f'<div class="group{" small" if i > 1 else ""}"><span class="label">{t}</span>' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + "</div>"
-        for i, (t, _, _, _, links) in enumerate(model))
+        f'<details class="mgroup"><summary>{t}</summary><div class="mlinks">' + "".join(f'<a href="{h}">{lt}</a>' for lt, h, _ in links) + (f'<a class="mall" href="{href}">All {t.lower()}</a>' if t in ("Treatments", "Clinics") else "") + '</div></details>'
+        for t, _, href, _, links in model)
     return f'''<div class="topline" hidden><div class="wrap"><span class="tl-l">Bupa Platinum consultant · Same day imaging and results for new breast symptoms</span><span>Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></span></div></div>
 <header class="site-header">
   <div class="wrap bar">
@@ -124,7 +124,7 @@ def header(nav, active):
 </header>
 <div class="overlay" id="overlay" aria-hidden="true">
   <div class="wrap top">{brand()}<button class="menu-btn close" type="button" style="display:block">Close</button></div>
-  <nav class="wrap" aria-label="Menu">{groups}<div class="group small"><span class="label">Blog</span><a href="~/news/">All articles</a></div></nav>
+  <nav class="wrap" aria-label="Menu">{groups}<a class="mtop" href="~/news/">Blog</a><a class="btn coral mbook" href="~/booking/">Book a consultation</a></nav>
   <div class="wrap foot">Private secretary <a href="tel:{nav["phone_tel"]}">{nav["phone"]}</a></div>
 </div>'''
 

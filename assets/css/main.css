@@ -1081,3 +1081,84 @@ video.lv { display: block; width: 100%; height: 100%; object-fit: cover; backgro
 @media (max-width: 47.99rem) { .bento { grid-template-columns: 1fr 1fr; } .b-tall { grid-column: span 2; } .b-rate { grid-column: span 2; flex-direction: row; } .b .k { font-size: 1.25rem; } .b-deep .k { font-size: 2.4rem; } }
 .vhero .copy > .label { display: inline-flex; align-items: center; padding: 0.5rem 0.95rem; border-radius: 999px; background: rgba(26, 15, 8, 0.42); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2); color: #fff; text-shadow: none; }
 .insm { padding-block: 0.9rem 2.4rem; margin-block: -0.9rem -2.4rem; }
+
+/* fit to the window: big type scales with height as well as width */
+.vhero { height: calc(100svh - var(--header) - var(--frame)); min-height: 30rem; max-height: 56rem; }
+.vhero h1 { font-size: min(7.4vw, 11.5svh, 7.6rem); }
+.vhero .actions { margin-top: min(2rem, 3svh); }
+.vhero .copy > .label { font-size: 0.72rem; }
+.bh { min-height: min(calc(100svh - var(--header)), 56rem); }
+.bio-hero h1 { font-size: min(8.4vw, 13svh, 8.6rem); }
+.bh-copy { padding-block: 2rem min(5rem, 7svh); }
+.bh-sub { margin-top: min(1.6rem, 2.4svh); }
+.bh-meta { margin-top: min(2.4rem, 3.4svh); }
+@media (min-width: 64rem) { .bh-fig { max-height: calc(100svh - var(--header)); } }
+.hc { min-height: 0; }
+.hc h3 { margin-top: 1.4rem; }
+@media (min-width: 64rem) { .js .hz.pin .hc { min-height: 0; max-height: calc(100svh - var(--header) - 12rem); } .js .hz.pin .hc.hv { height: min(62svh, 30rem); } .hz-head { padding-top: min(4rem, 6svh); } .hz-head h2 { font-size: min(5vw, 8svh, 4.4rem); } }
+@media (max-height: 760px) and (min-width: 64rem) { .hc { padding: 1.6rem 1.7rem 1.8rem; } .hc .y { font-size: min(4.4rem, 9svh); } .hc p { font-size: 0.95rem; line-height: 1.55; } }
+.sec-h h2 { font-size: min(5vw, 9svh, 4.4rem); }
+.say-t { font-size: min(4.6vw, 7.5svh, 4.3rem); }
+@media (min-width: 64rem) { .js .hz.pin .hz-track { align-items: stretch; padding-block: 1.5rem 3rem; } .js .hz.pin .hc { max-height: none; height: auto; } .js .hz.pin .hc.hv { height: auto; } .js .hz.pin .hz-pin { justify-content: flex-start; } .js .hz.pin .hz-track { max-height: min(34rem, calc(100svh - var(--header) - 9rem)); } }
+.journal .thumb.cover::after { content: none; }
+.journal .thumb.cover img { width: 100%; height: 100%; object-fit: cover; }
+.video.cv .play { position: absolute; inset: 0; width: 100%; height: 100%; transform: none; border-radius: 0; background: transparent; box-shadow: none; }
+.video.cv .play::before, .video.cv .play::after, .video.cv .play span { display: none; }
+
+/* ============================================================ one type scale, sized to the window */
+:root {
+  --t-display: clamp(2.6rem, min(7vw, 10.5svh), 7rem);
+  --t-page: clamp(2.3rem, min(5.4vw, 8.5svh), 5.2rem);
+  --t-h2: clamp(1.9rem, min(3.9vw, 6.6svh), 3.6rem);
+  --t-h3: clamp(1.2rem, min(1.7vw, 3svh), 1.55rem);
+  --t-say: clamp(1.6rem, min(3.6vw, 6svh), 3.3rem);
+  --section: clamp(3.5rem, 10svh, 7rem);
+}
+.vhero h1, .bio-hero h1, .blog-head h1 { font-size: var(--t-display); }
+.page-head h1 { font-size: var(--t-page); }
+h2, .sec-h h2, .sec-row h2, .hz-head h2, .meet h2, .podp h2, .rv-cta h2, .split-head h2, .appointment h2, .ch h2, .bleed-cap { font-size: var(--t-h2); }
+h3, .hc h3, .pc h3, .txg-sub b, .bcards .t, .journal .t { font-size: var(--t-h3); }
+.txg-h .t, .blead .t { font-size: clamp(1.5rem, min(2.6vw, 4.6svh), 2.3rem); }
+.say-t, .isay { font-size: var(--t-say); }
+.b .k { font-size: clamp(1.3rem, min(1.9vw, 3.4svh), 1.8rem); }
+.b-deep .k, .rv-score b, .b-rate .k, .hc .y, .tc .k { font-size: clamp(2.2rem, min(4vw, 7svh), 4rem); }
+.band, .section { padding-block: var(--section); }
+.say { padding-block: clamp(4rem, 14svh, 9rem); }
+.meet, .insb, .clap { padding-block: clamp(3rem, 9svh, 6rem); }
+.sec-h { margin-bottom: clamp(1.6rem, 4svh, 3rem); }
+.bento { grid-auto-rows: minmax(clamp(9rem, 22svh, 12rem), auto); }
+.meet-f { max-height: calc(100svh - var(--header) - 4rem); }
+.duo-img, .clap-f { max-height: calc(100svh - var(--header) - 6rem); }
+.bleed figure { height: min(78svh, 50rem); }
+.blog-head { padding-bottom: clamp(2rem, 6svh, 4rem); }
+
+.bleed figure { height: min(62svh, 44rem); }
+.bleed { padding-bottom: clamp(3rem, 8svh, 5rem); }
+
+/* mobile menu: four tap-to-open groups, then Blog and Book */
+.overlay nav { padding-block: 1.2rem 2rem; display: flex; flex-direction: column; }
+.mgroup { border-bottom: 1px solid var(--line-deep); }
+.mgroup summary, .overlay .mtop { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0; font-family: var(--display); font-variation-settings: "opsz" 72, "SOFT" 50, "WONK" 1, "wght" 520; font-size: 1.7rem; color: #fff; cursor: pointer; list-style: none; }
+.mgroup summary::-webkit-details-marker { display: none; }
+.mgroup summary::after { content: "+"; font-family: var(--sans); font-weight: 300; font-size: 1.8rem; color: var(--accent-soft); transition: transform 0.35s var(--ease); }
+.mgroup[open] summary::after { transform: rotate(45deg); }
+.mlinks { display: grid; gap: 0.1rem; padding: 0 0 1.1rem; animation: txin 0.4s var(--ease); }
+.mlinks a { padding: 0.45rem 0; font-size: 1.05rem; color: var(--on-deep-2); }
+.mlinks a:hover { color: #fff; }
+.mlinks .mall { color: var(--accent-soft); font-weight: 600; margin-top: 0.3rem; }
+.overlay .mtop { border-bottom: 1px solid var(--line-deep); }
+.overlay .mbook { margin-top: 1.6rem; align-self: stretch; }
+
+/* biography hero: show more of the portrait on wide, short screens */
+@media (min-width: 64rem) {
+  .bh { grid-template-columns: 1.35fr 1fr; }
+  .bh-fig picture { transform: scale(calc(1 + var(--hp, 0) * 0.05)); transform-origin: 50% 20%; }
+  .bh-fig img { object-position: 50% 12%; }
+}
+@media (min-width: 64rem) {
+  .bio-hero .crumbs { position: absolute; z-index: 3; margin-top: 1.2rem; }
+  .bio-hero > .wrap { position: relative; }
+  .bh { min-height: 0; height: calc(100svh - var(--header)); max-height: 54rem; }
+  .bh-fig { height: 100%; max-height: none; align-self: stretch; }
+  .bh-fig img { object-position: 50% 6%; }
+}

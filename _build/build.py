@@ -134,24 +134,33 @@ def rating_block():
 
 
 VIDEO_ENTRIES = [{**v, "description": v["desc"], "category": f"Video, in {v['lang']}", "date_obj": datetime.date.fromisoformat(v["date"]), "thumb": v["id"]} for v in C.VIDEOS]
-ENTRIES = sorted(POSTS + VIDEO_ENTRIES, key=lambda e: e["date_obj"], reverse=True)
+PODCAST_ENTRY = {"slug": "podcast", "href": "~/podcast/", "title": "Five questions about breast cancer, answered by a surgeon", "category": "Podcast",
+                 "description": "On Everything Changed, Rosie Fawehimi puts the questions she is asked most to the surgeon who treated her.", "date": C.PODCAST["date"],
+                 "date_obj": datetime.date.fromisoformat(C.PODCAST["date"]), "thumb": C.PODCAST["youtube"]}
+ENTRIES = sorted(POSTS + VIDEO_ENTRIES + [PODCAST_ENTRY], key=lambda e: e["date_obj"], reverse=True)
 
 
 def journal_list(entries, grid=True):
     out = []
     for p in entries:
-        thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
+        cover = f"assets/img/video/{p['slug']}.jpg"
+        if p.get("thumb") and os.path.exists(os.path.join(ROOT, cover)):
+            thumb = f'<span class="thumb cover"><picture><source type="image/webp" srcset="~/{cover[:-4]}.webp"><img src="~/{cover}" alt="" width="1280" height="720" loading="lazy"></picture></span>'
+        else:
+            thumb = f'<span class="thumb"><img src="https://i.ytimg.com/vi/{p["thumb"]}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' if p.get("thumb") else ""
         if not thumb and p.get("image"):
             thumb = f'<span class="thumb photo">{post_img(p)}</span>'
         feat = " · As featured in " + escape(p["featured"]) if p.get("featured") else ""
-        out.append(f'<li data-cat="{escape(p["category"])}"><a href="~/news/{p["slug"]}/">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
+        out.append(f'<li data-cat="{escape(p["category"])}"><a href="{p.get("href") or "~/news/" + p["slug"] + "/"}">{thumb}<span class="label">{escape(p["category"])}{feat}</span><span><span class="t">{escape(p["title"])}</span><span class="d">{escape(p["description"])}</span></span><span class="m">{p["date_obj"].strftime("%-d %B %Y")}</span></a></li>')
     return f'<ul class="journal{" grid" if grid else ""}">{"".join(out)}</ul>'
 
 
-def video(vid=None, title=None, label=None):
+def video(vid=None, title=None, label=None, cover=None):
     P = C.PODCAST
     vid, title = vid or P["youtube"], title or P["title"]
-    return f'''<div class="video" data-yt="{vid}"><img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="{escape(title)}" width="480" height="360" loading="lazy">
+    src = f"~/assets/img/video/{cover}.jpg" if cover and os.path.exists(os.path.join(ROOT, "assets", "img", "video", f"{cover}.jpg")) else f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+    cv = " cv" if src.startswith("~/") else ""
+    return f'''<div class="video{cv}" data-yt="{vid}"><img src="{src}" alt="{escape(title)}" width="1280" height="720" loading="lazy">
 <button class="play" type="button" aria-label="Play video: {escape(title)}"><span>Play</span></button></div>'''
 
 
@@ -725,7 +734,7 @@ def build_videos():
         d = datetime.date.fromisoformat(v["date"])
         body = page_head(crumbs, f"Video, in {v['lang']}", escape(v["title"]), escape(v["desc"]),
                          meta=[("Published", d.strftime("%-d %B %Y")), ("Language", v["lang"]), ("Source", v["by"])]) + \
-            f'<section class="section"><div class="wrap railed"><div class="rail"><span class="label">Watch</span></div><div style="max-width:56rem">{video(v["id"], v["title"])}<p class="stone small mt-1">The video loads from YouTube when you press play. <a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">More on YouTube</a></p></div></div></section>' + \
+            f'<section class="section"><div class="wrap railed"><div class="rail"><span class="label">Watch</span></div><div style="max-width:56rem">{video(v["id"], v["title"], cover=v["slug"])}<p class="stone small mt-1">The video loads from YouTube when you press play. <a class="more" href="{C.YOUTUBE_CHANNEL}" target="_blank" rel="noopener">More on YouTube</a></p></div></div></section>' + \
             railed("More videos", journal_list([x for x in VIDEO_ENTRIES if x["slug"] != v["slug"]]), cls="section rule")
         schema = [{"@context": "https://schema.org", "@type": "VideoObject", "name": v["title"], "description": v["desc"], "inLanguage": "bn",
                    "thumbnailUrl": f"https://i.ytimg.com/vi/{v['id']}/hqdefault.jpg", "uploadDate": v["date"],
