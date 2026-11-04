@@ -230,7 +230,8 @@ def reviews_section():
   <div class="rv-score"><b>{C.IWGC_RATING}</b><div>{stars()}<p>Average rating on iWantGreatCare. 100% of his verified reviews are five stars.</p></div></div>
   <div class="rv-cta"><h2>Kind, thorough and never rushed</h2><div class="actions"><a class="btn coral" href="~/booking/">Book with Mr Ullah</a><a class="btn" href="~/reviews/">Read his reviews</a></div></div>
 </div></div>
-<div class="marq" aria-label="Patient reviews"><div class="row">{"".join(review_card(r) for r in rs + rs)}</div></div></section>'''
+<div class="wrap rv-nav"><button type="button" class="rv-b" data-rv="-1" aria-label="Previous reviews">&larr;</button><button type="button" class="rv-b" data-rv="1" aria-label="More reviews">&rarr;</button></div>
+<div class="rv-scroll" aria-label="Patient reviews" tabindex="0">{"".join(review_card(r) for r in rs)}<a class="rc rc-more" href="~/reviews/"><span>All reviews</span><b>&rarr;</b></a></div></section>'''
 
 
 SPOTIFY_SVG = '<svg viewBox="0 0 24 24" fill="#1DB954" aria-hidden="true"><path d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.5 17.3a.75.75 0 01-1 .25c-2.9-1.8-6.5-2.2-10.8-1.2a.75.75 0 11-.34-1.46c4.7-1.07 8.7-.62 11.9 1.37.36.22.47.69.25 1.04zm1.47-3.27a.94.94 0 01-1.29.31c-3.3-2.03-8.35-2.62-12.26-1.43a.94.94 0 11-.55-1.8c4.47-1.36 10.03-.7 13.79 1.62.44.27.58.85.31 1.3zm.13-3.4C15.2 8.3 8.75 8.08 5.02 9.21a1.13 1.13 0 11-.65-2.16c4.28-1.3 11.4-1.05 15.9 1.62a1.13 1.13 0 01-1.17 1.94z"/></svg>'

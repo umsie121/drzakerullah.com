@@ -102,6 +102,12 @@
 
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Homepage reviews: arrow buttons scroll the row by one card
+  var rvs = document.querySelector(".rv-scroll");
+  if (rvs) document.querySelectorAll("[data-rv]").forEach(function (b) {
+    b.addEventListener("click", function () { var c = rvs.querySelector(".rc"); rvs.scrollBy({ left: (+b.dataset.rv) * ((c ? c.offsetWidth : 320) + 16), behavior: still ? "auto" : "smooth" }); });
+  });
+
   // Clinic pages open in an overlay sheet (the full pages remain for search and direct links)
   (function () {
     var sheet, body, lastFocus;
