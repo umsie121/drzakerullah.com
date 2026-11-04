@@ -102,6 +102,17 @@
 
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Hero reel: make sure it plays (Safari can refuse autoplay, e.g. in Low Power Mode, until the first interaction)
+  var reel = document.querySelector(".vhero video");
+  if (reel && !still) {
+    reel.muted = true; reel.defaultMuted = true; reel.setAttribute("playsinline", "");
+    var go = function () { var p = reel.play(); if (p && p.catch) p.catch(function () {}); };
+    go();
+    reel.addEventListener("canplay", go, { once: true });
+    ["touchstart", "scroll", "pointerdown", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { if (reel.paused) go(); }, { once: true, passive: true }); });
+    document.addEventListener("visibilitychange", function () { if (!document.hidden && reel.paused) go(); });
+  }
+
   // Homepage reviews: arrow buttons scroll the row by one card
   var rvs = document.querySelector(".rv-scroll");
   if (rvs) document.querySelectorAll("[data-rv]").forEach(function (b) {

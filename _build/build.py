@@ -268,7 +268,7 @@ HOME_FAQS = [
 def loop(name, cls="lv"):
     """A short, silent, looping clip that only loads and plays while on screen."""
     return (f'<video class="{cls}" muted loop playsinline preload="none" poster="~/assets/video/{name}.jpg" data-lazy aria-hidden="true">'
-            f'<source data-src="~/assets/video/{name}.webm" type="video/webm"><source data-src="~/assets/video/{name}.mp4" type="video/mp4"></video>')
+            f'<source data-src="~/assets/video/{name}.mp4" type="video/mp4"><source data-src="~/assets/video/{name}.webm" type="video/webm"></video>')
 
 
 def insurer_band():
@@ -324,7 +324,7 @@ def blog_cards(posts, n=3):
 def build_home():
     body = f'''
 <section class="hero-frame" data-hero><div class="vhero">
-  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source src="~/assets/video/reel.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source src="~/assets/video/reel.mp4" type="video/mp4"><source src="~/assets/video/reel.webm" type="video/webm"></video>
   <div class="copy">
     <span class="label">Consultant Oncoplastic Breast Surgeon · London and Essex</span>
     <h1 class="h-anim">A breast surgeon who<br><i>takes the time to listen</i></h1>

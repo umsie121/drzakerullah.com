@@ -147,7 +147,7 @@ def gulf_block(t):
     return f'''<section class="band white"><div class="wrap"><div class="sec-h" data-r><h2>{t["gulf_h"]}</h2><p>{t["gulf_intro"]}</p></div><div class="pcs">{cards}</div></div></section>
 
 <section class="meet"><div class="wrap duo"><div data-r><h2>{t["care_h"]}</h2><ul class="icare mt-3">{care}</ul></div>
-  <figure class="duo-img" data-r><video class="lv" muted loop playsinline preload="none" poster="../assets/video/loop-chat.jpg" data-lazy aria-hidden="true"><source data-src="../assets/video/loop-chat.webm" type="video/webm"><source data-src="../assets/video/loop-chat.mp4" type="video/mp4"></video></figure></div></section>
+  <figure class="duo-img" data-r><video class="lv" muted loop playsinline preload="none" poster="../assets/video/loop-chat.jpg" data-lazy aria-hidden="true"><source data-src="../assets/video/loop-chat.mp4" type="video/mp4"><source data-src="../assets/video/loop-chat.webm" type="video/webm"></video></figure></div></section>
 
 <section class="band"><div class="wrap"><div class="sec-h" data-r><h2>{t["rev_h"]}</h2><p>{t["rev_note"]}</p></div><div class="irevs">{revs}</div></div></section>
 
@@ -221,7 +221,7 @@ def page(lang):
 <section class="band"><div class="wrap"><div class="sec-h" data-r><h2>{t["cl_h"]}</h2></div><div class="ics" data-r>{clinics}</div></div></section>
 
 <section class="band deep"><div class="wrap duo"><div data-r><h2>{t["vid_h"]}</h2><p class="lede mt-2" style="color:var(--on-deep-2)">{t["vid"]}</p></div>
-  <figure class="duo-img" data-r><video class="lv" muted loop playsinline preload="none" poster="../assets/video/loop-podcast.jpg" data-lazy aria-hidden="true"><source data-src="../assets/video/loop-podcast.webm" type="video/webm"><source data-src="../assets/video/loop-podcast.mp4" type="video/mp4"></video></figure></div></section>
+  <figure class="duo-img" data-r><video class="lv" muted loop playsinline preload="none" poster="../assets/video/loop-podcast.jpg" data-lazy aria-hidden="true"><source data-src="../assets/video/loop-podcast.mp4" type="video/mp4"><source data-src="../assets/video/loop-podcast.webm" type="video/webm"></video></figure></div></section>
 
 {gulf_block(t) if "gulf" in t else ""}
 
