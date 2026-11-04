@@ -30,7 +30,7 @@ This combination of examination, imaging and biopsy is called [triple assessment
 
 ## Results
 
-Imaging results are usually explained on the day. Biopsy results normally take a few working days, and I see you again or call you to go through them. If anything needs treatment, the plan moves forward without changing hands. The surgeon who examined you is the surgeon who treats you.
+Imaging results are usually explained on the day. Biopsy results normally take a few working days, and I see you again or call you to go through them. If anything needs treatment, the plan moves forward with the same surgeon. The surgeon who examined you is the surgeon who treats you.
 
 ## Getting there
 

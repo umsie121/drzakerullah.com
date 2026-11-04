@@ -138,7 +138,7 @@ PROCEDURES = [
 <p>Many benign conditions need no treatment once the diagnosis is certain. Where treatment helps, Mr Ullah offers drainage of cysts, removal of symptomatic fibroadenomas and other benign lumps, duct surgery for troublesome nipple discharge, and structured advice for breast pain.</p>
 <h2>Family history and breast cancer risk</h2>
 <p>If close relatives have had breast or ovarian cancer, Mr Ullah offers a personal risk assessment, with advice on screening, genetic testing and, for some women, risk reducing options. Most people with a family history are at only moderately raised risk, and a clear assessment is reassuring in itself.</p>
-<p>If a biopsy shows cancer, you are already in the care of an experienced <a href="~/procedures/breast-cancer-surgery/">oncoplastic breast surgeon</a>, and your treatment continues without changing hands.</p>
+<p>If a biopsy shows cancer, you are already in the care of an experienced <a href="~/procedures/breast-cancer-surgery/">oncoplastic breast surgeon</a>, and your treatment continues with the same surgeon.</p>
 """,
         "faqs": [
             ("Is a breast lump usually cancer?", "No. The large majority of breast lumps are benign: cysts, fibroadenomas or normal nodular tissue. There is no reliable way to tell them apart by touch, which is why every new lump should be examined, imaged and, if needed, biopsied."),
@@ -355,9 +355,6 @@ REVIEWS = [
     ("Mr Z Ullah is supremely the best surgeon. In him I trust completely and feel so lucky to have had him as my surgeon. His attention, professionalism and care is exemplary.", "27 Nov 2025", "The Holly"),
     ("Thanks to Mr Ullah's care and skills - I am still here 3 years later… His kindness and compassion is everything a doctor should have.", "30 Apr 2024", "The Holly"),
     ("He explains things thoroughly to you and takes the time to listen to patients, asking many questions and showing genuine concern. He never rushes his consultations and is a highly empathetic Doctor.", "18 Jul 2024", "Whipps Cross"),
-    ("I have had two surgeries with dr ullah and both experiences have been stress free and easy recoveries with minimal scarring. I can honestly say I am in the best hands.", "4 Jul 2024", "The Holly"),
-    ("Had the greatest pleasure to meet Mr Ullah today and his amazing nurse Beverly. From the moment I sat down, i felt completely comfortable and in safe hands.", "4 Dec 2025", "The Holly"),
-    ("Mr. Ullah was patient and attentive to my needs. I am very happy with the reconstruction of my breast… A safe pair of hands.", "16 Mar 2023", "The Holly"),
     ("Dr Ullah saved me and my sanity with an incredibly well organised and executed breast surgery. I'm so grateful to have met him and his experienced, friendly team.", "2 Mar 2023", "The Holly"),
     ("He listens intently to all questions and concerns and makes you feel heard… All this being said his skill as a surgeon is outstanding.", "24 Feb 2022", "Whipps Cross"),
     ("Mr Ullah has been my surgeon since I was diagnosed with Breast cancer in 2016. He is kind and compassionate…", "10 Jul 2024", "Whipps Cross"),

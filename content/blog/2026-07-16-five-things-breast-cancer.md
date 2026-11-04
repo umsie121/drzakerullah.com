@@ -30,7 +30,7 @@ A new lump is the best-known symptom, but not the only one. See a doctor promptl
 
 Most of these turn out to be benign. All of them deserve assessment.
 
-## 4. Risk is partly in your hands
+## 4. Some risk is within your control
 
 Age and family history cannot be changed. But maintaining a healthy weight after the menopause, limiting alcohol and staying physically active each measurably reduce risk. If several close relatives have had breast or ovarian cancer, particularly at a young age, ask about a family history clinic. Genetic testing and enhanced screening exist for those who need them.
 

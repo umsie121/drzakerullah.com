@@ -223,7 +223,7 @@ def build_home():
 <h2>How Mr Ullah can help</h2><div class="mt-3">{treatment_index()}</div><p class="mt-3"><a class="more" href="~/procedures/">All treatments</a></p></div></div></section>
 
 <section class="section night"><div class="wrap railed"><div class="rail"><span class="label">Patient reviews</span></div><div>
-  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:2rem"><h2 style="max-width:13em">Kind, thorough and a safe pair of hands</h2>{rating_block()}</div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:2rem"><h2 style="max-width:13em">Kind, thorough and never rushed</h2>{rating_block()}</div>
   <div class="mt-3">{review_cards(C.REVIEWS[:6])}</div>
   <p class="mt-3"><a class="more" href="~/reviews/">Read every review</a></p>
 </div></div></section>
