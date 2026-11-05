@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import content as C  # noqa: E402
 import md  # noqa: E402
 from intl import build_intl, hreflang  # noqa: E402
-from layout import (NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, crumbs_html, crumbs_schema,  # noqa: E402
+from layout import (asset_v, NAME, SHORT, PHYSICIAN_REF, POSTNOM, ROOT, SITE, SITEMAP, crumbs_html, crumbs_schema,  # noqa: E402
                     faq_html, faq_schema, picture, render, strip_tags)
 
 TODAY = datetime.date.fromisoformat(os.environ.get("BUILD_DATE", datetime.date.today().isoformat()))
@@ -326,7 +326,7 @@ def blog_cards(posts, n=3):
 def build_home():
     body = f'''
 <section class="hero-frame" data-hero><div class="vhero">
-  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" data-poster-phone="~/assets/video/reel-portrait-poster.jpg" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source media="(max-width: 47.99rem)" src="~/assets/video/reel-portrait.mp4" type="video/mp4"><source media="(max-width: 47.99rem)" src="~/assets/video/reel-portrait.webm" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"><source src="~/assets/video/reel.webm" type="video/webm"></video>
+  <video autoplay muted loop playsinline preload="auto" poster="~/assets/video/reel-poster.jpg" data-poster-phone="~/assets/video/reel-portrait-poster.jpg?v={asset_v("assets/video/reel-portrait-poster.jpg")}" aria-label="Highlights of Mr Ullah on the Everything Changed podcast and speaking at international healthcare events."><source media="(max-width: 47.99rem)" src="~/assets/video/reel-portrait.mp4?v={asset_v("assets/video/reel-portrait.mp4")}" type="video/mp4"><source media="(max-width: 47.99rem)" src="~/assets/video/reel-portrait.webm?v={asset_v("assets/video/reel-portrait.webm")}" type="video/webm"><source src="~/assets/video/reel.mp4" type="video/mp4"><source src="~/assets/video/reel.webm" type="video/webm"></video>
   <div class="copy">
     <span class="label">Consultant Oncoplastic Breast Surgeon · London and Essex</span>
     <h1 class="h-anim">A breast surgeon who<br><i>takes the time to listen</i></h1>

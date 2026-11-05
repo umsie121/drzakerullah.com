@@ -1527,11 +1527,12 @@ body { font-size: 0.97rem; }
 
 /* phone hero: full-screen video with the copy over a dark fade */
 @media (max-width: 47.99rem) {
-  .vhero { height: calc(100svh - var(--header)); height: calc(100dvh - var(--header)); min-height: 28rem; max-height: none; }
+  .vhero { height: calc(100svh - var(--header)); height: calc(100lvh - var(--header)); min-height: 28rem; max-height: none; }
   .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 25%; }
   .vhero, [data-hero] .vhero { border-radius: 0; }
   .vhero::after { background: linear-gradient(180deg, rgba(20, 8, 14, 0.35) 0, transparent 16%, transparent 42%, rgba(20, 8, 14, 0.5) 64%, rgba(20, 8, 14, 0.78) 100%); }
   .vhero .copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 1.3rem max(1.6rem, env(safe-area-inset-bottom)); }
+  @supports (height: 1lvh) { .vhero .copy { padding-bottom: calc(max(1.6rem, env(safe-area-inset-bottom)) + 100lvh - 100dvh); } }
   .vhero .copy > .label { display: none; }
   .vhero h1 { margin-top: 0; font-size: clamp(2.2rem, 9.6vw, 3.2rem); line-height: 0.98; text-shadow: 0 2px 24px rgba(10, 4, 8, 0.6); }
   .vhero .hero-link { text-shadow: 0 1px 12px rgba(10, 4, 8, 0.7); }
@@ -1542,4 +1543,6 @@ body { font-size: 0.97rem; }
 .site-header:not(.scrolled) { background: var(--nav); }
 /* iOS Safari tints the status bar from the root background: match the header */
 html { background: var(--nav); }
+/* Safari 26 takes the status bar colour from an element fixed to the top: a thin plum strip */
+body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--nav); z-index: 200; pointer-events: none; }
 body { min-height: 100vh; }
