@@ -1528,7 +1528,7 @@ body { font-size: 0.97rem; }
 /* phone hero: full-screen video with the copy over a dark fade */
 @media (max-width: 47.99rem) {
   .vhero { height: calc(100svh - var(--header)); min-height: 28rem; max-height: 60rem; }
-  .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 35%; }
+  .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 25%; }
   .vhero, [data-hero] .vhero { border-radius: 0; }
   .vhero::after { background: linear-gradient(180deg, rgba(20, 8, 14, 0.35) 0, transparent 16%, transparent 42%, rgba(20, 8, 14, 0.5) 64%, rgba(20, 8, 14, 0.78) 100%); }
   .vhero .copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 1.3rem max(1.6rem, env(safe-area-inset-bottom)); }
