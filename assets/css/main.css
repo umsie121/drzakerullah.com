@@ -1541,8 +1541,8 @@ body { font-size: 0.97rem; }
 
 /* solid header at the top so iOS tints the status bar to match it */
 .site-header:not(.scrolled) { background: var(--nav); }
-/* iOS Safari tints the status bar from the root background: match the header */
-html { background: var(--nav); }
-/* Safari 26 takes the status bar colour from an element fixed to the top: a thin plum strip */
-body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--nav); z-index: 200; pointer-events: none; }
-body { min-height: 100vh; }
+/* iOS Safari paints the area above the page (behind the status bar) with the body background:
+   make that the header plum, and paint the page itself cream */
+body { background: var(--nav); }
+main, .site-footer, .ifoot { background: var(--bg); }
+.site-footer, .ifoot { box-shadow: 0 100vh 0 100vh var(--bg); }
