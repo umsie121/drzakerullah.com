@@ -1537,3 +1537,6 @@ body { font-size: 0.97rem; }
   .vhero .hero-link { text-shadow: 0 1px 12px rgba(10, 4, 8, 0.7); }
   .vhero .actions { margin-top: 1.2rem; gap: 1rem; }
 }
+
+/* solid header at the top so iOS tints the status bar to match it */
+.site-header:not(.scrolled) { background: var(--nav); }
