@@ -16,7 +16,7 @@ image_credit_url: https://unsplash.com/@nublson?utm_source=drzakerullah&utm_medi
 ---
 **In short:** an online breast surgeon consultation works well for results, a second opinion, a family history question or follow up after treatment. It cannot replace an examination. If you have a new lump or another new breast change, you need to be seen in person, examined and usually scanned, so video is a first step, not the whole assessment.
 
-Since the pandemic, many people expect to see a doctor on a screen, and for some appointments that is a real improvement. No travel, no time off work, and a relative in another city can join the call. I offer video and telephone consultations, in English, Bangla or Arabic, and I use them often.
+Since the pandemic, many people expect to see a doctor on a screen, and for some appointments that is a real improvement. No travel, no time off work, and a relative in another city can join the call. I offer video and telephone consultations, in English or Bangla, and I use them often.
 
 I also turn some requests for a video appointment into a face to face one. That is not about inconvenience. Breast medicine depends heavily on what I can feel and what a scan shows, and a camera gives me neither. This post explains where the line sits, so you can choose the right kind of appointment the first time.
 
@@ -55,9 +55,9 @@ First, the feel of a lump matters. Whether it is smooth or irregular, mobile or 
 
 This is why I am cautious. A reassuring video call that is not followed by an examination can give false comfort, and that is the outcome I most want to avoid.
 
-## Consultations in English, Bangla or Arabic
+## Consultations in English or Bangla
 
-I consult in English, Bangla and Arabic. For many families, discussing a diagnosis in their first language changes the whole conversation. Questions get asked that would otherwise go unasked, and older relatives can follow the plan without someone translating every sentence.
+I consult in English and Bangla. For many families, discussing a diagnosis in their first language changes the whole conversation. Questions get asked that would otherwise go unasked, and older relatives can follow the plan without someone translating every sentence.
 
 Video helps here too. Relatives in another city or another country can join the same call. If it would help, tell my secretary which language you would prefer when you book.
 
@@ -92,7 +92,7 @@ No. A new lump needs an examination and usually an ultrasound or mammogram, and 
 Discussing results, a second opinion on a diagnosis or treatment plan, family history and risk, planning surgery, and some follow up appointments.
 
 ### Can my family join a video consultation?
-Yes. Relatives can join from home or from abroad, and I consult in English, Bangla or Arabic.
+Yes. Relatives can join from home or from abroad, and I consult in English or Bangla.
 
 ### Is a video consultation covered by insurance?
 Some UK insurers cover remote consultations, but not all policies do. Check with your insurer before booking.

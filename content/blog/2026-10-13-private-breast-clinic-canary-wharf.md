@@ -59,7 +59,7 @@ The first appointment is about understanding what you have noticed and deciding,
 
 Examination, imaging and biopsy together are called triple assessment. It is the standard way of assessing any new breast symptom in the UK, and it is how I approach [breast lumps, breast pain and other benign breast conditions](~/procedures/benign-breast-conditions/). Most breast symptoms turn out to be benign, but the aim is a clear answer rather than a guess.
 
-I consult in English, Bangla and Arabic, which some patients and families find makes the conversation easier.
+I consult in English and Bangla, which some patients and families find makes the conversation easier.
 
 ## How tests and any surgery are arranged
 

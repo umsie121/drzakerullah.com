@@ -57,7 +57,7 @@ PHYSICIAN = {
     "address": {"@type": "PostalAddress", "streetAddress": "High Road", "addressLocality": "Buckhurst Hill", "addressRegion": "Essex", "postalCode": "IG9 5HX", "addressCountry": "GB"},
     "areaServed": [{"@type": "Place", "name": n} for n in ["London", "Essex", "Canary Wharf", "Docklands", "Isle of Dogs", "City of London", "Clerkenwell", "Shoreditch", "Stratford", "Buckhurst Hill", "Woodford Green", "South Woodford", "Loughton", "Chigwell", "Epping", "Walthamstow", "Hertfordshire"]],
     "medicalSpecialty": ["Oncologic", "Surgical", "PlasticSurgery"], "isAcceptingNewPatients": True,
-    "knowsLanguage": ["en-GB", "bn", "ar"],
+    "knowsLanguage": ["en-GB", "bn"],
     "identifier": {"@type": "PropertyValue", "propertyID": "GMC", "value": "4368515"},
     "hasCredential": [
         {"@type": "EducationalOccupationalCredential", "name": "MBBS", "credentialCategory": "degree"},
@@ -587,7 +587,7 @@ def build_locations():
                   "telephone": C.SEC_TEL, "priceRange": "££££", "medicalSpecialty": ["Oncologic", "Surgical", "PlasticSurgery"],
                   "address": hospital_schema(l)["address"], "areaServed": l["serves"], "employee": PHYSICIAN_REF,
                   "containedInPlace": hospital_schema(l), "hasMap": maps, "isAcceptingNewPatients": True,
-                  "knowsLanguage": ["en-GB", "bn", "ar"], "description": l["desc"]}
+                  "knowsLanguage": ["en-GB", "bn"], "description": l["desc"]}
         render(path, title=l["title"], desc=l["desc"], body=body, nav=NAV, active="locations", priority="0.9",
                schema=[clinic, crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -848,11 +848,11 @@ def build_remote():
         ("Can I have a consultation with Mr Ullah by video?", "Yes. A video or telephone consultation can usually be arranged within 24 to 48 hours of your enquiry. If an examination or tests are needed, a face to face appointment is arranged afterwards."),
         ("Can I get a second opinion from abroad?", "Yes. Mr Ullah reviews your reports and images, discusses them with you by video, and gives a written opinion that you can share with your own doctors. Treatment, if you choose it, takes place at one of his UK clinics."),
         ("What should I send before a remote second opinion?", "Clinic letters, imaging reports and, where possible, the images themselves, biopsy or pathology reports, and a list of your medicines. Reports should be in English or come with a translation."),
-        ("Which languages does Mr Ullah consult in?", "English, Bangla and Arabic. Many patients and families find it easier to discuss a diagnosis in their first language. <a href=\"~/bn/\">বাংলা</a> · <a href=\"~/ar/\">العربية</a>"),
+        ("Which languages does Mr Ullah consult in?", "English and Bangla. Many patients and families find it easier to discuss a diagnosis in their first language, and relatives are welcome to join. <a href=\"~/bn/\">বাংলা</a> · <a href=\"~/ar/\">العربية</a> (information in Arabic)"),
         ("How much does a remote consultation cost?", "The fee is confirmed by the practice when you book, before the consultation takes place. Some UK insurers cover remote consultations; check with yours."),
     ]
     body = page_head(crumbs, "Remote and international", "Video consultations and <i>second opinions from abroad</i>",
-                     "Mr Ullah offers video and telephone consultations, and second opinions for patients anywhere in the UK or overseas, in English, Bangla or Arabic.",
+                     "Mr Ullah offers video and telephone consultations, and second opinions for patients anywhere in the UK or overseas, in English or Bangla.",
                      actions='<a class="btn" href="~/booking/">Arrange a video consultation</a>') + \
         railed("How it works", '''<ol class="steps">
 <li><h3>Enquire</h3><p>Contact the private secretary. A video or telephone consultation can usually be arranged within 24 to 48 hours.</p></li>
@@ -862,7 +862,7 @@ def build_remote():
         railed("Good to know", '''<div class="prose"><p>A remote consultation is ideal for a second opinion, for discussing results or treatment options, and for follow up. It cannot replace an examination, so if Mr Ullah needs to examine you or arrange scans or a biopsy, he will say so and a face to face appointment can be made at <a href="~/locations/buckhurst-hill-essex/">The Holly in Buckhurst Hill</a>, <a href="~/locations/canary-wharf/">Canary Wharf</a> or <a href="~/locations/city-of-london/">St Bartholomew&rsquo;s</a>.</p>
 <p>For patients travelling from abroad for treatment, the practice can help you plan the timing of consultations, tests and surgery. Read more about <a href="~/second-opinion/">second opinions</a>.</p></div>''', cls="section rule") + \
         faq_section(faqs, "Questions about remote consultations")
-    desc = "Video consultations and international breast cancer second opinions with Mr Zaker Ullah FRCS, in English, Bangla or Arabic, usually within 48 hours."
+    desc = "Video consultations and international breast cancer second opinions with Mr Zaker Ullah FRCS, in English or Bangla, usually within 48 hours."
     render(path, title="Video Consultations & International Second Opinions | Mr Ullah", desc=desc, body=body, nav=NAV, active="patients", priority="0.7",
            schema=[medical_page(path, "Video consultations and international second opinions", desc), crumbs_schema(crumbs), faq_schema(faqs)])
 
@@ -919,7 +919,7 @@ def build_files():
             f"- Canary Wharf, Docklands, Isle of Dogs, Wapping, Limehouse, Greenwich and Stratford: consultations at Bupa Wharfside Health Centre, 50 Bank Street, E14 5NT ({SITE}/locations/canary-wharf/).",
             f"- City of London, Clerkenwell, Shoreditch, Holborn, Farringdon and Liverpool Street: Nuffield Health at St Bartholomew's Hospital, EC1A 7BS ({SITE}/locations/city-of-london/).",
             f"- Buckhurst Hill, Woodford Green, South Woodford, Loughton, Chigwell, Epping and Walthamstow: Nuffield Health The Holly Hospital, IG9 5HX, with a Rapid Access Breast Clinic on Tuesday afternoons ({SITE}/locations/buckhurst-hill-essex/).",
-            f"- Anywhere in the UK or abroad: video and telephone consultations and second opinions, in English, Bangla or Arabic ({SITE}/remote-consultations/). Bangla page: {SITE}/bn/ · Arabic page: {SITE}/ar/.",
+            f"- Anywhere in the UK or abroad: video and telephone consultations and second opinions, in English or Bangla ({SITE}/remote-consultations/). Bangla page: {SITE}/bn/ · Arabic page: {SITE}/ar/.",
             "", "## Quick facts",
             "- Title: Mr (a UK surgical title for Fellows of the Royal College of Surgeons; sometimes written Dr Zaker Ullah).",
             "- Over 30 years in surgery; consultant at Barts Health NHS Trust since 2012; Clinical Lead of the Whipps Cross Breast Unit.",
