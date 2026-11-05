@@ -17,6 +17,12 @@ import tempfile
 import urllib.parse
 import urllib.request
 
+
+def strip_emoji(text):
+    """Drop emoji (flags, pictographs, variation selectors) from a name, keeping plain text."""
+    return re.sub("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200D]", "", text).strip()
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 KEY_FILE = os.path.join(HERE, ".secrets", "unsplash")
@@ -88,7 +94,7 @@ def main():
         alt = (pick.get("alt_description") or q).replace(":", "").strip().capitalize()
         utm = f"?utm_source={APP}&utm_medium=referral"
         set_fields(path, {"image": f"blog/{slug}", "image_id": pick["id"], "image_alt": alt,
-                          "image_credit": pick["user"]["name"].replace(":", ""), "image_credit_url": pick["user"]["links"]["html"] + utm})
+                          "image_credit": strip_emoji(pick["user"]["name"].replace(":", "")), "image_credit_url": pick["user"]["links"]["html"] + utm})
         print("photo", slug, "by", pick["user"]["name"])
     if "--forget" in sys.argv and os.path.exists(KEY_FILE):
         os.remove(KEY_FILE)
