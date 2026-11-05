@@ -1555,3 +1555,9 @@ main, .site-footer, .ifoot { background: var(--bg); }
     .vhero .copy { padding-bottom: calc(max(1.6rem, env(safe-area-inset-bottom)) + 100lvh - 100dvh + var(--under-bar)); }
   }
 }
+
+/* phones: the scroll-lit statement is a full-screen moment, not a paragraph */
+@media (max-width: 47.99rem) {
+  .say { padding-block: clamp(4rem, 14svh, 7rem); }
+  .say-t { font-size: clamp(2.1rem, 9.6vw, 2.7rem); line-height: 1.06; letter-spacing: -0.035em; }
+}
