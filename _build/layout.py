@@ -182,7 +182,7 @@ def render(path, *, title, desc, body, nav, active=None, schema=(), og_type="web
 <meta name="description" content="{escape(desc)}">
 <meta name="robots" content="{"noindex" if noindex else "index, follow, max-image-preview:large"}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#55203f">
+<meta name="theme-color" content="#221019">
 <meta property="og:site_name" content="{NAME}, Consultant Breast Surgeon">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="{escape(title)}">

@@ -188,7 +188,7 @@ def page(lang):
 <meta name="description" content="{escape(t["desc"])}">
 <link rel="canonical" href="{canonical}">
 {hreflang()}
-<meta name="theme-color" content="#1a0f08">
+<meta name="theme-color" content="#221019">
 <meta property="og:title" content="{escape(t["title"])}"><meta property="og:description" content="{escape(t["desc"])}">
 <meta property="og:url" content="{canonical}"><meta property="og:type" content="website"><meta property="og:locale" content="{"ar_SA" if rtl else "bn_BD"}">
 <meta property="og:image" content="{SITE}/{img}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
