@@ -105,7 +105,7 @@
   // Hero reel: make sure it plays (Safari can refuse autoplay, e.g. in Low Power Mode, until the first interaction)
   var reel = document.querySelector(".vhero video");
   // Phones get the portrait cut of the reel (via <source media>); match its poster too
-  if (reel && reel.dataset.posterPhone && window.matchMedia("(max-width: 47.99rem)").matches) reel.poster = reel.dataset.posterPhone;
+  if (reel && reel.dataset.posterPhone && window.matchMedia("(max-width: 47.99rem) and (orientation: portrait)").matches) reel.poster = reel.dataset.posterPhone;
   if (reel && !still) {
     reel.muted = true; reel.defaultMuted = true; reel.setAttribute("playsinline", "");
     var go = function () { var p = reel.play(); if (p && p.catch) p.catch(function () {}); };

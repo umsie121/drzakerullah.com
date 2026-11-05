@@ -1561,3 +1561,24 @@ main, .site-footer, .ifoot { background: var(--bg); }
   .say { padding-block: clamp(4rem, 14svh, 7rem); }
   .say-t { font-size: clamp(2.1rem, 9.6vw, 2.7rem); line-height: 1.06; letter-spacing: -0.035em; }
 }
+
+/* phones in landscape: short screens get the wide reel, side-by-side layouts and slimmer bars */
+@media (orientation: landscape) and (max-height: 32rem) {
+  .vhero, [data-hero] .vhero { height: calc(100lvh - var(--header)); min-height: 0; max-height: none; border-radius: 0; }
+  .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 30%; }
+  .vhero::after { background: linear-gradient(90deg, rgba(20, 8, 14, 0.82) 0, rgba(20, 8, 14, 0.55) 45%, transparent 75%), linear-gradient(180deg, transparent 55%, rgba(20, 8, 14, 0.5) 100%); }
+  .vhero .copy { position: absolute; left: 0; right: 0; bottom: 0; display: block; max-width: 34rem; padding: 0 1.5rem max(1.4rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left)); }
+  .vhero .copy > .label { display: none; }
+  .vhero h1 { margin-top: 0; font-size: clamp(1.9rem, 11svh, 3rem); line-height: 0.98; }
+  .vhero .actions { margin-top: 1rem; gap: 1.2rem; flex-wrap: nowrap; }
+  .vhero .actions .btn { width: auto; }
+  .say { padding-block: clamp(2.5rem, 12svh, 4.5rem); }
+  .say-t { font-size: clamp(1.4rem, 7.5svh, 2.2rem); line-height: 1.12; max-width: 30em; }
+  .meet-in { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 2rem; align-items: center; }
+  .meet-in { align-items: start; }
+  .meet-f { position: sticky; top: calc(var(--header) + 0.5rem); aspect-ratio: 4 / 5; max-height: calc(100svh - var(--header) - 1.5rem); margin: 0; border-radius: var(--radius-lg); -webkit-mask-image: none; mask-image: none; }
+  .meet-f + .meet-t { margin-top: 0; }
+  .meet h2 { font-size: clamp(1.8rem, 9svh, 2.6rem); }
+  .mbar { left: auto; right: max(0.75rem, env(safe-area-inset-right)); width: 18rem; padding: 0.3rem; }
+  .mbar a { height: 2.4rem; font-size: 0.85rem; }
+}
