@@ -1,24 +1,24 @@
 #!/bin/bash
 # Builds the phone (portrait 2:3) cut of the hero reel from assets/video/reel.mp4.
 # Single-person shots are framed on the person; the two-person podcast shot is split
-# top/bottom, as are the audience and crowd-discussion shots (Mr Ullah on top where he
-# is in shot, clear of the headline). Run from the repo root.
+# top/bottom (Mr Ullah on top, clear of the headline), as are the audience shots. Shots run
+# as long as the reel allows, with soft 0.6s crossfades. Run from the repo root.
 set -e
 IN=assets/video/reel.mp4; OUT=${1:-assets/video}
-W=1080; H=1620; HALF=810; SLOW=1; F=0.4
+W=1080; H=1620; HALF=810; SLOW=1; F=0.6
 UP="scale=$W:$H:flags=lanczos,unsharp=5:5:0.7:5:5:0"
 # type start end params
 #   full  : crop-x of a 720x1080 window
 #   split : top-x top-y bottom-x bottom-y of two 800x600 windows
 SHOTS=(
-  "split 0.0 2.4 0 220 1120 200"
-  "full 3.0 4.65 610"
-  "split 5.0 6.5 150 80 880 0"
-  "full 7.0 8.35 290"
-  "split 8.7 10.8 860 0 0 200"
-  "full 12.8 14.05 950"
-  "full 14.45 16.0 590"
-  "split 16.5 18.2 100 0 1000 0"
+  "split 0.0 2.75 0 220 1120 200"
+  "full 2.8 4.85 610"
+  "split 4.85 6.75 880 0 150 80"
+  "full 6.8 8.5 290"
+  "full 8.5 11.0 330"
+  "full 12.6 14.2 950"
+  "full 14.25 16.2 590"
+  "split 16.25 18.4 100 0 1000 0"
 )
 fc=""; i=0
 for s in "${SHOTS[@]}"; do
