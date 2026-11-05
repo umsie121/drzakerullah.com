@@ -123,12 +123,12 @@ def stars():
 
 
 def testimonials(items):
-    lis = "".join(f'<li>{stars()}<blockquote>{escape(q)}</blockquote><div class="who">Written by a patient at {PLACES.get(where, where)}, {long_date(d)} · <a href="{review_link(q)}" target="_blank" rel="noopener">Read on iWantGreatCare ↗</a></div></li>' for q, d, where in items)
+    lis = "".join(f'<li>{stars()}<blockquote>{escape(q)}</blockquote><div class="who">Written by a patient at {PLACES.get(where, where)}, {long_date(d)} · <a href="{review_link(q)}" target="_blank" rel="noopener">Read on iWantGreatCare ↗︎</a></div></li>' for q, d, where in items)
     return f'<ul class="testimonials">{lis}</ul>'
 
 
 def google_reviews():
-    lis = "".join(f'<li><blockquote>{escape(q)}</blockquote><div class="who">{who}, Google review of Nuffield Health The Holly, {d} · <a href="{C.GOOGLE_MAPS}" target="_blank" rel="noopener">Read on Google ↗</a></div></li>' for q, who, d in C.GOOGLE_REVIEWS)
+    lis = "".join(f'<li><blockquote>{escape(q)}</blockquote><div class="who">{who}, Google review of Nuffield Health The Holly, {d} · <a href="{C.GOOGLE_MAPS}" target="_blank" rel="noopener">Read on Google ↗︎</a></div></li>' for q, who, d in C.GOOGLE_REVIEWS)
     return f'<ul class="testimonials">{lis}</ul>'
 
 
@@ -221,7 +221,7 @@ def long_date(d):
 def review_card(r):
     q, d, where = r
     return (f'<a class="rc" href="{review_link(q)}" target="_blank" rel="noopener">{stars()}<blockquote>&ldquo;{escape(q)}&rdquo;</blockquote>'
-            f'<span class="by">Written by a patient at {PLACES.get(where, where)}<br>{long_date(d)}</span><span class="go">Read on iWantGreatCare ↗</span></a>')
+            f'<span class="by">Written by a patient at {PLACES.get(where, where)}<br>{long_date(d)}</span><span class="go">Read on iWantGreatCare ↗︎</span></a>')
 
 
 def reviews_section():
@@ -657,7 +657,7 @@ def build_reviews():
             [(q, f'{who} · Google review of The Holly · {d}', "Google", C.GOOGLE_MAPS, False) for q, who, d in C.GOOGLE_REVIEWS]
     order = [0, 6, 1, 2, 7, 3, 4, 8, 5]
     wall = "".join(f'<figure class="rw{" g" if not st else ""}" data-r><figcaption class="src">{src}</figcaption>{stars() if st else ""}<blockquote>{escape(q)}</blockquote>'
-                   f'<p class="by">{by}</p><a class="go" href="{href}" target="_blank" rel="noopener">Read on {src} ↗</a></figure>' for q, by, src, href, st in (cards[i] for i in order if i < len(cards)))
+                   f'<p class="by">{by}</p><a class="go" href="{href}" target="_blank" rel="noopener">Read on {src} ↗︎</a></figure>' for q, by, src, href, st in (cards[i] for i in order if i < len(cards)))
     body = page_head(crumbs, "Patient reviews", "What his patients say",
                      "Independent, verified reviews from iWantGreatCare, alongside what patients say about Mr Ullah in Google reviews of The Holly.") + f'''
 <section class="rv-band"><div class="wrap rvb">
@@ -669,7 +669,7 @@ def build_reviews():
   <p class="note mt-3">Excerpts are reproduced word for word from public reviews on iWantGreatCare and Google, shortened where marked. Google reviewers are shown by their initials.</p></div></section>
 
 <section class="band stone"><div class="wrap duo">
-  <a class="fbv2" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener" data-r><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><span class="pl"></span><span class="cap">Meet Mr Ullah · a short film by Nuffield Health The Holly ↗</span></a>
+  <a class="fbv2" href="{C.HOLLY_VIDEO}" target="_blank" rel="noopener" data-r><img src="~/assets/img/holly-video.jpg" alt="Mr Ullah in his consulting room at The Holly" width="900" height="900" loading="lazy"><span class="pl"></span><span class="cap">Meet Mr Ullah · a short film by Nuffield Health The Holly ↗︎</span></a>
   <div data-r style="--d:1"><h2>Share your experience</h2><p class="lede mt-2">If Mr Ullah has treated you, a review helps future patients choose their care. Reviews can be left anonymously.</p>
   <div class="actions mt-3"><a class="btn" href="{C.IWGC}" target="_blank" rel="noopener">Review Mr Ullah on iWantGreatCare</a></div></div>
 </div></section>'''
@@ -799,7 +799,7 @@ def partner_cards():
     for p in C.BOOKING_PARTNERS:
         extra = f'<p class="stone small mt-1">{p["extra"]}</p>' if p["extra"] else ""
         out.append(f'<div class="partner"><span class="label">{p["kind"]}</span><h3>{p["name"]}</h3><p class="stone">Best for: {p["best"]}</p>{extra}<span class="sp"></span>'
-                   f'<a class="btn" href="{p["url"]}" target="_blank" rel="noopener">{p["cta"]} ↗</a></div>')
+                   f'<a class="btn" href="{p["url"]}" target="_blank" rel="noopener">{p["cta"]} ↗︎</a></div>')
     return f'<div class="partners">{"".join(out)}</div>'
 
 
