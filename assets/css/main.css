@@ -1546,3 +1546,12 @@ body { font-size: 0.97rem; }
 body { background: var(--nav); }
 main, .site-footer, .ifoot { background: var(--bg); }
 .site-footer, .ifoot { box-shadow: 0 100vh 0 100vh var(--bg); }
+
+/* iOS Safari 26+: the page shows through behind the floating address bar, below the
+   large-viewport bottom, so run the hero further down and keep the copy where it was */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 47.99rem) {
+    .vhero { --under-bar: calc(env(safe-area-inset-bottom) + 3rem); height: calc(100lvh - var(--header) + var(--under-bar)); }
+    .vhero .copy { padding-bottom: calc(max(1.6rem, env(safe-area-inset-bottom)) + 100lvh - 100dvh + var(--under-bar)); }
+  }
+}
