@@ -42,7 +42,7 @@ A few things make the day go more smoothly:
 - **Bring the paperwork.** If you are insured, bring your GP referral letter and your insurer's pre-authorisation number. Bring any previous mammogram or ultrasound reports, and a list of your medicines.
 - **On the day of a possible mammogram,** avoid deodorant or talcum powder, as these can show up on the images.
 
-I consult in English, Bangla and Arabic. For some families, particularly when an older relative is the patient, that makes the conversation easier for everyone.
+I consult in English and Bangla. For some families, particularly when an older relative is the patient, that makes the conversation easier for everyone.
 
 ## What a breast clinic in Loughton's local hospital can do for you
 

@@ -116,7 +116,7 @@ LOCATIONS = [
             "Rapid Access Breast Clinic with Mr Ullah on Tuesday afternoons",
             "Parking on site, close to the M11 and M25",
             "Outpatient clinics, imaging and full operating theatres",
-            "Consultations in English, Bangla and Arabic",
+            "Consultations in English and Bangla",
         ],
     },
 ]

@@ -85,7 +85,7 @@ def pages():
         ("fees-and-insurance", "page", "Fees and insurance", "Insured or self-funding", "Bupa Platinum consultant, fee-assured. Most major insurers."),
         ("your-visit", "page", "Your first visit", "What happens on the day", "Consultation, imaging and provisional results, usually at one visit."),
         ("second-opinion", "page", "Second opinions", "An independent view", "On a diagnosis or a proposed operation."),
-        ("remote-consultations", "page", "Video and international", "Consultations from anywhere", "By video or telephone, in English, Bangla or Arabic."),
+        ("remote-consultations", "page", "Video and international", "Consultations from anywhere", "By video or telephone, in English or Bangla."),
         ("procedures", "treatment", "Treatments", "Areas of practice", "Breast symptoms, breast cancer, reconstruction, and men's and general surgery."),
         ("locations", "clinic", "Clinics", "Three private clinics", "The Holly, Buckhurst Hill · Canary Wharf · St Bartholomew's, City of London."),
         ("news", "post", "Blog", "Clear answers, in plain English", "Guides to breast symptoms, surgery and recovery, written by Mr Ullah."),
@@ -94,8 +94,8 @@ def pages():
         out.append((f"procedures-{p['slug']}", "treatment", "Treatment", p["nav"], p["summary"]))
     for l in C.LOCATIONS:
         out.append((f"locations-{l['slug']}", "clinic", l["area"], l["name"], B.loc_address(l)))
-    out.append(("bn", "page", "বাংলা", "ডাঃ মোঃ জাকের উল্লাহ", "কনসালটেন্ট ব্রেস্ট সার্জন, লন্ডন। বাংলা, ইংরেজি ও আরবিতে কনসালটেশন।"))
-    out.append(("ar", "page", "العربية", "الدكتور محمد ذاكر الله", "استشاري جراحة الثدي في لندن. استشارات بالعربية والإنجليزية والبنغالية."))
+    out.append(("bn", "page", "বাংলা", "ডাঃ মোঃ জাকের উল্লাহ", "কনসালটেন্ট ব্রেস্ট সার্জন, লন্ডন। বাংলা ও ইংরেজিতে কনসালটেশন।"))
+    out.append(("ar", "page", "العربية", "الدكتور محمد ذاكر الله", "استشاري جراحة الثدي في لندن. رأي طبي ثانٍ بالفيديو للمرضى العرب."))
     for p in B.ALL_POSTS:
         out.append((f"news-{p['slug']}", "post", p["category"], p["title"], ""))
     return out
