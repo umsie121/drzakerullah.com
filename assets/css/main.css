@@ -1524,3 +1524,14 @@ body { font-size: 0.97rem; }
 .vt-c::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(40, 14, 30, 0.7) 0, transparent 55%); }
 .vt-c figcaption { position: absolute; z-index: 1; left: 1rem; right: 1rem; bottom: 0.9rem; color: #fff; font-family: var(--display); font-weight: 560; font-size: 1.05rem; line-height: 1.25; }
 @media (max-width: 40rem) { .vt-reel { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; } .vt-c { scroll-snap-align: start; } }
+
+/* phone hero: full-screen video with the copy over a dark fade */
+@media (max-width: 47.99rem) {
+  .vhero { height: calc(100svh - var(--header)); min-height: 34rem; max-height: 52rem; }
+  .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 35%; }
+  .vhero::after { background: linear-gradient(180deg, rgba(26, 15, 8, 0.35) 0, transparent 18%, transparent 48%, color-mix(in srgb, var(--deep) 70%, transparent) 68%, var(--deep) 92%); }
+  .vhero .copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 1.3rem 1.6rem; }
+  .vhero .copy > .label { display: none; }
+  .vhero h1 { margin-top: 0; font-size: clamp(2.2rem, 9.6vw, 3.2rem); line-height: 0.98; text-shadow: 0 2px 30px rgba(26, 15, 8, 0.45); }
+  .vhero .actions { margin-top: 1.2rem; gap: 1rem; }
+}
