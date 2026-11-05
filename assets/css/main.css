@@ -1527,7 +1527,7 @@ body { font-size: 0.97rem; }
 
 /* phone hero: full-screen video with the copy over a dark fade */
 @media (max-width: 47.99rem) {
-  .vhero { height: calc(100svh - var(--header)); min-height: 28rem; max-height: 60rem; }
+  .vhero { height: calc(100svh - var(--header)); height: calc(100dvh - var(--header)); min-height: 28rem; max-height: none; }
   .vhero > video, .vhero > img { height: 100%; bottom: 0; object-position: 50% 25%; }
   .vhero, [data-hero] .vhero { border-radius: 0; }
   .vhero::after { background: linear-gradient(180deg, rgba(20, 8, 14, 0.35) 0, transparent 16%, transparent 42%, rgba(20, 8, 14, 0.5) 64%, rgba(20, 8, 14, 0.78) 100%); }
@@ -1540,3 +1540,6 @@ body { font-size: 0.97rem; }
 
 /* solid header at the top so iOS tints the status bar to match it */
 .site-header:not(.scrolled) { background: var(--nav); }
+/* iOS Safari tints the status bar from the root background: match the header */
+html { background: var(--nav); }
+body { min-height: 100vh; }
