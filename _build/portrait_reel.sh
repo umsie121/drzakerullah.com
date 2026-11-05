@@ -4,7 +4,7 @@
 # top/bottom (Mr Ullah on top, clear of the headline). Run from the repo root.
 set -e
 IN=assets/video/reel.mp4; OUT=${1:-assets/video}
-W=1080; H=1620; HALF=810; SLOW=1.25; F=0.4
+W=1080; H=1620; HALF=810; SLOW=1; F=0.4
 UP="scale=$W:$H:flags=lanczos,unsharp=5:5:0.7:5:5:0"
 # type start end params
 #   full  : crop-x of a 720x1080 window
